@@ -95,8 +95,16 @@
 
       --code-bg: rgba(255,255,255,0.08);
 
+      /* H1 dual-tone (dark mode) */
+      --h1-emphasis: #FFFFFF;
+      --h1-light: rgba(255,255,255,0.5);
+
       --accent-light: var(--purple-300);
       --accent-dark: var(--purple-700);
+      --accent-bg: rgba(170,139,255,0.12);
+      --accent-bg-hover: rgba(170,139,255,0.18);
+      --accent-pill-bg: rgba(170,139,255,0.15);
+      --quote-bg: rgba(255,255,255,0.06);
       --topnav-logo-fill: #fff;
       --topnav-logo-text: #0D0D0D;
       --tile-hover-bg: #fff;
@@ -133,9 +141,17 @@
 
       --code-bg: #E8EAF0;
 
+      /* H1 dual-tone (light mode) */
+      --h1-emphasis: #363A5B;
+      --h1-light: #575C7B;
+
       --accent: #442599;
       --accent-light: #442599;
       --accent-dark: #442599;
+      --accent-bg: #E0E3F0;
+      --accent-bg-hover: #D7D8E1;
+      --accent-pill-bg: #E6DEFF;
+      --quote-bg: #E8EAF0;
       --topnav-logo-fill: #170C33;
       --topnav-logo-text: #fff;
       --tile-hover-bg: #170C33;
@@ -327,7 +343,7 @@
 
     .tile {
       position: relative;
-      border-radius: 16px;
+      border-radius: 24px;
       overflow: hidden;
       cursor: pointer;
       display: flex;
@@ -429,14 +445,14 @@
       background: transparent !important;
     }
     .tile[data-id="imagery"] .tile-title { color: #2D1866; }
-    .tile[data-id="imagery"]:hover { color: #442599 !important; }
+    .tile[data-id="imagery"]:hover { color: var(--accent) !important; }
     .tile[data-id="imagery"] .tile-content { opacity: 1; }
     .tile[data-id="imagery"] .tile-arrow { opacity: 0; }
     .tile[data-id="imagery"]:hover .tile-arrow { opacity: 1; }
 
     /* ---- Individual tile colors ---- */
     .tile[data-id="framework"]  { color: #fff; }
-    .tile[data-id="framework"]:hover { color: #442599 !important; }
+    .tile[data-id="framework"]:hover { color: var(--accent) !important; }
     .tile[data-id="framework"] .tile-bg  { background: #575C7B; }
     .tile[data-id="framework"] .tile-cover-img { inset: 0; width: 100%; height: 100%; object-position: center center; }
     .tile[data-id="framework"]:hover .tile-cover-default { opacity: 0; }
@@ -492,7 +508,7 @@
       position: absolute;
       inset: 0;
       border: 1px solid var(--border-strong);
-      border-radius: 16px;
+      border-radius: 24px;
       pointer-events: none;
       z-index: 3;
       transition: border-color 0.4s;
@@ -510,6 +526,22 @@
       text-align: center;
       max-width: 800px;
       margin: 0 auto;
+    }
+
+    /* H1 Dual-Tone — two weights, two colors */
+    .h1-dual {
+      font-family: var(--font);
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 1.19;
+      letter-spacing: -0.0095em;
+    }
+    .h1-dual .emphasis {
+      font-weight: 350; /* Book — maps to Figma's 450 "Book" */
+      color: var(--h1-emphasis);
+    }
+    .h1-dual .light {
+      font-weight: 400; /* Regular */
+      color: var(--h1-light);
     }
 
     .home-quote-text {
@@ -662,8 +694,8 @@
       gap: 6px;
       font-size: 13px;
       font-weight: 600;
-      color: #442599;
-      background: #E0E3F0;
+      color: var(--accent);
+      background: var(--accent-bg);
       margin-bottom: 32px;
       padding: 8px 16px;
       border-radius: 11px;
@@ -673,8 +705,8 @@
       letter-spacing: 0.02em;
     }
 
-    .sidebar-back:hover { color: #442599; background: #D7D8E1; }
-    .sidebar-back svg { width: 14px; height: 14px; stroke: #442599; }
+    .sidebar-back:hover { color: var(--accent); background: var(--accent-bg-hover); }
+    .sidebar-back svg { width: 14px; height: 14px; stroke: var(--accent); }
 
     .sidebar-label {
       font-size: 11px;
@@ -723,7 +755,7 @@
 
     .content-title {
       font-size: clamp(36px, 4vw, 55px);
-      font-weight: 500;
+      font-weight: 300;
       letter-spacing: -0.04em;
       line-height: 1.15;
       margin-bottom: 16px;
@@ -750,7 +782,7 @@
 
     .section-title {
       font-size: 22px;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: -0.02em;
       margin-bottom: 12px;
     }
@@ -1161,12 +1193,13 @@
     .tabpage-tabs::-webkit-scrollbar { display: none; }
 
     .color-tab {
-      padding: 14px 24px;
-      font-size: 15px;
-      font-weight: 600;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
       color: var(--text-tertiary);
       cursor: pointer;
-      border-bottom: 2px solid transparent;
+      border: none;
+      border-radius: 8px;
       transition: all 0.2s ease;
       white-space: nowrap;
       position: relative;
@@ -1180,7 +1213,9 @@
 
     .color-tab.active {
       color: var(--accent);
-      border-bottom-color: var(--accent);
+      background: none;
+      border-bottom: 1px solid var(--accent);
+      border-radius: 0;
     }
 
     .color-tab-panel {
@@ -1902,8 +1937,7 @@
     .btn-theme-toggle svg { width: 18px; height: 18px; }
 
     /* Light mode specific overrides */
-    [data-theme="light"] .topnav-logo svg rect { fill: var(--topnav-logo-fill); }
-    [data-theme="light"] .topnav-logo svg text { fill: var(--topnav-logo-text); }
+    [data-theme="light"] .topnav-logo svg path { fill: var(--topnav-logo-fill); stroke: var(--topnav-logo-fill); }
     [data-theme="light"] .tile:hover .tile-arrow { opacity: 1; }
     [data-theme="light"] .content-eyebrow { color: var(--accent); }
     [data-theme="light"] .home-intro-badge { color: var(--accent); }
@@ -1926,8 +1960,8 @@
   <!-- ============ TOPNAV ============ -->
   <nav class="topnav" id="topnav">
     <a class="topnav-logo" onclick="navigateTo('home')">
-      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#fff"/><text x="7" y="20" font-family="Inter" font-weight="800" font-size="16" fill="#0D0D0D">B</text></svg>
-      <div class="topnav-logo-text">Brand<span>Guidelines</span></div>
+      <svg viewBox="0 0 28 28" fill="none"><path d="M14 1.5L25.5 8.25V21.75L14 28.5L2.5 21.75V8.25L14 1.5Z" fill="#fff" stroke="#fff" stroke-width="0.5"/></svg>
+      <div class="topnav-logo-text">Work in<span>Progress</span></div>
     </a>
     <div class="topnav-center" id="topnavCenter">
       <a class="topnav-link active" data-page="home" onclick="navigateTo('home')">Home</a>
@@ -1946,8 +1980,8 @@
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
       <a class="btn-cta" href="#">
-        <img class="cta-dark" src="./assets/Guidelines/UI/CTA-primary.svg" alt="Get a demo" height="40">
-        <img class="cta-light" src="./assets/Guidelines/UI/CTA-secondary.svg" alt="Talk to us" height="40" style="display:none">
+        <img class="cta-dark" src="../../assets/Guidelines/UI/CTA-primary.svg" alt="Get a demo" height="40">
+        <img class="cta-light" src="../../assets/Guidelines/UI/CTA-secondary.svg" alt="Talk to us" height="40" style="display:none">
       </a>
       <button class="menu-toggle" onclick="toggleMobileNav()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -2045,7 +2079,7 @@
       {
         id: 'framework', number: '01', title: 'Framework', color: 'var(--tile-framework)',
         desc: 'Design strategy, principles, and foundational brand concepts.',
-        svg: `<img src="./assets/Guidelines/Background.png?v=3" alt="Framework" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/framework-hover.png" alt="Framework" class="tile-cover-img tile-cover-hover"/>`,
+        svg: `<img src="../../assets/Guidelines/Background.png?v=3" alt="Framework" class="tile-cover-img tile-cover-default"/><img src="../../assets/Guidelines/framework-hover.png" alt="Framework" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
         sections: [
           { id: 'overview', title: 'Overview' },
@@ -2058,6 +2092,7 @@
       {
         id: 'voice-tone', number: '02', title: 'Voice & Tone', color: 'var(--tile-voice)',
         desc: 'Communication guidelines for consistent, on-brand messaging.',
+        customLayout: true,
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Giant opening quote — bleeds off top-left -->
           <text x="-40" y="250" font-size="480" font-weight="700" fill="currentColor" opacity="0.15" font-family="General Sans,sans-serif">\u201C</text>
@@ -2173,7 +2208,7 @@
       {
         id: 'imagery', number: '07', title: 'Imagery', color: 'var(--tile-imagery)',
         desc: 'Photography, illustration, and visual treatment approaches.',
-        svg: `<img src="./assets/Guidelines/Imagery.jpg" alt="Imagery" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/Imagery-hover.jpg" alt="Imagery" class="tile-cover-img tile-cover-hover"/>`,
+        svg: `<img src="../../assets/Guidelines/Imagery.jpg" alt="Imagery" class="tile-cover-img tile-cover-default"/><img src="../../assets/Guidelines/Imagery-hover.jpg" alt="Imagery" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
         sections: [
           { id: 'photography', title: 'Photography' },
@@ -2236,7 +2271,7 @@
           <div class="tile-bottom">
             <div class="tile-title">${t.title}</div>
             <div class="tile-arrow">
-              <img src="./assets/Guidelines/UI/CTA-hexagon.svg" alt="" width="43" height="44">
+              <img src="../../assets/Guidelines/UI/CTA-hexagon.svg" alt="" width="43" height="44">
             </div>
           </div>
         </div>
@@ -2553,6 +2588,168 @@
       `;
     }
 
+    function getVoiceTonePageHTML() {
+      var spectrumData = [
+        ['Formal', 'Casual', 30],
+        ['Technical', 'Simple', 65],
+        ['Reserved', 'Enthusiastic', 25],
+        ['Abstract', 'Concrete', 80],
+        ['Corporate', 'Conversational', 40]
+      ];
+      var spectrumHTML = spectrumData.map(function(s) {
+        return '<div style="display:grid;grid-template-columns:100px 1fr 100px;align-items:center;gap:12px">' +
+          '<span style="font-size:13px;color:var(--text-secondary);text-align:right">' + s[0] + '</span>' +
+          '<div style="position:relative;height:6px;background:var(--border-default);border-radius:3px">' +
+          '<div style="position:absolute;left:' + s[2] + '%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--text-primary)"></div>' +
+          '</div>' +
+          '<span style="font-size:13px;color:var(--text-secondary)">' + s[1] + '</span>' +
+          '</div>';
+      }).join('');
+
+      var doItems = [
+        'Lead with the benefit or action, not the feature name.',
+        'Use active voice. "Dfns secures your keys" not "Keys are secured by Dfns."',
+        'Write for scanning: short paragraphs, bullet points, clear headings.',
+        'Use "you" and "your" to speak directly to the reader.',
+        'Prefer concrete terms over abstract ones. "256-bit encryption" over "advanced security."',
+        'Keep sentences under 25 words. If it needs a comma, consider splitting it.',
+        'Use sentence case for headings. Title Case only for proper nouns and product names.'
+      ];
+      var doHTML = doItems.map(function(t) {
+        return '<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-subtle)">' +
+          '<svg style="width:22px;height:22px;flex-shrink:0;margin-top:2px;color:#05c168" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' +
+          '<span style="color:var(--text-body);line-height:1.6;font-size:17px">' + t + '</span></div>';
+      }).join('');
+
+      var dontItems = [
+        'Don\'t use buzzwords: "revolutionary", "game-changing", "next-gen", "cutting-edge."',
+        'Don\'t use fear-based messaging. Never say "your assets are at risk" \u2014 say "here\'s how we protect them."',
+        'Don\'t use exclamation marks in product copy. One per page maximum in marketing.',
+        'Don\'t hedge with "we believe" or "we think." State what we do and what we know.',
+        'Don\'t use "blockchain" as a selling point. Our audience already knows. Focus on what we enable.',
+        'Don\'t use emoji in formal communications. Sparingly in social and community channels only.'
+      ];
+      var dontHTML = dontItems.map(function(t) {
+        return '<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-subtle)">' +
+          '<svg style="width:22px;height:22px;flex-shrink:0;margin-top:2px;color:#ff5a65" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+          '<span style="color:var(--text-body);line-height:1.6;font-size:17px">' + t + '</span></div>';
+      }).join('');
+
+      var termsData = [
+        ['Wallet', 'Not "vault", "safe", or "account"'],
+        ['Key management', 'Not "key custody" (unless referring to custody-specific contexts)'],
+        ['Policy engine', 'Not "rules engine" or "approval workflow"'],
+        ['Programmable', 'Not "configurable" or "customizable"'],
+        ['Infrastructure', 'Not "platform" (platform implies end-user facing)'],
+        ['Onchain', 'One word, no hyphen. Not "on-chain" or "on chain"']
+      ];
+      var termsHTML = termsData.map(function(t) {
+        return '<div style="display:grid;grid-template-columns:160px 1fr;background:var(--bg-surface)">' +
+          '<div style="padding:14px 20px;font-weight:600;font-size:14px;color:var(--text-primary)">' + t[0] + '</div>' +
+          '<div style="padding:14px 20px;font-size:14px;color:var(--text-secondary)">' + t[1] + '</div></div>';
+      }).join('');
+
+      var examplesData = [
+        { context: 'Homepage headline', bad: 'Dfns is a revolutionary next-generation blockchain wallet infrastructure platform that is changing the game!', good: 'Wallet infrastructure for institutions. Secure by design, built for builders.', why: 'Lead with what we do, not who we are. Cut the superlatives.' },
+        { context: 'Error message', bad: 'Error: Transaction failed. Something went wrong. Please try again later.', good: 'Transaction declined: insufficient approval signatures. 2 of 3 required policies met. Contact your admin to add a signer.', why: 'Explain what happened, why, and what to do next.' },
+        { context: 'Feature announcement', bad: 'We\'re thrilled to announce our amazing new feature that will revolutionize how you manage wallets!!!', good: 'New: programmable spending limits. Set per-wallet, per-token thresholds that auto-enforce \u2014 no manual review needed.', why: 'State the feature, explain the value. Let the reader decide if it\'s exciting.' },
+        { context: 'Security page', bad: 'Your crypto assets could be stolen at any moment. Don\'t let hackers win. Choose Dfns for ultimate protection.', good: 'Keys are generated and stored across distributed MPC nodes. No single server ever holds a complete key. SOC 2 Type II certified.', why: 'Facts over fear. Specifics over vague claims.' },
+        { context: 'API documentation', bad: 'This powerful endpoint allows you to easily and seamlessly create wallets in a super simple way.', good: 'POST /wallets creates a new wallet. Returns the wallet ID and public address. Requires a valid service account token.', why: 'Action-oriented, scannable, technical. No filler words.' }
+      ];
+      var examplesHTML = examplesData.map(function(ex) {
+        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:40px">' +
+          '<div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px">' + ex.context + '</div>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px">' +
+          '<div style="padding:24px;border-radius:12px;border:1px solid rgba(255,90,101,0.2);background:rgba(255,90,101,0.04)">' +
+          '<div style="font-size:13px;font-weight:600;color:#ff5a65;margin-bottom:12px;display:flex;align-items:center;gap:8px"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="#ff5a65" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Don\'t</div>' +
+          '<p style="color:var(--text-secondary);line-height:1.6;margin:0;font-size:16px">' + ex.bad + '</p></div>' +
+          '<div style="padding:24px;border-radius:12px;border:1px solid rgba(5,193,104,0.2);background:rgba(5,193,104,0.04)">' +
+          '<div style="font-size:13px;font-weight:600;color:#05c168;margin-bottom:12px;display:flex;align-items:center;gap:8px"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="#05c168" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Do</div>' +
+          '<p style="color:var(--text-body);line-height:1.6;margin:0;font-size:16px">' + ex.good + '</p></div></div>' +
+          '<p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;padding-top:8px;border-top:1px solid var(--border-subtle)">' + ex.why + '</p></div>';
+      }).join('');
+
+      return '<div class="tabpage-layout"><div class="tabpage-header">' +
+        '<a class="sidebar-back" onclick="navigateTo(\'home\')" style="margin-bottom:24px;display:inline-flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>All Guidelines</a>' +
+        '<h1 class="content-title">Voice &amp; Tone</h1>' +
+        '<p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Communication guidelines for consistent, on-brand messaging across every touchpoint.</p>' +
+        '<div class="tabpage-tabs"><button class="color-tab active" data-tab="overview" data-tabgroup="vt">Overview</button><button class="color-tab" data-tab="voice" data-tabgroup="vt">Brand Voice</button><button class="color-tab" data-tab="tone" data-tabgroup="vt">Tone Variations</button><button class="color-tab" data-tab="writing" data-tabgroup="vt">Writing Guidelines</button><button class="color-tab" data-tab="examples" data-tabgroup="vt">Examples</button></div></div>' +
+
+        '<div class="color-tab-panel active" id="vttab-overview"><div style="max-width:800px">' +
+        '<h2 class="section-title" style="margin-bottom:16px">Our Voice</h2>' +
+        '<p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">Dfns speaks with the confidence of a security leader and the clarity of a great developer tool. We are precise, trustworthy, and human \u2014 never corporate jargon, never hype.</p>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Voice Principles</h2>' +
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
+          '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+          '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Clear</div>' +
+          '<p style="color:var(--text-body);line-height:1.5;margin:0">We simplify complex blockchain and security concepts. If a developer can\'t understand it in 5 seconds, rewrite it.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
+          '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' +
+          '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Confident</div>' +
+          '<p style="color:var(--text-body);line-height:1.5;margin:0">We know our technology is best-in-class. We state facts, not promises. We let results speak \u2014 no superlatives needed.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
+          '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>' +
+          '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Human</div>' +
+          '<p style="color:var(--text-body);line-height:1.5;margin:0">We talk to people, not at them. Warm but professional. We\'re the trusted advisor, not the corporate vendor.</p></div></div>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Voice vs. Tone</h2>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Voice is constant</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our voice is who we are. It stays the same across all channels \u2014 website, docs, emails, social, product UI.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Tone adapts</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our tone shifts depending on the audience, the context, and the emotional state of the reader. A security alert is not a product launch.</p></div></div>' +
+        '</div></div>' +
+
+        '<div class="color-tab-panel" id="vttab-voice"><div style="max-width:800px">' +
+        '<h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>' +
+        '<p class="section-desc" style="margin-bottom:24px">Our voice is shaped by our brand archetype. This mix defines how we communicate across every touchpoint.</p>' +
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">' +
+        '<div style="font-size:32px;font-weight:600;color:var(--accent);margin-bottom:4px">70%</div>' +
+        '<div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Ruler</div>' +
+        '<p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Authority and structure. We set the standard for wallet infrastructure with precision and control.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">' +
+        '<div style="font-size:32px;font-weight:600;color:var(--accent);margin-bottom:4px">20%</div>' +
+        '<div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Sage</div>' +
+        '<p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Knowledge and insight. We educate, guide and share deep expertise to help builders make informed decisions.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">' +
+        '<div style="font-size:32px;font-weight:600;color:var(--accent);margin-bottom:4px">10%</div>' +
+        '<div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Caregiver</div>' +
+        '<p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Empathy and support. We reassure, protect and care for our users through sensitive security operations.</p></div>' +
+        '</div>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Voice Attributes</h2>' +
+        '<div style="display:grid;gap:16px;margin-bottom:40px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Trustworthy</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Technical</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We speak developer-first. Code examples over marketing fluff. Architecture diagrams over buzzwords. We respect our audience\'s intelligence.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Reassuring</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Security is stressful. We calm anxiety with clarity, not complexity. We guide users through sensitive operations with patience and care.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Concise</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Every word earns its place. We cut filler, avoid redundancy, and get to the point. Brevity is respect for our reader\'s time.</p></div></div>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Voice Spectrum</h2>' +
+        '<div style="display:grid;gap:12px">' + spectrumHTML + '</div></div></div>' +
+
+        '<div class="color-tab-panel" id="vttab-tone"><div style="max-width:800px">' +
+        '<p class="section-desc" style="margin-bottom:32px">Our tone shifts across contexts while our voice remains constant. Here\'s how we adapt for different situations.</p>' +
+        '<div style="display:grid;gap:16px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Marketing &amp; Website</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Confident &amp; Inspiring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Bold statements, concise value propositions. We lead with what matters to the reader. No fluff, no jargon \u2014 just clarity and ambition.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CThe most secure wallet infrastructure, built for builders.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Documentation &amp; API</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Precise &amp; Helpful</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Direct, scannable, action-oriented. Code-first. Every sentence should help the developer move forward. Think Stripe docs.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CPass the wallet ID to create a new transaction. The endpoint returns a signed payload.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Security &amp; Compliance</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Authoritative &amp; Reassuring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Calm authority. We explain security measures without creating anxiety. Facts over fear. Compliance language is precise, never vague.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CYour keys are distributed across multiple independent servers. No single point of compromise.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Product UI</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Clear &amp; Functional</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Minimal, actionable microcopy. Labels are verbs. Errors explain what happened and how to fix it. Success states are brief and warm.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CTransaction signed successfully. 2 approvals remaining.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Slightly warmer. We can show personality here \u2014 but never at the expense of credibility. Smart observations over hot takes.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CShipped: programmable policies for multi-sig wallets. Your rules, enforced at the infrastructure level.\u201D</div></div>' +
+        '</div></div></div>' +
+
+        '<div class="color-tab-panel" id="vttab-writing"><div style="max-width:800px">' +
+        '<p class="section-desc" style="margin-bottom:32px">Practical rules for writing on-brand Dfns content.</p>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Do</h2>' +
+        '<div style="display:grid;gap:10px;margin-bottom:32px">' + doHTML + '</div>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Don\'t</h2>' +
+        '<div style="display:grid;gap:10px;margin-bottom:32px">' + dontHTML + '</div>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Terminology</h2>' +
+        '<div style="display:grid;gap:1px;background:var(--border-default);border-radius:12px;overflow:hidden">' + termsHTML + '</div>' +
+        '</div></div>' +
+
+        '<div class="color-tab-panel" id="vttab-examples"><div style="max-width:800px">' +
+        '<p class="section-desc" style="margin-bottom:32px">Side-by-side comparisons showing how to apply Dfns voice and tone in practice.</p>' +
+        '<div style="display:grid;gap:24px">' + examplesHTML + '</div>' +
+        '</div></div></div>';
+    }
+
     function getColorPageHTML() {
       const purpleUsage = [
         { do: true, text: 'Use Purple 900 <code class="code-inline">#170C33</code> exclusively for backgrounds. No other purple should be used as background.' },
@@ -2727,6 +2924,7 @@
               <p class="section-desc" style="margin-top:-8px">Headings use Medium (500) weight with tight letter-spacing for impact. H4 uses Regular (400) for a lighter feel.</p>
             </div>
 
+            ${specimen('<span style="font-weight:350;color:var(--h1-emphasis)">Your Banking Systems</span> <span style="font-weight:400;color:var(--h1-light)">Support Blockchains</span>', 'font-size:42px;line-height:1.19;letter-spacing:-0.0095em', ['H1 Dual', '42px', 'Book 350 + Regular 400', 'Line 1.19'], 'Hero sections — two weights, two colors')}
             ${specimen('The quick brown fox', 'font-size:55px;font-weight:500;line-height:1.15;letter-spacing:-0.03em', ['H1', '55px', 'Weight 500', 'Line 1.15'], 'Hero sections, landing page headlines')}
             ${specimen('The quick brown fox jumps', 'font-size:48px;font-weight:500;line-height:1.125;letter-spacing:-0.02em', ['H2', '48px', 'Weight 500', 'Line 1.125'], 'Main page sections')}
             ${specimen('The quick brown fox jumps over', 'font-size:40px;font-weight:500;line-height:1.2;letter-spacing:-0.02em', ['H3', '40px', 'Weight 500', 'Line 1.2'], 'Sub-sections')}
@@ -3894,13 +4092,14 @@
 
       if (t.customLayout) {
         if (t.id === 'framework') page.innerHTML = getFrameworkPageHTML();
+        else if (t.id === 'voice-tone') page.innerHTML = getVoiceTonePageHTML();
         else if (t.id === 'color') page.innerHTML = getColorPageHTML();
         else if (t.id === 'typography') page.innerHTML = getTypographyPageHTML();
         else if (t.id === 'logo') page.innerHTML = getLogoPageHTML();
         else if (t.id === 'iconography') page.innerHTML = getIconographyPageHTML();
         else if (t.id === 'imagery') page.innerHTML = getImageryPageHTML();
         else if (t.id === 'motion') page.innerHTML = getMotionPageHTML();
-        if (t.id === 'framework' || t.id === 'color' || t.id === 'typography' || t.id === 'logo' || t.id === 'iconography' || t.id === 'imagery' || t.id === 'motion') {
+        if (t.id === 'framework' || t.id === 'voice-tone' || t.id === 'color' || t.id === 'typography' || t.id === 'logo' || t.id === 'iconography' || t.id === 'imagery' || t.id === 'motion') {
           innerPages.appendChild(page);
           return;
         }
@@ -3952,7 +4151,7 @@
       if (!tab) return;
       const tabId = tab.dataset.tab;
       const group = tab.dataset.tabgroup;
-      const prefix = group === 'fw' ? 'fwtab-' : group === 'type' ? 'ttab-' : group === 'logo' ? 'ltab-' : group === 'icon' ? 'itab-' : group === 'img' ? 'imtab-' : group === 'motion' ? 'mtab-' : 'ctab-';
+      const prefix = group === 'fw' ? 'fwtab-' : group === 'vt' ? 'vttab-' : group === 'type' ? 'ttab-' : group === 'logo' ? 'ltab-' : group === 'icon' ? 'itab-' : group === 'img' ? 'imtab-' : group === 'motion' ? 'mtab-' : 'ctab-';
 
       // Scope to the parent tabs container
       const tabsContainer = tab.closest('.tabpage-tabs');
