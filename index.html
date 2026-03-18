@@ -1380,7 +1380,7 @@
     }
 
     .type-hero-name {
-      font-size: clamp(48px, 6vw, 80px);
+      font-size: clamp(36px, 5vw, 48px);
       font-weight: 500;
       letter-spacing: 0;
       line-height: 1;
@@ -3095,9 +3095,9 @@
           <div class="color-tab-panel" id="ctab-semantic">
             <div style="max-width:900px">
               <p class="section-desc" style="margin-bottom:24px">Semantic variables from Rubik 2026 — these auto-switch between light and dark mode. Use these in production instead of raw color tokens.</p>
-              <h3 style="font-weight:300;font-size:22px;letter-spacing:-0.03em;margin-bottom:16px;color:var(--text-primary)">Light Mode</h3>
+              <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin-bottom:16px;color:var(--text-primary)">Light Mode</h3>
               ${buildColorStrips(colorData.semanticLight)}
-              <h3 style="font-weight:300;font-size:22px;letter-spacing:-0.03em;margin:32px 0 16px;color:var(--text-primary)">Dark Mode</h3>
+              <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin:32px 0 16px;color:var(--text-primary)">Dark Mode</h3>
               ${buildColorStrips(colorData.semanticDark)}
             </div>
           </div>
@@ -3222,7 +3222,7 @@
                 <span class="color-family-name">Heading Scale</span>
                 <span class="color-family-count">5 levels</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">All headings use Suisse Int'l with tight negative letter-spacing. <strong>H1 and H2 are always dual-tone</strong>: Book (350) for the key concept in Cold Grey 700 / White, Light (300) for the continuation in Ultra Purple 700 / Ultra Purple 300. H3–H5 use Light (300) in a single colour. Source: Figma Master Material.</p>
+              <p class="section-desc" style="margin-top:-8px">All headings use Suisse Int'l with letter-spacing 0. <strong>H1 and H2 are always dual-tone</strong>: Book (350) for the key concept in Cold Grey 700 / White, Light (300) for the continuation in Ultra Purple 700 / Ultra Purple 300. H3–H5 use Light (300) in a single colour. Source: Rubik 2026.</p>
             </div>
 
             <div class="color-family" style="margin-top:8px;margin-bottom:12px">
@@ -3236,16 +3236,16 @@
             <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:12px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H1</span>
-                <span class="type-specimen-tag">50px</span>
+                <span class="type-specimen-tag">48px</span>
                 <span class="type-specimen-tag">Book 350 + Light 300</span>
-                <span class="type-specimen-tag">Line 1.1</span>
-                <span class="type-specimen-tag">LS −1.96%</span>
+                <span class="type-specimen-tag">Line auto</span>
+                <span class="type-specimen-tag">LS 0</span>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <!-- Dark -->
                 <div style="padding:28px 24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:18px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(22px,2.5vw,38px);line-height:1.1;letter-spacing:-0.0196em;margin-bottom:20px">
+                  <div style="font-family:var(--font);font-size:clamp(22px,2.5vw,38px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
                     <span style="font-weight:300;color:#AA8BFF;display:block">One Operating</span>
                     <span style="font-weight:350;color:#E0E3F0;display:block">Infrastructure</span>
                   </div>
@@ -3263,7 +3263,7 @@
                 <!-- Light -->
                 <div style="padding:28px 24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:18px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(22px,2.5vw,38px);line-height:1.1;letter-spacing:-0.0196em;margin-bottom:20px">
+                  <div style="font-family:var(--font);font-size:clamp(22px,2.5vw,38px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
                     <span style="font-weight:300;color:#442599;display:block">One Operating</span>
                     <span style="font-weight:350;color:#363A5B;display:block">Infrastructure</span>
                   </div>
@@ -3286,16 +3286,16 @@
             <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:24px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H2</span>
-                <span class="type-specimen-tag">40px</span>
+                <span class="type-specimen-tag">36px</span>
                 <span class="type-specimen-tag">Book 350 + Light 300</span>
-                <span class="type-specimen-tag">Line 1.1</span>
-                <span class="type-specimen-tag">LS −2.45%</span>
+                <span class="type-specimen-tag">Line auto</span>
+                <span class="type-specimen-tag">LS 0</span>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <!-- Dark -->
                 <div style="padding:28px 24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:18px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(18px,2vw,30px);line-height:1.1;letter-spacing:-0.0245em;margin-bottom:20px">
+                  <div style="font-family:var(--font);font-size:clamp(18px,2vw,30px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
                     <span style="font-weight:300;color:#AA8BFF;display:block">One Operating Infrastructure</span>
                     <span style="font-weight:350;color:#E0E3F0;display:block">to Do Everything Onchain</span>
                   </div>
@@ -3313,7 +3313,7 @@
                 <!-- Light -->
                 <div style="padding:28px 24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:18px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(18px,2vw,30px);line-height:1.1;letter-spacing:-0.0245em;margin-bottom:20px">
+                  <div style="font-family:var(--font);font-size:clamp(18px,2vw,30px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
                     <span style="font-weight:300;color:#442599;display:block">One Operating Infrastructure</span>
                     <span style="font-weight:350;color:#363A5B;display:block">to Do Everything Onchain</span>
                   </div>
@@ -3336,15 +3336,15 @@
             <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:12px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H3</span>
-                <span class="type-specimen-tag">30px</span>
+                <span class="type-specimen-tag">28px</span>
                 <span class="type-specimen-tag">Light 300</span>
-                <span class="type-specimen-tag">Line 1.15</span>
-                <span class="type-specimen-tag">LS −3%</span>
+                <span class="type-specimen-tag">Line auto</span>
+                <span class="type-specimen-tag">LS 0</span>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <div style="padding:24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:-0.03em;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain</div>
+                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
                     <span style="width:10px;height:10px;border-radius:2px;background:#E0E3F0;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#E0E3F0</code><span>— Light 300 · Cold Grey 100</span>
@@ -3352,7 +3352,7 @@
                 </div>
                 <div style="padding:24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:14px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:-0.03em;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain</div>
+                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:0;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
                     <span style="width:10px;height:10px;border-radius:2px;background:#363A5B;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#363A5B</code><span>— Light 300 · Cold Grey 700</span>
@@ -3366,15 +3366,15 @@
             <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:12px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H4</span>
-                <span class="type-specimen-tag">22px</span>
+                <span class="type-specimen-tag">24px</span>
                 <span class="type-specimen-tag">Light 300</span>
-                <span class="type-specimen-tag">Line 1.1</span>
-                <span class="type-specimen-tag">LS −4.45%</span>
+                <span class="type-specimen-tag">Line auto</span>
+                <span class="type-specimen-tag">LS 0</span>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <div style="padding:24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:-0.0445em;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your stack</div>
+                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your stack</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
                     <span style="width:10px;height:10px;border-radius:2px;background:#E0E3F0;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#E0E3F0</code><span>— Light 300 · Cold Grey 100</span>
@@ -3382,7 +3382,7 @@
                 </div>
                 <div style="padding:24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:14px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:-0.0445em;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your stack</div>
+                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:0;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your stack</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
                     <span style="width:10px;height:10px;border-radius:2px;background:#363A5B;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#363A5B</code><span>— Light 300 · Cold Grey 700</span>
@@ -3398,13 +3398,13 @@
                 <span class="type-specimen-tag">H5</span>
                 <span class="type-specimen-tag">16px</span>
                 <span class="type-specimen-tag">Light 300</span>
-                <span class="type-specimen-tag">Line 1.2</span>
-                <span class="type-specimen-tag">LS −2%</span>
+                <span class="type-specimen-tag">Line auto</span>
+                <span class="type-specimen-tag">LS 0</span>
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <div style="padding:24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your entire stack</div>
+                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your entire stack</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
                     <span style="width:10px;height:10px;border-radius:2px;background:#E0E3F0;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#E0E3F0</code><span>— Light 300 · Cold Grey 100</span>
@@ -3412,7 +3412,7 @@
                 </div>
                 <div style="padding:24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:14px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:-0.02em;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your entire stack</div>
+                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:0;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your entire stack</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
                     <span style="width:10px;height:10px;border-radius:2px;background:#363A5B;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#363A5B</code><span>— Light 300 · Cold Grey 700</span>
@@ -3449,7 +3449,7 @@
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Conserver la negative letter-spacing. Elle se resserre aux petites tailles (H4 : −4.45%) pour maintenir la densité optique.</span>
+                <span><strong>Do</strong> — Utiliser letter-spacing 0 sur tous les textes, conformément à Rubik 2026.</span>
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -3472,12 +3472,12 @@
               <p class="section-desc" style="margin-top:-8px">Body text uses Regular (400) by default, Medium (500) for emphasis. Generous line-heights (1.5–1.65) ensure optimal readability across screens.</p>
             </div>
 
-            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale.', 'font-size:20px;font-weight:400;line-height:1.5;letter-spacing:-0.01em', ['Body XL', '20px', 'Regular 400', 'Line 1.5', 'LS −1%'], 'Hero subheadings, lead paragraphs, intro text')}
-            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale. We handle the infrastructure so you can focus on building.', 'font-size:18px;font-weight:400;line-height:1.55', ['Body L', '18px', 'Regular 400', 'Line 1.55'], 'Article body, long-form descriptions, feature explanations')}
-            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale. We handle the infrastructure so you can focus on building great products.', 'font-size:16px;font-weight:400;line-height:1.6', ['Body M', '16px', 'Regular 400', 'Line 1.6'], 'Default UI text, standard running copy, dashboard descriptions')}
-            ${specimen('Secondary descriptions, sidebar content, navigation items, tooltips, and supporting content that complements the main body text across all surfaces.', 'font-size:14px;font-weight:400;line-height:1.57', ['Body S', '14px', 'Regular 400', 'Line 1.57'], 'Secondary text, sidebar copy, tooltips, helper text')}
-            ${specimen('Supplementary content, table cell text, list item details, and contextual information that supports primary content without competing for attention.', 'font-size:13px;font-weight:400;line-height:1.54', ['Body XS', '13px', 'Regular 400', 'Line 1.54'], 'Table cells, list items, contextual detail')}
-            ${specimen('Captions, legal mentions, footnotes, and other supplementary information displayed at the smallest readable size across all product surfaces.', 'font-size:12px;font-weight:400;line-height:1.5', ['Caption', '12px', 'Regular 400', 'Line 1.5'], 'Image captions, footnotes, legal mentions')}
+            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale.', 'font-size:24px;font-weight:400;line-height:normal;letter-spacing:0', ['Body XL', '24px', 'Regular 400', 'Line auto'], 'Hero subheadings, lead paragraphs, intro text')}
+            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale. We handle the infrastructure so you can focus on building.', 'font-size:20px;font-weight:400;line-height:normal', ['Body L', '20px', 'Regular 400', 'Line auto'], 'Article body, long-form descriptions, feature explanations')}
+            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale. We handle the infrastructure so you can focus on building great products.', 'font-size:16px;font-weight:400;line-height:normal', ['Body M', '16px', 'Regular 400', 'Line auto'], 'Default UI text, standard running copy, dashboard descriptions')}
+            ${specimen('Secondary descriptions, sidebar content, navigation items, tooltips, and supporting content that complements the main body text across all surfaces.', 'font-size:14px;font-weight:400;line-height:normal', ['Body S', '14px', 'Regular 400', 'Line auto'], 'Secondary text, sidebar copy, tooltips, helper text')}
+            ${specimen('Supplementary content, table cell text, list item details, and contextual information that supports primary content without competing for attention.', 'font-size:12px;font-weight:400;line-height:normal', ['Body XS', '12px', 'Regular 400', 'Line auto'], 'Captions, footnotes, table cells')}
+            ${specimen('Micro captions and the smallest readable text across all product surfaces.', 'font-size:10px;font-weight:400;line-height:normal', ['Body XXS', '10px', 'Regular 400', 'Line auto'], 'Micro captions, legal mentions')}
 
             <div class="color-family" style="margin-top:40px">
               <div class="color-family-header">
@@ -3508,8 +3508,8 @@
               <p class="section-desc" style="margin-top:-8px">Buttons use Medium (500) weight — not uppercase. Clear, direct, action-oriented.</p>
             </div>
 
-            ${specimen('Get a demo', 'font-size:16px;font-weight:500;line-height:1.25;letter-spacing:-0.005em', ['Button L', '16px', 'Medium 500', 'Line 1.25'], 'Primary CTA, hero actions, full-width buttons')}
-            ${specimen('Get a demo', 'font-size:14px;font-weight:500;line-height:1.28;letter-spacing:-0.005em', ['Button M', '14px', 'Medium 500', 'Line 1.28'], 'Standard buttons, form submit, nav CTAs')}
+            ${specimen('Get a demo', 'font-size:16px;font-weight:500;line-height:1.25;letter-spacing:0', ['Button L', '16px', 'Medium 500', 'Line 1.25'], 'Primary CTA, hero actions, full-width buttons')}
+            ${specimen('Get a demo', 'font-size:14px;font-weight:500;line-height:1.28;letter-spacing:0', ['Button M', '14px', 'Medium 500', 'Line 1.28'], 'Standard buttons, form submit, nav CTAs')}
             ${specimen('Get a demo', 'font-size:12px;font-weight:500;line-height:1.33', ['Button S', '12px', 'Medium 500', 'Line 1.33'], 'Compact buttons, table actions, inline CTAs')}
 
             <div class="color-family" style="margin-top:40px">
@@ -3533,8 +3533,8 @@
               <p class="section-desc" style="margin-top:-8px">Navigation text is compact and scannable — Medium weight, no uppercase.</p>
             </div>
 
-            ${specimen('Dashboard · Wallets · Transactions · Settings', 'font-size:14px;font-weight:500;line-height:1;letter-spacing:-0.003em', ['Nav Item', '14px', 'Medium 500', 'Line 1'], 'Top nav, sidebar nav, breadcrumbs')}
-            ${specimen('Overview · Analytics · Activity · Team', 'font-size:13px;font-weight:500;line-height:1;letter-spacing:-0.002em', ['Tab', '13px', 'Medium 500', 'Line 1'], 'Tab bars, sub-navigation, segmented controls')}
+            ${specimen('Dashboard · Wallets · Transactions · Settings', 'font-size:14px;font-weight:500;line-height:1;letter-spacing:0', ['Nav Item', '14px', 'Medium 500', 'Line 1'], 'Top nav, sidebar nav, breadcrumbs')}
+            ${specimen('Overview · Analytics · Activity · Team', 'font-size:13px;font-weight:500;line-height:1;letter-spacing:0', ['Tab', '13px', 'Medium 500', 'Line 1'], 'Tab bars, sub-navigation, segmented controls')}
 
             <div class="color-family" style="margin-top:40px">
               <div class="color-family-header">
@@ -3561,9 +3561,9 @@
               <p class="section-desc" style="margin-top:-8px">Large numeric displays for KPIs, stats cards, and data visualisations. Medium (500) weight for legibility at scale.</p>
             </div>
 
-            ${specimen('$2.4B', 'font-size:56px;font-weight:500;line-height:1.05;letter-spacing:-0.02em', ['Stat XL', '56px', 'Medium 500', 'Line 1.05', 'LS −2%'], 'Hero KPI, primary dashboard metric, full-width stat card')}
-            ${specimen('12,403', 'font-size:40px;font-weight:500;line-height:1.1;letter-spacing:-0.015em', ['Stat L', '40px', 'Medium 500', 'Line 1.1', 'LS −1.5%'], 'Secondary KPI, widget stat, chart annotation')}
-            ${specimen('99.98%', 'font-size:28px;font-weight:500;line-height:1.2;letter-spacing:-0.01em', ['Stat M', '28px', 'Medium 500', 'Line 1.2', 'LS −1%'], 'Compact stats, list metrics, table summary values')}
+            ${specimen('$2.4B', 'font-size:48px;font-weight:500;line-height:normal;letter-spacing:0', ['Stat XL', '48px', 'Medium 500', 'Line auto'], 'Hero KPI, primary dashboard metric, full-width stat card')}
+            ${specimen('12,403', 'font-size:36px;font-weight:500;line-height:normal;letter-spacing:0', ['Stat L', '36px', 'Medium 500', 'Line auto'], 'Secondary KPI, widget stat, chart annotation')}
+            ${specimen('99.98%', 'font-size:28px;font-weight:500;line-height:normal;letter-spacing:0', ['Stat M', '28px', 'Medium 500', 'Line auto'], 'Compact stats, list metrics, table summary values')}
 
             <div class="color-family" style="margin-top:40px">
               <div class="color-family-header">
