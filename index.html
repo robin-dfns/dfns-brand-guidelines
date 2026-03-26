@@ -2017,7 +2017,7 @@
     .btn-theme-toggle svg { width: 18px; height: 18px; }
 
     /* Light mode specific overrides */
-    [data-theme="light"] .topnav-logo svg path { fill: var(--topnav-logo-fill); stroke: var(--topnav-logo-fill); }
+    [data-theme="light"] .topnav-logo svg path { fill: var(--topnav-logo-fill); }
     [data-theme="light"] .tile:hover .tile-arrow { opacity: 1; }
     [data-theme="light"] .content-eyebrow { color: var(--accent); }
     [data-theme="light"] .home-intro-badge { color: var(--accent); }
@@ -2040,8 +2040,8 @@
   <!-- ============ TOPNAV ============ -->
   <nav class="topnav" id="topnav">
     <a class="topnav-logo" onclick="navigateTo('home')">
-      <svg viewBox="0 0 28 28" fill="none"><path d="M14 1.5L25.5 8.25V21.75L14 28.5L2.5 21.75V8.25L14 1.5Z" fill="#fff" stroke="#fff" stroke-width="0.5"/></svg>
-      <div class="topnav-logo-text">Work in<span>Progress</span></div>
+      <svg viewBox="0 0 43 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.2428 0.0446775L0.247824 12.3074L0 12.7391V12.743V37.2606L0.247824 37.6923L21.2428 49.955L21.7471 49.9551L42.746 37.6924L42.9939 37.2606V12.743L42.7461 12.3113L21.7472 0.0446921L21.2428 0.0446775ZM0.999995 36.9736V13.61L8.33419 17.891V32.6875L20.995 40.0849V48.6522L0.999995 36.9736ZM21.995 48.6523L41.9939 36.9736V13.6099L34.6638 17.8877V32.6875L21.995 40.0852V48.6523ZM21.995 32.3585L28.0443 28.8291V21.7508L21.995 25.2812V32.3585ZM20.995 25.2812L14.9381 21.7457V28.8291L20.995 32.3629V25.2812ZM8.8301 17.0226L1.49155 12.739L21.495 1.05547L41.4989 12.7409L34.1616 17.0229L21.4931 9.62388L21.4951 9.62274H21.4912L21.4931 9.62388L8.8301 17.0226ZM21.4912 17.3475L27.5492 20.8819L21.495 24.4151L15.4375 20.8794L21.4912 17.3475Z" fill="currentColor"/></svg>
+      <div class="topnav-logo-text">Dfns<span>Brand</span></div>
     </a>
     <div class="topnav-center" id="topnavCenter">
       <a class="topnav-link active" data-page="home" onclick="navigateTo('home')">Home</a>
@@ -2244,7 +2244,7 @@
         ]
       },
       {
-        id: 'logo', number: '03', title: 'Logo', color: 'var(--tile-logo)', wip: true,
+        id: 'logo', number: '03', title: 'Logo', color: 'var(--tile-logo)', wip: false,
         desc: 'Logo usage, variants, clear space, and download assets.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Massive Dfns cube — cropped, bleeds off bottom-right -->
