@@ -1473,6 +1473,41 @@
       flex-direction: column;
     }
 
+    .logo-card { position: relative; overflow: hidden; }
+    .logo-download-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      transition: opacity 0.25s var(--ease);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 21px;
+    }
+    .logo-card:hover .logo-download-overlay { opacity: 1; }
+    .logo-dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font);
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .logo-dl-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.4); }
+    .logo-dl-btn svg { width: 14px; height: 14px; }
+
     /* Full-width logo display */
     .logo-full-display {
       border-radius: 21px;
@@ -3612,6 +3647,55 @@
       `;
     }
 
+    // ===== Logo Download Functions =====
+    function downloadLogoSVG(mode, type) {
+      const svgMap = {
+        'dark-symbol': logoSVG.darkSymbol,
+        'light-symbol': logoSVG.lightSymbol,
+        'dark-full': logoSVG.darkFull,
+        'light-full': logoSVG.lightFull
+      };
+      const svg = svgMap[mode + '-' + type];
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'dfns-' + type + '-' + mode + '.svg';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadLogoPNG(mode, type) {
+      const svgMap = {
+        'dark-symbol': logoSVG.darkSymbol,
+        'light-symbol': logoSVG.lightSymbol,
+        'dark-full': logoSVG.darkFull,
+        'light-full': logoSVG.lightFull
+      };
+      const svg = svgMap[mode + '-' + type];
+      const canvas = document.createElement('canvas');
+      canvas.width = 1000;
+      canvas.height = 1000;
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      const svgBlob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(svgBlob);
+      img.onload = function() {
+        const ratio = img.width / img.height;
+        let w, h, x, y;
+        if (ratio > 1) { w = 800; h = 800 / ratio; } else { h = 800; w = 800 * ratio; }
+        x = (1000 - w) / 2;
+        y = (1000 - h) / 2;
+        ctx.drawImage(img, x, y, w, h);
+        URL.revokeObjectURL(url);
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = 'dfns-' + type + '-' + mode + '-1000x1000.png';
+        a.click();
+      };
+      img.src = url;
+    }
+
     // ===== Logo Page =====
     const logoSVG = {
       color: `<svg viewBox="0 0 1029 900" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z" fill="#442599"/></svg>`,
@@ -3646,24 +3730,34 @@
           <div class="color-tab-panel active" id="ltab-logomark">
             <div class="color-family">
               <div class="color-family-header">
-                <span class="color-family-name">Logomark Variants</span>
-                <span class="color-family-count">3 versions</span>
+                <span class="color-family-name">Symbol</span>
+                <span class="color-family-count">2 modes</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">The Dfns cube is a 3D isometric mark representing security, structure, and precision. Available in three variants for different contexts.</p>
+              <p class="section-desc" style="margin-top:-8px">The Dfns symbol is available in Light and Dark mode. Colors are bound to Rubik 2026 design tokens. Hover to download.</p>
             </div>
 
-            <div class="logo-showcase">
+            <div class="logo-showcase" style="grid-template-columns: 1fr 1fr;">
               <div class="logo-card-wrapper">
-                <div class="logo-card logo-card-dark">${logoSVG.color}</div>
-                <div class="logo-card-label">Color</div>
+                <div class="logo-card logo-card-dark">
+                  ${logoSVG.darkSymbol}
+                  <div class="logo-download-overlay">
+                    <button class="logo-dl-btn" onclick="downloadLogoSVG('dark','symbol')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>SVG</button>
+                    <button class="logo-dl-btn" onclick="downloadLogoPNG('dark','symbol')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</button>
+                  </div>
+                </div>
+                <div class="logo-card-label">Dark</div>
+                <div class="logo-card-label" style="font-size:11px;opacity:0.5;margin-top:4px">Cold Grey 100 · #E0E3F0</div>
               </div>
               <div class="logo-card-wrapper">
-                <div class="logo-card logo-card-dark">${logoSVG.mono}</div>
-                <div class="logo-card-label">Monochrome</div>
-              </div>
-              <div class="logo-card-wrapper">
-                <div class="logo-card logo-card-light">${logoSVG.flat}</div>
-                <div class="logo-card-label">Flat</div>
+                <div class="logo-card logo-card-light">
+                  ${logoSVG.lightSymbol}
+                  <div class="logo-download-overlay">
+                    <button class="logo-dl-btn" onclick="downloadLogoSVG('light','symbol')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>SVG</button>
+                    <button class="logo-dl-btn" onclick="downloadLogoPNG('light','symbol')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</button>
+                  </div>
+                </div>
+                <div class="logo-card-label">Light</div>
+                <div class="logo-card-label" style="font-size:11px;opacity:0.5;margin-top:4px">Cold Grey 700 · #363A5B</div>
               </div>
             </div>
 
@@ -3671,15 +3765,15 @@
               <div class="color-family-header"><span class="color-family-name">Usage</span></div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Use the Color version as the primary logomark in most contexts.</span>
+                <span><strong>Do</strong> — Use the Dark symbol on dark or purple backgrounds (Ultra Purple 900).</span>
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Use the Monochrome version when color isn't available or on busy backgrounds.</span>
+                <span><strong>Do</strong> — Use the Light symbol on light or white backgrounds.</span>
               </div>
               <div class="color-tip">
-                <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Use the Flat version for favicon, small sizes, and single-color applications.</span>
+                <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span><strong>Don't</strong> — Never use the Light symbol on dark backgrounds or the Dark symbol on light backgrounds.</span>
               </div>
             </div>
           </div>
@@ -3689,42 +3783,33 @@
             <div class="color-family">
               <div class="color-family-header">
                 <span class="color-family-name">Full Logotype</span>
-                <span class="color-family-count">4 variants</span>
+                <span class="color-family-count">2 modes</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">The Dfns logotype is available in two modes (Light / Dark) and two types (Full with wordmark / Symbol only). Colors are aligned to Rubik 2026 design tokens. Source: Figma component <code>Logotype</code> in Rubik 2026.</p>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px">
-              <div>
-                <div class="logo-full-display logo-card-dark" style="margin-bottom:8px;padding:40px">
-                  ${logoSVG.darkFull}
-                </div>
-                <div class="logo-card-label" style="text-align:center">Full — Dark mode</div>
-                <div class="logo-card-label" style="text-align:center;font-size:11px;opacity:0.5">Cold Grey 100 · #E0E3F0</div>
-              </div>
-              <div>
-                <div class="logo-full-display logo-card-dark" style="margin-bottom:8px;padding:40px;display:flex;justify-content:center">
-                  ${logoSVG.darkSymbol}
-                </div>
-                <div class="logo-card-label" style="text-align:center">Symbol — Dark mode</div>
-                <div class="logo-card-label" style="text-align:center;font-size:11px;opacity:0.5">Cold Grey 100 · #E0E3F0</div>
-              </div>
+              <p class="section-desc" style="margin-top:-8px">The full logotype combines the symbol with the DFNS wordmark. Available in Light and Dark mode. Hover to download.</p>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
-              <div>
-                <div class="logo-full-display logo-card-light" style="margin-bottom:8px;padding:40px">
-                  ${logoSVG.lightFull}
+              <div class="logo-card-wrapper">
+                <div class="logo-card logo-card-dark" style="padding:40px">
+                  ${logoSVG.darkFull}
+                  <div class="logo-download-overlay">
+                    <button class="logo-dl-btn" onclick="downloadLogoSVG('dark','full')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>SVG</button>
+                    <button class="logo-dl-btn" onclick="downloadLogoPNG('dark','full')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</button>
+                  </div>
                 </div>
-                <div class="logo-card-label" style="text-align:center">Full — Light mode</div>
-                <div class="logo-card-label" style="text-align:center;font-size:11px;opacity:0.5">Cold Grey 700 · #363A5B</div>
+                <div class="logo-card-label">Dark</div>
+                <div class="logo-card-label" style="font-size:11px;opacity:0.5;margin-top:4px">Cold Grey 100 · #E0E3F0</div>
               </div>
-              <div>
-                <div class="logo-full-display logo-card-light" style="margin-bottom:8px;padding:40px;display:flex;justify-content:center">
-                  ${logoSVG.lightSymbol}
+              <div class="logo-card-wrapper">
+                <div class="logo-card logo-card-light" style="padding:40px">
+                  ${logoSVG.lightFull}
+                  <div class="logo-download-overlay">
+                    <button class="logo-dl-btn" onclick="downloadLogoSVG('light','full')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>SVG</button>
+                    <button class="logo-dl-btn" onclick="downloadLogoPNG('light','full')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</button>
+                  </div>
                 </div>
-                <div class="logo-card-label" style="text-align:center">Symbol — Light mode</div>
-                <div class="logo-card-label" style="text-align:center;font-size:11px;opacity:0.5">Cold Grey 700 · #363A5B</div>
+                <div class="logo-card-label">Light</div>
+                <div class="logo-card-label" style="font-size:11px;opacity:0.5;margin-top:4px">Cold Grey 700 · #363A5B</div>
               </div>
             </div>
 
@@ -3732,15 +3817,15 @@
               <div class="color-family-header"><span class="color-family-name">Usage</span></div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Use the full logo for primary branding: website headers, presentations, partnership materials. Use the symbol alone for favicons, app icons, and compact spaces.</span>
+                <span><strong>Do</strong> — Use the full logotype for primary branding: website headers, presentations, and partnership materials.</span>
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Colors</strong> — Light mode uses Cold Grey 700 (#363A5B) on light backgrounds. Dark mode uses Cold Grey 100 (#E0E3F0) on dark backgrounds. Both are bound to Rubik 2026 design tokens.</span>
+                <span><strong>Do</strong> — Match the logotype mode to the background: Dark on dark/purple, Light on light/white.</span>
               </div>
               <div class="color-tip">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                <span><strong>Don't</strong> — Never display the full logo at widths smaller than 120px. Use the symbol alone at small sizes. Minimum symbol size: 24px.</span>
+                <span><strong>Don't</strong> — Never display the full logotype below 120px width. Use the symbol alone at small sizes (minimum 24px).</span>
               </div>
             </div>
           </div>
