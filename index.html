@@ -1973,7 +1973,7 @@
       <a class="topnav-link active" data-page="home" onclick="navigateTo('home')">Home</a>
       <a class="topnav-link" data-page="brand" onclick="navigateTo('brand')">Brand</a>
       <a class="topnav-link" data-page="identity" onclick="navigateTo('identity')">Identity</a>
-      <a class="topnav-link" data-page="components" onclick="navigateTo('components')">Components</a>
+      <a class="topnav-link" href="./docs/#components">Components</a>
       <a class="topnav-link" data-page="assets" onclick="navigateTo('assets')">Assets</a>
       <a class="topnav-link" data-page="motion" onclick="navigateTo('motion')">Motion</a>
       <a class="topnav-link topnav-link--library" href="./docs/">Library</a>
@@ -1998,7 +1998,7 @@
     <a class="mobile-nav-link" onclick="nav('home')">Home</a>
     <a class="mobile-nav-link" onclick="nav('brand')">Brand</a>
     <a class="mobile-nav-link" onclick="nav('identity')">Identity</a>
-    <a class="mobile-nav-link" onclick="nav('components')">Components</a>
+    <a class="mobile-nav-link" href="./docs/#components">Components</a>
     <a class="mobile-nav-link" onclick="nav('assets')">Assets</a>
     <a class="mobile-nav-link" onclick="nav('motion')">Motion</a>
     <a class="mobile-nav-link" href="./docs/">Library ↗</a>
@@ -2248,7 +2248,7 @@
         ]
       },
       {
-        id: 'components', number: '03', title: 'Components', color: 'var(--tile-components)',
+        id: 'components', number: '03', title: 'Components', color: 'var(--tile-components)', ext: './docs/#components',
         desc: 'Buttons, eyebrows, and badges — the reusable interface atoms.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="56" y="92" width="288" height="216" rx="22" fill="#FFFFFF" opacity="0.97"/>
@@ -2330,9 +2330,9 @@
       if (t.skip) return;
       const row = document.createElement('a');
       row.className = 'cat-row' + (t.wip ? ' cat-row--wip' : '');
-      row.href = '#' + t.id;
+      row.href = t.ext || ('#' + t.id);
       row.setAttribute('aria-label', t.title);
-      row.onclick = (e) => { e.preventDefault(); navigateTo(t.id); };
+      if (!t.ext) row.onclick = (e) => { e.preventDefault(); navigateTo(t.id); };
       const wipTag = t.wip
         ? '<span class="cat-wip"><span class="cat-wip-dot"></span>Work in progress</span>'
         : '';

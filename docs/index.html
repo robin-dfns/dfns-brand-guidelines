@@ -66,6 +66,14 @@
   .btn.ghost{background:var(--background-bw);color:#363a5b;box-shadow:inset 0 0 0 1px #e0e3f0}
   .btn.disabled{background:#e8eaf0;color:#aeb1c9;box-shadow:none;cursor:default}
   .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .cta{display:inline-flex;align-items:center;gap:8px;height:36px;border-radius:12px;font-family:var(--font-sans);font-weight:var(--weight-medium);font-size:14px;cursor:pointer;border:none;text-decoration:none}
+  .cta.primary{padding:0 14px 0 18px;background:linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12)),linear-gradient(0deg,#2d1866,#442599);color:#e0e3f0;border:1px solid #170c33;box-shadow:0 6px 12px rgba(87,91,123,.24)}
+  .cta.secondary{padding:0 18px;background:#e0e3f0;color:#442599}
+  .cta.tertiary{padding:0;height:auto;background:transparent;color:var(--font-heading-colored-mid)}
+  .eyebrow{display:inline-flex;align-items:center;gap:5px;padding:6px 9px;border-radius:6px;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;background:color-mix(in srgb,var(--success-base) 15%,transparent);color:var(--success-text)}
+  .eyebrow.info{background:color-mix(in srgb,var(--system-blue-500) 15%,transparent);color:var(--system-blue-500)}
+  .eyebrow .hx{width:8px;height:9px;animation:hexblink 2s step-end infinite}
+  @keyframes hexblink{0%,100%{opacity:1}50%{opacity:0}}
   /* catalog */
   .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
   .cat a{display:block;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-large);padding:12px 14px;background:var(--background-bw)}
@@ -181,6 +189,19 @@
 
       <h2>Badge</h2><p class="sub">Semantic status pills — dark-aware tokens.</p>
       <div class="badges" id="componentBadges" style="margin-bottom:8px"></div>
+
+      <h2>CTA</h2><p class="sub">Marketing CTAs — Primary / Secondary / Tertiary. 36px · radius 12.</p>
+      <div class="btn-row" style="margin-bottom:12px">
+        <a class="cta primary">Get started →</a>
+        <a class="cta secondary">Learn more</a>
+        <a class="cta tertiary">Explore docs →</a>
+      </div>
+
+      <h2>Eyebrow</h2><p class="sub">Section overline — mono 11px pill with a blinking hex glyph.</p>
+      <div class="btn-row" style="margin-bottom:8px">
+        <span class="eyebrow"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>New release</span>
+        <span class="eyebrow info"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>Now in beta</span>
+      </div>
 
       <h2>Library</h2><p class="sub">All harvested components — source in <span class="mono">components/</span>.</p>
       <div class="cat" id="catalog"></div>
