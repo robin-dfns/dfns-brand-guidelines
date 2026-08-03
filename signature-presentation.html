@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dfns — Email Signature Preview</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #F0F1F4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+    }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .page-header h1 {
+      font-size: 24px;
+      font-weight: 300;
+      color: #442599;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .page-header h1 span {
+      font-weight: 400;
+      color: #363A5B;
+    }
+    .page-header p {
+      font-size: 14px;
+      color: #575C7B;
+    }
+
+    /* Layout */
+    .mockups {
+      display: flex;
+      gap: 40px;
+      max-width: 1200px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Email client window */
+    .email-window {
+      width: 520px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(23, 12, 51, 0.08), 0 1px 4px rgba(23, 12, 51, 0.04);
+    }
+
+    /* ── LIGHT MODE WINDOW ── */
+    .email-window.light {
+      background: #FFFFFF;
+      border: 1px solid #E3E4EB;
+    }
+    .email-window.light .window-bar {
+      background: #F7F7F9;
+      border-bottom: 1px solid #E3E4EB;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .email-window.light .window-bar .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .email-window.light .window-bar .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #D7D8E1;
+    }
+    .email-window.light .window-bar .dot.red { background: #F85370; }
+    .email-window.light .window-bar .dot.yellow { background: #F49200; }
+    .email-window.light .window-bar .dot.green { background: #5CEB74; }
+    .email-window.light .mode-badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #AEB1C9;
+    }
+    .email-window.light .email-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #F0F1F4;
+    }
+    .email-window.light .email-subject {
+      font-size: 16px;
+      font-weight: 500;
+      color: #1E202E;
+      margin-bottom: 12px;
+    }
+    .email-window.light .email-meta {
+      font-size: 12px;
+      color: #575C7B;
+      line-height: 1.8;
+    }
+    .email-window.light .email-meta strong {
+      color: #363A5B;
+      font-weight: 500;
+    }
+    .email-window.light .email-body {
+      padding: 24px;
+    }
+    .email-window.light .email-body p {
+      font-size: 14px;
+      color: #363A5B;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .email-window.light .email-body .closing {
+      margin-bottom: 0;
+    }
+
+    /* ── DARK MODE WINDOW ── */
+    .email-window.dark {
+      background: #170C33;
+      border: 1px solid #2D1866;
+    }
+    .email-window.dark .window-bar {
+      background: #120A29;
+      border-bottom: 1px solid #2D1866;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .email-window.dark .window-bar .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .email-window.dark .window-bar .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2D1866;
+    }
+    .email-window.dark .window-bar .dot.red { background: #F85370; }
+    .email-window.dark .window-bar .dot.yellow { background: #F49200; }
+    .email-window.dark .window-bar .dot.green { background: #5CEB74; }
+    .email-window.dark .mode-badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #442599;
+    }
+    .email-window.dark .email-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #2D1866;
+    }
+    .email-window.dark .email-subject {
+      font-size: 16px;
+      font-weight: 500;
+      color: #E0E3F0;
+      margin-bottom: 12px;
+    }
+    .email-window.dark .email-meta {
+      font-size: 12px;
+      color: #AEB1C9;
+      line-height: 1.8;
+    }
+    .email-window.dark .email-meta strong {
+      color: #C5C9DE;
+      font-weight: 500;
+    }
+    .email-window.dark .email-body {
+      padding: 24px;
+    }
+    .email-window.dark .email-body p {
+      font-size: 14px;
+      color: #C5C9DE;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .email-window.dark .email-body .closing {
+      margin-bottom: 0;
+    }
+
+    /* Signature area */
+    .signature-area {
+      padding: 0 24px 28px;
+    }
+    .signature-divider-light {
+      border: none;
+      border-top: 1px solid #E3E4EB;
+      margin-bottom: 20px;
+    }
+    .signature-divider-dark {
+      border: none;
+      border-top: 1px solid #2D1866;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 12px;
+      color: #AEB1C9;
+    }
+
+    /* Responsive */
+    @media (max-width: 1120px) {
+      .mockups {
+        flex-direction: column;
+        align-items: center;
+      }
+      .email-window {
+        width: 100%;
+        max-width: 520px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <h1>Email Signature<br><span>Brand Proposal</span></h1>
+    <p>Light &amp; Dark mode preview</p>
+  </div>
+
+  <div class="mockups">
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- LIGHT MODE                              -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="email-window light">
+      <div class="window-bar">
+        <div class="dots">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <span class="mode-badge">Light mode</span>
+      </div>
+
+      <div class="email-header">
+        <div class="email-subject">Re: Partnership follow-up</div>
+        <div class="email-meta">
+          <strong>From:</strong> Clarisse Hag&egrave;ge &lt;clarisse@dfns.co&gt;<br>
+          <strong>To:</strong> James Mitchell &lt;j.mitchell@acme-capital.com&gt;<br>
+          <strong>Date:</strong> May 1, 2026 at 10:42 AM
+        </div>
+      </div>
+
+      <div class="email-body">
+        <p>Hi James,</p>
+        <p>Thank you for taking the time to meet with us yesterday. It was great to walk through our infrastructure and discuss how Dfns can support your custody requirements.</p>
+        <p>I've asked the team to prepare a technical deep-dive tailored to your architecture. We'll have that ready by early next week.</p>
+        <p>In the meantime, feel free to reach out if you have any questions.</p>
+        <p class="closing">Best,</p>
+      </div>
+
+      <!-- Signature -->
+      <div class="signature-area">
+        <hr class="signature-divider-light">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #363A5B; font-size: 14px; line-height: 1.4; max-width: 400px;">
+          <tr>
+            <td style="padding-bottom: 14px;">
+              <img src="https://raw.githubusercontent.com/robin-dfns/website/9470e22bbbc5e42af242607f3531bb24bc780687/Logotype-mail.png" alt="Dfns" width="120" height="31" style="display: block; border: 0; outline: none;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 16px; font-weight: 500; color: #363A5B; padding-bottom: 4px;">
+              Clarisse Hag&egrave;ge
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px; font-weight: 400; color: #575C7B; padding-bottom: 0;">
+              CEO &amp; Co-Founder
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 12px; padding-top: 8px;">
+              <table cellpadding="0" cellspacing="0" border="0" role="presentation">
+                <tr>
+                  <td style="width: 110px; height: 1px; background-color: #C5C9DE; font-size: 1px; line-height: 1px;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px; padding-bottom: 6px;">
+              <a href="mailto:clarisse@dfns.co" style="color: #575C7B; text-decoration: none;">clarisse@dfns.co</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px;">
+              <a href="https://dfns.co" style="color: #442599; text-decoration: none;">dfns.co</a><span style="color: #AEB1C9; padding: 0 6px;">&#183;</span><a href="https://www.linkedin.com/in/clarissehagege/" style="color: #442599; text-decoration: none;">LinkedIn</a><span style="color: #AEB1C9; padding: 0 6px;">&#183;</span><a href="https://calendar.app.google/XACFPFTMXrZ3BmaCA" style="color: #442599; text-decoration: none;">Let's chat</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- DARK MODE                               -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="email-window dark">
+      <div class="window-bar">
+        <div class="dots">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <span class="mode-badge">Dark mode</span>
+      </div>
+
+      <div class="email-header">
+        <div class="email-subject">Re: Partnership follow-up</div>
+        <div class="email-meta">
+          <strong>From:</strong> Clarisse Hag&egrave;ge &lt;clarisse@dfns.co&gt;<br>
+          <strong>To:</strong> James Mitchell &lt;j.mitchell@acme-capital.com&gt;<br>
+          <strong>Date:</strong> May 1, 2026 at 10:42 AM
+        </div>
+      </div>
+
+      <div class="email-body">
+        <p>Hi James,</p>
+        <p>Thank you for taking the time to meet with us yesterday. It was great to walk through our infrastructure and discuss how Dfns can support your custody requirements.</p>
+        <p>I've asked the team to prepare a technical deep-dive tailored to your architecture. We'll have that ready by early next week.</p>
+        <p>In the meantime, feel free to reach out if you have any questions.</p>
+        <p class="closing">Best,</p>
+      </div>
+
+      <!-- Signature -->
+      <div class="signature-area">
+        <hr class="signature-divider-dark">
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #E0E3F0; font-size: 14px; line-height: 1.4; max-width: 400px;">
+          <tr>
+            <td style="padding-bottom: 14px;">
+              <img src="https://raw.githubusercontent.com/robin-dfns/website/9470e22bbbc5e42af242607f3531bb24bc780687/Logotype-mail.png" alt="Dfns" width="120" height="31" style="display: block; border: 0; outline: none;" />
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 16px; font-weight: 500; color: #E0E3F0; padding-bottom: 4px;">
+              Clarisse Hag&egrave;ge
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px; font-weight: 400; color: #C5C9DE; padding-bottom: 0;">
+              CEO &amp; Co-Founder
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 12px; padding-top: 8px;">
+              <table cellpadding="0" cellspacing="0" border="0" role="presentation">
+                <tr>
+                  <td style="width: 110px; height: 1px; background-color: #575C7B; font-size: 1px; line-height: 1px;">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px; padding-bottom: 6px;">
+              <a href="mailto:clarisse@dfns.co" style="color: #C5C9DE; text-decoration: none;">clarisse@dfns.co</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px;">
+              <a href="https://dfns.co" style="color: #C4AEFF; text-decoration: none;">dfns.co</a><span style="color: #575C7B; padding: 0 6px;">&#183;</span><a href="https://www.linkedin.com/in/clarissehagege/" style="color: #C4AEFF; text-decoration: none;">LinkedIn</a><span style="color: #575C7B; padding: 0 6px;">&#183;</span><a href="https://calendar.app.google/XACFPFTMXrZ3BmaCA" style="color: #C4AEFF; text-decoration: none;">Let's chat</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    Dfns Brand &mdash; Email Signature &mdash; 2026
+  </div>
+
+</body>
+</html>
