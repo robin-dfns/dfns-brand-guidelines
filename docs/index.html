@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DFNS Design System — Tokens</title>
+<!-- THE ESSAI: this page consumes the imported semantic token layer directly. -->
+<link rel="stylesheet" href="../tokens/index.css">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-sans);background:var(--background-base);color:var(--font-body-base);
+       -webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px 96px}
+  /* top bar */
+  .top{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+       padding:16px 24px;background:var(--background-base);border-bottom:1px solid var(--stroke-tertiary)}
+  .brand{font-size:14px;font-weight:var(--weight-medium);color:var(--font-heading-grey);letter-spacing:-.2px}
+  .brand b{color:var(--font-heading-colored-mid)}
+  .toggle{height:36px;padding:0 16px;border:none;border-radius:var(--radius-extra-large);cursor:pointer;
+          font-family:var(--font-sans);font-size:14px;font-weight:var(--weight-medium);
+          background:var(--base-secondary);color:var(--base-secondary-foreground)}
+  .toggle:hover{color:var(--states-hover)}
+  /* hero */
+  .hero{padding:64px 0 40px}
+  h1{margin:0;font-weight:var(--weight-light);font-size:48px;line-height:1.1;letter-spacing:-.5px}
+  h1 .l{color:var(--font-heading-colored-mid)}
+  h1 .e{color:var(--font-heading-grey)}
+  .lead{margin:16px 0 0;max-width:60ch;font-size:18px;color:var(--font-body-bright)}
+  .pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;padding:6px 10px;border-radius:var(--radius-base);
+        background:color-mix(in srgb,var(--success-base) 15%,transparent);color:var(--success-text);
+        font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .pill i{width:6px;height:6px;border-radius:50%;background:var(--success-base)}
+  /* sections */
+  section{margin-top:56px}
+  h2{font-weight:var(--weight-light);font-size:28px;margin:0 0 4px;color:var(--font-heading-grey)}
+  .sub{margin:0 0 20px;font-size:14px;color:var(--font-body-bright)}
+  .grid{display:grid;gap:12px}
+  .g6{grid-template-columns:repeat(6,1fr)}
+  .g5{grid-template-columns:repeat(5,1fr)}
+  .g4{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  @media(max-width:720px){.g6,.g5{grid-template-columns:repeat(3,1fr)}}
+  /* swatch */
+  .sw{border-radius:var(--radius-large);overflow:hidden;border:1px solid var(--stroke-tertiary)}
+  .sw .chip{height:64px}
+  .sw .meta{padding:8px 10px;background:var(--background-bw)}
+  .sw .n{font-size:12px;font-weight:var(--weight-medium);color:var(--font-body-base)}
+  .sw .v{font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright)}
+  /* semantic tile */
+  .tile{border-radius:var(--radius-large);border:1px solid var(--stroke-tertiary);padding:14px;background:var(--background-bw)}
+  .tile .label{font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright)}
+  .tile .bar{height:32px;border-radius:var(--radius-base);margin-top:8px}
+  /* type */
+  .type-row{display:flex;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--stroke-tertiary)}
+  .type-row .tag{font-family:var(--font-mono);font-size:11px;color:var(--font-body-bright);width:120px;flex:none}
+  .mono{font-family:var(--font-mono)}
+  /* badges */
+  .badges{display:flex;flex-wrap:wrap;gap:8px}
+  .badge{padding:4px 10px;border-radius:var(--radius-base);font-size:12px;font-weight:var(--weight-medium)}
+  /* spacing/radius/shadow */
+  .spec{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+  .space-box{background:var(--base-primary)}
+  .radius-box{width:72px;height:72px;background:var(--base-secondary);border:1px solid var(--stroke-tertiary)}
+  .shadow-box{width:120px;height:72px;border-radius:var(--radius-large);background:var(--background-bw)}
+  .cap{font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-top:6px;text-align:center}
+  footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--stroke-tertiary);font-size:13px;color:var(--font-body-bright)}
+  footer code{font-family:var(--font-mono);color:var(--font-heading-colored-mid)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand"><b>DFNS</b> Design System · tokens</div>
+  <button class="toggle" id="themeBtn" onclick="toggleTheme()">Dark mode</button>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="pill"><i></i>Live from GitHub · tokens/*.css</div>
+    <h1><span class="l">Design tokens,</span><br><span class="e">one source of truth</span></h1>
+    <p class="lead">This page renders directly from the imported semantic token layer. Flip the theme — every color below remaps through the <span class="mono">.dark</span> semantic tokens. This is the layer we didn't have before.</p>
+  </div>
+
+  <!-- SEMANTIC (the new layer — the money shot) -->
+  <section>
+    <h2>Semantic tokens</h2>
+    <p class="sub">What colors <em>do</em>, not what they are. These remap automatically in dark mode.</p>
+    <div class="grid g4">
+      <div class="tile"><div class="label">--background-base</div><div class="bar" style="background:var(--background-base);border:1px solid var(--stroke-tertiary)"></div></div>
+      <div class="tile"><div class="label">--background-elevation-1</div><div class="bar" style="background:var(--background-elevation-1)"></div></div>
+      <div class="tile"><div class="label">--background-elevation-2</div><div class="bar" style="background:var(--background-elevation-2)"></div></div>
+      <div class="tile"><div class="label">--base-primary</div><div class="bar" style="background:var(--base-primary)"></div></div>
+      <div class="tile"><div class="label">--font-body-base</div><div class="bar" style="background:var(--font-body-base)"></div></div>
+      <div class="tile"><div class="label">--font-heading-colored-mid</div><div class="bar" style="background:var(--font-heading-colored-mid)"></div></div>
+      <div class="tile"><div class="label">--icons-secondary</div><div class="bar" style="background:var(--icons-secondary)"></div></div>
+      <div class="tile"><div class="label">--stroke-primary</div><div class="bar" style="background:var(--stroke-primary)"></div></div>
+    </div>
+  </section>
+
+  <!-- BADGES + STATUS -->
+  <section>
+    <h2>Badges &amp; status</h2>
+    <p class="sub">Semantic status scales — background + foreground tokens, dark-aware.</p>
+    <div class="badges">
+      <span class="badge" style="background:var(--badge-default);color:var(--badge-default-foreground)">Default</span>
+      <span class="badge" style="background:var(--badge-information);color:var(--badge-information-foreground)">Information</span>
+      <span class="badge" style="background:var(--badge-success);color:var(--badge-success-foreground)">Success</span>
+      <span class="badge" style="background:var(--badge-danger);color:var(--badge-danger-foreground)">Danger</span>
+      <span class="badge" style="background:var(--badge-warning);color:var(--badge-warning-foreground)">Warning</span>
+    </div>
+  </section>
+
+  <!-- BASE SCALES -->
+  <section>
+    <h2>Ultra Purple</h2>
+    <p class="sub">The identity scale.</p>
+    <div class="grid g6" id="ultra"></div>
+  </section>
+  <section>
+    <h2>Cold Grey &amp; Steel</h2>
+    <p class="sub">Text hierarchy and surfaces.</p>
+    <div class="grid g6" id="grey"></div>
+  </section>
+  <section>
+    <h2>System</h2>
+    <p class="sub">Status only — never decoration.</p>
+    <div class="grid g4" id="system"></div>
+  </section>
+
+  <!-- TYPE -->
+  <section>
+    <h2>Typography</h2>
+    <p class="sub">Suisse Intl everywhere; Roboto Mono for data. Weights: Light 300 · Regular 400 · Medium 500 · Semibold 600.</p>
+    <div class="type-row"><span class="tag">display-lg 48</span><span style="font-size:48px;font-weight:var(--weight-light)">One infrastructure</span></div>
+    <div class="type-row"><span class="tag">heading 24</span><span style="font-size:24px;font-weight:var(--weight-light)">Secure by design</span></div>
+    <div class="type-row"><span class="tag">body 14</span><span style="font-size:14px">The product workhorse — 14px Regular for everything in the app.</span></div>
+    <div class="type-row"><span class="tag">caption 12</span><span style="font-size:12px;color:var(--font-body-bright)">Captions, badges, meta labels.</span></div>
+    <div class="type-row"><span class="tag">mono / data</span><span class="mono" style="font-size:14px">0xa1b2…f9 · 210,203USD · +1.34%</span></div>
+  </section>
+
+  <!-- SPACING / RADII / SHADOWS -->
+  <section>
+    <h2>Spacing · Radii · Shadows</h2>
+    <p class="sub">Space 4→36 · radii 2→full · five elevation shadows.</p>
+    <div class="spec" id="space" style="margin-bottom:28px"></div>
+    <div class="spec" id="radius" style="margin-bottom:28px"></div>
+    <div class="spec" id="shadow"></div>
+  </section>
+
+  <footer>
+    Rendered live from <code>tokens/index.css</code> → colors · spacing · typography · fig-tokens · fonts. Weights corrected to the DFNS rule (Medium 500 / Semibold 600).
+  </footer>
+</div>
+
+<script>
+function toggleTheme(){
+  const d=document.documentElement.classList.toggle('dark');
+  document.getElementById('themeBtn').textContent=d?'Light mode':'Dark mode';
+}
+if(location.hash==='#dark'){document.documentElement.classList.add('dark');addEventListener('DOMContentLoaded',()=>document.getElementById('themeBtn').textContent='Light mode');}
+const mk=(host,items)=>{const el=document.getElementById(host);el.innerHTML=items.map(([n,v])=>
+  `<div class="sw"><div class="chip" style="background:var(${v})"></div><div class="meta"><div class="n">${n}</div><div class="v">${v}</div></div></div>`).join('')};
+mk('ultra',[50,100,200,300,400,500,600,700,800,900].map(s=>['Ultra '+s,`--ultra-purple-${s}`]));
+mk('grey',[['Cold 100','--cold-grey-100'],['Cold 300','--cold-grey-300'],['Cold 600','--cold-grey-600'],['Cold 700','--cold-grey-700'],['Cold 900','--cold-grey-900'],['Steel 100','--steel-grey-100'],['Steel 200','--steel-grey-200'],['Steel 300','--steel-grey-300'],['Steel 500','--steel-grey-500'],['White','--steel-grey-white']]);
+mk('system',[['Blue 500','--system-blue-500'],['Green 500','--system-green-500'],['Red 500','--system-red-500'],['Yellow 500','--system-yellow-500']]);
+// spacing
+document.getElementById('space').innerHTML=[1,2,3,4,5,6,8,9].map(s=>
+  `<div><div class="space-box" style="width:var(--space-${s});height:40px;border-radius:2px"></div><div class="cap">space-${s}</div></div>`).join('');
+// radii
+document.getElementById('radius').innerHTML=[['base','--radius-base'],['large','--radius-large'],['extra-large','--radius-extra-large'],['2xl','--radius-2xl'],['xxl','--radius-xxl'],['full','--radius-full']].map(([n,v])=>
+  `<div><div class="radius-box" style="border-radius:var(${v})"></div><div class="cap">${n}</div></div>`).join('');
+// shadows
+document.getElementById('shadow').innerHTML=[['sm','--shadow-sm'],['base','--shadow-base'],['md','--shadow-md'],['lg','--shadow-lg'],['xl','--shadow-xl']].map(([n,v])=>
+  `<div><div class="shadow-box" style="box-shadow:var(${v})"></div><div class="cap">shadow-${n}</div></div>`).join('');
+</script>
+</body>
+</html>

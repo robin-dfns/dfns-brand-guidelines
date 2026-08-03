@@ -1,0 +1,8 @@
+/* DFNS design tokens — entry. Imported by the docs site and consumable by dfns-website.
+   Weights corrected to DFNS rule: Medium=500, Semibold=600 (our CLAUDE.md is authoritative). */
+@import './fonts.css';
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';
+@import './fig-tokens.css';
+@import './base.css';

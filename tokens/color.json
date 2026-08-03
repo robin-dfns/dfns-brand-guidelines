@@ -1,0 +1,99 @@
+{
+  "brand": {
+    "name": "Dfns - Rubik Design System",
+    "version": "3.0",
+    "source": "Figma — 🧊 Rubik 2026"
+  },
+
+  "ultraPurple": {
+    "50":  { "hex": "#E6DEFF", "usage": "Subtle tinted backgrounds, hover states, selected rows" },
+    "100": { "hex": "#D6C8FF", "usage": "Tag backgrounds, badges, notification fills" },
+    "200": { "hex": "#C4AEFF", "usage": "Dark mode accent — titles (.light span), links, icons, interactive states; also focus rings, soft highlights" },
+    "300": { "hex": "#AA8BFF", "usage": "Decorative only (illustrations, mockups, syntax tints) — not the accent, no light mode usage" },
+    "400": { "hex": "#8860F7", "usage": "Interactive hover states, active links" },
+    "500": { "hex": "#693AEA", "usage": "Active/focus states on buttons and form elements" },
+    "600": { "hex": "#5123CE", "usage": "Strong borders, interactive accents" },
+    "700": { "hex": "#442599", "usage": "Large titles and headings" },
+    "800": { "hex": "#2D1866", "usage": "Call-to-action buttons, icons, illustrations" },
+    "900": { "hex": "#170C33", "usage": "Backgrounds exclusively — no other purple for backgrounds" }
+  },
+
+  "darkPurple": {
+    "100": { "hex": "#594A7D", "usage": "Subtle dark surface tints" },
+    "300": { "hex": "#443371", "usage": "Dark mode secondary surfaces" },
+    "500": { "hex": "#2E1767", "usage": "Dark mode elevated surfaces" },
+    "600": { "hex": "#231152", "usage": "Dark mode card backgrounds" },
+    "700": { "hex": "#1D0E42", "usage": "Dark mode elevated backgrounds" },
+    "900": { "hex": "#170C33", "usage": "Dark mode page background" },
+    "black": { "hex": "#000000", "usage": "Deepest dark surface" }
+  },
+
+  "coldGrey": {
+    "100": { "hex": "#E0E3F0", "usage": "Borders, dividers, subtle separators" },
+    "300": { "hex": "#C5C9DE", "usage": "Borders, dividers, light mode separators" },
+    "500": { "hex": "#AEB1C9", "usage": "Placeholder text, disabled labels, secondary captions" },
+    "600": { "hex": "#575C7B", "usage": "Secondary text, icons on dark surfaces" },
+    "700": { "hex": "#363A5B", "usage": "Primary text on light backgrounds" },
+    "900": { "hex": "#1E202E", "usage": "Headings on light backgrounds, high-contrast text" }
+  },
+
+  "steelGrey": {
+    "white": { "hex": "#FFFFFF", "usage": "Card surfaces, white backgrounds" },
+    "100": { "hex": "#F0F1F4", "usage": "Page backgrounds in light mode" },
+    "200": { "hex": "#E8EAF0", "usage": "Secondary surfaces, input backgrounds" },
+    "300": { "hex": "#E3E4EB", "usage": "Subtle borders, dividers" },
+    "400": { "hex": "#D7D8E1", "usage": "Stronger borders, active dividers" },
+    "500": { "hex": "#CBCCD7", "usage": "Tertiary text on white, strong dividers" },
+    "600": { "hex": "#C4C5D3", "usage": "Muted borders, scrollbar tracks" }
+  },
+
+  "system": {
+    "red": {
+      "100": { "hex": "#FFEEF6", "usage": "Error background" },
+      "300": { "hex": "#FCCFD5", "usage": "Error light" },
+      "500": { "hex": "#F85370", "usage": "Error primary" },
+      "700": { "hex": "#D61F49", "usage": "Error dark" },
+      "900": { "hex": "#961B2C", "usage": "Error darkest" }
+    },
+    "green": {
+      "100": { "hex": "#D8FDDF", "usage": "Success background" },
+      "300": { "hex": "#A7FAB5", "usage": "Success light" },
+      "500": { "hex": "#5CEB74", "usage": "Success primary" },
+      "700": { "hex": "#33C44A", "usage": "Success dark" },
+      "900": { "hex": "#056F15", "usage": "Success darkest" }
+    },
+    "blue": {
+      "100": { "hex": "#CCD5FF", "usage": "Info background" },
+      "300": { "hex": "#8097FF", "usage": "Info light" },
+      "500": { "hex": "#4B6CFF", "usage": "Info primary" },
+      "700": { "hex": "#1A44FF", "usage": "Info dark" },
+      "900": { "hex": "#0021B2", "usage": "Info darkest" }
+    },
+    "yellow": {
+      "100": { "hex": "#FEF0C2", "usage": "Warning background" },
+      "300": { "hex": "#FCCB3F", "usage": "Warning light" },
+      "500": { "hex": "#F49200", "usage": "Warning primary" },
+      "700": { "hex": "#A94900", "usage": "Warning dark" },
+      "900": { "hex": "#85390A", "usage": "Warning darkest" }
+    }
+  },
+
+  "neutral": {
+    "white": { "hex": "#FFFFFF", "usage": "Background, surfaces" },
+    "black": { "hex": "#000000", "usage": "Text, icons" }
+  },
+
+  "backgrounds": {
+    "dark":  { "ref": "darkPurple.900", "hex": "#170C33", "usage": "Dark mode background" },
+    "light": { "ref": "steelGrey.100", "hex": "#F0F1F4", "usage": "Light mode background" }
+  },
+
+  "semantic": {
+    "primary":   { "ref": "coldGrey.700", "hex": "#363A5B" },
+    "secondary": { "ref": "ultraPurple.800", "hex": "#2D1866" },
+    "success":   { "ref": "system.green.500", "hex": "#5CEB74" },
+    "warning":   { "ref": "system.yellow.500", "hex": "#F49200" },
+    "error":     { "ref": "system.red.500", "hex": "#F85370" },
+    "info":      { "ref": "system.blue.500", "hex": "#4B6CFF" }
+  }
+}
