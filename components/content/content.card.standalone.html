@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x140" name="Content" subtitle="Card header + slot" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;padding:20px;background:var(--background-base)}</style>
+</head><body>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#0a0a0a"/><rect x="180" y="300" width="520" height="40" rx="8" fill="#ffffff"/><rect x="180" y="380" width="380" height="24" rx="6" fill="#8a8a8a"/><rect x="760" y="300" width="260" height="104" rx="12" fill="none" stroke="#4d4d4d" stroke-width="8" stroke-dasharray="24 18"/></svg></template>
+<div id="root"></div>
+<script type="text/babel">
+const { CardHeader, Slot } = window.DFNSDesignSystem_12f785;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div style={{display:'flex',flexDirection:'column',gap:20}}>
+    <div style={{display:'flex',gap:32,alignItems:'flex-start'}}>
+      <CardHeader title="Wallets" description="All wallets in this organization." />
+      <Slot width={220} height={56}/>
+    </div>
+  </div>
+);
+</script></body></html>

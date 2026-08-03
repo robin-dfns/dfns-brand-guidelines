@@ -1,0 +1,4 @@
+/* Minimal global defaults for the DFNS design system. */
+body{font-family:var(--font-sans);color:var(--font-body-base);background:var(--background-base);-webkit-font-smoothing:antialiased}
+a{color:var(--font-heading-colored-bright);text-decoration:none}
+a:hover{color:var(--states-hover)}
