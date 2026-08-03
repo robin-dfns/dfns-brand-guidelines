@@ -210,22 +210,30 @@
     }
 
     .topnav-logo {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       cursor: pointer;
       z-index: 10;
       color: var(--topnav-logo-fill);
+      padding: 5px 11px;
+      border-radius: 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      transition: background .15s ease, border-color .15s ease;
     }
+    .topnav-logo:hover { background: var(--bg-hover); border-color: var(--border-medium); }
 
     .topnav-logo svg { height: 20px; width: auto; fill: var(--topnav-logo-fill); }
 
     .topnav-logo-text {
-      font-size: 13px;
-      font-weight: 400;
+      font-size: 12px;
+      font-weight: 500;
       letter-spacing: 0.02em;
-      opacity: 0.45;
+      opacity: 0.6;
       color: var(--topnav-logo-fill);
+      padding-left: 9px;
+      border-left: 1px solid var(--border-default);
     }
 
     .topnav-center {
@@ -1951,15 +1959,12 @@
   <nav class="topnav" id="topnav">
     <a class="topnav-logo" onclick="navigateTo('home')">
       <svg viewBox="0 0 3550 900" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z" fill="currentColor"/><path d="M1463.77 144.16L1463.75 144.18C1643.41 144.18 1770.75 249.54 1770.75 450.099C1770.75 650.659 1634.77 756.019 1455.11 756.019H1245.05L1244.91 755.859V144.16H1463.77ZM2885.67 696.14H2885.63C2885.63 716.12 2885.67 736.08 2885.63 756.019H2768.59C2731.27 756.019 2697.49 734.02 2682.37 699.92L2494.95 296.98V756.019H2370.43V203.9H2370.47C2370.47 184.02 2370.43 164.14 2370.47 144.32H2492.83C2530.01 144.32 2563.73 166.179 2578.91 200.119L2761.15 607.72V144H2885.67V696.14ZM3478.39 253.84H3172.65C3129.13 253.84 3101.19 276.36 3101.19 320.019C3101.19 363.679 3130.05 384.52 3173.57 388.06L3317.43 400.24V400.42C3426.39 409.98 3497.85 459.64 3497.85 576.439C3497.85 693.239 3422.07 756.019 3314.79 756.019H2988.65V646.179H3302.59C3343.49 646.179 3369.73 618.26 3369.73 577.22C3369.73 533.721 3341.81 515.361 3299.97 511.961L3158.75 498.84C3036.67 487.42 2972.93 439.6 2972.93 323.58C2972.93 207.56 3051.33 144 3163.85 144H3478.39V253.84ZM2283.05 254.16H1982.85V416.301H2239.23V521.66H1982.71V756H1855.51V144.32H2283.05V254.16ZM1373.49 257.699V642.76H1448.19V642.92C1555.45 642.92 1639.11 580.92 1639.11 450.24C1639.11 319.56 1555.47 257.699 1448.19 257.699H1373.49Z" fill="currentColor"/></svg>
-      <div class="topnav-logo-text"><span>Brand Book</span></div>
+      <div class="topnav-logo-text"><span>Design System</span></div>
     </a>
     <div class="topnav-center" id="topnavCenter">
       <a class="topnav-link active" data-page="home" onclick="navigateTo('home')">Home</a>
-      <a class="topnav-link" data-page="framework" onclick="navigateTo('framework')">Framework</a>
-      <a class="topnav-link" data-page="voice-tone" onclick="navigateTo('voice-tone')">Voice & Tone</a>
-      <a class="topnav-link" data-page="logo" onclick="navigateTo('logo')">Logo</a>
-      <a class="topnav-link" data-page="typography" onclick="navigateTo('typography')">Type</a>
-      <a class="topnav-link" data-page="color" onclick="navigateTo('color')">Color</a>
+      <a class="topnav-link" data-page="brand" onclick="navigateTo('brand')">Brand</a>
+      <a class="topnav-link" data-page="identity" onclick="navigateTo('identity')">Identity</a>
       <a class="topnav-link" data-page="components" onclick="navigateTo('components')">Components</a>
       <a class="topnav-link" data-page="assets" onclick="navigateTo('assets')">Assets</a>
       <a class="topnav-link" data-page="motion" onclick="navigateTo('motion')">Motion</a>
@@ -1982,12 +1987,9 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <a class="mobile-nav-link" onclick="nav('home')">Home</a>
-    <a class="mobile-nav-link" onclick="nav('framework')">Framework</a>
-    <a class="mobile-nav-link" onclick="nav('voice-tone')">Voice & Tone</a>
-    <a class="mobile-nav-link" onclick="nav('logo')">Logo</a>
-    <a class="mobile-nav-link" onclick="nav('typography')">Typography</a>
-    <a class="mobile-nav-link" onclick="nav('iconography')">Iconography</a>
-    <a class="mobile-nav-link" onclick="nav('color')">Color</a>
+    <a class="mobile-nav-link" onclick="nav('brand')">Brand</a>
+    <a class="mobile-nav-link" onclick="nav('identity')">Identity</a>
+    <a class="mobile-nav-link" onclick="nav('components')">Components</a>
     <a class="mobile-nav-link" onclick="nav('assets')">Assets</a>
     <a class="mobile-nav-link" onclick="nav('motion')">Motion</a>
   </div>
@@ -2042,8 +2044,8 @@
     // ===== Tile data =====
     const tiles = [
       {
-        id: 'framework', number: '01', title: 'Framework', color: 'var(--tile-framework)',
-        desc: 'Design strategy, principles, and foundational brand concepts.',
+        id: 'brand', number: '01', title: 'Brand', color: 'var(--tile-framework)',
+        desc: 'Strategy, principles, personality, and voice — how DFNS thinks and speaks.',
         svg: `<img src="./assets/Guidelines/Background.png?v=3" alt="Framework" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/framework-hover.png" alt="Framework" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
         sections: [
@@ -2055,7 +2057,7 @@
         ]
       },
       {
-        id: 'voice-tone', number: '02', title: 'Voice & Tone', color: 'var(--tile-voice)',
+        id: 'voice-tone', number: '02', title: 'Voice & Tone', color: 'var(--tile-voice)', skip: true,
         desc: 'Communication guidelines for consistent, on-brand messaging.',
         customLayout: true,
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2120,8 +2122,8 @@
         ]
       },
       {
-        id: 'logo', number: '03', title: 'Logo', color: 'var(--tile-logo)', wip: false,
-        desc: 'Logo usage, variants, clear space, and download assets.',
+        id: 'identity', number: '02', title: 'Identity', color: 'var(--tile-logo)', wip: false,
+        desc: 'Logo, typography, and the color system — the DFNS visual identity.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Massive Dfns symbol — cropped, bleeds off bottom-right -->
           <g transform="translate(60,20) scale(0.38)" opacity="0.30">
@@ -2140,7 +2142,7 @@
         ]
       },
       {
-        id: 'typography', number: '04', title: 'Typography', color: 'var(--tile-typography)',
+        id: 'typography', number: '04', title: 'Typography', color: 'var(--tile-typography)', skip: true,
         desc: 'Typefaces, type scale, hierarchy, and usage guidelines.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -2191,7 +2193,7 @@
         ]
       },
       {
-        id: 'color', number: '05', title: 'Color', color: 'var(--tile-color)',
+        id: 'color', number: '05', title: 'Color', color: 'var(--tile-color)', skip: true,
         desc: 'Color palette, system colors, and accessibility guidelines.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -2241,7 +2243,7 @@
         ]
       },
       {
-        id: 'components', number: '06', title: 'Components', color: 'var(--tile-components)',
+        id: 'components', number: '03', title: 'Components', color: 'var(--tile-components)',
         desc: 'Buttons, eyebrows, and badges — the reusable interface atoms.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="56" y="92" width="288" height="216" rx="22" fill="#FFFFFF" opacity="0.97"/>
@@ -2266,7 +2268,7 @@
         ]
       },
       {
-        id: 'assets', number: '07', title: 'Assets', color: 'var(--tile-assets)', wip: true,
+        id: 'assets', number: '04', title: 'Assets', color: 'var(--tile-assets)', wip: true,
         desc: 'Photography, illustration, and visual treatment approaches.',
         svg: `<img src="./assets/Guidelines/Imagery.jpg" alt="Imagery" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/Imagery-hover.jpg" alt="Imagery" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
@@ -2278,7 +2280,7 @@
         ]
       },
       {
-        id: 'motion', number: '08', title: 'Motion', color: 'var(--tile-motion)', wip: true,
+        id: 'motion', number: '05', title: 'Motion', color: 'var(--tile-motion)', wip: true,
         desc: 'Animation principles, easing curves, and motion patterns.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Massive bold easing curve — sweeps across full tile -->
@@ -2320,6 +2322,7 @@
     const catList = document.getElementById('catList');
     const catArrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg>';
     tiles.forEach((t) => {
+      if (t.skip) return;
       const row = document.createElement('a');
       row.className = 'cat-row' + (t.wip ? ' cat-row--wip' : '');
       row.href = '#' + t.id;
@@ -4821,21 +4824,51 @@
     teamPortraitsPage.innerHTML = getTeamPortraitsPageHTML();
     innerPages.appendChild(teamPortraitsPage);
 
+    // ===== Merged pages: Brand (Framework+Voice) · Identity (Logo+Type+Color) =====
+    // Reuse the existing sub-page builders; extract their tab buttons into one grouped
+    // bar and concatenate their panels. Prefixes (fwtab/vttab/ltab/ttab/ctab) keep ids unique.
+    const _tabsOf = (html, drop = []) => (html.match(/<button class="color-tab[^>]*>.*?<\/button>/g) || [])
+      .map(b => b.replace(' active', '')).filter(b => !drop.some(d => b.includes(`data-tab="${d}"`))).join('');
+    const _firstActive = h => h.replace('class="color-tab"', 'class="color-tab active"');
+    const _stripPanel = h => h.replace(/color-tab-panel active/, 'color-tab-panel');
+    const _mergedCSS = `<style>
+      .merged-tabs{flex-wrap:wrap;gap:8px;align-items:center}
+      .merged-group-label{font-family:var(--font-mono,ui-monospace,monospace);font-size:10px;text-transform:uppercase;letter-spacing:.09em;opacity:.5;white-space:nowrap}
+      .merged-group-label:not(:first-child){border-left:1px solid var(--border-default);padding-left:14px;margin-left:6px}
+      .merged-panels > .tabpage-layout{display:contents}
+      .merged-panels .tabpage-header{display:none}
+    </style>`;
+    const _backLink = `<a class="sidebar-back" onclick="navigateTo('home')" style="margin-bottom:24px;display:inline-flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>All Guidelines</a>`;
+    function getBrandPageHTML() {
+      const fw = getFrameworkPageHTML(), vt = getVoiceTonePageHTML();
+      return _mergedCSS + `<div class="tabpage-layout"><div class="tabpage-header">${_backLink}
+        <h1 class="content-title">Brand</h1>
+        <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Design strategy, principles, and how we speak — the foundations behind every DFNS decision.</p>
+        <div class="tabpage-tabs merged-tabs"><span class="merged-group-label">Framework</span>${_firstActive(_tabsOf(fw))}<span class="merged-group-label">Voice</span>${_tabsOf(vt, ['overview'])}</div>
+        </div><div class="merged-panels">${fw}${_stripPanel(vt)}</div></div>`;
+    }
+    function getIdentityPageHTML() {
+      const lo = getLogoPageHTML(), ty = getTypographyPageHTML(), co = getColorPageHTML();
+      return _mergedCSS + `<div class="tabpage-layout"><div class="tabpage-header">${_backLink}
+        <h1 class="content-title">Identity</h1>
+        <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">The visual identity — logomark, typography, and the color system.</p>
+        <div class="tabpage-tabs merged-tabs"><span class="merged-group-label">Logo</span>${_firstActive(_tabsOf(lo))}<span class="merged-group-label">Type</span>${_tabsOf(ty)}<span class="merged-group-label">Color</span>${_tabsOf(co)}</div>
+        </div><div class="merged-panels">${lo}${_stripPanel(ty)}${_stripPanel(co)}</div></div>`;
+    }
+
     tiles.forEach(t => {
+      if (t.skip) return;
       const page = document.createElement('div');
       page.className = 'page';
       page.id = 'page-' + t.id;
 
       if (t.customLayout) {
-        if (t.id === 'framework') page.innerHTML = getFrameworkPageHTML();
-        else if (t.id === 'voice-tone') page.innerHTML = getVoiceTonePageHTML();
-        else if (t.id === 'color') page.innerHTML = getColorPageHTML();
-        else if (t.id === 'typography') page.innerHTML = getTypographyPageHTML();
-        else if (t.id === 'logo') page.innerHTML = getLogoPageHTML();
+        if (t.id === 'brand') page.innerHTML = getBrandPageHTML();
+        else if (t.id === 'identity') page.innerHTML = getIdentityPageHTML();
         else if (t.id === 'components') page.innerHTML = getComponentsPageHTML();
         else if (t.id === 'assets') page.innerHTML = getAssetsPageHTML();
         else if (t.id === 'motion') page.innerHTML = getMotionPageHTML();
-        if (t.id === 'framework' || t.id === 'voice-tone' || t.id === 'color' || t.id === 'typography' || t.id === 'logo' || t.id === 'components' || t.id === 'assets' || t.id === 'motion') {
+        if (t.id === 'brand' || t.id === 'identity' || t.id === 'components' || t.id === 'assets' || t.id === 'motion') {
           innerPages.appendChild(page);
           return;
         }
@@ -4957,7 +4990,8 @@
     // ===== Hash routing =====
     function handleRoute() {
       const hash = window.location.hash.slice(1);
-      navigateTo(hash || 'home');
+      const alias = { framework: 'brand', 'voice-tone': 'brand', logo: 'identity', typography: 'identity', color: 'identity' };
+      navigateTo(alias[hash] || hash || 'home');
     }
 
     window.addEventListener('hashchange', handleRoute);
