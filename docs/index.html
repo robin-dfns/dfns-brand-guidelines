@@ -75,6 +75,54 @@
   .eyebrow.info{background:color-mix(in srgb,var(--system-blue-500) 15%,transparent);color:var(--system-blue-500)}
   .eyebrow .hx{width:8px;height:9px;animation:hexblink 2s step-end infinite}
   @keyframes hexblink{0%,100%{opacity:1}50%{opacity:0}}
+  /* ---- components section: side menu + cards ---- */
+  .comp-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start}
+  .comp-side{position:sticky;top:88px;display:flex;flex-direction:column;gap:2px}
+  .comp-navlink{padding:7px 12px;border-radius:var(--radius-base);font-size:13px;font-weight:var(--weight-medium);color:var(--font-body-bright);cursor:pointer;white-space:nowrap}
+  .comp-navlink:hover{background:var(--background-bw);color:var(--font-body-base)}
+  .comp-navlink.active{background:color-mix(in srgb,var(--base-primary) 10%,transparent);color:var(--font-heading-colored-mid)}
+  .comp-group{scroll-margin-top:88px}
+  .comp-group>h2{margin-top:6px}
+  .comp-card{border:1px solid var(--stroke-tertiary);border-radius:var(--radius-large);overflow:hidden;margin-bottom:16px;background:var(--background-bw)}
+  .comp-card .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--stroke-tertiary);font-size:13px;font-weight:var(--weight-medium)}
+  .comp-card .ch .cm{font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);font-weight:400}
+  .comp-card .cb{padding:24px 16px}
+  .comp-card .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .cinput-wrap{display:flex;flex-direction:column;gap:8px}
+  .cinput-label{font-size:14px;color:#1e202e}
+  .cinput{height:36px;padding:4px 12px;border-radius:6px;background:#fff;box-shadow:inset 0 0 0 1px #c5c9de;display:flex;align-items:center}
+  .cinput.dis{background:#e8eaf0}
+  .cinput input{border:none;outline:none;background:transparent;font-family:var(--font-sans);font-size:14px;color:#1e202e;width:130px}
+  .cinput.dis input{color:#aeb1c9}
+  .cselector{display:flex;align-items:center;gap:8px;width:240px;height:44px;padding:8px;border-radius:6px;background:#e8eaf0;box-shadow:inset 0 0 0 1px #c5c9de;border:none;cursor:pointer}
+  .cse-ic{width:28px;height:28px;border-radius:4px;background:#685cfe;flex:none}
+  .cse-l{flex:1;text-align:left;font-family:var(--font-sans);font-weight:600;font-size:14px;color:#363a5b}
+  .cse-ch{color:#363a5b;opacity:.5;display:inline-flex}.cse-ch svg{width:20px;height:20px}
+  .cbadge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:6px;font-family:var(--font-sans);font-weight:600;font-size:12px;line-height:18px}
+  .cbadge.d{background:#e6deff;box-shadow:inset 0 0 0 1px #c4aeff;color:#693aea}
+  .cbadge.bl{background:#ccd5ff;box-shadow:inset 0 0 0 1px #8097ff;color:#0021b2}
+  .cbadge.gr{background:#d8fddf;box-shadow:inset 0 0 0 1px #5ceb74;color:#056f15}
+  .cbadge.rd{background:#ffeef6;box-shadow:inset 0 0 0 1px #fccfd5;color:#d61f49}
+  .cbadge.yl{background:#fef0c2;box-shadow:inset 0 0 0 1px #fccb3f;color:#85390a}
+  .cbadge.gy{background:#e8eaf0;box-shadow:inset 0 0 0 1px #e0e3f0;color:#363a5b}
+  .cprog{position:relative;height:12px;border-radius:50px;background:#edf2f7;overflow:hidden}
+  .cprog span{position:absolute;left:0;top:0;height:100%;border-radius:50px;background:linear-gradient(268deg,#68dbf2,#509cf5)}
+  .ctip{color:#170c33;display:inline-flex}html.dark .ctip{color:#c4aeff}
+  .ccardh{display:flex;flex-direction:column;gap:6px;color:#170c33}html.dark .ccardh{color:#e0e3f0}
+  .ccardh .t{font-weight:600;font-size:16px;letter-spacing:-.4px}
+  .ccardh .d{font-weight:400;font-size:14px;line-height:20px}
+  .cslot{display:flex;justify-content:center;align-items:center;width:256px;max-width:100%;height:68px;border-radius:6px;background:rgba(168,85,247,.1);outline:1px dashed rgba(168,85,247,.5);outline-offset:-1px;font-size:14px;color:#170c33;text-align:center}
+  html.dark .cslot{color:#c4aeff}
+  .cmenu{display:flex;width:380px;max-width:100%;height:51px;border-radius:50px;background:#fff;box-shadow:0 8px 11px rgba(87,91,123,.3);padding:4px 5px;box-sizing:border-box}
+  .cmenu .ct{flex:1;display:flex;flex-direction:column;gap:2px;justify-content:center;align-items:center;border-radius:30px;cursor:pointer;color:#442599}
+  .cmenu .ct.active{background:#e3e4eb}
+  .cmenu .ct span{font-size:11px}.cmenu .ct svg{width:22px;height:22px}
+  .ccta{display:inline-flex;align-items:center;gap:4px;height:36px;border-radius:12px;font-family:var(--font-sans);font-weight:600;font-size:14px;cursor:pointer;border:none;text-decoration:none}
+  .ccta.primary{padding:0 12px 0 16px;background:#2d1866;color:#e0e3f0;box-shadow:inset 0 0 0 1px #170c33,0 6px 12px rgba(87,91,123,.24)}
+  .ccta.secondary{padding:0 12px 0 16px;background:#e0e3f0;color:#442599}
+  .ccta.tertiary{padding:0;height:auto;background:transparent;color:#442599;text-decoration:underline;text-underline-offset:3px;font-size:12px;font-weight:400}
+  .ccta svg{width:16px;height:16px}
+  @media(max-width:640px){.comp-layout{grid-template-columns:1fr}.comp-side{position:static;flex-direction:row;flex-wrap:wrap}}
   /* catalog */
   .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
   .cat a{display:block;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-large);padding:12px 14px;background:var(--background-bw)}
@@ -161,35 +209,97 @@
     <!-- ============ COMPONENTS ============ -->
     <section class="sec" id="sec-components">
       <h1><span class="a">Components</span></h1>
-      <p class="lead">Live previews built from the token layer. The full coded library (React <span class="mono">.jsx</span> + types + prompts) lives in <span class="mono">components/</span>.</p>
+      <p class="lead">The coded component library — live previews from the token layer. Source (<span class="mono">.jsx</span> + <span class="mono">.d.ts</span> + <span class="mono">.prompt.md</span>) in <span class="mono">components/</span>.</p>
+      <div class="comp-layout">
+        <aside class="comp-side">
+          <a class="comp-navlink active" data-t="c-buttons">Buttons</a>
+          <a class="comp-navlink" data-t="c-forms">Forms</a>
+          <a class="comp-navlink" data-t="c-feedback">Feedback</a>
+          <a class="comp-navlink" data-t="c-content">Content</a>
+          <a class="comp-navlink" data-t="c-navigation">Navigation</a>
+          <a class="comp-navlink" data-t="c-marketing">Marketing</a>
+        </aside>
+        <div class="comp-main">
 
-      <h2>Button</h2><p class="sub">40px · radius 12 · Suisse Medium 14. Variants primary / secondary / outline / ghost + disabled.</p>
-      <div class="btn-row" style="margin-bottom:12px">
-        <button class="btn primary">Create wallet</button>
-        <button class="btn secondary">Secondary</button>
-        <button class="btn outline">Outline</button>
-        <button class="btn ghost">Ghost</button>
-        <button class="btn primary disabled">Disabled</button>
+          <div class="comp-group" id="c-buttons"><h2>Buttons</h2>
+            <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx</span></div>
+              <div class="cb"><div class="row">
+                <button class="btn primary">Create wallet</button>
+                <button class="btn secondary">Secondary</button>
+                <button class="btn outline">Outline</button>
+                <button class="btn ghost">Ghost</button>
+                <button class="btn disabled" disabled>Disabled</button>
+              </div></div></div>
+          </div>
+
+          <div class="comp-group" id="c-forms"><h2>Forms</h2>
+            <div class="comp-card"><div class="ch">Input<span class="cm">forms/Input.jsx</span></div>
+              <div class="cb"><div class="row" style="gap:24px;align-items:flex-start">
+                <div class="cinput-wrap"><label class="cinput-label">Wallet name</label><div class="cinput"><input placeholder="Enter a name"></div></div>
+                <div class="cinput-wrap"><label class="cinput-label">Amount</label><div class="cinput"><input value="1,024" readonly></div></div>
+                <div class="cinput-wrap"><label class="cinput-label">Disabled</label><div class="cinput dis"><input placeholder="Locked" disabled></div></div>
+              </div></div></div>
+            <div class="comp-card"><div class="ch">SelectorBig<span class="cm">forms/SelectorBig.jsx</span></div>
+              <div class="cb"><button class="cselector"><span class="cse-ic"></span><span class="cse-l">Main Treasury</span>
+                <span class="cse-ch"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l3-3 3 3M7 12l3 3 3-3"/></svg></span></button></div></div>
+          </div>
+
+          <div class="comp-group" id="c-feedback"><h2>Feedback</h2>
+            <div class="comp-card"><div class="ch">Badge<span class="cm">feedback/Badge.jsx</span></div>
+              <div class="cb"><div class="row">
+                <span class="cbadge d">Default</span><span class="cbadge bl">Information</span><span class="cbadge gr">Success</span><span class="cbadge rd">Danger</span><span class="cbadge yl">Warning</span><span class="cbadge gy">Neutral</span>
+              </div></div></div>
+            <div class="comp-card"><div class="ch">ProgressBar<span class="cm">feedback/ProgressBar.jsx</span></div>
+              <div class="cb" style="display:flex;flex-direction:column;gap:12px;max-width:380px">
+                <div class="cprog"><span style="width:32%"></span></div>
+                <div class="cprog"><span style="width:64%"></span></div>
+                <div class="cprog"><span style="width:92%"></span></div>
+              </div></div>
+            <div class="comp-card"><div class="ch">InfoTooltip<span class="cm">feedback/InfoTooltip.jsx</span></div>
+              <div class="cb" style="display:flex;align-items:center;gap:10px">
+                <span class="ctip"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 9v5M10 6.4h.01" stroke-linecap="round"/></svg></span>
+                <span style="font-size:13px;color:var(--font-body-bright)">Icon + hover tooltip (dark bubble, 12px).</span></div></div>
+          </div>
+
+          <div class="comp-group" id="c-content"><h2>Content</h2>
+            <div class="comp-card"><div class="ch">CardHeader<span class="cm">content/CardHeader.jsx</span></div>
+              <div class="cb"><div class="ccardh"><span class="t">Wallet overview</span><span class="d">Balances, activity, and policies at a glance.</span></div></div></div>
+            <div class="comp-card"><div class="ch">Logotype · DfnsLogo<span class="cm">content/Logotype.jsx</span></div>
+              <div class="cb"><div class="row" style="align-items:center;gap:32px">
+                <img src="../assets/logos/logotype-2026.svg" style="height:26px" alt="DFNS logotype">
+                <img src="../assets/logos/logotype-symbol.svg" style="height:26px" alt="DFNS wordmark">
+                <img src="../assets/logos/dfns-logo-cube.svg" style="height:30px" alt="DFNS cube">
+              </div></div></div>
+            <div class="comp-card"><div class="ch">Slot<span class="cm">content/Slot.jsx</span></div>
+              <div class="cb"><div class="cslot">Slot (swap it with your content)</div></div></div>
+          </div>
+
+          <div class="comp-group" id="c-navigation"><h2>Navigation</h2>
+            <div class="comp-card"><div class="ch">MobileMenu<span class="cm">navigation/MobileMenu.jsx</span></div>
+              <div class="cb"><div class="cmenu">
+                <div class="ct active"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 11-1.06 1.06l-.72-.72v6.83a1.5 1.5 0 01-1.5 1.5h-3a.75.75 0 01-.75-.75v-4a.75.75 0 00-.75-.75h-1.5a.75.75 0 00-.75.75v4a.75.75 0 01-.75.75h-3a1.5 1.5 0 01-1.5-1.5v-6.83l-.72.72a.75.75 0 11-1.06-1.06l8.69-8.69z"/></svg><span>Dashboard</span></div>
+                <div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16M7 4L4 7M7 4l3 3M17 20V4M17 20l3-3M17 20l-3-3"/></svg><span>Transfers</span></div>
+                <div class="ct"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.25 12a9.75 9.75 0 1119.5 0 9.75 9.75 0 01-19.5 0zm13.36-1.81a.75.75 0 00-1.22-.88l-3.24 4.53-1.62-1.62a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.1l3.75-5.24z"/></svg><span>Approval</span></div>
+                <div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M5 5l1.5 1.5M17.5 17.5L19 19M3 12h2M19 12h2M5 19l1.5-1.5M17.5 6.5L19 5"/></svg><span>Settings</span></div>
+              </div></div></div>
+          </div>
+
+          <div class="comp-group" id="c-marketing"><h2>Marketing</h2>
+            <div class="comp-card"><div class="ch">CTA<span class="cm">marketing/CTA*.jsx</span></div>
+              <div class="cb"><div class="row" style="align-items:center">
+                <button class="ccta primary">Sign up <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></button>
+                <button class="ccta secondary">Secondary <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></button>
+                <a class="ccta tertiary">Tertiary</a>
+              </div></div></div>
+            <div class="comp-card"><div class="ch">Eyebrow<span class="cm">brand</span></div>
+              <div class="cb"><div class="row">
+                <span class="eyebrow"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>New release</span>
+                <span class="eyebrow info"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>Now in beta</span>
+              </div></div></div>
+          </div>
+
+        </div>
       </div>
-
-      <h2>Badge</h2><p class="sub">Semantic status pills — dark-aware tokens.</p>
-      <div class="badges" id="componentBadges" style="margin-bottom:8px"></div>
-
-      <h2>CTA</h2><p class="sub">Marketing CTAs — Primary / Secondary / Tertiary. 36px · radius 12.</p>
-      <div class="btn-row" style="margin-bottom:12px">
-        <a class="cta primary">Get started →</a>
-        <a class="cta secondary">Learn more</a>
-        <a class="cta tertiary">Explore docs →</a>
-      </div>
-
-      <h2>Eyebrow</h2><p class="sub">Section overline — mono 11px pill with a blinking hex glyph.</p>
-      <div class="btn-row" style="margin-bottom:8px">
-        <span class="eyebrow"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>New release</span>
-        <span class="eyebrow info"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>Now in beta</span>
-      </div>
-
-      <h2>Library</h2><p class="sub">All harvested components — source in <span class="mono">components/</span>.</p>
-      <div class="cat" id="catalog"></div>
     </section>
 
     <!-- ============ SPECIMENS ============ -->
@@ -231,7 +341,6 @@ document.getElementById('semantic').innerHTML = ['--background-base','--backgrou
 const badgeSet = [['Default','default'],['Information','information'],['Success','success'],['Danger','danger'],['Warning','warning']];
 const badgeHTML = badgeSet.map(([l,k]) => `<span class="badge" style="background:var(--badge-${k});color:var(--badge-${k}-foreground)">${l}</span>`).join('');
 document.getElementById('statusBadges').innerHTML = badgeHTML;
-document.getElementById('componentBadges').innerHTML = badgeHTML;
 const scales = [];
 [50,100,200,300,400,500,600,700,800,900].forEach(s => scales.push(['Ultra '+s,`--ultra-purple-${s}`]));
 [['Cold 100','--cold-grey-100'],['Cold 600','--cold-grey-600'],['Cold 900','--cold-grey-900'],['Steel 100','--steel-grey-100'],['Steel 300','--steel-grey-300'],['White','--steel-grey-white'],['Blue','--system-blue-500'],['Green','--system-green-500'],['Red','--system-red-500'],['Yellow','--system-yellow-500']].forEach(x => scales.push(x));
@@ -291,23 +400,13 @@ document.querySelectorAll('.chip[data-style]').forEach(c => c.onclick = () => {
   curStyle = c.dataset.style; renderIcons();
 });
 
-/* ---------- components catalog ---------- */
-document.getElementById('catalog').innerHTML = [
-  ['Button', 'buttons/Button.jsx', 'Primary / Secondary / Outline / Ghost'],
-  ['Input', 'forms/Input.jsx', 'Text field with inset ring'],
-  ['SelectorBig', 'forms/SelectorBig.jsx', 'Large org/account selector'],
-  ['Badge', 'feedback/Badge.jsx', '6 semantic colors'],
-  ['InfoTooltip', 'feedback/InfoTooltip.jsx', 'Icon + tooltip'],
-  ['ProgressBar', 'feedback/ProgressBar.jsx', 'Cyan→blue progress fill'],
-  ['CardHeader', 'content/CardHeader.jsx', 'Card title + meta'],
-  ['Logotype', 'content/Logotype.jsx', 'Symbol + wordmark'],
-  ['DfnsLogo', 'content/DfnsLogo.jsx', 'Symbol mark'],
-  ['Slot', 'content/Slot.jsx', 'Layout slot'],
-  ['MobileMenu', 'navigation/MobileMenu.jsx', 'Mobile tab bar'],
-  ['CTA Primary', 'marketing/CTAPrimary.jsx', 'Marketing CTA'],
-  ['CTA Secondary', 'marketing/CTASecondaryTestV1.jsx', 'Marketing CTA'],
-  ['CTA Tertiary', 'marketing/CTATertiary.jsx', 'Text link + arrow']
-].map(([n, p, d]) => `<a href="../components/${p}" target="_blank"><div class="cn">${n}</div><div class="cd">${d}</div></a>`).join('');
+/* ---------- components side menu (scroll + spy) ---------- */
+const compLinks = document.querySelectorAll('.comp-navlink');
+compLinks.forEach(l => l.onclick = () => { const el = document.getElementById(l.dataset.t); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+const compObs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) compLinks.forEach(l => l.classList.toggle('active', l.dataset.t === e.target.id)); });
+}, { rootMargin: '-90px 0px -55% 0px', threshold: 0 });
+document.querySelectorAll('.comp-group').forEach(g => compObs.observe(g));
 
 /* ---------- specimens ---------- */
 const specimens = [
