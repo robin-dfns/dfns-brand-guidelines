@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DFNS Design System</title>
+<script>(function(){if((localStorage.getItem('theme')||'light')==='dark')document.documentElement.classList.add('dark');})();</script>
 <link rel="stylesheet" href="../tokens/index.css">
 <style>
   *{box-sizing:border-box}
   html,body{margin:0}
   body{font-family:var(--font-sans);background:var(--background-base);color:var(--font-body-base);-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
-  .layout{display:grid;grid-template-columns:248px 1fr;min-height:100dvh}
+  .layout{min-height:100dvh}
   /* ---------- sidebar ---------- */
   .side{position:sticky;top:0;align-self:start;height:100dvh;display:flex;flex-direction:column;gap:4px;
         padding:22px 16px;border-right:1px solid var(--stroke-tertiary);background:var(--background-bw)}
@@ -33,7 +34,7 @@
   .themebtn{height:30px;padding:0 12px;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-base);
             background:transparent;color:var(--font-body-base);font-family:var(--font-sans);font-size:12px;cursor:pointer}
   /* ---------- main ---------- */
-  main{padding:40px clamp(24px,4vw,56px) 96px;max-width:1100px}
+  main{padding:100px clamp(24px,4vw,56px) 96px;max-width:1100px;margin:0 auto}
   .sec{display:none}.sec.active{display:block}
   h1{font-weight:var(--weight-light);font-size:40px;margin:0 0 6px;letter-spacing:-.4px;color:var(--font-heading-grey)}
   h1 .a{color:var(--font-heading-colored-mid)}
@@ -81,7 +82,7 @@
   .cat .cn{font-size:13px;font-weight:var(--weight-medium)}
   .cat .cd{font-size:12px;color:var(--font-body-bright);margin-top:2px}
   /* icons */
-  .iconbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 18px;position:sticky;top:0;z-index:2;
+  .iconbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 18px;position:sticky;top:60px;z-index:2;
            background:var(--background-base);padding:10px 0}
   .chip{padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;background:transparent;
         font-size:12px;font-weight:var(--weight-medium);color:var(--font-body-bright);cursor:pointer;font-family:var(--font-sans)}
@@ -110,24 +111,8 @@
 </style>
 </head>
 <body>
+<div id="dsnav"></div>
 <div class="layout">
-  <aside class="side">
-    <a class="brand" href="../">
-      <svg viewBox="0 0 1030 900"><path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z"/></svg>
-      <span><b>DFNS</b> Design System</span>
-    </a>
-    <a class="navlink navback" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><polyline points="15 18 9 12 15 6"/></svg>Guidelines</a>
-    <div class="navcap">Library</div>
-    <div class="navlink active" data-sec="foundations"><span class="dot"></span>Foundations</div>
-    <div class="navlink" data-sec="icons"><span class="dot"></span>Icons</div>
-    <div class="navlink" data-sec="components"><span class="dot"></span>Components</div>
-    <div class="navlink" data-sec="specimens"><span class="dot"></span>Specimens</div>
-    <div class="side-foot">
-      <a href="https://github.com/robin-dfns/dfns-design-system" target="_blank">GitHub ↗</a>
-      <button class="themebtn" id="themeBtn" onclick="toggleTheme()">Dark</button>
-    </div>
-  </aside>
-
   <main>
     <!-- ============ FOUNDATIONS ============ -->
     <section class="sec active" id="sec-foundations">
@@ -230,16 +215,14 @@ window.toggleTheme = () => {
 
 /* ---------- section nav ---------- */
 let iconsInit = false, specimensInit = false;
-document.querySelectorAll('.navlink').forEach(l => l.onclick = () => {
-  document.querySelectorAll('.navlink').forEach(x => x.classList.remove('active'));
-  l.classList.add('active');
-  const sec = l.dataset.sec;
+function showSection(sec) {
+  if (!document.getElementById('sec-' + sec)) sec = 'foundations';
   document.querySelectorAll('.sec').forEach(s => s.classList.toggle('active', s.id === 'sec-' + sec));
   window.scrollTo(0, 0);
   if (sec === 'icons' && !iconsInit) { iconsInit = true; renderIcons(); }
   if (sec === 'specimens' && !specimensInit) { specimensInit = true; renderSpecimens(); }
-  if (history.replaceState) history.replaceState(null, '', '#' + sec);
-});
+}
+window.addEventListener('hashchange', () => showSection((location.hash || '#foundations').slice(1)));
 
 /* ---------- foundations ---------- */
 const swHTML = (n, v) => `<div class="sw"><div class="chip" style="background:var(${v})"></div><div class="m"><div class="n">${n}</div><div class="v">${v}</div></div></div>`;
@@ -338,10 +321,8 @@ function renderSpecimens() {
     `<div class="spcard"><div class="h"><span class="nm">${n}</span><span class="gp">${g}</span></div><iframe src="guidelines/${f}" style="height:${h}px" loading="lazy"></iframe></div>`).join('');
 }
 
-renderIcons(); // prime round set (cheap)
-
-const _initSec = location.hash.slice(1);
-if (_initSec) { const _l = document.querySelector(`.navlink[data-sec="${_initSec}"]`); if (_l) _l.click(); }
+showSection((location.hash || '#foundations').slice(1));
 </script>
+<script src="../nav.js"></script>
 </body>
 </html>
