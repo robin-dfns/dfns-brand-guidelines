@@ -257,6 +257,8 @@
 
     .topnav-link:hover { color: var(--text-primary); background: var(--bg-hover); }
     .topnav-link.active { color: var(--text-primary); }
+    .topnav-link--library { margin-left: 6px; padding-left: 16px; border-left: 1px solid var(--border-default); color: var(--accent); }
+    .topnav-link--library:hover { color: var(--accent); background: var(--bg-hover); }
 
     .topnav-right {
       display: flex;
@@ -1974,6 +1976,7 @@
       <a class="topnav-link" data-page="components" onclick="navigateTo('components')">Components</a>
       <a class="topnav-link" data-page="assets" onclick="navigateTo('assets')">Assets</a>
       <a class="topnav-link" data-page="motion" onclick="navigateTo('motion')">Motion</a>
+      <a class="topnav-link topnav-link--library" href="./docs/">Library</a>
     </div>
     <div class="topnav-right">
       <button class="btn-theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
@@ -1998,6 +2001,7 @@
     <a class="mobile-nav-link" onclick="nav('components')">Components</a>
     <a class="mobile-nav-link" onclick="nav('assets')">Assets</a>
     <a class="mobile-nav-link" onclick="nav('motion')">Motion</a>
+    <a class="mobile-nav-link" href="./docs/">Library ↗</a>
   </div>
 
   <!-- ==========================================
