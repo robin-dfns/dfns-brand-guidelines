@@ -128,36 +128,43 @@
   .ccta.secondary{padding:0 12px 0 16px;background:#e0e3f0;color:#442599}
   .ccta.tertiary{padding:0;height:auto;background:transparent;color:#442599;text-decoration:underline;text-underline-offset:3px;font-size:12px;font-weight:400}
   .ccta svg{width:16px;height:16px}
-  /* ---- unified Button (marketing CTA design) + swappable icon ---- */
-  .dbtn{display:inline-flex;align-items:center;gap:8px;height:36px;border-radius:12px;font-family:var(--font-sans);font-weight:500;font-size:14px;line-height:1;cursor:pointer;border:none;text-decoration:none;box-sizing:border-box;position:relative;transition:background .18s,color .18s,box-shadow .18s,border-color .18s}
-  .dbtn>span{white-space:nowrap}
+  /* ---- unified Button — exact port of dfns-website Button.astro + swappable icon ---- */
+  .dbtn{display:inline-flex;align-items:center;gap:8px;height:36px;border-radius:12px;font-family:var(--font-sans);font-weight:500;font-size:14px;line-height:1;cursor:pointer;border:none;background:none;text-decoration:none;white-space:nowrap;box-sizing:border-box;position:relative;transition:background .2s,color .2s,box-shadow .2s,border-color .2s}
+  .dbtn>*{position:relative;z-index:1}
   .dbtn .ic-slot{width:16px;height:16px;display:inline-flex;flex:none}.dbtn .ic-slot svg{width:16px;height:16px}
-  .dbtn.primary{padding:0 13px 0 18px;color:#e0e3f0;border:1px solid #170c33;background:linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12)),#2d1866;box-shadow:0 6px 12px rgba(87,91,123,.24)}
-  .dbtn.primary:hover,.dbtn.primary.is-hover{background:linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),#442599;border-color:#442599;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.15)}
-  .dbtn.primary:focus-visible,.dbtn.primary.is-focus{outline:none;box-shadow:0 0 0 3px rgba(75,108,255,.4),0 6px 12px rgba(87,91,123,.24)}
-  .dbtn.secondary{padding:0 18px;background:#e0e3f0;color:#442599}
+  /* Primary — solid Purple 800 + white-gradient veil (::before @ .12, 11px radius) */
+  .dbtn.primary{padding:0 13px 0 18px;color:#e0e3f0;background:#2d1866;border:1px solid #170c33;border-radius:12px;box-shadow:0 6px 12px rgba(87,91,123,.24);overflow:hidden}
+  .dbtn.primary::before{content:"";position:absolute;inset:0;border-radius:11px;background:linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,0));opacity:.12;pointer-events:none;transition:opacity .2s;z-index:0}
+  .dbtn.primary:hover,.dbtn.primary.is-hover{background:#442599;border-color:#442599;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+  .dbtn.primary:hover::before,.dbtn.primary.is-hover::before{opacity:.18}
+  .dbtn.primary.no-arrow{padding:0 18px}
+  /* Secondary */
+  .dbtn.secondary{padding:0 18px;color:#442599;background:#e0e3f0}
   .dbtn.secondary:hover,.dbtn.secondary.is-hover{background:#e8eaf0;color:#5123ce}
-  .dbtn.secondary:focus-visible,.dbtn.secondary.is-focus{outline:none;box-shadow:0 0 0 3px rgba(75,108,255,.4)}
-  .dbtn.tertiary{padding:2px;height:auto;background:transparent;color:#442599}
+  /* Tertiary */
+  .dbtn.tertiary{gap:6px;color:#442599;background:none}
   .dbtn.tertiary:hover,.dbtn.tertiary.is-hover{color:#5123ce}
-  .dbtn.tertiary:focus-visible,.dbtn.tertiary.is-focus{outline:none;box-shadow:0 0 0 3px rgba(75,108,255,.4);border-radius:6px}
-  .dbtn.disabled,.dbtn[disabled]{background:#e8eaf0;color:#aeb1c9;border-color:transparent;box-shadow:none;cursor:not-allowed}
-  .dbtn.tertiary.disabled,.dbtn.tertiary[disabled]{background:transparent}
-  .dbtn .arrow{position:relative;width:16px;height:16px;flex:none;overflow:hidden}
-  .dbtn .arrow svg{position:absolute;inset:0;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.4,.36,0,1),opacity .3s cubic-bezier(.4,.36,0,1)}
-  .dbtn .arrow .a2{transform:translateX(-140%);opacity:0}
-  .dbtn:hover .arrow .a1,.dbtn.is-hover .arrow .a1{transform:translateX(150%);opacity:0}
-  .dbtn:hover .arrow .a2,.dbtn.is-hover .arrow .a2{transform:translateX(0);opacity:1}
-  html.dark .dbtn.primary{background:linear-gradient(#e6deff,#c5c9de);color:#442599;border-color:#c5c9de;box-shadow:0 6px 12px rgba(0,0,0,.3)}
-  html.dark .dbtn.primary:hover,html.dark .dbtn.primary.is-hover{background:linear-gradient(#fff,#e6deff);color:#442599;border-color:#e6deff}
+  /* focus (docs helper — outline, not clipped by primary overflow) */
+  .dbtn:focus-visible,.dbtn.is-focus{outline:2px solid #4b6cff;outline-offset:2px}
+  /* disabled */
+  .dbtn.disabled,.dbtn[disabled]{opacity:.4;cursor:not-allowed}
+  /* animated arrow swap (primary + tertiary) — exact port */
+  .dbtn .arrow{display:inline-flex;align-items:center}
+  .dbtn .arrow svg{flex-shrink:0;width:16px;height:16px;fill:currentColor}
+  .dbtn .arrow .a1{opacity:1;transition:transform .3s cubic-bezier(.4,.36,0,1),opacity .3s cubic-bezier(.4,.36,0,1)}
+  .dbtn .arrow .a2{margin-left:-16px;transform:translateX(-8px);opacity:0;transition:transform .3s cubic-bezier(.4,.36,0,1),opacity .3s cubic-bezier(.4,.36,0,1)}
+  .dbtn.primary:hover .a1,.dbtn.primary.is-hover .a1,.dbtn.tertiary:hover .a1,.dbtn.tertiary.is-hover .a1{transform:translateX(24px);opacity:0}
+  .dbtn.primary:hover .a2,.dbtn.primary.is-hover .a2,.dbtn.tertiary:hover .a2,.dbtn.tertiary.is-hover .a2{transform:translateX(0);opacity:1}
+  /* dark — exact port (Grey 100→300 relief, no white veil) */
+  html.dark .dbtn.primary{background-color:#c5c9de;background-image:linear-gradient(to bottom,#e0e3f0,#c5c9de);border-color:#aeb1c9;color:#442599;box-shadow:0 6px 12px rgba(0,0,0,.3)}
+  html.dark .dbtn.primary::before{opacity:0}
+  html.dark .dbtn.primary:hover,html.dark .dbtn.primary.is-hover{background-color:#e0e3f0;background-image:linear-gradient(to bottom,#e0e3f0,#e0e3f0);border-color:#aeb1c9;color:#5123ce}
   html.dark .dbtn.secondary{background:#2d1866;color:#c4aeff}
-  html.dark .dbtn.secondary:hover,html.dark .dbtn.secondary.is-hover{background:#442599;color:#c4aeff}
+  html.dark .dbtn.secondary:hover,html.dark .dbtn.secondary.is-hover{background:#442599;color:#d6c8ff}
   html.dark .dbtn.tertiary{color:#c4aeff}html.dark .dbtn.tertiary:hover,html.dark .dbtn.tertiary.is-hover{color:#d6c8ff}
-  html.dark .dbtn.disabled,html.dark .dbtn[disabled]{background:rgba(255,255,255,.06);color:#575c7b}
-  /* Figma-like swap affordance */
-  .swap{position:relative;display:inline-flex;cursor:pointer;border-radius:5px}
-  .swap::after{content:"";position:absolute;inset:-4px;border:1.5px dashed currentColor;border-radius:7px;opacity:0;transition:opacity .15s}
-  .swap:hover::after,.swap.active::after{opacity:.55}
+  /* Figma-like swap affordance (inset tint — survives primary overflow:hidden) */
+  .swap{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:6px;padding:3px;margin:-3px;transition:background .15s,box-shadow .15s}
+  .swap:hover,.swap.active{background:color-mix(in srgb,currentColor 20%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,currentColor 50%,transparent)}
   /* playground */
   .pg-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
   .pg-hint{font-size:12px;color:var(--font-body-bright)}
@@ -380,7 +387,8 @@
                   </div>
                   <div class="seg" id="pgPos">
                     <button data-p="none">No icon</button>
-                    <button data-p="leading" class="on">Leading icon</button>
+                    <button data-p="before">Icon before</button>
+                    <button data-p="after" class="on">Icon after</button>
                   </div>
                   <span class="pg-hint">Click the icon inside the button to swap it — like Figma.</span>
                 </div>
@@ -754,35 +762,56 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
   ch.appendChild(a);
 });
 
-/* ---------- Button playground (unified CTA + Figma-like icon swap) ---------- */
+/* ---------- Button playground (exact CTA port + Figma-like icon swap) ---------- */
 (function () {
   const stage = document.getElementById('pgStage'); if (!stage) return;
   const codeEl = document.getElementById('pgCode');
+  const ARROW = '__arrow__';
+  const AP = 'M6.4 4.039a.65.65 0 0 0-.4.55v6.808a.648.648 0 0 0 1.106.43L10.81 8.414a.593.593 0 0 0 0-.843L7.106 4.168A.648.648 0 0 0 6.4 4.039Z';
+  const arrowOneSVG = `<svg viewBox="0 0 16 16" fill="none"><path d="${AP}" fill="currentColor"/></svg>`;
+  const arrowSwapHTML = `<span class="arrow"><svg class="a1" viewBox="0 0 16 16" fill="none"><path d="${AP}" fill="currentColor"/></svg><svg class="a2" viewBox="0 0 16 16" fill="none"><path d="${AP}" fill="currentColor"/></svg></span>`;
   const heroSolid = Object.entries(hero).filter(([k]) => /^HeroiconsSolid/.test(k))
     .map(([k, o]) => ({ key: k, label: spaceCamel(k.replace('HeroiconsSolid', '')), svg: svgOf(o), search: k.toLowerCase() }));
-  const findIcon = re => heroSolid.find(i => re.test(i.key));
-  const labels = { primary: 'Create wallet', secondary: 'Secondary', tertiary: 'Learn more' };
-  const hasArrow = v => v === 'primary' || v === 'tertiary';
-  const arrowHTML = '<span class="arrow"><svg class="a1" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg><svg class="a2" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></span>';
+  const pickList = [{ key: ARROW, label: 'Arrow (default)', svg: arrowOneSVG, search: 'arrow default signature' }].concat(heroSolid);
   const iconSvg = key => { const o = hero[key]; return o ? `<svg viewBox="${o.viewBox}">${o.body}</svg>` : ''; };
-  const state = { variant: 'primary', pos: 'leading', icon: (findIcon(/Wallet$/) || heroSolid[0]).key };
+  const labels = { primary: 'Create wallet', secondary: 'Secondary', tertiary: 'Learn more' };
+  const state = { variant: 'primary', pos: 'after', icon: ARROW };  // pos: none | before | after
 
+  function iconInner(animated) {
+    if (state.icon === ARROW) return animated ? arrowSwapHTML : `<span class="ic-slot">${arrowOneSVG}</span>`;
+    return `<span class="ic-slot">${iconSvg(state.icon)}</span>`;
+  }
   function render() {
-    const lead = state.pos !== 'none' ? `<span class="ic-slot swap" id="pgSwap" title="Click to swap icon">${iconSvg(state.icon)}</span>` : '';
-    const trail = hasArrow(state.variant) ? arrowHTML : '';
-    stage.innerHTML = `<button class="dbtn ${state.variant}" type="button">${lead}<span>${labels[state.variant]}</span>${trail}</button>`;
+    const label = `<span>${labels[state.variant]}</span>`;
+    let html;
+    if (state.pos === 'none') {
+      html = `<button class="dbtn ${state.variant}${state.variant === 'primary' ? ' no-arrow' : ''}" type="button">${label}</button>`;
+    } else {
+      const animated = state.pos === 'after' && state.icon === ARROW;
+      const ico = `<span class="swap" id="pgSwap" title="Click to swap icon">${iconInner(animated)}</span>`;
+      html = `<button class="dbtn ${state.variant}" type="button">${state.pos === 'before' ? ico + label : label + ico}</button>`;
+    }
+    stage.innerHTML = html;
     const sw = document.getElementById('pgSwap');
     if (sw) sw.onclick = e => { e.stopPropagation(); openPick(sw); };
     renderCode();
   }
   function renderCode() {
-    const name = state.pos !== 'none' ? state.icon.replace('HeroiconsSolid', '') + 'Icon' : null;
     const T = (c, x) => `<span class="tok-${c}">${x}</span>`;
-    let s = T('tag', '&lt;Button') + ' ' + T('attr', 'variant') + '=' + T('str', '"' + state.variant + '"');
-    if (name) s += ' ' + T('attr', 'icon') + '={' + T('tag', '&lt;' + name + ' /&gt;') + '}';
-    if (hasArrow(state.variant)) s += ' ' + T('attr', 'arrow');
-    s += T('tag', '&gt;') + labels[state.variant] + T('tag', '&lt;/Button&gt;');
-    codeEl.innerHTML = s;
+    const isArrow = state.icon === ARROW;
+    const iconName = (isArrow ? 'ArrowRight' : state.icon.replace('HeroiconsSolid', '')) + 'Icon';
+    const auto = state.variant !== 'secondary';   // primary + tertiary carry the arrow by default
+    const attrs = [T('attr', 'variant') + '=' + T('str', '"' + state.variant + '"')];
+    if (state.pos === 'none') {
+      if (auto) attrs.push(T('attr', 'arrow') + '={' + T('tag', 'false') + '}');
+    } else if (state.pos === 'after' && isArrow && auto) {
+      /* canonical default arrow — no extra props */
+    } else {
+      attrs.push(T('attr', 'icon') + '={' + T('tag', '&lt;' + iconName + ' /&gt;') + '}');
+      if (state.pos === 'after') attrs.push(T('attr', 'iconPosition') + '=' + T('str', '"after"'));
+      if (auto && !(state.pos === 'after' && isArrow)) attrs.push(T('attr', 'arrow') + '={' + T('tag', 'false') + '}');
+    }
+    codeEl.innerHTML = T('tag', '&lt;Button') + ' ' + attrs.join(' ') + T('tag', '&gt;') + labels[state.variant] + T('tag', '&lt;/Button&gt;');
   }
   document.querySelectorAll('#pgVariant button').forEach(b => b.onclick = () => {
     document.querySelectorAll('#pgVariant button').forEach(x => x.classList.remove('on')); b.classList.add('on'); state.variant = b.dataset.v; render();
@@ -800,8 +829,8 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
   let anchorEl = null;
   function renderPick() {
     const q = pkSearch.value.trim().toLowerCase();
-    const list = heroSolid.filter(i => !q || i.search.includes(q)).slice(0, 133);
-    pkMeta.textContent = `${list.length} solid icons${q ? ' · filtered' : ' · showing first 133'}`;
+    const list = pickList.filter(i => !q || i.search.includes(q)).slice(0, 134);
+    pkMeta.textContent = `${list.length} icons${q ? ' · filtered' : ' · arrow + Heroicons solid'}`;
     pkGrid.innerHTML = list.map(i => `<div class="pk ${i.key === state.icon ? 'sel' : ''}" data-k="${i.key}" title="${i.label}">${i.svg}</div>`).join('');
   }
   pkGrid.onclick = e => { const c = e.target.closest('.pk'); if (!c) return; state.icon = c.dataset.k; render(); openPick(document.getElementById('pgSwap')); };
@@ -822,7 +851,7 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
     vs.forEach(([v, lbl]) => {
       html += `<div class="rl">${v}</div>`;
       sts.forEach(([, cls]) => {
-        const arrow = hasArrow(v) ? arrowHTML : '';
+        const arrow = (v === 'primary' || v === 'tertiary') ? arrowSwapHTML : '';
         const dis = cls === 'disabled' ? 'disabled' : '';
         html += `<div class="mcell"><button class="dbtn ${v} ${cls}" ${dis}><span>${lbl}</span>${arrow}</button></div>`;
       });

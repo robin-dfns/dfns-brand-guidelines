@@ -6,8 +6,12 @@ import * as React from 'react';
 export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
   /** Visual variant. Primary = purple relief pill · Secondary = Cold Grey 100 · Tertiary = text link. */
   variant?: 'primary' | 'secondary' | 'tertiary';
-  /** Optional 16px icon element rendered before the label (freely swappable). */
+  /** Dark surface treatment (matches Button.astro `dark`). */
+  dark?: boolean;
+  /** Optional 16px icon element (freely swappable). */
   icon?: React.ReactNode;
+  /** Icon placement relative to the label. */
+  iconPosition?: 'before' | 'after';
   /** Animated trailing arrow (brand signature). Defaults on except `secondary`. */
   arrow?: boolean;
   disabled?: boolean;
