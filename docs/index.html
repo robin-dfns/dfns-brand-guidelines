@@ -173,6 +173,41 @@
   .sb-inbox .top{display:flex;justify-content:space-between;font-size:13px}.sb-inbox .top .who{color:#575c7b}.sb-inbox .top .time{color:#aeb1c9;font-size:12px}
   .sb-inbox .title{font-size:14px;font-weight:600;color:#170c33;margin:4px 0 2px}
   .sb-inbox .body{font-size:12px;color:#575c7b;line-height:1.4}
+  /* bento composition inside a card */
+  .bento{display:grid;gap:36px}
+  .bento-2{grid-template-columns:auto 1fr;align-items:start}
+  .bento-3{grid-template-columns:repeat(3,auto);justify-content:start;align-items:start}
+  .bento .cell{min-width:0}
+  .bento .cell-h{font-size:11px;color:var(--font-body-bright);margin-bottom:14px;font-family:var(--font-mono);letter-spacing:.04em}
+  @media(max-width:640px){.bento-2,.bento-3{grid-template-columns:1fr}}
+  /* MediaAsset */
+  .sb-media-ic{width:32px;height:32px;border-radius:8px;background:#2d1866;color:#fff;display:inline-flex;align-items:center;justify-content:center}.sb-media-ic svg{width:18px;height:18px}
+  .sb-media-av{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#aa8bff,#8860f7);display:inline-block}
+  /* Header Button */
+  .sb-hbtn{width:32px;height:32px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#170c33;background:transparent;border:1px solid transparent;cursor:pointer}.sb-hbtn svg{width:18px;height:18px}
+  .sb-hbtn.st-hover{background:#e6deff}.sb-hbtn.st-focus{border-color:#170c33}
+  /* SidebarGroupAction */
+  .sb-gaction{width:28px;height:28px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#363a5b;background:transparent;border:1.5px solid transparent;cursor:pointer}.sb-gaction svg{width:16px;height:16px}
+  .sb-gaction.st-hover{background:#e8eaf0}.sb-gaction.st-focus{border-color:#8097ff}
+  /* PopoverTrigger */
+  .sb-ptrigger{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:transparent;border:none;cursor:pointer;width:190px;box-sizing:border-box}
+  .sb-ptrigger.st-hover{background:#e8eaf0}
+  .sb-ptrigger .sq{width:26px;height:26px;border-radius:7px;background:#2d1866;color:#fff;display:inline-flex;align-items:center;justify-content:center;flex:none}.sb-ptrigger .sq svg{width:15px;height:15px}
+  .sb-ptrigger .nm{flex:1;text-align:left;font-family:var(--font-sans);font-size:15px;font-weight:600;color:#1e202e}
+  .sb-ptrigger .cv{color:#aeb1c9;display:inline-flex}.sb-ptrigger .cv svg{width:16px;height:16px}
+  /* PopoverMenu (teams) */
+  .sb-pmenu{width:280px;max-width:100%;background:#fff;border:1px solid #e3e4eb;border-radius:12px;box-shadow:0 8px 24px rgba(19,22,45,.12);padding:8px;font-family:var(--font-sans)}
+  .sb-pmenu .lbl{font-size:12px;font-weight:600;color:#170c33;padding:6px 8px}
+  .sb-pmenu .prow{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;cursor:pointer}.sb-pmenu .prow:hover{background:#f0f1f4}
+  .sb-pmenu .prow .ic{width:24px;height:24px;border-radius:6px;border:1px solid #e3e4eb;display:inline-flex;align-items:center;justify-content:center;color:#170c33;flex:none}.sb-pmenu .prow .ic svg{width:14px;height:14px}
+  .sb-pmenu .prow .nm{flex:1;font-size:15px;color:#1e202e}
+  .sb-pmenu .prow .kb{font-size:12px;color:#aeb1c9;font-family:var(--font-mono)}
+  .sb-pmenu .sep{height:1px;background:#e8eaf0;margin:6px 0}
+  /* SidebarMenuSub container variants */
+  .sb-subwrap{display:flex;flex-direction:column;gap:2px;font-family:var(--font-sans);font-size:14px;color:#363a5b;width:170px;box-sizing:border-box}
+  .sb-subwrap .it{padding:6px 8px}
+  .sb-subwrap.v-border{margin-left:15px;padding-left:9px;border-left:1px solid #c5c9de}
+  .sb-subwrap.v-indent{padding-left:16px}
   @media(max-width:640px){.comp-layout{grid-template-columns:1fr}.comp-side{position:static;flex-direction:row;flex-wrap:wrap}}
   /* catalog */
   .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
@@ -420,6 +455,58 @@
                 <div class="top"><span class="who">William Smith</span><span class="time">09:34 AM</span></div>
                 <div class="title">Meeting Tomorrow</div>
                 <div class="body">Let's schedule a call to finalize the wallet policy review before the release.</div>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">Popover<span class="cm">navigation/Sidebar.jsx · PopoverTrigger · PopoverMenu · MediaAsset</span></div>
+              <div class="cb"><div class="bento bento-2">
+                <div class="cell">
+                  <div class="cell-h">PopoverTrigger</div>
+                  <button class="sb-ptrigger"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Acme Inc</span><span class="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+                  <button class="sb-ptrigger st-hover" style="margin-top:4px"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Acme Inc</span><span class="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+                  <div class="cell-h" style="margin-top:26px">MediaAsset</div>
+                  <div class="row" style="gap:16px">
+                    <span class="sb-media-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M7 10V7a1 1 0 011-1h8a1 1 0 011 1v3"/></svg></span>
+                    <span class="sb-media-av"></span>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div class="cell-h">PopoverMenu</div>
+                  <div class="sb-pmenu">
+                    <div class="lbl">Teams</div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Acme Inc</span><span class="kb">⌘1</span></div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2 5 4-11 2 6h4"/></svg></span><span class="nm">Acme Corp</span><span class="kb">⌘2</span></div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Evil Corp</span><span class="kb">⌘3</span></div>
+                    <div class="sep"></div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="nm">Add team</span></div>
+                  </div>
+                </div>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">Structural controls<span class="cm">navigation/Sidebar.jsx · HeaderButton · SidebarGroupAction · SidebarMenuSub</span></div>
+              <div class="cb"><div class="bento bento-3">
+                <div class="cell">
+                  <div class="cell-h">Header Button</div>
+                  <div class="row" style="gap:10px">
+                    <button class="sb-hbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+                    <button class="sb-hbtn st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+                    <button class="sb-hbtn st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div class="cell-h">SidebarGroupAction</div>
+                  <div class="row" style="gap:10px">
+                    <button class="sb-gaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+                    <button class="sb-gaction st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+                    <button class="sb-gaction st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div class="cell-h">SidebarMenuSub</div>
+                  <div class="row" style="gap:22px;align-items:flex-start">
+                    <div><div style="font-size:10px;color:var(--font-body-bright);margin-bottom:6px">border</div><div class="sb-subwrap v-border"><div class="it">Sub Item</div><div class="it">Sub Item</div></div></div>
+                    <div><div style="font-size:10px;color:var(--font-body-bright);margin-bottom:6px">indent</div><div class="sb-subwrap v-indent"><div class="it">Sub Item</div><div class="it">Sub Item</div></div></div>
+                  </div>
+                </div>
               </div></div></div>
 
             <div class="comp-card"><div class="ch">OrgSwitcher<span class="cm">avatar + org + chevrons</span></div>
