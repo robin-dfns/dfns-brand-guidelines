@@ -76,7 +76,8 @@
   .eyebrow .hx{width:8px;height:9px;animation:hexblink 2s step-end infinite}
   @keyframes hexblink{0%,100%{opacity:1}50%{opacity:0}}
   /* ---- components section: side menu + cards ---- */
-  .comp-layout{display:grid;grid-template-columns:176px 1fr;gap:64px;align-items:start}
+  .comp-layout{position:relative;left:50%;transform:translateX(-50%);width:100vw;box-sizing:border-box;display:grid;grid-template-columns:200px minmax(0,1fr);gap:64px;padding:0 clamp(24px,4vw,56px) 0 24px;align-items:start}
+  .comp-main{max-width:940px;min-width:0}
   .comp-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:4px}
   .comp-side .comp-caplabel{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--font-body-bright);padding:0 14px 10px}
   .comp-navlink{padding:10px 14px;border-radius:var(--radius-base);font-size:13px;font-weight:var(--weight-medium);color:var(--font-body-bright);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
@@ -210,8 +211,6 @@
 
     <!-- ============ COMPONENTS ============ -->
     <section class="sec" id="sec-components">
-      <h1><span class="a">Components</span></h1>
-      <p class="lead">The coded component library — live previews from the token layer. Source (<span class="mono">.jsx</span> + <span class="mono">.d.ts</span> + <span class="mono">.prompt.md</span>) in <span class="mono">components/</span>.</p>
       <div class="comp-layout">
         <aside class="comp-side">
           <span class="comp-caplabel">Components</span>
@@ -223,6 +222,8 @@
           <a class="comp-navlink" data-t="c-marketing">Marketing</a>
         </aside>
         <div class="comp-main">
+          <h1><span class="a">Components</span></h1>
+          <p class="lead">The coded component library — live previews from the token layer. Source (<span class="mono">.jsx</span> + <span class="mono">.d.ts</span> + <span class="mono">.prompt.md</span>) in <span class="mono">components/</span>.</p>
 
           <div class="comp-group" id="c-buttons"><h2>Buttons</h2>
             <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx</span></div>
