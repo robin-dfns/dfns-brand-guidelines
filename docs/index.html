@@ -76,18 +76,20 @@
   .eyebrow .hx{width:8px;height:9px;animation:hexblink 2s step-end infinite}
   @keyframes hexblink{0%,100%{opacity:1}50%{opacity:0}}
   /* ---- components section: side menu + cards ---- */
-  .comp-layout{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start}
-  .comp-side{position:sticky;top:88px;display:flex;flex-direction:column;gap:2px}
-  .comp-navlink{padding:7px 12px;border-radius:var(--radius-base);font-size:13px;font-weight:var(--weight-medium);color:var(--font-body-bright);cursor:pointer;white-space:nowrap}
+  .comp-layout{display:grid;grid-template-columns:176px 1fr;gap:64px;align-items:start}
+  .comp-side{position:sticky;top:96px;display:flex;flex-direction:column;gap:4px}
+  .comp-side .comp-caplabel{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--font-body-bright);padding:0 14px 10px}
+  .comp-navlink{padding:10px 14px;border-radius:var(--radius-base);font-size:13px;font-weight:var(--weight-medium);color:var(--font-body-bright);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
   .comp-navlink:hover{background:var(--background-bw);color:var(--font-body-base)}
   .comp-navlink.active{background:color-mix(in srgb,var(--base-primary) 10%,transparent);color:var(--font-heading-colored-mid)}
-  .comp-group{scroll-margin-top:88px}
-  .comp-group>h2{margin-top:6px}
-  .comp-card{border:1px solid var(--stroke-tertiary);border-radius:var(--radius-large);overflow:hidden;margin-bottom:16px;background:var(--background-bw)}
-  .comp-card .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--stroke-tertiary);font-size:13px;font-weight:var(--weight-medium)}
-  .comp-card .ch .cm{font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);font-weight:400}
-  .comp-card .cb{padding:24px 16px}
-  .comp-card .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .comp-group{scroll-margin-top:96px;margin-bottom:88px}
+  .comp-group:last-child{margin-bottom:0}
+  .comp-group>h2{margin:0 0 28px;font-size:28px}
+  .comp-card{border:1px solid var(--stroke-tertiary);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:32px;background:var(--background-bw)}
+  .comp-card .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 32px;border-bottom:1px solid var(--stroke-tertiary);font-size:14px;font-weight:var(--weight-medium)}
+  .comp-card .ch .cm{font-family:var(--font-mono);font-size:11px;color:var(--font-body-bright);font-weight:400}
+  .comp-card .cb{padding:56px 32px}
+  .comp-card .row{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
   .cinput-wrap{display:flex;flex-direction:column;gap:8px}
   .cinput-label{font-size:14px;color:#1e202e}
   .cinput{height:36px;padding:4px 12px;border-radius:6px;background:#fff;box-shadow:inset 0 0 0 1px #c5c9de;display:flex;align-items:center}
@@ -212,6 +214,7 @@
       <p class="lead">The coded component library — live previews from the token layer. Source (<span class="mono">.jsx</span> + <span class="mono">.d.ts</span> + <span class="mono">.prompt.md</span>) in <span class="mono">components/</span>.</p>
       <div class="comp-layout">
         <aside class="comp-side">
+          <span class="comp-caplabel">Components</span>
           <a class="comp-navlink active" data-t="c-buttons">Buttons</a>
           <a class="comp-navlink" data-t="c-forms">Forms</a>
           <a class="comp-navlink" data-t="c-feedback">Feedback</a>
