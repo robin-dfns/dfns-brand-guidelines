@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x230" name="Buttons" subtitle="Primary / Secondary / Outline / Ghost × default, hover, disabled" -->
+<!-- @dsCard group="Components" viewport="700x230" name="Buttons" subtitle="Primary / Secondary / Tertiary × default, hover, disabled — optional icon + animated arrow" -->
 <!DOCTYPE html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -9,18 +9,18 @@
 </head><body><div id="root"></div>
 <script type="text/babel">
 const { Button, Icon } = window.DFNSDesignSystem_12f785;
-const ic = <Icon name="HeroiconsMiniArchiveBox" size={20}/>;
+const ic = <Icon name="HeroiconsSolidWallet" size={16}/>;
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div style={{display:'grid',gridTemplateColumns:'repeat(3,max-content)',gap:'16px 24px',alignItems:'center'}}>
-    <Button variant="primary" iconLeft={ic} iconRight={ic}>Primary</Button>
-    <Button variant="primary">Primary</Button>
-    <Button variant="primary" disabled>Primary</Button>
-    <Button variant="secondary" iconLeft={ic}>Secondary</Button>
+    <Button variant="primary" icon={ic}>Create wallet</Button>
+    <Button variant="primary">Create wallet</Button>
+    <Button variant="primary" disabled>Create wallet</Button>
+    <Button variant="secondary" icon={ic}>Secondary</Button>
     <Button variant="secondary">Secondary</Button>
     <Button variant="secondary" disabled>Secondary</Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="ghost" disabled>Ghost</Button>
+    <Button variant="tertiary">Learn more</Button>
+    <Button variant="tertiary" icon={ic}>Learn more</Button>
+    <Button variant="tertiary" disabled>Learn more</Button>
   </div>
 );
 </script></body></html>

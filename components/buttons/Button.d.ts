@@ -1,15 +1,18 @@
 import * as React from 'react';
 /**
- * DFNS product button — Rubik 2026. 40px tall, 12px radius, Suisse Intl Medium 14.
+ * DFNS Button — the canonical CTA (marketing design). 36px tall, 12px radius,
+ * Suisse Intl 500 Medium. Three variants, optional leading icon + animated arrow.
  */
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Visual variant. Primary is a purple gradient pill with inner ring. */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+export interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
+  /** Visual variant. Primary = purple relief pill · Secondary = Cold Grey 100 · Tertiary = text link. */
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  /** Optional 16px icon element rendered before the label (freely swappable). */
+  icon?: React.ReactNode;
+  /** Animated trailing arrow (brand signature). Defaults on except `secondary`. */
+  arrow?: boolean;
   disabled?: boolean;
-  /** Optional 20px icon element rendered before the label. */
-  iconLeft?: React.ReactNode;
-  /** Optional 20px icon element rendered after the label. */
-  iconRight?: React.ReactNode;
+  /** Renders an <a> instead of <button> when provided. */
+  href?: string;
   children?: React.ReactNode;
 }
 export declare function Button(props: ButtonProps): JSX.Element;

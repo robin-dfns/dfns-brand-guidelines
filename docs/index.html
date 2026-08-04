@@ -128,6 +128,66 @@
   .ccta.secondary{padding:0 12px 0 16px;background:#e0e3f0;color:#442599}
   .ccta.tertiary{padding:0;height:auto;background:transparent;color:#442599;text-decoration:underline;text-underline-offset:3px;font-size:12px;font-weight:400}
   .ccta svg{width:16px;height:16px}
+  /* ---- unified Button (marketing CTA design) + swappable icon ---- */
+  .dbtn{display:inline-flex;align-items:center;gap:8px;height:36px;border-radius:12px;font-family:var(--font-sans);font-weight:500;font-size:14px;line-height:1;cursor:pointer;border:none;text-decoration:none;box-sizing:border-box;position:relative;transition:background .18s,color .18s,box-shadow .18s,border-color .18s}
+  .dbtn>span{white-space:nowrap}
+  .dbtn .ic-slot{width:16px;height:16px;display:inline-flex;flex:none}.dbtn .ic-slot svg{width:16px;height:16px}
+  .dbtn.primary{padding:0 13px 0 18px;color:#e0e3f0;border:1px solid #170c33;background:linear-gradient(rgba(255,255,255,.12),rgba(255,255,255,.12)),#2d1866;box-shadow:0 6px 12px rgba(87,91,123,.24)}
+  .dbtn.primary:hover,.dbtn.primary.is-hover{background:linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),#442599;border-color:#442599;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+  .dbtn.primary:focus-visible,.dbtn.primary.is-focus{outline:none;box-shadow:0 0 0 3px rgba(75,108,255,.4),0 6px 12px rgba(87,91,123,.24)}
+  .dbtn.secondary{padding:0 18px;background:#e0e3f0;color:#442599}
+  .dbtn.secondary:hover,.dbtn.secondary.is-hover{background:#e8eaf0;color:#5123ce}
+  .dbtn.secondary:focus-visible,.dbtn.secondary.is-focus{outline:none;box-shadow:0 0 0 3px rgba(75,108,255,.4)}
+  .dbtn.tertiary{padding:2px;height:auto;background:transparent;color:#442599}
+  .dbtn.tertiary:hover,.dbtn.tertiary.is-hover{color:#5123ce}
+  .dbtn.tertiary:focus-visible,.dbtn.tertiary.is-focus{outline:none;box-shadow:0 0 0 3px rgba(75,108,255,.4);border-radius:6px}
+  .dbtn.disabled,.dbtn[disabled]{background:#e8eaf0;color:#aeb1c9;border-color:transparent;box-shadow:none;cursor:not-allowed}
+  .dbtn.tertiary.disabled,.dbtn.tertiary[disabled]{background:transparent}
+  .dbtn .arrow{position:relative;width:16px;height:16px;flex:none;overflow:hidden}
+  .dbtn .arrow svg{position:absolute;inset:0;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .3s cubic-bezier(.4,.36,0,1),opacity .3s cubic-bezier(.4,.36,0,1)}
+  .dbtn .arrow .a2{transform:translateX(-140%);opacity:0}
+  .dbtn:hover .arrow .a1,.dbtn.is-hover .arrow .a1{transform:translateX(150%);opacity:0}
+  .dbtn:hover .arrow .a2,.dbtn.is-hover .arrow .a2{transform:translateX(0);opacity:1}
+  html.dark .dbtn.primary{background:linear-gradient(#e6deff,#c5c9de);color:#442599;border-color:#c5c9de;box-shadow:0 6px 12px rgba(0,0,0,.3)}
+  html.dark .dbtn.primary:hover,html.dark .dbtn.primary.is-hover{background:linear-gradient(#fff,#e6deff);color:#442599;border-color:#e6deff}
+  html.dark .dbtn.secondary{background:#2d1866;color:#c4aeff}
+  html.dark .dbtn.secondary:hover,html.dark .dbtn.secondary.is-hover{background:#442599;color:#c4aeff}
+  html.dark .dbtn.tertiary{color:#c4aeff}html.dark .dbtn.tertiary:hover,html.dark .dbtn.tertiary.is-hover{color:#d6c8ff}
+  html.dark .dbtn.disabled,html.dark .dbtn[disabled]{background:rgba(255,255,255,.06);color:#575c7b}
+  /* Figma-like swap affordance */
+  .swap{position:relative;display:inline-flex;cursor:pointer;border-radius:5px}
+  .swap::after{content:"";position:absolute;inset:-4px;border:1.5px dashed currentColor;border-radius:7px;opacity:0;transition:opacity .15s}
+  .swap:hover::after,.swap.active::after{opacity:.55}
+  /* playground */
+  .pg-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+  .pg-hint{font-size:12px;color:var(--font-body-bright)}
+  .seg{display:inline-flex;background:var(--background-base);border:1px solid var(--stroke-tertiary);border-radius:9px;padding:2px;gap:2px}
+  .seg button{border:none;background:transparent;font-family:var(--font-sans);font-size:12px;font-weight:500;color:var(--font-body-bright);padding:5px 11px;border-radius:7px;cursor:pointer;transition:all .15s}
+  .seg button.on{background:var(--background-bw);color:var(--font-body-base);box-shadow:var(--shadow-sm)}
+  .pg-stage{display:flex;align-items:center;justify-content:center;min-height:104px;background:var(--background-base);border-radius:12px;border:1px solid var(--stroke-tertiary)}
+  .pg-code{position:relative;margin-top:16px;font-family:var(--font-mono);font-size:12.5px;line-height:1.65;color:var(--font-body-base);background:var(--background-base);border:1px solid var(--stroke-tertiary);border-radius:10px;padding:14px 16px;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+  .pg-code .cp{position:absolute;top:8px;right:8px;height:26px;padding:0 10px;font-family:var(--font-sans);font-size:11px;font-weight:500;border:1px solid var(--stroke-tertiary);border-radius:7px;background:var(--background-bw);color:var(--font-body-bright);cursor:pointer}
+  .pg-code .cp:hover{color:var(--font-body-base)}
+  .pg-code .tok-tag{color:#8860f7}.pg-code .tok-attr{color:#4b6cff}.pg-code .tok-str{color:#33c44a}
+  /* variants x states matrix */
+  .btnmatrix{display:grid;grid-template-columns:auto repeat(4,1fr);gap:18px 20px;align-items:center;min-width:520px}
+  .btnmx-scroll{overflow-x:auto}
+  .btnmatrix .mh{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--font-body-bright)}
+  .btnmatrix .rl{font-size:12px;color:var(--font-body-bright)}
+  .btnmatrix .mcell{display:flex;align-items:center;min-height:40px}
+  /* icon picker popover */
+  .iconpick{position:fixed;z-index:120;width:312px;background:var(--background-bw);border:1px solid var(--stroke-tertiary);border-radius:12px;box-shadow:var(--shadow-lg);padding:10px;display:none}
+  .iconpick.open{display:block}
+  .iconpick .pk-top{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+  .iconpick input{flex:1;height:34px;border-radius:8px;border:1px solid var(--stroke-tertiary);background:var(--background-base);padding:0 10px;font-family:var(--font-sans);font-size:13px;color:var(--font-body-base);box-sizing:border-box}
+  .iconpick .pk-x{width:30px;height:30px;flex:none;border:none;background:transparent;color:var(--font-body-bright);cursor:pointer;border-radius:7px;font-size:14px}
+  .iconpick .pk-x:hover{background:var(--background-elevation-1)}
+  .iconpick .pk-meta{font-size:11px;color:var(--font-body-bright);padding:0 2px 6px}
+  .iconpick .pk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;max-height:212px;overflow:auto}
+  .iconpick .pk{display:flex;align-items:center;justify-content:center;height:36px;border-radius:8px;cursor:pointer;color:var(--font-body-base)}
+  .iconpick .pk svg{width:18px;height:18px}
+  .iconpick .pk:hover{background:var(--background-elevation-1)}
+  .iconpick .pk.sel{background:var(--ultra-purple-50);color:#442599}
   /* ---- sidebar (shadcn) atoms + organism ---- */
   .sb-btn{display:flex;align-items:center;gap:8px;height:32px;padding:8px;border-radius:6px;font-family:var(--font-sans);font-size:14px;font-weight:400;color:#2d1866;cursor:pointer;width:220px;max-width:100%;box-sizing:border-box;border:none;background:transparent;text-align:left}
   .sb-btn:hover{background:#d7d8e1}
@@ -310,14 +370,26 @@
           <p class="lead">The coded component library — live previews from the token layer. Source (<span class="mono">.jsx</span> + <span class="mono">.d.ts</span> + <span class="mono">.prompt.md</span>) in <span class="mono">components/</span>.</p>
 
           <div class="comp-group" id="c-buttons"><h2>Buttons</h2>
-            <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx</span></div>
-              <div class="cb"><div class="row">
-                <button class="btn primary">Create wallet</button>
-                <button class="btn secondary">Secondary</button>
-                <button class="btn outline">Outline</button>
-                <button class="btn ghost">Ghost</button>
-                <button class="btn disabled" disabled>Disabled</button>
-              </div></div></div>
+            <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx · Primary · Secondary · Tertiary · swappable icon</span></div>
+              <div class="cb">
+                <div class="pg-toolbar">
+                  <div class="seg" id="pgVariant">
+                    <button data-v="primary" class="on">Primary</button>
+                    <button data-v="secondary">Secondary</button>
+                    <button data-v="tertiary">Tertiary</button>
+                  </div>
+                  <div class="seg" id="pgPos">
+                    <button data-p="none">No icon</button>
+                    <button data-p="leading" class="on">Leading icon</button>
+                  </div>
+                  <span class="pg-hint">Click the icon inside the button to swap it — like Figma.</span>
+                </div>
+                <div class="pg-stage" id="pgStage"></div>
+                <pre class="pg-code"><button class="cp" id="pgCopy">Copy</button><code id="pgCode"></code></pre>
+              </div></div>
+
+            <div class="comp-card"><div class="ch">Variants &amp; states<span class="cm">buttons/Button.jsx · default · hover · focused · disabled</span></div>
+              <div class="cb"><div class="btnmx-scroll"><div class="btnmatrix" id="btnMatrix"></div></div></div></div>
           </div>
 
           <div class="comp-group" id="c-forms"><h2>Forms</h2>
@@ -551,12 +623,6 @@
           </div>
 
           <div class="comp-group" id="c-marketing"><h2>Marketing</h2>
-            <div class="comp-card"><div class="ch">CTA<span class="cm">marketing/CTA*.jsx</span></div>
-              <div class="cb"><div class="row" style="align-items:center">
-                <button class="ccta primary">Sign up <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></button>
-                <button class="ccta secondary">Secondary <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></button>
-                <a class="ccta tertiary">Tertiary</a>
-              </div></div></div>
             <div class="comp-card"><div class="ch">Eyebrow<span class="cm">brand</span></div>
               <div class="cb"><div class="row">
                 <span class="eyebrow"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>New release</span>
@@ -687,6 +753,85 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
   a.innerHTML = GH_ICON + path.split('/').pop();
   ch.appendChild(a);
 });
+
+/* ---------- Button playground (unified CTA + Figma-like icon swap) ---------- */
+(function () {
+  const stage = document.getElementById('pgStage'); if (!stage) return;
+  const codeEl = document.getElementById('pgCode');
+  const heroSolid = Object.entries(hero).filter(([k]) => /^HeroiconsSolid/.test(k))
+    .map(([k, o]) => ({ key: k, label: spaceCamel(k.replace('HeroiconsSolid', '')), svg: svgOf(o), search: k.toLowerCase() }));
+  const findIcon = re => heroSolid.find(i => re.test(i.key));
+  const labels = { primary: 'Create wallet', secondary: 'Secondary', tertiary: 'Learn more' };
+  const hasArrow = v => v === 'primary' || v === 'tertiary';
+  const arrowHTML = '<span class="arrow"><svg class="a1" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg><svg class="a2" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></span>';
+  const iconSvg = key => { const o = hero[key]; return o ? `<svg viewBox="${o.viewBox}">${o.body}</svg>` : ''; };
+  const state = { variant: 'primary', pos: 'leading', icon: (findIcon(/Wallet$/) || heroSolid[0]).key };
+
+  function render() {
+    const lead = state.pos !== 'none' ? `<span class="ic-slot swap" id="pgSwap" title="Click to swap icon">${iconSvg(state.icon)}</span>` : '';
+    const trail = hasArrow(state.variant) ? arrowHTML : '';
+    stage.innerHTML = `<button class="dbtn ${state.variant}" type="button">${lead}<span>${labels[state.variant]}</span>${trail}</button>`;
+    const sw = document.getElementById('pgSwap');
+    if (sw) sw.onclick = e => { e.stopPropagation(); openPick(sw); };
+    renderCode();
+  }
+  function renderCode() {
+    const name = state.pos !== 'none' ? state.icon.replace('HeroiconsSolid', '') + 'Icon' : null;
+    const T = (c, x) => `<span class="tok-${c}">${x}</span>`;
+    let s = T('tag', '&lt;Button') + ' ' + T('attr', 'variant') + '=' + T('str', '"' + state.variant + '"');
+    if (name) s += ' ' + T('attr', 'icon') + '={' + T('tag', '&lt;' + name + ' /&gt;') + '}';
+    if (hasArrow(state.variant)) s += ' ' + T('attr', 'arrow');
+    s += T('tag', '&gt;') + labels[state.variant] + T('tag', '&lt;/Button&gt;');
+    codeEl.innerHTML = s;
+  }
+  document.querySelectorAll('#pgVariant button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#pgVariant button').forEach(x => x.classList.remove('on')); b.classList.add('on'); state.variant = b.dataset.v; render();
+  });
+  document.querySelectorAll('#pgPos button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#pgPos button').forEach(x => x.classList.remove('on')); b.classList.add('on'); state.pos = b.dataset.p; render();
+  });
+  document.getElementById('pgCopy').onclick = () => copy(codeEl.textContent, 'Code copied');
+
+  /* icon picker popover (instance swap) */
+  const pick = document.createElement('div'); pick.className = 'iconpick';
+  pick.innerHTML = '<div class="pk-top"><input placeholder="Search Heroicons solid…" id="pkSearch"><button class="pk-x" id="pkClose" aria-label="Close">✕</button></div><div class="pk-meta" id="pkMeta"></div><div class="pk-grid" id="pkGrid"></div>';
+  document.body.appendChild(pick);
+  const pkGrid = pick.querySelector('#pkGrid'), pkSearch = pick.querySelector('#pkSearch'), pkMeta = pick.querySelector('#pkMeta');
+  let anchorEl = null;
+  function renderPick() {
+    const q = pkSearch.value.trim().toLowerCase();
+    const list = heroSolid.filter(i => !q || i.search.includes(q)).slice(0, 133);
+    pkMeta.textContent = `${list.length} solid icons${q ? ' · filtered' : ' · showing first 133'}`;
+    pkGrid.innerHTML = list.map(i => `<div class="pk ${i.key === state.icon ? 'sel' : ''}" data-k="${i.key}" title="${i.label}">${i.svg}</div>`).join('');
+  }
+  pkGrid.onclick = e => { const c = e.target.closest('.pk'); if (!c) return; state.icon = c.dataset.k; render(); openPick(document.getElementById('pgSwap')); };
+  pkSearch.oninput = renderPick;
+  pick.querySelector('#pkClose').onclick = closePick;
+  function place() { if (!anchorEl) return; const r = anchorEl.getBoundingClientRect(); pick.style.left = Math.max(12, Math.min(r.left - 8, window.innerWidth - 324)) + 'px'; pick.style.top = (r.bottom + 10) + 'px'; }
+  function openPick(el) { if (!el) return; anchorEl = el; el.classList.add('active'); place(); pick.classList.add('open'); renderPick(); pkSearch.focus(); }
+  function closePick() { pick.classList.remove('open'); const sw = document.getElementById('pgSwap'); if (sw) sw.classList.remove('active'); }
+  document.addEventListener('click', e => { if (pick.classList.contains('open') && !pick.contains(e.target) && !e.target.closest('#pgSwap')) closePick(); });
+  window.addEventListener('scroll', () => { if (pick.classList.contains('open')) place(); }, true);
+
+  /* variants × states matrix */
+  const mx = document.getElementById('btnMatrix');
+  if (mx) {
+    const sts = [['Default', ''], ['Hover', 'is-hover'], ['Focused', 'is-focus'], ['Disabled', 'disabled']];
+    const vs = [['primary', 'Create wallet'], ['secondary', 'Secondary'], ['tertiary', 'Learn more']];
+    let html = '<div></div>' + sts.map(s => `<div class="mh">${s[0]}</div>`).join('');
+    vs.forEach(([v, lbl]) => {
+      html += `<div class="rl">${v}</div>`;
+      sts.forEach(([, cls]) => {
+        const arrow = hasArrow(v) ? arrowHTML : '';
+        const dis = cls === 'disabled' ? 'disabled' : '';
+        html += `<div class="mcell"><button class="dbtn ${v} ${cls}" ${dis}><span>${lbl}</span>${arrow}</button></div>`;
+      });
+    });
+    mx.innerHTML = html;
+  }
+
+  render();
+})();
 
 /* ---------- specimens ---------- */
 const specimens = [
