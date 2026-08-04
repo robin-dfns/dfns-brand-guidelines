@@ -87,8 +87,11 @@
   .comp-group:last-child{margin-bottom:0}
   .comp-group>h2{margin:0 0 28px;font-size:28px}
   .comp-card{border:1px solid var(--stroke-tertiary);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:32px;background:var(--background-bw)}
-  .comp-card .ch{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 32px;border-bottom:1px solid var(--stroke-tertiary);font-size:14px;font-weight:var(--weight-medium)}
-  .comp-card .ch .cm{font-family:var(--font-mono);font-size:11px;color:var(--font-body-bright);font-weight:400}
+  .comp-card .ch{display:flex;align-items:center;gap:12px;padding:16px 24px 16px 32px;border-bottom:1px solid var(--stroke-tertiary);font-size:14px;font-weight:var(--weight-medium)}
+  .comp-card .ch .cm{font-family:var(--font-mono);font-size:11px;color:var(--font-body-bright);font-weight:400;margin-left:auto}
+  .gh-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10px;color:var(--font-heading-colored-mid);text-decoration:none;padding:4px 9px;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-base);white-space:nowrap;flex:none}
+  .gh-link:hover{border-color:var(--base-primary);background:color-mix(in srgb,var(--base-primary) 8%,transparent)}
+  .gh-link svg{width:12px;height:12px;flex:none}
   .comp-card .cb{padding:56px 32px}
   .comp-card .row{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
   .cinput-wrap{display:flex;flex-direction:column;gap:8px}
@@ -525,6 +528,20 @@ const compObs = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) compLinks.forEach(l => l.classList.toggle('active', l.dataset.t === e.target.id)); });
 }, { rootMargin: '-90px 0px -55% 0px', threshold: 0 });
 document.querySelectorAll('.comp-group').forEach(g => compObs.observe(g));
+
+/* ---------- GitHub source link per component (DS ↔ git) ---------- */
+const GH = 'https://github.com/robin-dfns/dfns-design-system/blob/main/';
+const GH_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>';
+document.querySelectorAll('#sec-components .comp-card').forEach(card => {
+  const ch = card.querySelector('.ch'); const cm = ch && ch.querySelector('.cm'); if (!ch) return;
+  const m = cm && cm.textContent.match(/([\w-]+\/[\w.*-]+\.jsx)/);
+  const path = m ? 'components/' + m[1].replace('*', 'Primary') : (card.closest('#c-sidebar') ? 'components/navigation/Sidebar.jsx' : null);
+  if (!path) return;
+  const a = document.createElement('a');
+  a.className = 'gh-link'; a.href = GH + path; a.target = '_blank'; a.rel = 'noopener'; a.title = 'View source on GitHub — ' + path;
+  a.innerHTML = GH_ICON + path.split('/').pop();
+  ch.appendChild(a);
+});
 
 /* ---------- specimens ---------- */
 const specimens = [
