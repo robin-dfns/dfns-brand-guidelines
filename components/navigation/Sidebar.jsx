@@ -13,6 +13,8 @@ const T = {
   page: 'var(--steel-grey-100, #f0f1f4)',
   card: 'var(--steel-grey-300, #e3e4eb)',
   activeBg: 'var(--steel-grey-400, #d7d8e1)',
+  hoverBg: 'var(--steel-grey-400, #d7d8e1)',
+  selectedBg: 'var(--ultra-purple-50, #e6deff)',
   label: 'var(--ultra-purple-800, #2d1866)',
   labelActive: 'var(--ultra-purple-900, #170c33)',
   muted: 'var(--cold-grey-600, #575c7b)',
@@ -26,14 +28,18 @@ const ChevronRight = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill
 const ChevronsUpDown = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M8 9l4-4 4 4M8 15l4 4 4-4" /></svg>;
 
 /* ── atom: the menu button (icon + label + optional badge / chevron) ── */
-export function SidebarMenuButton({ icon, children, active = false, badge, expandable = false, expanded = false, sub = false, style, ...rest }) {
+export function SidebarMenuButton({ icon, children, active = false, state, badge, expandable = false, expanded = false, sub = false, style, ...rest }) {
+  const s = state || (active ? 'active' : 'default'); // default | hover | active | focused
+  const bg = s === 'hover' ? T.hoverBg : s === 'active' ? T.selectedBg : 'transparent';
+  const ring = s === 'focused' ? 'inset 0 0 0 1.5px var(--system-blue-300, #8097ff)' : 'none';
+  const isActive = s === 'active';
   return (
-    <button type="button" data-active={active || undefined}
+    <button type="button" data-state={s} data-active={isActive || undefined}
       style={{
         display: 'flex', alignItems: 'center', gap: 8, width: sub ? 172 : 220, height: 32, padding: 8,
         borderRadius: 6, border: 'none', cursor: 'pointer', textAlign: 'left', fontFamily: T.font, fontSize: 14,
-        fontWeight: active ? 500 : 400, color: active ? T.labelActive : T.label,
-        background: active ? T.activeBg : 'transparent', boxSizing: 'border-box', ...style,
+        fontWeight: isActive ? 500 : 400, color: isActive ? T.labelActive : T.label,
+        background: bg, boxShadow: ring, boxSizing: 'border-box', ...style,
       }} {...rest}>
       {icon && <span style={{ width: 16, height: 16, flex: 'none', display: 'inline-flex' }}>{icon}</span>}
       <span style={{ flex: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{children}</span>

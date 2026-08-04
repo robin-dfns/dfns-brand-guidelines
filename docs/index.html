@@ -128,7 +128,10 @@
   /* ---- sidebar (shadcn) atoms + organism ---- */
   .sb-btn{display:flex;align-items:center;gap:8px;height:32px;padding:8px;border-radius:6px;font-family:var(--font-sans);font-size:14px;font-weight:400;color:#2d1866;cursor:pointer;width:220px;max-width:100%;box-sizing:border-box;border:none;background:transparent;text-align:left}
   .sb-btn:hover{background:#d7d8e1}
-  .sb-btn.active{background:#d7d8e1;color:#170c33;font-weight:500}
+  .sb-btn.active{background:#e6deff;color:#170c33;font-weight:500}
+  .sb-btn.st-hover{background:#d7d8e1}
+  .sb-btn.st-focus{box-shadow:inset 0 0 0 1.5px #8097ff}
+  .sb-collapsed{width:40px;height:40px;justify-content:center;padding:0;border-radius:6px}
   .sb-btn svg{width:16px;height:16px;flex:none}
   .sb-btn .l{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .sb-badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:6px;background:#e1e4ec;color:#442599;font-size:14px;font-weight:500;line-height:1}
@@ -320,12 +323,35 @@
           <div class="comp-group" id="c-sidebar"><h2>Sidebar</h2>
             <p class="sub" style="margin:-16px 0 24px;max-width:60ch">Reproduced from the product dashboard (shadcn structure). Decomposed into reusable atoms — grab them from <span class="mono">components/navigation/</span>.</p>
 
-            <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">the atom · icon + label + badge/chevron · states</span></div>
-              <div class="cb"><div style="display:flex;flex-direction:column;gap:6px;width:220px">
-                <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Dashboard</span></button>
-                <button class="sb-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Dashboard · active</span></button>
-                <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="l">Activity</span><span class="sb-badge">3</span></button>
-                <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6a4 4 0 00-4-2H3v13h5a4 4 0 014 2"/><path d="M12 6a4 4 0 014-2h5v13h-5a4 4 0 00-4 2"/></svg><span class="l">Operations</span><svg class="sb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+            <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">the atom · 4 states × 7 types (from the Figma component set)</span></div>
+              <div class="cb"><div style="display:flex;gap:48px;flex-wrap:wrap">
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-bottom:10px">STATE</div>
+                  <div style="display:flex;flex-direction:column;gap:6px;width:220px">
+                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Default</span></button>
+                    <button class="sb-btn st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Hover</span></button>
+                    <button class="sb-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Active</span></button>
+                    <button class="sb-btn st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Focused</span></button>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-bottom:10px">TYPE</div>
+                  <div style="display:flex;flex-direction:column;gap:6px;width:220px">
+                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg><span class="l">Simple</span></button>
+                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg><span class="l">Badge</span><span class="sb-badge">23</span></button>
+                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg><span class="l">Collapsible</span><svg class="sb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg><span class="l">Dropdown</span><svg style="width:16px;height:16px;opacity:.6;flex:none" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button>
+                    <button class="sb-btn"><svg style="width:16px;height:16px;opacity:.6;flex:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg><span class="l">Tree</span></button>
+                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12l3 3 5-6"/></svg><span class="l">Checkbox</span></button>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-bottom:10px">COLLAPSED</div>
+                  <div style="display:flex;gap:8px">
+                    <button class="sb-btn st-hover sb-collapsed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></button>
+                    <button class="sb-btn active sb-collapsed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></button>
+                  </div>
+                </div>
               </div></div></div>
 
             <div class="comp-card"><div class="ch">Atoms<span class="cm">Badge · GroupLabel · SubItem</span></div>
