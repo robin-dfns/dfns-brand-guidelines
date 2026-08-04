@@ -159,6 +159,20 @@
   .sb-logo{display:flex;align-items:center;padding:8px 8px 16px;color:#2d1866}
   .sb-logo svg{height:20px;width:auto;fill:currentColor}
   .sb-menu{display:flex;flex-direction:column;gap:2px}
+  .sb-glbl{display:flex;align-items:center;gap:6px;font-family:var(--font-sans);font-size:12px;color:#575c7b;padding:8px;height:32px;width:220px;box-sizing:border-box}
+  .sb-glbl .r{margin-left:auto;opacity:.6;display:inline-flex}.sb-glbl .r svg{width:14px;height:14px}
+  .sb-subitem{display:flex;align-items:center;height:32px;padding:8px;border-radius:6px;font-family:var(--font-sans);font-size:14px;color:#2d1866;width:180px;box-sizing:border-box;cursor:pointer;border:none;background:transparent;text-align:left}
+  .sb-subitem.st-hover{background:#d7d8e1}.sb-subitem.active{background:#e6deff;color:#170c33;font-weight:500}.sb-subitem.st-focus{box-shadow:inset 0 0 0 1.5px #8097ff}
+  .sb-cicon{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;color:#2d1866;background:#e3e4eb}.sb-cicon svg{width:16px;height:16px}
+  .sb-popover{width:236px;background:#fff;border:1px solid #e3e4eb;border-radius:10px;box-shadow:0 8px 24px rgba(19,22,45,.14);padding:6px;font-family:var(--font-sans)}
+  .sb-popover .head{display:flex;align-items:center;gap:8px;padding:8px}.sb-popover .head .av{width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#aa8bff,#8860f7);flex:none}
+  .sb-popover .head .t{line-height:1.25}.sb-popover .head .t .n{font-size:13px;font-weight:600;color:#170c33}.sb-popover .head .t .e{font-size:12px;color:#575c7b}
+  .sb-popover .sep{height:1px;background:#e8eaf0;margin:6px 0}
+  .sb-popover .it{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;font-size:13px;color:#363a5b;cursor:pointer}.sb-popover .it:hover{background:#f0f1f4}
+  .sb-inbox{width:280px;max-width:100%;border:1px solid #e3e4eb;border-radius:8px;padding:12px 14px;background:#fff;font-family:var(--font-sans);cursor:pointer}
+  .sb-inbox .top{display:flex;justify-content:space-between;font-size:13px}.sb-inbox .top .who{color:#575c7b}.sb-inbox .top .time{color:#aeb1c9;font-size:12px}
+  .sb-inbox .title{font-size:14px;font-weight:600;color:#170c33;margin:4px 0 2px}
+  .sb-inbox .body{font-size:12px;color:#575c7b;line-height:1.4}
   @media(max-width:640px){.comp-layout{grid-template-columns:1fr}.comp-side{position:static;flex-direction:row;flex-wrap:wrap}}
   /* catalog */
   .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
@@ -362,6 +376,50 @@
                 <div><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">SidebarBadge</div><span class="sb-badge">3</span></div>
                 <div><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">SidebarGroupLabel</div><div class="sb-grouplabel">Integrations</div></div>
                 <div><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">SidebarMenuSub (item)</div><div class="sb-sub"><button class="sb-btn"><span class="l">Staking</span></button></div></div>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">CollapseIcon<span class="cm">navigation/Sidebar.jsx · CollapseIcon · horizontal / vertical / up-down / plus-minus</span></div>
+              <div class="cb"><div class="row" style="gap:20px;align-items:flex-start">
+                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Chevron</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
+                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Expanded</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
+                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Up-down</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></div>
+                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Plus</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Minus</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></span></div>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">SidebarGroupLabel<span class="cm">navigation/Sidebar.jsx · SidebarGroupLabel · default / collapsible / action</span></div>
+              <div class="cb"><div style="display:flex;flex-direction:column;gap:6px;width:220px">
+                <div class="sb-glbl">Group title</div>
+                <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
+                <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">SidebarMenuSubItem<span class="cm">navigation/Sidebar.jsx · SidebarMenuSubItem · default / hover / active / focused</span></div>
+              <div class="cb"><div class="sb-sub" style="margin-left:0">
+                <button class="sb-subitem">Sub Menu Item</button>
+                <button class="sb-subitem st-hover">Sub Menu Item</button>
+                <button class="sb-subitem active">Sub Menu Item</button>
+                <button class="sb-subitem st-focus">Sub Menu Item</button>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">AccountDropdown<span class="cm">navigation/Sidebar.jsx · AccountDropdown · popover menu</span></div>
+              <div class="cb"><div class="sb-popover">
+                <div class="head"><span class="av"></span><span class="t"><span class="n">Robert Chen</span><br><span class="e">robert@dfns.com</span></span></div>
+                <div class="sep"></div>
+                <div class="it">Upgrade to Pro</div>
+                <div class="sep"></div>
+                <div class="it">Account</div>
+                <div class="it">Billing</div>
+                <div class="it">Notifications</div>
+                <div class="sep"></div>
+                <div class="it">Log out</div>
+              </div></div></div>
+
+            <div class="comp-card"><div class="ch">InboxItem<span class="cm">navigation/Sidebar.jsx · InboxItem · notification row</span></div>
+              <div class="cb"><div class="sb-inbox">
+                <div class="top"><span class="who">William Smith</span><span class="time">09:34 AM</span></div>
+                <div class="title">Meeting Tomorrow</div>
+                <div class="body">Let's schedule a call to finalize the wallet policy review before the release.</div>
               </div></div></div>
 
             <div class="comp-card"><div class="ch">OrgSwitcher<span class="cm">avatar + org + chevrons</span></div>

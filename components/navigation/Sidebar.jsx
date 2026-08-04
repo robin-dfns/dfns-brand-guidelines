@@ -25,7 +25,18 @@ const T = {
 };
 
 const ChevronRight = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M9 6l6 6-6 6" /></svg>;
+const ChevronDown = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M6 9l6 6 6-6" /></svg>;
 const ChevronsUpDown = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M8 9l4-4 4 4M8 15l4 4 4-4" /></svg>;
+const Plus = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M12 5v14M5 12h14" /></svg>;
+const Minus = (p) => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}><path d="M5 12h14" /></svg>;
+
+/* ── atom: expand/collapse indicator ── variant: chevron | vertical | up-down | plus-minus; active toggles the open/closed glyph ── */
+export function CollapseIcon({ variant = 'chevron', active = false, ...p }) {
+  if (variant === 'up-down') return <ChevronsUpDown {...p} />;
+  if (variant === 'plus-minus') return active ? <Minus {...p} /> : <Plus {...p} />;
+  if (variant === 'vertical') return <ChevronDown style={{ transform: active ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }} {...p} />;
+  return active ? <ChevronDown {...p} /> : <ChevronRight {...p} />; // chevron
+}
 
 /* ── atom: the menu button (icon + label + optional badge / chevron) ── */
 export function SidebarMenuButton({ icon, children, active = false, state, badge, expandable = false, expanded = false, sub = false, style, ...rest }) {
@@ -54,9 +65,34 @@ export function SidebarBadge({ children }) {
   return <span style={{ display: 'inline-flex', alignItems: 'center', padding: '4px 8px', borderRadius: 6, background: T.badgeBg, color: T.badgeFg, fontFamily: T.font, fontSize: 14, fontWeight: 500, lineHeight: 1 }}>{children}</span>;
 }
 
-/* ── atom: section label ── */
-export function SidebarGroupLabel({ children }) {
-  return <div style={{ fontFamily: T.font, fontSize: 12, color: T.muted, padding: 8, height: 32, display: 'flex', alignItems: 'center' }}>{children}</div>;
+/* ── atom: section label ── action: none | collapsible (chevron) | action (＋); size: sm | xs ── */
+export function SidebarGroupLabel({ children, action = 'none', collapsed = false, size = 'sm', onAction }) {
+  return (
+    <div style={{ fontFamily: T.font, fontSize: size === 'xs' ? 11 : 12, color: T.muted, padding: 8, height: 32, width: 220, boxSizing: 'border-box', display: 'flex', alignItems: 'center' }}>
+      <span>{children}</span>
+      {action !== 'none' && (
+        <span onClick={onAction} style={{ marginLeft: 'auto', opacity: 0.6, display: 'inline-flex', cursor: onAction ? 'pointer' : 'default' }}>
+          {action === 'action' ? <Plus width="14" height="14" /> : <ChevronDown width="14" height="14" style={{ transform: collapsed ? 'rotate(-90deg)' : 'none', transition: 'transform .2s' }} />}
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* ── atom: sub-menu leaf row ── state: default | hover | active | focused ── */
+export function SidebarMenuSubItem({ children, active = false, state, style, ...rest }) {
+  const s = state || (active ? 'active' : 'default');
+  const bg = s === 'hover' ? T.hoverBg : s === 'active' ? T.selectedBg : 'transparent';
+  const ring = s === 'focused' ? 'inset 0 0 0 1.5px var(--system-blue-300, #8097ff)' : 'none';
+  const isActive = s === 'active';
+  return (
+    <button type="button" data-state={s} data-active={isActive || undefined}
+      style={{
+        display: 'flex', alignItems: 'center', height: 32, padding: 8, borderRadius: 6, border: 'none', cursor: 'pointer',
+        textAlign: 'left', width: 180, boxSizing: 'border-box', fontFamily: T.font, fontSize: 14,
+        fontWeight: isActive ? 500 : 400, color: isActive ? T.labelActive : T.label, background: bg, boxShadow: ring, ...style,
+      }} {...rest}>{children}</button>
+  );
 }
 
 /* ── layout molecules ── */
@@ -91,6 +127,39 @@ export function UserTile({ avatar, name, email, onClick }) {
         <span style={{ display: 'block', fontFamily: T.font, fontSize: 12, color: T.muted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{email}</span>
       </span>
       <ChevronsUpDown style={{ opacity: 0.6, color: T.muted, flex: 'none' }} />
+    </button>
+  );
+}
+
+/* ── organism: account / popover menu ── items: [{label, onClick}]; header = avatar+name+email; groups separated by null entries ── */
+export function AccountDropdown({ avatar, name, email, items = [], style }) {
+  return (
+    <div style={{ width: 236, background: 'var(--steel-grey-white,#fff)', border: `1px solid ${T.card}`, borderRadius: 10, boxShadow: '0 8px 24px rgba(19,22,45,.14)', padding: 6, fontFamily: T.font, boxSizing: 'border-box', ...style }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: 8 }}>
+        <span style={{ width: 28, height: 28, borderRadius: 6, background: 'linear-gradient(135deg,#aa8bff,#8860f7)', flex: 'none', overflow: 'hidden' }}>{avatar}</span>
+        <span style={{ lineHeight: 1.25, minWidth: 0 }}>
+          <span style={{ display: 'block', fontSize: 13, fontWeight: 600, color: T.labelActive }}>{name}</span>
+          <span style={{ display: 'block', fontSize: 12, color: T.muted, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{email}</span>
+        </span>
+      </div>
+      {items.map((it, i) => it == null
+        ? <div key={i} style={{ height: 1, background: 'var(--steel-grey-200,#e8eaf0)', margin: '6px 0' }} />
+        : <button key={i} type="button" onClick={it.onClick} style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%', padding: '7px 8px', borderRadius: 6, fontSize: 13, color: 'var(--cold-grey-700,#363a5b)', border: 'none', background: 'transparent', cursor: 'pointer', textAlign: 'left', fontFamily: T.font }}>{it.icon}{it.label}</button>
+      )}
+    </div>
+  );
+}
+
+/* ── molecule: inbox / notification row ── */
+export function InboxItem({ who, time, title, body, onClick }) {
+  return (
+    <button type="button" onClick={onClick} style={{ display: 'block', width: 280, maxWidth: '100%', border: `1px solid ${T.card}`, borderRadius: 8, padding: '12px 14px', background: 'var(--steel-grey-white,#fff)', fontFamily: T.font, cursor: 'pointer', textAlign: 'left' }}>
+      <span style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
+        <span style={{ color: T.muted }}>{who}</span>
+        <span style={{ color: 'var(--cold-grey-500,#aeb1c9)', fontSize: 12 }}>{time}</span>
+      </span>
+      <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: T.labelActive, margin: '4px 0 2px' }}>{title}</span>
+      <span style={{ display: 'block', fontSize: 12, color: T.muted, lineHeight: 1.4 }}>{body}</span>
     </button>
   );
 }
