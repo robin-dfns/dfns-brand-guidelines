@@ -468,7 +468,7 @@
 
             <div class="comp-subhead">Menu items</div>
 
-            <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">the atom · 4 states × 7 types (from the Figma component set)</span></div>
+            <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">navigation/Sidebar.jsx · SidebarMenuButton + SidebarMenuSubItem · 4 states × 7 types · collapsed · sub-item</span></div>
               <div class="cb"><div style="display:flex;gap:48px;flex-wrap:wrap">
                 <div>
                   <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-bottom:10px">STATE</div>
@@ -496,15 +496,14 @@
                     <button class="sb-btn st-hover sb-collapsed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></button>
                     <button class="sb-btn active sb-collapsed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></button>
                   </div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin:22px 0 10px">SUB-ITEM</div>
+                  <div class="sb-sub" style="margin-left:0;width:180px">
+                    <button class="sb-subitem">Default</button>
+                    <button class="sb-subitem st-hover">Hover</button>
+                    <button class="sb-subitem active">Active</button>
+                    <button class="sb-subitem st-focus">Focused</button>
+                  </div>
                 </div>
-              </div></div></div>
-
-            <div class="comp-card"><div class="ch">SidebarMenuSubItem<span class="cm">navigation/Sidebar.jsx · SidebarMenuSubItem · default / hover / active / focused</span></div>
-              <div class="cb"><div class="sb-sub" style="margin-left:0">
-                <button class="sb-subitem">Sub Menu Item</button>
-                <button class="sb-subitem st-hover">Sub Menu Item</button>
-                <button class="sb-subitem active">Sub Menu Item</button>
-                <button class="sb-subitem st-focus">Sub Menu Item</button>
               </div></div></div>
 
             <div class="comp-card"><div class="ch">SidebarBadge<span class="cm">navigation/Sidebar.jsx · SidebarBadge · count</span></div>
@@ -512,18 +511,24 @@
 
             <div class="comp-subhead">Groups &amp; structure</div>
 
-            <div class="comp-card"><div class="ch">SidebarGroupLabel<span class="cm">navigation/Sidebar.jsx · SidebarGroupLabel · default / collapsible / action</span></div>
-              <div class="cb"><div style="display:flex;flex-direction:column;gap:6px;width:220px">
-                <div class="sb-glbl">Group title</div>
-                <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
-                <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
-              </div></div></div>
-
-            <div class="comp-card"><div class="ch">SidebarGroupAction<span class="cm">navigation/Sidebar.jsx · SidebarGroupAction · default / hover / focused</span></div>
-              <div class="cb"><div class="row" style="gap:10px">
-                <button class="sb-gaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
-                <button class="sb-gaction st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
-                <button class="sb-gaction st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+            <div class="comp-card"><div class="ch">SidebarGroupLabel &amp; action<span class="cm">navigation/Sidebar.jsx · SidebarGroupLabel + SidebarGroupAction</span></div>
+              <div class="cb"><div class="row" style="gap:44px;align-items:flex-start">
+                <div>
+                  <div class="cell-h">Label · default / collapsible / action</div>
+                  <div style="display:flex;flex-direction:column;gap:6px;width:220px">
+                    <div class="sb-glbl">Group title</div>
+                    <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
+                    <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="cell-h">Action · default / hover / focused</div>
+                  <div class="row" style="gap:10px">
+                    <button class="sb-gaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+                    <button class="sb-gaction st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+                    <button class="sb-gaction st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+                  </div>
+                </div>
               </div></div></div>
 
             <div class="comp-card"><div class="ch">SidebarMenuSub<span class="cm">navigation/Sidebar.jsx · SidebarMenuSub · border / indent</span></div>
@@ -867,7 +872,6 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
 
 /* ---------- Sidebar switchers (interactive trigger → popover) ---------- */
 (function () {
-  const trigs = document.querySelectorAll('.sw-trigger'); if (!trigs.length) return;
   let openPop = null, openTrig = null;
   function place() {
     if (!openPop) return;
@@ -877,13 +881,19 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
     openPop.style.top = (r.bottom + 8) + 'px';
   }
   function close() { if (!openPop) return; openPop.classList.remove('open'); openTrig.classList.remove('sw-active'); openPop = openTrig = null; }
-  trigs.forEach(t => t.onclick = e => {
-    e.stopPropagation();
-    const pop = document.getElementById(t.dataset.pop);
-    if (openPop === pop) { close(); return; }
-    close(); openPop = pop; openTrig = t; pop.classList.add('open'); t.classList.add('sw-active'); place();
+  /* single delegated handler → open on trigger, close on outside click (robust to load order) */
+  document.addEventListener('click', e => {
+    const trig = e.target.closest('.sw-trigger');
+    if (trig) {
+      e.preventDefault();
+      const pop = document.getElementById(trig.dataset.pop);
+      if (!pop) return;
+      if (openPop === pop) { close(); return; }
+      close(); openPop = pop; openTrig = trig; pop.classList.add('open'); trig.classList.add('sw-active'); place();
+      return;
+    }
+    if (openPop && !openPop.contains(e.target)) close();
   });
-  document.addEventListener('click', e => { if (openPop && !openPop.contains(e.target) && !e.target.closest('.sw-trigger')) close(); });
   window.addEventListener('scroll', place, true); window.addEventListener('resize', place);
 })();
 
