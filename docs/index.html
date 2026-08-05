@@ -870,33 +870,6 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
   render();
 })();
 
-/* ---------- Sidebar switchers (interactive trigger → popover) ---------- */
-(function () {
-  let openPop = null, openTrig = null;
-  function place() {
-    if (!openPop) return;
-    const r = openTrig.getBoundingClientRect();
-    const w = openPop.firstElementChild ? openPop.firstElementChild.offsetWidth : 280;
-    openPop.style.left = Math.max(12, Math.min(r.left, window.innerWidth - w - 12)) + 'px';
-    openPop.style.top = (r.bottom + 8) + 'px';
-  }
-  function close() { if (!openPop) return; openPop.classList.remove('open'); openTrig.classList.remove('sw-active'); openPop = openTrig = null; }
-  /* single delegated handler → open on trigger, close on outside click (robust to load order) */
-  document.addEventListener('click', e => {
-    const trig = e.target.closest('.sw-trigger');
-    if (trig) {
-      e.preventDefault();
-      const pop = document.getElementById(trig.dataset.pop);
-      if (!pop) return;
-      if (openPop === pop) { close(); return; }
-      close(); openPop = pop; openTrig = trig; pop.classList.add('open'); trig.classList.add('sw-active'); place();
-      return;
-    }
-    if (openPop && !openPop.contains(e.target)) close();
-  });
-  window.addEventListener('scroll', place, true); window.addEventListener('resize', place);
-})();
-
 /* ---------- specimens ---------- */
 const specimens = [
   ['Brand','Gradients','brand-gradients.html',200],['Brand','Illustrations','brand-illustrations.html',220],['Brand','Logotype','brand-logotype.html',160],
@@ -910,6 +883,34 @@ function renderSpecimens() {
 }
 
 showSection((location.hash || '#foundations').slice(1));
+</script>
+<script>
+/* Sidebar switchers — standalone (independent of the ES module above, so the
+   click-to-open popovers work even if a module import fails). Delegated. */
+(function () {
+  var openPop = null, openTrig = null;
+  function place() {
+    if (!openPop) return;
+    var r = openTrig.getBoundingClientRect();
+    var w = openPop.firstElementChild ? openPop.firstElementChild.offsetWidth : 280;
+    openPop.style.left = Math.max(12, Math.min(r.left, window.innerWidth - w - 12)) + 'px';
+    openPop.style.top = (r.bottom + 8) + 'px';
+  }
+  function close() { if (!openPop) return; openPop.classList.remove('open'); openTrig.classList.remove('sw-active'); openPop = openTrig = null; }
+  document.addEventListener('click', function (e) {
+    var trig = e.target.closest('.sw-trigger');
+    if (trig) {
+      e.preventDefault();
+      var pop = document.getElementById(trig.getAttribute('data-pop'));
+      if (!pop) return;
+      if (openPop === pop) { close(); return; }
+      close(); openPop = pop; openTrig = trig; pop.classList.add('open'); trig.classList.add('sw-active'); place();
+      return;
+    }
+    if (openPop && !openPop.contains(e.target)) close();
+  });
+  window.addEventListener('scroll', place, true); window.addEventListener('resize', place);
+})();
 </script>
 <script src="../nav.js"></script>
 </body>
