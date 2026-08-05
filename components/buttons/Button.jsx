@@ -25,14 +25,14 @@ function ArrowSwap({ hover }) {
 }
 
 const LIGHT = {
-  primary: { color: '#e0e3f0', background: '#2d1866', border: '1px solid #170c33', boxShadow: '0 6px 12px rgba(87,91,123,.24)', hover: { background: '#442599', borderColor: '#442599', color: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,.15)' } },
-  secondary: { color: '#442599', background: '#e0e3f0', hover: { background: '#e8eaf0', color: '#5123ce' } },
-  tertiary: { color: '#442599', background: 'none', hover: { color: '#5123ce' } },
+  primary: { color: 'var(--cold-grey-100,#e0e3f0)', background: 'var(--ultra-purple-800,#2d1866)', border: '1px solid var(--ultra-purple-900,#170c33)', boxShadow: '0 6px 12px rgba(87,91,123,.24)', hover: { background: 'var(--ultra-purple-700,#442599)', borderColor: 'var(--ultra-purple-700,#442599)', color: 'var(--steel-grey-white,#fff)', boxShadow: '0 2px 4px rgba(0,0,0,.15)' } },
+  secondary: { color: 'var(--ultra-purple-700,#442599)', background: 'var(--cold-grey-100,#e0e3f0)', hover: { background: 'var(--steel-grey-200,#e8eaf0)', color: 'var(--ultra-purple-600,#5123ce)' } },
+  tertiary: { color: 'var(--ultra-purple-700,#442599)', background: 'none', hover: { color: 'var(--ultra-purple-600,#5123ce)' } },
 };
 const DARK = {
-  primary: { color: '#442599', backgroundColor: '#c5c9de', backgroundImage: 'linear-gradient(to bottom,#e0e3f0,#c5c9de)', border: '1px solid #aeb1c9', boxShadow: '0 6px 12px rgba(0,0,0,.3)', hover: { backgroundColor: '#e0e3f0', backgroundImage: 'linear-gradient(to bottom,#e0e3f0,#e0e3f0)', color: '#5123ce' } },
-  secondary: { color: '#c4aeff', background: '#2d1866', hover: { background: '#442599', color: '#d6c8ff' } },
-  tertiary: { color: '#c4aeff', background: 'none', hover: { color: '#d6c8ff' } },
+  primary: { color: 'var(--ultra-purple-700,#442599)', backgroundColor: 'var(--cold-grey-300,#c5c9de)', backgroundImage: 'linear-gradient(to bottom,var(--cold-grey-100,#e0e3f0),var(--cold-grey-300,#c5c9de))', border: '1px solid var(--cold-grey-500,#aeb1c9)', boxShadow: '0 6px 12px rgba(0,0,0,.3)', hover: { backgroundColor: 'var(--cold-grey-100,#e0e3f0)', backgroundImage: 'linear-gradient(to bottom,var(--cold-grey-100,#e0e3f0),var(--cold-grey-100,#e0e3f0))', color: 'var(--ultra-purple-600,#5123ce)' } },
+  secondary: { color: 'var(--ultra-purple-200,#c4aeff)', background: 'var(--ultra-purple-800,#2d1866)', hover: { background: 'var(--ultra-purple-700,#442599)', color: 'var(--ultra-purple-100,#d6c8ff)' } },
+  tertiary: { color: 'var(--ultra-purple-200,#c4aeff)', background: 'none', hover: { color: 'var(--ultra-purple-100,#d6c8ff)' } },
 };
 
 export function Button({ variant = 'primary', dark = false, icon, iconPosition = 'before', arrow, disabled = false, href, children, style, ...rest }) {
