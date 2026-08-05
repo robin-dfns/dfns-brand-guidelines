@@ -255,6 +255,14 @@
   /* SidebarGroupAction */
   .sb-gaction{width:28px;height:28px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#363a5b;background:transparent;border:1.5px solid transparent;cursor:pointer}.sb-gaction svg{width:16px;height:16px}
   .sb-gaction.st-hover{background:#e8eaf0}.sb-gaction.st-focus{border-color:#8097ff}
+  /* live interactive states — one instance demonstrates hover / focus / click-active */
+  .sb-btn:focus-visible,.sb-subitem:focus-visible{outline:none;box-shadow:inset 0 0 0 1.5px #8097ff}
+  .sb-subitem:hover{background:#d7d8e1}
+  .sb-hbtn:hover{background:#e6deff}.sb-hbtn:focus-visible{outline:none;border-color:#170c33}
+  .sb-gaction:hover{background:#e8eaf0}.sb-gaction:focus-visible{outline:none;border-color:#8097ff}
+  .sb-live{cursor:pointer}
+  .comp-subhint{font-size:12px;color:var(--font-body-bright);margin:-4px 0 14px}
+  .iconrow{display:flex;flex-wrap:wrap;gap:30px 44px;align-items:flex-start}
   /* PopoverTrigger */
   .sb-ptrigger{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:transparent;border:none;cursor:pointer;width:190px;box-sizing:border-box}
   .sb-ptrigger.st-hover{background:#e8eaf0}
@@ -472,15 +480,13 @@
 
             <div class="comp-subhead">Menu items</div>
 
-            <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">navigation/Sidebar.jsx · SidebarMenuButton + SidebarMenuSubItem · 4 states × 7 types · collapsed · sub-item</span></div>
+            <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">navigation/Sidebar.jsx · SidebarMenuButton + SidebarMenuSubItem · interactive states · 7 types · collapsed</span></div>
               <div class="cb"><div style="display:flex;gap:48px;flex-wrap:wrap">
                 <div>
-                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-bottom:10px">STATE</div>
-                  <div style="display:flex;flex-direction:column;gap:6px;width:220px">
-                    <button class="sb-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Default</span></button>
-                    <button class="sb-btn st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Hover</span></button>
-                    <button class="sb-btn active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Active</span></button>
-                    <button class="sb-btn st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Focused</span></button>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin-bottom:10px">STATE · live</div>
+                  <div style="width:220px">
+                    <button class="sb-btn sb-live"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V9.5"/></svg><span class="l">Dashboard</span></button>
+                    <div style="font-size:11px;color:var(--font-body-bright);margin-top:10px;line-height:1.5">hover · Tab to focus<br>click = active</div>
                   </div>
                 </div>
                 <div>
@@ -500,39 +506,20 @@
                     <button class="sb-btn st-hover sb-collapsed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></button>
                     <button class="sb-btn active sb-collapsed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/></svg></button>
                   </div>
-                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin:22px 0 10px">SUB-ITEM</div>
+                  <div style="font-family:var(--font-mono);font-size:10px;color:var(--font-body-bright);margin:22px 0 10px">SUB-ITEM · live</div>
                   <div class="sb-sub" style="margin-left:0;width:180px">
-                    <button class="sb-subitem">Default</button>
-                    <button class="sb-subitem st-hover">Hover</button>
-                    <button class="sb-subitem active">Active</button>
-                    <button class="sb-subitem st-focus">Focused</button>
+                    <button class="sb-subitem sb-live">Sub Menu Item</button>
                   </div>
                 </div>
               </div></div></div>
 
-            <div class="comp-card"><div class="ch">SidebarBadge<span class="cm">navigation/Sidebar.jsx · SidebarBadge · count</span></div>
-              <div class="cb"><div class="row" style="gap:12px;align-items:center"><span class="sb-badge">3</span><span class="sb-badge">23</span><span class="sb-badge">99+</span></div></div></div>
-
             <div class="comp-subhead">Groups &amp; structure</div>
 
-            <div class="comp-card"><div class="ch">SidebarGroupLabel &amp; action<span class="cm">navigation/Sidebar.jsx · SidebarGroupLabel + SidebarGroupAction</span></div>
-              <div class="cb"><div class="row" style="gap:44px;align-items:flex-start">
-                <div>
-                  <div class="cell-h">Label · default / collapsible / action</div>
-                  <div style="display:flex;flex-direction:column;gap:6px;width:220px">
-                    <div class="sb-glbl">Group title</div>
-                    <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
-                    <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="cell-h">Action · default / hover / focused</div>
-                  <div class="row" style="gap:10px">
-                    <button class="sb-gaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
-                    <button class="sb-gaction st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
-                    <button class="sb-gaction st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
-                  </div>
-                </div>
+            <div class="comp-card"><div class="ch">SidebarGroupLabel<span class="cm">navigation/Sidebar.jsx · SidebarGroupLabel · default / collapsible / action</span></div>
+              <div class="cb"><div style="display:flex;flex-direction:column;gap:6px;width:220px">
+                <div class="sb-glbl">Group title</div>
+                <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
+                <div class="sb-glbl">Group title<span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
               </div></div></div>
 
             <div class="comp-card"><div class="ch">SidebarMenuSub<span class="cm">navigation/Sidebar.jsx · SidebarMenuSub · border / indent</span></div>
@@ -541,13 +528,21 @@
                 <div><div style="font-size:10px;color:var(--font-body-bright);margin-bottom:6px">indent</div><div class="sb-subwrap v-indent"><div class="it">Sub Item</div><div class="it">Sub Item</div></div></div>
               </div></div></div>
 
-            <div class="comp-card"><div class="ch">CollapseIcon<span class="cm">navigation/Sidebar.jsx · CollapseIcon · horizontal / vertical / up-down / plus-minus</span></div>
-              <div class="cb"><div class="row" style="gap:20px;align-items:flex-start">
-                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Chevron</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></div>
-                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Expanded</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>
-                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Up-down</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></div>
-                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Plus</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span></div>
-                <div style="text-align:center"><div style="font-size:11px;color:var(--font-body-bright);margin-bottom:8px">Minus</div><span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></span></div>
+            <div class="comp-subhead">Icon atoms</div>
+
+            <div class="comp-card"><div class="ch">Icon atoms<span class="cm">navigation/Sidebar.jsx · SidebarBadge · CollapseIcon · SidebarGroupAction · HeaderButton · MediaAsset</span></div>
+              <div class="cb"><div class="iconrow">
+                <div><div class="cell-h">SidebarBadge</div><div class="row" style="gap:8px;align-items:center"><span class="sb-badge">3</span><span class="sb-badge">23</span><span class="sb-badge">99+</span></div></div>
+                <div><div class="cell-h">CollapseIcon</div><div class="row" style="gap:8px;align-items:center">
+                  <span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                  <span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+                  <span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span>
+                  <span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+                  <span class="sb-cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></span>
+                </div></div>
+                <div><div class="cell-h">SidebarGroupAction · live</div><button class="sb-gaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+                <div><div class="cell-h">Header Button · live</div><button class="sb-hbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button></div>
+                <div><div class="cell-h">MediaAsset</div><div class="row" style="gap:12px;align-items:center"><span class="sb-media-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M7 10V7a1 1 0 011-1h8a1 1 0 011 1v3"/></svg></span><span class="sb-media-av"></span></div></div>
               </div></div></div>
 
             <div class="comp-subhead">Switchers</div>
@@ -587,20 +582,7 @@
                 <span class="swx-hint">Click to open the account menu ↓</span>
               </div></div></div>
 
-            <div class="comp-subhead">Chrome &amp; media</div>
-
-            <div class="comp-card"><div class="ch">Header Button<span class="cm">navigation/Sidebar.jsx · HeaderButton · rail toggle · default / hover / focused</span></div>
-              <div class="cb"><div class="row" style="gap:10px">
-                <button class="sb-hbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
-                <button class="sb-hbtn st-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
-                <button class="sb-hbtn st-focus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
-              </div></div></div>
-
-            <div class="comp-card"><div class="ch">MediaAsset<span class="cm">navigation/Sidebar.jsx · MediaAsset · icon / avatar</span></div>
-              <div class="cb"><div class="row" style="gap:16px;align-items:center">
-                <span class="sb-media-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M7 10V7a1 1 0 011-1h8a1 1 0 011 1v3"/></svg></span>
-                <span class="sb-media-av"></span>
-              </div></div></div>
+            <div class="comp-subhead">Content</div>
 
             <div class="comp-card"><div class="ch">InboxItem<span class="cm">navigation/Sidebar.jsx · InboxItem · notification row</span></div>
               <div class="cb"><div class="sb-inbox">
@@ -900,6 +882,8 @@ showSection((location.hash || '#foundations').slice(1));
     document.querySelectorAll('details.swx-det[open]').forEach(function (d) {
       if (!d.contains(e.target)) d.removeAttribute('open');
     });
+    var live = e.target.closest('.sb-live');
+    if (live) live.classList.toggle('active');
   });
 })();
 </script>
