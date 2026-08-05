@@ -279,13 +279,17 @@
   .comp-subhead:first-of-type{margin-top:6px}
   .comp-subhead::after{content:"";flex:1;height:1px;background:var(--stroke-tertiary)}
   /* interactive switcher (trigger ↔ open popover) */
-  .sw{position:relative;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .sw-trigger{cursor:pointer}
-  .sw-trigger.sw-active{box-shadow:inset 0 0 0 1.5px var(--system-blue-300,#8097ff)}
-  .sw-hint{font-size:12px;color:var(--font-body-bright)}
-  .sw-pop{position:fixed;z-index:90;display:none}
-  .sw-pop.open{display:block;animation:sw-in .12s ease}
+  /* interactive switcher — native <details>, position:absolute (immune to the
+     .comp-layout transform that breaks position:fixed, and to scroll) */
+  .swx{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .swx-det{position:relative}
+  .swx-det>summary{list-style:none;cursor:pointer}
+  .swx-det>summary::-webkit-details-marker{display:none}
+  .swx-det[open]>summary{box-shadow:inset 0 0 0 1.5px var(--system-blue-300,#8097ff)}
+  .swx-hint{font-size:12px;color:var(--font-body-bright);padding-top:9px}
+  .swx-pop{position:absolute;top:calc(100% + 8px);left:0;z-index:90;animation:sw-in .12s ease}
   @keyframes sw-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .comp-card.swx-card{overflow:visible}  /* let the dropdown escape the card */
   @media(max-width:640px){.comp-layout{grid-template-columns:1fr}.comp-side{position:static;flex-direction:row;flex-wrap:wrap}}
   /* catalog */
   .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
@@ -548,35 +552,39 @@
 
             <div class="comp-subhead">Switchers</div>
 
-            <div class="comp-card"><div class="ch">Team switcher<span class="cm">navigation/Sidebar.jsx · PopoverTrigger → PopoverMenu · trigger + open</span></div>
-              <div class="cb"><div class="sw">
-                <button class="sb-switch sw-trigger" data-pop="popTeams"><span class="av"></span><span class="txt"><span class="s">Northwind</span><br><span class="b">Treasury Org</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button>
-                <span class="sw-hint">Click to open the team menu ↓</span>
-                <div class="sw-pop" id="popTeams"><div class="sb-pmenu">
-                  <div class="lbl">Teams</div>
-                  <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Acme Inc</span><span class="kb">⌘1</span></div>
-                  <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2 5 4-11 2 6h4"/></svg></span><span class="nm">Acme Corp</span><span class="kb">⌘2</span></div>
-                  <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Evil Corp</span><span class="kb">⌘3</span></div>
-                  <div class="sep"></div>
-                  <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="nm">Add team</span></div>
-                </div></div>
+            <div class="comp-card swx-card"><div class="ch">Team switcher<span class="cm">navigation/Sidebar.jsx · PopoverTrigger → PopoverMenu · trigger + open</span></div>
+              <div class="cb"><div class="swx">
+                <details class="swx-det">
+                  <summary class="sb-switch swx-trigger"><span class="av"></span><span class="txt"><span class="s">Northwind</span><br><span class="b">Treasury Org</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></summary>
+                  <div class="swx-pop"><div class="sb-pmenu">
+                    <div class="lbl">Teams</div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Acme Inc</span><span class="kb">⌘1</span></div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l2 5 4-11 2 6h4"/></svg></span><span class="nm">Acme Corp</span><span class="kb">⌘2</span></div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3Z"/></svg></span><span class="nm">Evil Corp</span><span class="kb">⌘3</span></div>
+                    <div class="sep"></div>
+                    <div class="prow"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="nm">Add team</span></div>
+                  </div></div>
+                </details>
+                <span class="swx-hint">Click to open the team menu ↓</span>
               </div></div></div>
 
-            <div class="comp-card"><div class="ch">Account menu<span class="cm">navigation/Sidebar.jsx · UserTile → AccountDropdown · trigger + open</span></div>
-              <div class="cb"><div class="sw">
-                <button class="sb-user sw-trigger" data-pop="popAccount"><span class="av"></span><span class="txt"><span class="n">Robert</span><br><span class="e">robert@dfns.com</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button>
-                <span class="sw-hint">Click to open the account menu ↓</span>
-                <div class="sw-pop" id="popAccount"><div class="sb-popover">
-                  <div class="head"><span class="av"></span><span class="t"><span class="n">Robert Chen</span><br><span class="e">robert@dfns.com</span></span></div>
-                  <div class="sep"></div>
-                  <div class="it">Upgrade to Pro</div>
-                  <div class="sep"></div>
-                  <div class="it">Account</div>
-                  <div class="it">Billing</div>
-                  <div class="it">Notifications</div>
-                  <div class="sep"></div>
-                  <div class="it">Log out</div>
-                </div></div>
+            <div class="comp-card swx-card"><div class="ch">Account menu<span class="cm">navigation/Sidebar.jsx · UserTile → AccountDropdown · trigger + open</span></div>
+              <div class="cb"><div class="swx">
+                <details class="swx-det">
+                  <summary class="sb-user swx-trigger"><span class="av"></span><span class="txt"><span class="n">Robert</span><br><span class="e">robert@dfns.com</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></summary>
+                  <div class="swx-pop"><div class="sb-popover">
+                    <div class="head"><span class="av"></span><span class="t"><span class="n">Robert Chen</span><br><span class="e">robert@dfns.com</span></span></div>
+                    <div class="sep"></div>
+                    <div class="it">Upgrade to Pro</div>
+                    <div class="sep"></div>
+                    <div class="it">Account</div>
+                    <div class="it">Billing</div>
+                    <div class="it">Notifications</div>
+                    <div class="sep"></div>
+                    <div class="it">Log out</div>
+                  </div></div>
+                </details>
+                <span class="swx-hint">Click to open the account menu ↓</span>
               </div></div></div>
 
             <div class="comp-subhead">Chrome &amp; media</div>
@@ -885,31 +893,14 @@ function renderSpecimens() {
 showSection((location.hash || '#foundations').slice(1));
 </script>
 <script>
-/* Sidebar switchers — standalone (independent of the ES module above, so the
-   click-to-open popovers work even if a module import fails). Delegated. */
+/* Switchers open/close via native <details> (works with zero JS). This is a
+   progressive enhancement only: close an open one when clicking outside it. */
 (function () {
-  var openPop = null, openTrig = null;
-  function place() {
-    if (!openPop) return;
-    var r = openTrig.getBoundingClientRect();
-    var w = openPop.firstElementChild ? openPop.firstElementChild.offsetWidth : 280;
-    openPop.style.left = Math.max(12, Math.min(r.left, window.innerWidth - w - 12)) + 'px';
-    openPop.style.top = (r.bottom + 8) + 'px';
-  }
-  function close() { if (!openPop) return; openPop.classList.remove('open'); openTrig.classList.remove('sw-active'); openPop = openTrig = null; }
   document.addEventListener('click', function (e) {
-    var trig = e.target.closest('.sw-trigger');
-    if (trig) {
-      e.preventDefault();
-      var pop = document.getElementById(trig.getAttribute('data-pop'));
-      if (!pop) return;
-      if (openPop === pop) { close(); return; }
-      close(); openPop = pop; openTrig = trig; pop.classList.add('open'); trig.classList.add('sw-active'); place();
-      return;
-    }
-    if (openPop && !openPop.contains(e.target)) close();
+    document.querySelectorAll('details.swx-det[open]').forEach(function (d) {
+      if (!d.contains(e.target)) d.removeAttribute('open');
+    });
   });
-  window.addEventListener('scroll', place, true); window.addEventListener('resize', place);
 })();
 </script>
 <script src="../nav.js"></script>
