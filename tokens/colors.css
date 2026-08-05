@@ -25,9 +25,9 @@
   --stroke-primary:var(--cold-grey-700);--stroke-secondary:var(--cold-grey-600);--stroke-tertiary:var(--cold-grey-100);
   --states-hover:var(--ultra-purple-500);--states-disabled-background:var(--steel-grey-200);--states-disabled-text:var(--cold-grey-500);--states-disabled-icon:var(--cold-grey-500);
   /* ── Badges ── */
-  --badge-default:var(--ultra-purple-50);--badge-default-foreground:var(--ultra-purple-700);--badge-default-border:var(--ultra-purple-300);
+  --badge-default:var(--ultra-purple-50);--badge-default-foreground:var(--ultra-purple-500);--badge-default-border:var(--ultra-purple-200);
   --badge-information:var(--system-blue-100);--badge-information-foreground:var(--system-blue-900);--badge-information-border:var(--system-blue-300);
-  --badge-success:var(--system-green-100);--badge-success-foreground:var(--system-green-700);--badge-success-border:var(--system-green-300);
+  --badge-success:var(--system-green-100);--badge-success-foreground:var(--system-green-900);--badge-success-border:var(--system-green-500);
   --badge-danger:var(--system-red-100);--badge-danger-foreground:var(--system-red-700);--badge-danger-border:var(--system-red-300);
   --badge-warning:var(--system-yellow-100);--badge-warning-foreground:var(--system-yellow-900);--badge-warning-border:var(--system-yellow-300);
   /* ── Status ── */
