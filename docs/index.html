@@ -263,6 +263,11 @@
   .sb-live{cursor:pointer}
   .comp-subhint{font-size:12px;color:var(--font-body-bright);margin:-4px 0 14px}
   .iconrow{display:flex;flex-wrap:wrap;gap:30px 44px;align-items:flex-start}
+  /* ecosystem bento — sibling/related cards side by side, several per row */
+  .sb-bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:32px;align-items:start}
+  .sb-bento>.comp-card{margin-bottom:0}
+  .sb-bento>.comp-card .cb{padding:32px 28px}
+  @media(max-width:760px){.sb-bento{grid-template-columns:1fr}}
   /* PopoverTrigger */
   .sb-ptrigger{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:transparent;border:none;cursor:pointer;width:190px;box-sizing:border-box}
   .sb-ptrigger.st-hover{background:#e8eaf0}
@@ -478,7 +483,7 @@
           <div class="comp-group" id="c-sidebar"><h2>Sidebar</h2>
             <p class="sub" style="margin:-16px 0 24px;max-width:64ch">Reproduced from the product dashboard (shadcn structure), decomposed into reusable atoms — grab them from <span class="mono">components/navigation/</span>. Grouped by role; the <strong>switchers are interactive</strong> (click to open the real popover).</p>
 
-            <div class="comp-subhead">Menu items</div>
+            <div class="comp-subhead">Menu list</div>
 
             <div class="comp-card"><div class="ch">SidebarMenuButton<span class="cm">navigation/Sidebar.jsx · SidebarMenuButton + SidebarMenuSubItem · interactive states · 7 types · collapsed</span></div>
               <div class="cb"><div style="display:flex;gap:48px;flex-wrap:wrap">
@@ -515,6 +520,7 @@
 
             <div class="comp-subhead">Groups &amp; structure</div>
 
+            <div class="sb-bento">
             <div class="comp-card"><div class="ch">SidebarGroupLabel<span class="cm">navigation/Sidebar.jsx · SidebarGroupLabel · default / collapsible / action</span></div>
               <div class="cb"><div style="display:flex;flex-direction:column;gap:6px;width:220px">
                 <div class="sb-glbl">Group title</div>
@@ -527,6 +533,7 @@
                 <div><div style="font-size:10px;color:var(--font-body-bright);margin-bottom:6px">border</div><div class="sb-subwrap v-border"><div class="it">Sub Item</div><div class="it">Sub Item</div></div></div>
                 <div><div style="font-size:10px;color:var(--font-body-bright);margin-bottom:6px">indent</div><div class="sb-subwrap v-indent"><div class="it">Sub Item</div><div class="it">Sub Item</div></div></div>
               </div></div></div>
+            </div>
 
             <div class="comp-subhead">Icon atoms</div>
 
@@ -547,6 +554,7 @@
 
             <div class="comp-subhead">Switchers</div>
 
+            <div class="sb-bento">
             <div class="comp-card swx-card"><div class="ch">Team switcher<span class="cm">navigation/Sidebar.jsx · PopoverTrigger → PopoverMenu · trigger + open</span></div>
               <div class="cb"><div class="swx">
                 <details class="swx-det">
@@ -581,17 +589,17 @@
                 </details>
                 <span class="swx-hint">Click to open the account menu ↓</span>
               </div></div></div>
+            </div>
 
-            <div class="comp-subhead">Content</div>
+            <div class="comp-subhead">In context</div>
 
+            <div class="sb-bento">
             <div class="comp-card"><div class="ch">InboxItem<span class="cm">navigation/Sidebar.jsx · InboxItem · notification row</span></div>
               <div class="cb"><div class="sb-inbox">
                 <div class="top"><span class="who">William Smith</span><span class="time">09:34 AM</span></div>
                 <div class="title">Meeting Tomorrow</div>
                 <div class="body">Let's schedule a call to finalize the wallet policy review before the release.</div>
               </div></div></div>
-
-            <div class="comp-subhead">Organism</div>
 
             <div class="comp-card"><div class="ch">Organisation Sidebar<span class="cm">assembled organism · 256px</span></div>
               <div class="cb"><div class="sb-organism"><div class="sb-inner">
@@ -626,6 +634,7 @@
                 <div style="height:16px"></div>
                 <button class="sb-user"><span class="av"></span><span class="txt"><span class="n">Robert</span><br><span class="e">robert@dfns.com</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button>
               </div></div></div></div>
+            </div>
           </div>
 
           <div class="comp-group" id="c-marketing"><h2>Marketing</h2>
