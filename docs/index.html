@@ -398,14 +398,13 @@
           <a class="comp-navlink" data-t="c-content">Content</a>
           <a class="comp-navlink" data-t="c-navigation">Navigation</a>
           <a class="comp-navlink" data-t="c-sidebar">Sidebar</a>
-          <a class="comp-navlink" data-t="c-marketing">Marketing</a>
         </aside>
         <div class="comp-main">
           <h1><span class="a">Components</span></h1>
           <p class="lead">The coded component library — live previews from the token layer. Source (<span class="mono">.jsx</span> + <span class="mono">.d.ts</span> + <span class="mono">.prompt.md</span>) in <span class="mono">components/</span>.</p>
 
           <div class="comp-group" id="c-buttons"><h2>Buttons</h2>
-            <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx · Primary · Secondary · Tertiary · swappable icon</span></div>
+            <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx · Primary · Secondary · Tertiary · swappable icon · variants &amp; states</span></div>
               <div class="cb">
                 <div class="pg-toolbar">
                   <div class="seg" id="pgVariant">
@@ -422,10 +421,9 @@
                 </div>
                 <div class="pg-stage" id="pgStage"></div>
                 <pre class="pg-code"><button class="cp" id="pgCopy">Copy</button><code id="pgCode"></code></pre>
+                <div class="cell-h" style="margin:30px 0 18px">Variants &amp; states · default / hover / focused / disabled</div>
+                <div class="btnmx-scroll"><div class="btnmatrix" id="btnMatrix"></div></div>
               </div></div>
-
-            <div class="comp-card"><div class="ch">Variants &amp; states<span class="cm">buttons/Button.jsx · default · hover · focused · disabled</span></div>
-              <div class="cb"><div class="btnmx-scroll"><div class="btnmatrix" id="btnMatrix"></div></div></div></div>
           </div>
 
           <div class="comp-group" id="c-forms"><h2>Forms</h2>
@@ -435,9 +433,6 @@
                 <div class="cinput-wrap"><label class="cinput-label">Amount</label><div class="cinput"><input value="1,024" readonly></div></div>
                 <div class="cinput-wrap"><label class="cinput-label">Disabled</label><div class="cinput dis"><input placeholder="Locked" disabled></div></div>
               </div></div></div>
-            <div class="comp-card"><div class="ch">SelectorBig<span class="cm">forms/SelectorBig.jsx</span></div>
-              <div class="cb"><button class="cselector"><span class="cse-ic"></span><span class="cse-l">Main Treasury</span>
-                <span class="cse-ch"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l3-3 3 3M7 12l3 3 3-3"/></svg></span></button></div></div>
           </div>
 
           <div class="comp-group" id="c-feedback"><h2>Feedback</h2>
@@ -460,14 +455,11 @@
           <div class="comp-group" id="c-content"><h2>Content</h2>
             <div class="comp-card"><div class="ch">CardHeader<span class="cm">content/CardHeader.jsx</span></div>
               <div class="cb"><div class="ccardh"><span class="t">Wallet overview</span><span class="d">Balances, activity, and policies at a glance.</span></div></div></div>
-            <div class="comp-card"><div class="ch">Logotype · DfnsLogo<span class="cm">content/Logotype.jsx</span></div>
-              <div class="cb"><div class="row" style="align-items:center;gap:32px">
-                <img src="../assets/logos/logotype-2026.svg" style="height:26px" alt="DFNS logotype">
-                <img src="../assets/logos/logotype-symbol.svg" style="height:26px" alt="DFNS wordmark">
-                <img src="../assets/logos/dfns-logo-cube.svg" style="height:30px" alt="DFNS cube">
+            <div class="comp-card"><div class="ch">Eyebrow<span class="cm">brand · section overline</span></div>
+              <div class="cb"><div class="row">
+                <span class="eyebrow"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>New release</span>
+                <span class="eyebrow info"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>Now in beta</span>
               </div></div></div>
-            <div class="comp-card"><div class="ch">Slot<span class="cm">content/Slot.jsx</span></div>
-              <div class="cb"><div class="cslot">Slot (swap it with your content)</div></div></div>
           </div>
 
           <div class="comp-group" id="c-navigation"><h2>Navigation</h2>
@@ -589,6 +581,10 @@
                 </details>
                 <span class="swx-hint">Click to open the account menu ↓</span>
               </div></div></div>
+
+            <div class="comp-card"><div class="ch">SelectorBig<span class="cm">forms/SelectorBig.jsx · the base selector the switchers are built on</span></div>
+              <div class="cb"><button class="cselector"><span class="cse-ic"></span><span class="cse-l">Main Treasury</span>
+                <span class="cse-ch"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l3-3 3 3M7 12l3 3 3-3"/></svg></span></button></div></div>
             </div>
 
             <div class="comp-subhead">In context</div>
@@ -635,14 +631,6 @@
                 <button class="sb-user"><span class="av"></span><span class="txt"><span class="n">Robert</span><br><span class="e">robert@dfns.com</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></button>
               </div></div></div></div>
             </div>
-          </div>
-
-          <div class="comp-group" id="c-marketing"><h2>Marketing</h2>
-            <div class="comp-card"><div class="ch">Eyebrow<span class="cm">brand</span></div>
-              <div class="cb"><div class="row">
-                <span class="eyebrow"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>New release</span>
-                <span class="eyebrow info"><svg class="hx" viewBox="0 0 8 9"><path d="M4 0l4 2.25v4.5L4 9 0 6.75v-4.5z" fill="currentColor"/></svg>Now in beta</span>
-              </div></div></div>
           </div>
 
         </div>
