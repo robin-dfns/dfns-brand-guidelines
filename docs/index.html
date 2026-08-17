@@ -790,6 +790,7 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
     const sw = document.getElementById('pgSwap');
     if (sw) sw.onclick = e => { e.stopPropagation(); openPick(sw); };
     renderCode();
+    renderMatrix();
   }
   function renderCode() {
     const T = (c, x) => `<span class="tok-${c}">${x}</span>`;
@@ -837,18 +838,24 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
   document.addEventListener('click', e => { if (pick.classList.contains('open') && !pick.contains(e.target) && !e.target.closest('#pgSwap')) closePick(); });
   window.addEventListener('scroll', () => { if (pick.classList.contains('open')) place(); }, true);
 
-  /* variants × states matrix */
+  /* variants × states matrix — mirrors the live icon position/icon in real time */
   const mx = document.getElementById('btnMatrix');
-  if (mx) {
-    const sts = [['Default', ''], ['Hover', 'is-hover'], ['Focused', 'is-focus'], ['Disabled', 'disabled']];
-    const vs = [['primary', 'Create wallet'], ['secondary', 'Secondary'], ['tertiary', 'Learn more']];
-    let html = '<div></div>' + sts.map(s => `<div class="mh">${s[0]}</div>`).join('');
-    vs.forEach(([v, lbl]) => {
+  const STS = [['Default', ''], ['Hover', 'is-hover'], ['Focused', 'is-focus'], ['Disabled', 'disabled']];
+  const VS = [['primary', 'Create wallet'], ['secondary', 'Secondary'], ['tertiary', 'Learn more']];
+  function cellInner(label) {
+    const lab = `<span>${label}</span>`;
+    if (state.pos === 'none') return lab;
+    const ico = iconInner(state.pos === 'after' && state.icon === ARROW);
+    return state.pos === 'before' ? ico + lab : lab + ico;
+  }
+  function renderMatrix() {
+    if (!mx) return;
+    let html = '<div></div>' + STS.map(s => `<div class="mh">${s[0]}</div>`).join('');
+    VS.forEach(([v, lbl]) => {
       html += `<div class="rl">${v}</div>`;
-      sts.forEach(([, cls]) => {
-        const arrow = (v === 'primary' || v === 'tertiary') ? arrowSwapHTML : '';
-        const dis = cls === 'disabled' ? 'disabled' : '';
-        html += `<div class="mcell"><button class="dbtn ${v} ${cls}" ${dis}><span>${lbl}</span>${arrow}</button></div>`;
+      STS.forEach(([, cls]) => {
+        const noArrow = (state.pos === 'none' && v === 'primary') ? ' no-arrow' : '';
+        html += `<div class="mcell"><button class="dbtn ${v} ${cls}${noArrow}" ${cls === 'disabled' ? 'disabled' : ''}>${cellInner(lbl)}</button></div>`;
       });
     });
     mx.innerHTML = html;
