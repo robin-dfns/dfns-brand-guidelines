@@ -1,4 +1,4 @@
-<!-- @dsCard group="Iconography" viewport="700x240" name="Heroicons v2" subtitle="1220 glyphs · micro 16 / mini 20 / outline 24 / solid 24" -->
+<!-- @dsCard group="Iconography" viewport="700x200" name="Heroicons v2.2.0" subtitle="964 glyphs · solid 24 / mini 20 / micro 16" -->
 <!DOCTYPE html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -12,9 +12,9 @@ const { Icon } = window.DFNSDesignSystem_12f785;
 const names = ['Wallet','Key','LockClosed','ShieldCheck','FingerPrint','CreditCard','BuildingLibrary','ChartBarSquare','ArrowsRightLeft','CommandLine','Cube','GlobeAlt','UserGroup','Cog6Tooth','BellAlert','QrCode','DocumentText','CheckCircle','ExclamationTriangle','MagnifyingGlass'];
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div style={{display:'flex',flexDirection:'column',gap:18}}>
-    {[['Outline',24],['Solid',24],['Mini',20],['Micro',16]].map(([styleName,size]) => (
+    {[['Solid',24],['Mini',20],['Micro',16]].map(([styleName,size]) => (
       <div key={styleName} style={{display:'flex',gap:14,alignItems:'center'}}>
-        <span style={{width:52,fontSize:11,color:'#575c7b',fontFamily:'var(--font-mono)'}}>{styleName}</span>
+        <span style={{width:62,fontSize:11,color:'#575c7b',fontFamily:'var(--font-mono)'}}>{styleName} {size}</span>
         {names.slice(0,14).map(n => <Icon key={n} name={'Heroicons'+styleName+n} size={size} style={{color:'#363a5b'}}/>) }
       </div>
     ))}

@@ -373,11 +373,10 @@
         <button class="chip" data-set="square">Crypto · Square</button>
         <button class="chip" data-set="hero">Heroicons</button>
         <span id="heroStyles" style="display:none;gap:6px">
-          <button class="chip active" data-style="all">All</button>
-          <button class="chip" data-style="Solid">Solid</button>
-          <button class="chip" data-style="Mini">Mini</button>
-          <button class="chip" data-style="Micro">Micro</button>
-          <button class="chip" data-style="Outline">Outline</button>
+          <button class="chip active" data-style="Solid">Solid 24</button>
+          <button class="chip" data-style="Mini">Mini 20</button>
+          <button class="chip" data-style="Micro">Micro 16</button>
+          <button class="chip" data-style="all">All</button>
         </span>
         <input class="search" id="iconSearch" placeholder="Search icons…">
         <span class="count" id="iconCount"></span>
@@ -691,11 +690,11 @@ const copy = (txt, label) => { navigator.clipboard?.writeText(txt); showToast(la
 
 /* ---------- icons ---------- */
 const cleanCrypto = k => k.replace(/^CryptoIcons(Round|Square)Property1/, '');
-const splitHero = k => { const m = k.match(/^Heroicons(Micro|Mini|Solid|Outline)(.+)$/); return m ? { style: m[1], name: m[2] } : { style: '', name: k }; };
+const splitHero = k => { const m = k.match(/^Heroicons(Micro|Mini|Solid)(.+)$/); return m ? { style: m[1], name: m[2] } : { style: '', name: k }; };
 const spaceCamel = s => s.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
 const svgOf = (o) => `<svg viewBox="${o.viewBox}">${o.body}</svg>`;
 
-let curSet = 'round', curStyle = 'all';
+let curSet = 'round', curStyle = 'Solid';
 const grid = document.getElementById('iconGrid'), countEl = document.getElementById('iconCount'), searchEl = document.getElementById('iconSearch');
 
 function currentList() {

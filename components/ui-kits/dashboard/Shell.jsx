@@ -9,10 +9,10 @@ function TopBar() {
         <div style={{position:'absolute',left:-24,top:-1,width:798,height:42,borderRadius:12,background:'linear-gradient(7.839deg,rgba(163,227,251,0.6) -1.36%,rgba(238,145,249,0.6) 20.55%,rgba(255,169,146,0.6) 40.77%,rgba(255,255,255,0) 68.41%)',filter:'blur(6px)'}}/>
         <div style={{position:'relative',height:40,borderRadius:12,background:'#fff',display:'flex',flexDirection:'row',padding:'8px 16px',justifyContent:'space-between',alignItems:'center',boxSizing:'border-box',cursor:'text'}}>
           <div style={{display:'flex',gap:8,alignItems:'center'}}>
-            <Icon name="HeroiconsOutlineMagnifyingGlass" size={16} style={{color:'#5123ce'}}/>
+            <Icon name="HeroiconsSolidMagnifyingGlass" size={16} style={{color:'#5123ce'}}/>
             <span style={{fontFamily:'var(--font-sans)',fontWeight:450,fontSize:16,lineHeight:'20px',color:'#5123ce'}}>Search on Dfns</span>
           </div>
-          <Icon name="HeroiconsOutlineCubeTransparent" size={18} style={{color:'#5123ce'}}/>
+          <Icon name="HeroiconsSolidCubeTransparent" size={18} style={{color:'#5123ce'}}/>
         </div>
       </div>
       <div style={{display:'flex',gap:16,alignItems:'center'}}>
