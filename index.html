@@ -1869,11 +1869,13 @@
       color: var(--text-tertiary);
       line-height: 1.5;
     }
-    .motion-duration-table {
+    .motion-duration-table,
+    .print-table {
       width: 100%;
       border-collapse: collapse;
     }
-    .motion-duration-table th {
+    .motion-duration-table th,
+    .print-table th {
       text-align: left;
       font-size: 12px;
       font-weight: 600;
@@ -1883,14 +1885,17 @@
       padding: 12px 16px;
       border-bottom: 1px solid var(--border-medium);
     }
-    .motion-duration-table td {
+    .motion-duration-table td,
+    .print-table td {
       padding: 14px 16px;
       font-size: 14px;
       color: var(--text-body);
       border-bottom: 1px solid var(--border-subtle);
     }
-    .motion-duration-table td:first-child { font-weight: 600; color: var(--text-strong); }
-    .motion-duration-table code {
+    .motion-duration-table td:first-child,
+    .print-table td:first-child { font-weight: 600; color: var(--text-strong); }
+    .motion-duration-table code,
+    .print-table code {
       font-size: 12px;
       font-family: 'Roboto Mono', monospace;
       color: #693AEA;
@@ -1898,6 +1903,39 @@
       padding: 2px 8px;
       border-radius: 4px;
     }
+    .print-table-scroll { overflow-x: auto; }
+    .print-table { min-width: 720px; }
+    .print-table td { white-space: nowrap; vertical-align: middle; }
+    .print-table-swatch {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1px solid var(--border-medium);
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .print-ref { font-family: 'Roboto Mono', monospace; font-size: 13px; color: var(--text-strong); }
+    .print-alt { display: block; margin-top: 4px; font-size: 11px; color: var(--text-tertiary); }
+    .print-alt .print-ref { font-size: 11px; color: var(--text-tertiary); }
+    .de-chip {
+      display: inline-block;
+      margin-left: 8px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      vertical-align: 1px;
+    }
+    .de-chip.excellent { background: rgba(92,235,116,0.14); color: #5CEB74; }
+    .de-chip.good      { background: rgba(75,108,255,0.18); color: #8097FF; }
+    .de-chip.fair      { background: rgba(244,146,0,0.14);  color: #F49200; }
+    .de-chip.poor      { background: rgba(248,83,112,0.14); color: #F85370; }
+    [data-theme="light"] .de-chip.excellent { background: rgba(92,235,116,0.15); color: #056F15; }
+    [data-theme="light"] .de-chip.good      { background: rgba(75,108,255,0.15); color: #4B6CFF; }
+    [data-theme="light"] .de-chip.fair      { background: rgba(244,146,0,0.15);  color: #85390A; }
+    [data-theme="light"] .de-chip.poor      { background: rgba(248,83,112,0.15); color: #961B2C; }
     .motion-demo-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -2446,6 +2484,29 @@
         { name: 'Hover', hex: '#693AEA', textLight: true, note: 'Ultra Purple 500' },
         { name: 'Icons / Primary', hex: '#693AEA', textLight: true, note: 'Ultra Purple 500' },
         { name: 'Icons / Secondary', hex: '#8860F7', textLight: true, note: 'Ultra Purple 400' },
+      ],
+      // Print equivalents — nearest Pantone by CIEDE2000 against the official
+      // Pantone book Lab values (D50), sRGB→Lab D50 via Bradford. dE00 = perceptual
+      // distance to the brand hex: <2 excellent, 2-4 good, 4-6 fair, >6 poor.
+      print: [
+        { name: 'Ultra Purple 900', hex: '#170C33', coated: '275 C',  dEc: 4.5, uncoated: '2112 U', dEu: 18.7, cp: '276 CP',    cmyk: 'C100 M100 Y10 K79', dEcp: 7.1 },
+        { name: 'Ultra Purple 800', hex: '#2D1866', coated: '2755 C', dEc: 2.4, uncoated: '2371 U', dEu: 14.1, cp: '2755 CP',   cmyk: 'C97 M100 Y0 K30',   dEcp: 5.8 },
+        { name: 'Ultra Purple 700', hex: '#442599', coated: '2098 C', dEc: 2.7, uncoated: '2371 U', dEu: 10.3, cp: 'Violet CP', cmyk: 'C90 M99 Y0 K0',     dEcp: 5.6 },
+        { name: 'Ultra Purple 500', hex: '#693AEA', coated: '2097 C', dEc: 6.3, uncoated: '2735 U', dEu: 10.3, cp: '7670 CP',   cmyk: 'C80 M74 Y0 K0',     dEcp: 12.5 },
+        { name: 'Ultra Purple 200', hex: '#C4AEFF', coated: '264 C',  dEc: 5.9, uncoated: '2645 U', dEu: 4.8,  cp: '2705 CP',   cmyk: 'C40 M36 Y0 K0',     dEcp: 9.1 },
+        { name: 'Cold Grey 900',    hex: '#1E202E', coated: '532 C',  dEc: 1.9, uncoated: '5395 U', dEu: 13.9, cp: '532 CP',    cmyk: 'C88 M76 Y30 K82',   dEcp: 3.5 },
+        { name: 'Cold Grey 700',    hex: '#363A5B', coated: '5265 C', dEc: 3.8, uncoated: '282 U',  dEu: 4.9,  cp: '5265 CP',   cmyk: 'C86 M83 Y9 K45',    dEcp: 2.6 },
+        { name: 'Cold Grey 100',    hex: '#E0E3F0', coated: '7443 C', dEc: 3.6, alt: '656 C', dEalt: 3.8, uncoated: '5315 U', dEu: 3.3,  cp: '649 CP',    cmyk: 'C10 M3 Y1 K0',      dEcp: 2.5 },
+        { name: 'Steel Grey 100',   hex: '#F0F1F4', coated: '663 C',  dEc: 4.4, uncoated: '649 U',  dEu: 4.7,  cp: '649 CP',    cmyk: 'C10 M3 Y1 K0',      dEcp: 5.0 },
+      ],
+      // Textile / merch — Pantone Fashion, Home + Interiors cotton (TCX).
+      printTextile: [
+        { name: 'Ultra Purple 900', hex: '#170C33', tcx: '19-3731', tcxName: 'Parachute Purple', dEt: 9.1 },
+        { name: 'Ultra Purple 800', hex: '#2D1866', tcx: '19-3847', tcxName: 'Deep Blue',        dEt: 9.0 },
+        { name: 'Ultra Purple 700', hex: '#442599', tcx: '19-3847', tcxName: 'Deep Blue',        dEt: 7.5 },
+        { name: 'Cold Grey 700',    hex: '#363A5B', tcx: '19-3925', tcxName: 'Patriot Blue',     dEt: 1.3 },
+        { name: 'Cold Grey 100',    hex: '#E0E3F0', tcx: '13-4105', tcxName: 'Lilac Hint',       dEt: 4.4 },
+        { name: 'Steel Grey 100',   hex: '#F0F1F4', tcx: '11-4800', tcxName: 'Blanc De Blanc',   dEt: 3.0 },
       ]
     };
 
@@ -2506,6 +2567,37 @@
           if (copyLabel) copyLabel.textContent = 'Copy SVG';
         }, 1500);
       });
+    }
+
+    function deChip(dE) {
+      const cls = dE < 2 ? 'excellent' : dE < 4 ? 'good' : dE < 6 ? 'fair' : 'poor';
+      return `<span class="de-chip ${cls}">\u0394E ${dE.toFixed(1)}</span>`;
+    }
+
+    function buildPrintTable(rows) {
+      return `<div class="print-table-scroll"><table class="print-table">
+        <thead><tr>
+          <th>Token</th><th>HEX</th><th>Pantone Coated</th><th>Pantone Uncoated</th><th>CMYK &mdash; Color Bridge</th>
+        </tr></thead>
+        <tbody>${rows.map(r => `<tr>
+          <td><span class="print-table-swatch" style="background:${r.hex}"></span>${r.name}</td>
+          <td><code>${r.hex}</code></td>
+          <td><span class="print-ref">${r.coated}</span>${deChip(r.dEc)}${r.alt ? `<span class="print-alt">alt. <span class="print-ref">${r.alt}</span>${deChip(r.dEalt)}</span>` : ''}</td>
+          <td><span class="print-ref">${r.uncoated}</span>${deChip(r.dEu)}</td>
+          <td><span class="print-ref">${r.cmyk}</span>${deChip(r.dEcp)}</td>
+        </tr>`).join('')}</tbody>
+      </table></div>`;
+    }
+
+    function buildTextileTable(rows) {
+      return `<div class="print-table-scroll"><table class="print-table" style="min-width:520px">
+        <thead><tr><th>Token</th><th>HEX</th><th>Pantone TCX (cotton)</th></tr></thead>
+        <tbody>${rows.map(r => `<tr>
+          <td><span class="print-table-swatch" style="background:${r.hex}"></span>${r.name}</td>
+          <td><code>${r.hex}</code></td>
+          <td><span class="print-ref">${r.tcx}</span> &middot; ${r.tcxName}${deChip(r.dEt)}</td>
+        </tr>`).join('')}</tbody>
+      </table></div>`;
     }
 
     function buildColorTabPanel(title, desc, colors, usageTips, featuredNames) {
@@ -2942,6 +3034,7 @@
               <button class="color-tab" data-tab="system">System</button>
               <button class="color-tab" data-tab="semantic">Semantic</button>
               <button class="color-tab" data-tab="dark-mode">Dark Mode</button>
+              <button class="color-tab" data-tab="print">Print</button>
             </div>
           </div>
 
@@ -3004,6 +3097,30 @@
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Accent on dark</strong> — always Ultra Purple 200 <code class="code-inline">#C4AEFF</code>. Never Ultra Purple 300.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Secondary CTA on dark</strong> — background Cold Grey 100, text Ultra Purple 700.</span></div>
               <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Elevation</strong> — layered shadow (8 stops, <code class="code-inline">rgba(19,22,45)</code>) + 1px inner gradient border (white .04→.16).</span></div>
+            </div>
+          </div>
+
+          <div class="color-tab-panel" id="ctab-print">
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Print &amp; Pantone</span></div>
+              <p class="section-desc" style="margin-top:-8px">The palette is defined in sRGB &mdash; these are the closest ink references, not exact equals. Matches are computed with <strong>CIEDE2000</strong> against the official Pantone book Lab values (D50), converting each brand hex sRGB &rarr; Lab D50 (Bradford). The <code class="code-inline">&Delta;E</code> chip is the perceptual distance to the brand hex: <strong>&lt;2</strong> excellent &middot; <strong>2&ndash;4</strong> good &middot; <strong>4&ndash;6</strong> fair &middot; <strong>&gt;6</strong> poor.</p>
+              ${buildPrintTable(colorData.print)}
+            </div>
+
+            <div class="color-family" style="margin-top:40px">
+              <div class="color-family-header"><span class="color-family-name">Textile &amp; merchandise</span></div>
+              <p class="section-desc" style="margin-top:-8px">Pantone Fashion, Home + Interiors cotton (TCX) &mdash; for apparel, tote bags, and woven goods. Dyes reach further into the dark blues than ink on paper: Cold Grey 700 is a near-exact match on cotton.</p>
+              ${buildTextileTable(colorData.printTextile)}
+            </div>
+
+            <div class="color-family" style="margin-top:40px">
+              <div class="color-family-header"><span class="color-family-name">Usage</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Logo in print</strong> &mdash; the light-mode logotype is Cold Grey 700 <code class="code-inline">#363A5B</code> &rarr; <strong>PANTONE 5265 C</strong>. Nothing in the coated book gets closer; the next candidates (3524 C, 2380 C, 533 C) sit above &Delta;E 6.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Going quadri</strong> &mdash; use the Color Bridge build, not a converted hex. For the deep purples the CMYK simulation is what a press can actually hold; for Cold Grey 700 it is even closer to the brand hex (&Delta;E 2.6) than the spot ink.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Never assume &ldquo;same number + U&rdquo;</strong> &mdash; PANTONE 5265 U dries back to L* 45.9 (&Delta;E 17.8, roughly <code class="code-inline">#6D6A82</code>). On uncoated stock Cold Grey 700 is <strong>282 U</strong>.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don&rsquo;t print the deep purples on uncoated</strong> &mdash; the darkest ink in the whole uncoated book is 282 U at L* 31, while Ultra Purple 900 sits at L* 6. Any uncoated &ldquo;match&rdquo; for Ultra Purple 900/800 or Cold Grey 900 is a fallback, not a match. Specify coated stock, or switch the artwork to the light-background variant.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Cold Grey 100 &mdash; decide on undertone, not &Delta;E</strong> &mdash; 7443 C, 5315 C, 663 C, 656 C and 649 C all land within 0.5 &Delta;E, below what a press holds. <strong>7443 C</strong> is the spec because it alone keeps the violet undertone (its error is lightness, &minus;2.8 L*); use <strong>656 C</strong> when lightness fidelity matters more. Better still: at L* 90 the color sits within &Delta;E 2.5 of an OBA uncoated sheet &mdash; <strong>knock out to the paper</strong> instead of printing a light grey ink.</span></div>
+              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Screen-native colors don&rsquo;t print</strong> &mdash; Ultra Purple 500 and Ultra Purple 200 sit outside the ink gamut (&Delta;E 6). The System colors (Green / Red / Blue / Yellow 500) are UI states and carry no print reference at all. Build print from Ultra Purple 800/700 and the neutrals.</span></div>
             </div>
           </div>
         </div>
