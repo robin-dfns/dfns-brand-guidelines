@@ -1,12 +1,20 @@
 import * as React from 'react';
+
 /**
- * DFNS mobile bottom tab bar ("Menu") — white pill with icon+label pill tabs.
+ * Floating four-item tab bar for the mobile app. Figma: "Menu".
+ * @startingPoint section="Navigation" subtitle="Floating mobile tab bar" viewport="700x140"
  */
-export interface MobileMenuProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** [label, iconName] pairs. Defaults to Dashboard/Transfers/Approval/Settings. */
-  items?: [string, string][];
-  /** Index of the active tab (grey pill highlight). */
-  active?: number;
-  onSelect?: (index: number) => void;
+export interface MobileMenuItem {
+  /** Title Case nav label: Dashboard, Transfers, Approvals, Menu. */
+  label: string;
+  /** 20px glyph. */
+  icon?: React.ReactNode;
 }
-export declare function MobileMenu(props: MobileMenuProps): JSX.Element;
+export interface MobileMenuProps extends Omit<React.HTMLAttributes<HTMLElement>, 'style'> {
+  items?: MobileMenuItem[];
+  activeIndex?: number;
+  onSelect?: (index: number) => void;
+  style?: React.CSSProperties;
+}
+export declare const MobileMenu: React.FC<MobileMenuProps>;
+export default MobileMenu;

@@ -1,25 +1,32 @@
 import React from 'react';
-import Icon from '../../assets/icons/Icon.jsx';
 
-const ITEMS = [
-  ['Dashboard', 'HeroiconsSolidHome'],
-  ['Transfers', 'HeroiconsMiniArrowsUpDown'],
-  ['Approval', 'HeroiconsSolidCheckCircle'],
-  ['Settings', 'HeroiconsSolidCog8Tooth'],
-];
+/* Figma: Menu (node 1287:71) from the Mobile-TO-MIGRATE page. 380x51 pill, radius 50,
+   white fill, 0 8px 11px rgba(87,91,123,0.3) drop shadow, 4/5 padding, four equal items. */
 
-/* Mobile bottom tab bar ("Menu" symbol): 380×51 white pill, four 43px pill tabs.
-   Token-driven (bw surface, elevation-2 active tab, Ultra Purple 700 content). */
-export function MobileMenu({ items = ITEMS, active = 0, onSelect, style, ...rest }) {
+export function MobileMenu({ items = [], activeIndex = 0, onSelect, style, ...rest }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', width: 380, height: 51, borderRadius: 50, backgroundColor: 'var(--background-bw,#ffffff)', boxShadow: '0 8px 11px 0 rgba(87,91,123,0.3)', padding: '4px 5px', boxSizing: 'border-box', ...style }} {...rest}>
-      {items.map(([label, icon], i) => (
-        <div key={label} onClick={() => onSelect && onSelect(i)}
-          style={{ display: 'flex', flexDirection: 'column', gap: 2, justifyContent: 'center', alignItems: 'center', width: 92.5, height: 43, borderRadius: 30, backgroundColor: i === active ? 'var(--background-elevation-2,#e3e4eb)' : 'transparent', cursor: 'pointer', boxSizing: 'border-box' }}>
-          <Icon name={icon} size={24} style={{ color: 'var(--icons-secondary,#442599)' }} />
-          <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 11, lineHeight: 1, color: 'var(--font-heading-colored-mid,#442599)', whiteSpace: 'nowrap' }}>{label}</span>
-        </div>
-      ))}
-    </div>
+    <nav style={{
+      display: 'flex', alignItems: 'flex-start',
+      width: 380, height: 51, padding: 'var(--space-100) 5px',
+      borderRadius: 50, background: 'var(--colors-steel-grey-white)',
+      boxShadow: '0 8px 11px 0 rgba(87,91,123,0.3)', ...style,
+    }} {...rest}>
+      {items.map((item, i) => {
+        const active = i === activeIndex;
+        return (
+          <button key={item.label} type="button" onClick={() => onSelect && onSelect(i)} style={{
+            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            gap: 2, height: '100%', border: 'none', borderRadius: 50, cursor: 'pointer',
+            background: active ? 'var(--colors-ultra-purple-50)' : 'transparent',
+            color: active ? 'var(--colors-ultra-purple-700)' : 'var(--colors-cold-grey-600)',
+            fontFamily: 'var(--font-core)', fontWeight: 'var(--weight-medium)', fontSize: 'var(--text-xs)', lineHeight: 1,
+          }}>
+            {item.icon}
+            <span>{item.label}</span>
+          </button>
+        );
+      })}
+    </nav>
   );
 }
+export default MobileMenu;

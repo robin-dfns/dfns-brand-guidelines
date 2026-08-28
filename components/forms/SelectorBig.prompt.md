@@ -1,6 +1,5 @@
-DFNS workspace selector: 240×44, radius 6, bg #e8eaf0, inset #c5c9de ring, 28px avatar, chevron-up-down at 50%.
+The organisation switcher at the top of the dashboard sidebar.
 
 ```jsx
-import { SelectorBig } from './SelectorBig.jsx';
-<SelectorBig label="Stripe Treasury" />
+<SelectorBig label="Stripe Treasury" trailingIcon={<Icon name="HeroiconsMiniChevronUpDown" size={20} />} />
 ```

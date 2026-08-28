@@ -1,4 +1,17 @@
-/* Minimal global defaults for the DFNS design system. */
-body{font-family:var(--font-sans);color:var(--font-body-base);background:var(--background-base);-webkit-font-smoothing:antialiased}
-a{color:var(--font-heading-colored-bright);text-decoration:none}
-a:hover{color:var(--states-hover)}
+/* Element defaults so any page linking styles.css inherits the DFNS baseline. */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  margin: 0;
+  font-family: var(--font-core);
+  font-size: var(--text-base);
+  line-height: var(--line-base);
+  font-weight: var(--weight-base);
+  color: var(--colors-font-body-base);
+  background: var(--colors-background-base);
+  text-wrap: pretty;
+}
+a { color: var(--colors-font-heading-colored-mid); text-decoration: none; }
+a:hover { color: var(--colors-states-hover); text-decoration: underline; }
+*, *::before, *::after { box-sizing: border-box; }
+
+@keyframes dfns-spin { to { transform: rotate(360deg); } }

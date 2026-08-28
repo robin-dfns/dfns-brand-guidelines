@@ -1,0 +1,735 @@
+<!-- @dsCard group="Dashboard" viewport="1440x900" name="DFNS Dashboard" subtitle="Sidebar, balance metrics, wallets, transaction history, policies and approvals" -->
+<!-- @startingPoint section="Dashboard" subtitle="DFNS Dashboard — full desktop app shell" viewport="1440x900" -->
+<!doctype html><html><head><meta charset="utf-8"><title>DFNS Dashboard</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>body{margin:0;background:var(--colors-background-base)}table{font-variant-numeric:tabular-nums}</style>
+</head><body><div id="root"></div>
+<script type="text/babel">
+/* DFNS Dashboard shell — sidebar + top bar. Composed from the design-system primitives.
+   Card treatment (white, radius 12, --ring-card, --shadow-base), the uppercase section label
+   and the 24px card padding are transcribed from the Quickstart Guide frame (node 890:8772). */
+
+const { Logotype, Icon, IconCopy, Input, Button, Badge } = window.DFNSDesignSystem_86e15f;
+
+const NAV_TOP = [
+  { label: 'Dashboard', view: 'Dashboard', icon: 'HeroiconsMiniHome' },
+  { label: 'Activity', view: 'Transfers', icon: 'HeroiconsMiniPresentationChartLine', badge: 3 },
+  { label: 'Wallets', view: 'Wallets', icon: 'HeroiconsMiniWallet' },
+];
+
+const NAV_GROUPS = [
+  {
+    key: 'Operations', label: 'Operations', icon: 'HeroiconsMiniBookOpen',
+    items: [
+      { label: 'Wallets', view: 'Wallets' },
+      { label: 'Staking', view: 'Staking' },
+      { label: 'Swaps', view: 'Swaps', disabled: true },
+      { label: 'Allocations', view: 'Allocations' },
+      { label: 'Smart Contract', view: 'Smart Contract' },
+      { label: 'Payouts', view: 'Payouts' },
+    ],
+  },
+  {
+    key: 'Organization', label: 'Organization', icon: 'HeroiconsMiniBookOpen',
+    items: [
+      { label: 'Users', view: 'Users' },
+      { label: 'Policies', view: 'Policies', badge: 3 },
+      { label: 'Roles', view: 'Roles' },
+      { label: 'Address Book', view: 'Address Book' },
+      { label: 'Billing', view: 'Billing' },
+    ],
+  },
+];
+
+const NAV_BOTTOM = [
+  { label: 'Integrations', view: 'Integrations', icon: 'HeroiconsMiniLink' },
+  { label: 'Settings', view: 'Settings', icon: 'HeroiconsMiniLink' },
+];
+
+const CONNECTED_INTEGRATIONS = [
+  { label: 'Uniswap', mark: 'U' },
+  { label: 'Coinbase', mark: 'C' },
+];
+
+function NavRow({ icon, label, active, badge, disabled, indent, trailing, onClick }) {
+  return (
+    <button type="button" onClick={disabled ? undefined : onClick} style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-250)', width: '100%',
+      height: 'var(--control-h-9)', padding: `0 var(--space-300) 0 ${indent ? 'calc(var(--space-300) + 30px)' : 'var(--space-300)'}`,
+      border: 'none', borderRadius: 'var(--radius-large)', cursor: disabled ? 'default' : 'pointer', textAlign: 'left',
+      background: active ? 'var(--colors-ultra-purple-50)' : 'transparent',
+      color: disabled ? 'var(--colors-cold-grey-500)' : active ? 'var(--colors-ultra-purple-700)' : 'var(--colors-cold-grey-600)',
+      font: `var(--weight-medium) var(--text-base)/var(--line-m) var(--font-core)`,
+    }}>
+      {icon && <Icon name={icon} size={20} />}
+      <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{label}</span>
+      {badge != null && <Badge>{badge}</Badge>}
+      {trailing}
+    </button>
+  );
+}
+
+function NavGroup({ icon, label, items, active, onNavigate, open, onToggle }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-50)' }}>
+      <NavRow icon={icon} label={label} onClick={onToggle}
+        trailing={<Icon name={open ? 'HeroiconsMiniChevronDown' : 'HeroiconsMiniChevronRight'} size={16} />} />
+      {open && items.map(it => (
+        <NavRow key={it.label} label={it.label} indent disabled={it.disabled} badge={it.badge}
+          active={it.view === active} onClick={() => onNavigate(it.view)} />
+      ))}
+    </div>
+  );
+}
+
+function IntegrationRow({ label, mark }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-250)',
+      height: 'var(--control-h-9)', padding: '0 var(--space-300)',
+      font: `var(--weight-medium) var(--text-base)/var(--line-m) var(--font-core)`, color: 'var(--colors-cold-grey-600)',
+    }}>
+      <span style={{
+        display: 'grid', placeItems: 'center', width: 20, height: 20, flex: 'none',
+        borderRadius: 'var(--radius-base)', background: 'var(--colors-cold-grey-900)', color: 'var(--colors-steel-grey-white)',
+        font: `var(--weight-bold) var(--text-xs)/1 var(--font-core)`,
+      }}>{mark}</span>
+      {label}
+    </div>
+  );
+}
+
+function Sidebar({ active, onNavigate }) {
+  const [open, setOpen] = React.useState({ Operations: true, Organization: true });
+  const toggle = key => setOpen(o => ({ ...o, [key]: !o[key] }));
+  return (
+    <aside style={{
+      width: 264, flex: 'none', alignSelf: 'stretch',
+      background: 'var(--colors-steel-grey-white)',
+      boxShadow: 'inset -1px 0 0 var(--colors-border-light)',
+      display: 'flex', flexDirection: 'column', gap: 'var(--space-500)', padding: 'var(--space-500)',
+    }}>
+      <Logotype height={26} />
+      <nav style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-50)' }}>
+        {NAV_TOP.map(n => (
+          <NavRow key={n.label} icon={n.icon} label={n.label} badge={n.badge} active={n.view === active} onClick={() => onNavigate(n.view)} />
+        ))}
+        {NAV_GROUPS.map(g => (
+          <NavGroup key={g.key} icon={g.icon} label={g.label} items={g.items} active={active}
+            onNavigate={onNavigate} open={open[g.key]} onToggle={() => toggle(g.key)} />
+        ))}
+        {NAV_BOTTOM.map(n => (
+          <NavRow key={n.label} icon={n.icon} label={n.label} active={n.view === active} onClick={() => onNavigate(n.view)} />
+        ))}
+      </nav>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-50)' }}>
+        <span style={{
+          padding: '0 var(--space-300)', font: 'var(--weight-medium) var(--text-xs)/1.6 var(--font-core)',
+          letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--colors-cold-grey-500)',
+        }}>Integrations</span>
+        {CONNECTED_INTEGRATIONS.map(c => <IntegrationRow key={c.label} {...c} />)}
+      </div>
+      <button type="button" style={{
+        marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 'var(--space-250)',
+        border: 'none', background: 'none', cursor: 'pointer', padding: 'var(--space-200) var(--space-300)', textAlign: 'left',
+      }}>
+        <span style={{
+          display: 'grid', placeItems: 'center', width: 32, height: 32, flex: 'none', borderRadius: 'var(--radius-full)',
+          background: 'var(--colors-ultra-purple-700)', color: 'var(--colors-steel-grey-white)',
+          font: `var(--weight-bold) var(--text-s)/1 var(--font-core)`,
+        }}>R</span>
+        <span style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0, overflow: 'hidden' }}>
+          <span style={{ font: 'var(--weight-medium) var(--text-s)/1.3 var(--font-core)', color: 'var(--colors-dark-purple-900)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Robert</span>
+          <span style={{ font: 'var(--weight-base) var(--text-xs)/1.3 var(--font-core)', color: 'var(--colors-cold-grey-500)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>robert@dfns.com</span>
+        </span>
+        <Icon name="HeroiconsMiniChevronUpDown" size={16} style={{ marginLeft: 'auto', flex: 'none', color: 'var(--colors-cold-grey-500)' }} />
+      </button>
+    </aside>
+  );
+}
+
+function TopBar({ title, onSearch }) {
+  return (
+    <header style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-400)',
+      padding: 'var(--space-400) var(--space-800)',
+      background: 'var(--colors-steel-grey-white)',
+      boxShadow: 'inset 0 -1px 0 var(--colors-border-light)',
+    }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' }}>
+        <span style={{ font: 'var(--weight-bold) var(--text-s)/1 var(--font-core)', letterSpacing: '.02em', textTransform: 'uppercase', color: 'var(--colors-ultra-purple-700)' }}>Northwind Group</span>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-200)', font: 'var(--weight-base) var(--text-s)/1 var(--font-core)', letterSpacing: 'var(--tracking-tight)', color: 'var(--colors-cold-grey-600)' }}>
+          Org ID: 93540580980203458590345 <IconCopy size={16} style={{ color: 'var(--colors-cold-grey-600)' }} />
+        </span>
+      </div>
+      <div style={{ marginLeft: 'auto', width: 280 }}>
+        <Input placeholder="Search wallets, transfers, users" onChange={e => onSearch(e.target.value)}
+          leadingIcon={<Icon name="HeroiconsMiniMagnifyingGlass" size={16} style={{ color: 'var(--colors-cold-grey-500)' }} />} />
+      </div>
+      <Button variant="ghost" size="icon" leadingIcon={<Icon name="HeroiconsMiniBell" size={20} />} aria-label="Notifications" />
+      <span style={{
+        width: 36, height: 36, borderRadius: 'var(--radius-full)', flex: 'none',
+        background: 'url(../../assets/images/avatar-jane.png) 25.767% 16.977% / 637.795% 251.163% no-repeat, rgb(61,41,153)',
+      }} />
+    </header>
+  );
+}
+
+function Card({ children, style, padded = true }) {
+  return (
+    <section style={{
+      background: 'var(--colors-steel-grey-white)',
+      borderRadius: 'var(--radius-xl)',
+      boxShadow: 'var(--ring-card), var(--shadow-base)',
+      padding: padded ? 'var(--space-600)' : 0,
+      display: 'flex', flexDirection: 'column', gap: 'var(--space-300)',
+      ...style,
+    }}>{children}</section>
+  );
+}
+
+function SectionLabel({ children }) {
+  return <span style={{ font: 'var(--weight-bold) var(--text-s)/var(--line-l) var(--font-core)', letterSpacing: '.02em', textTransform: 'uppercase', color: 'var(--colors-ultra-purple-700)' }}>{children}</span>;
+}
+
+Object.assign(window, { Sidebar, TopBar, Card, SectionLabel });
+</script>
+<script type="text/babel">
+/* The four dashboard views. Content is abbreviated (a handful of rows standing in for many)
+   but every treatment comes from the design system. */
+
+const { Button, Badge, CardHeader, Icon, IconCopy, IconInfoTooltip, IconLoaderCircle, CryptoIcon, Input, CTATertiary } = window.DFNSDesignSystem_86e15f;
+const { Card, SectionLabel } = window;
+
+const num = { fontVariantNumeric: 'tabular-nums' };
+const th = { font: 'var(--weight-medium) var(--text-s)/var(--line-base) var(--font-core)', color: 'var(--colors-cold-grey-600)', padding: '0 0 var(--space-300)', textAlign: 'left', whiteSpace: 'nowrap' };
+const td = { font: 'var(--weight-base) var(--text-base)/var(--line-m) var(--font-core)', color: 'var(--colors-cold-grey-900)', padding: 'var(--space-300) 0', borderTop: '1px solid var(--colors-border-light)' };
+
+const WALLETS = [
+  { name: 'Northwind Treasury', symbol: 'Bitcoin', network: 'Bitcoin', asset: '12.54 BTC', value: 'US$1,215,400', address: '0xd6…34e5…1a85', status: ['green', 'Active'] },
+  { name: 'Ops Hot Wallet', symbol: 'Ethereum', network: 'Ethereum', asset: '184.2 ETH', value: 'US$612,800', address: '0x91…7c02…44b9', status: ['green', 'Active'] },
+  { name: 'Settlement USDC', symbol: 'USDCoin', network: 'Polygon', asset: '1.2M USDC', value: 'US$1,200,000', address: '0x4f…9ad1…0c73', status: ['yellow', 'Pending'] },
+  { name: 'Payroll Escrow', symbol: 'Solana', network: 'Solana', asset: '8,940 SOL', value: 'US$1,171,800', address: 'KRAK…2942…0320', status: ['grey', 'Archived'] },
+];
+
+const TRANSFERS = [
+  { date: '2024-08-17 17:24', wallet: 'Northwind Treasury', to: '0xd6…34e5…1a85', amount: '-0.85 BTC', fiat: '-US$82,340', status: ['green', 'Completed'] },
+  { date: '2024-08-17 14:02', wallet: 'Settlement USDC', to: '0x4f…9ad1…0c73', amount: '250,000 USDC', fiat: 'US$250,000', status: ['blue', 'Broadcasted'] },
+  { date: '2024-08-17 09:41', wallet: 'Ops Hot Wallet', to: '0x91…7c02…44b9', amount: '-12.4 ETH', fiat: '-US$41,200', status: ['yellow', 'Pending'] },
+  { date: '2024-08-16 22:15', wallet: 'Payroll Escrow', to: 'KRAK…2942…0320', amount: '-1,200 SOL', fiat: '-US$157,200', status: ['red', 'Failed'] },
+  { date: '2024-08-16 18:30', wallet: 'Northwind Treasury', to: '0xab…11f4…88d0', amount: '2.05 BTC', fiat: 'US$198,600', status: ['green', 'Completed'] },
+];
+
+const POLICIES = [
+  { name: 'Transfer Approval Over US$100,000', scope: 'All wallets', rule: 'Two of four approvers', status: ['green', 'Active'] },
+  { name: 'Allowlist Only', scope: 'Settlement USDC', rule: 'Address book destinations', status: ['green', 'Active'] },
+  { name: 'Daily Outbound Cap', scope: 'Ops Hot Wallet', rule: 'US$500,000 per day', status: ['yellow', 'Pending'] },
+];
+
+const APPROVALS = [
+  { wallet: 'Northwind Treasury', amount: '0.85 BTC', requester: 'Jane Smith', age: 'Today', policy: 'Transfer Approval Over US$100,000' },
+  { wallet: 'Settlement USDC', amount: '250,000 USDC', requester: 'Marc Dupont', age: 'Yesterday', policy: 'Allowlist Only' },
+];
+
+function Metric({ label, value, delta, tooltip }) {
+  return (
+    <Card style={{ flex: 1, gap: 'var(--space-300)' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-100)', font: 'var(--weight-medium) var(--text-m)/1 var(--font-core)', letterSpacing: 'var(--tracking-tight)', color: 'var(--colors-dark-purple-900)' }}>
+        {label}{tooltip && <IconInfoTooltip content={tooltip} />}
+      </span>
+      <span style={{ ...num, font: 'var(--weight-base) var(--text-4xl)/1 var(--font-core)', color: 'var(--colors-dark-purple-900)' }}>{value}</span>
+      {delta && <span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-200)' }}>
+        <Badge color={delta.startsWith('-') ? 'red' : 'green'}>{delta}</Badge>
+        <span style={{ font: 'var(--weight-base) var(--text-s)/1 var(--font-core)', color: 'var(--colors-cold-grey-600)' }}>Past week</span>
+      </span>}
+    </Card>
+  );
+}
+
+function Overview({ onNavigate }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-600)' }}>
+      <div style={{ display: 'flex', gap: 'var(--space-400)' }}>
+        <Metric label="Total Balance" value="US$4,200,000" delta="+2.4%" tooltip="The combined fiat value of every asset held across the wallets in this organisation." />
+        <Metric label="Wallets" value="24" />
+        <Metric label="Pending Approvals" value="2" />
+      </div>
+      <div style={{ display: 'flex', gap: 'var(--space-400)', alignItems: 'flex-start' }}>
+        <Card style={{ flex: 1 }}>
+          <CardHeader title="Recent Transfers" description="Activity across all wallets in this organisation."
+            trailing={<Button variant="ghost" size="sm" onClick={() => onNavigate('Transfers')}>View All Activities</Button>} />
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead><tr><th style={th}>Date</th><th style={th}>Wallet</th><th style={{ ...th, textAlign: 'right' }}>Amount</th><th style={{ ...th, textAlign: 'right' }}>Status</th></tr></thead>
+            <tbody>{TRANSFERS.slice(0, 4).map(t => (
+              <tr key={t.date}>
+                <td style={td}>{t.date}</td>
+                <td style={{ ...td, color: 'var(--colors-cold-grey-700)' }}>{t.wallet}</td>
+                <td style={{ ...td, ...num, textAlign: 'right' }}>{t.amount}</td>
+                <td style={{ ...td, textAlign: 'right' }}><Badge color={t.status[0]}>{t.status[1]}</Badge></td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </Card>
+        <Card style={{ width: 320, flex: 'none' }}>
+          <CardHeader title="Get to Know DFNS" description="Complete the onboarding to learn how to use DFNS." />
+          <div style={{ padding: 'var(--space-500)', borderRadius: 'var(--radius-large)', background: 'rgb(252,252,253)', boxShadow: 'var(--ring-card)', display: 'flex', flexDirection: 'column', gap: 'var(--space-400)' }}>
+            <span style={{ font: 'var(--weight-base) var(--text-xl)/1.05 var(--font-core)', letterSpacing: 'var(--tracking-tight)', color: 'var(--colors-dark-purple-900)' }}>New Wallet</span>
+            <span style={{ font: 'var(--weight-base) var(--text-base)/var(--line-l) var(--font-core)', color: 'var(--colors-cold-grey-600)' }}>Take your first step with DFNS by creating a wallet.</span>
+            <div style={{ display: 'flex', gap: 'var(--space-300)' }}>
+              <Button leadingIcon={<Icon name="HeroiconsMiniWallet" size={16} />} onClick={() => onNavigate('Wallets')}>Create Wallet</Button>
+              <Button variant="secondary" trailingIcon={<Icon name="HeroiconsMiniArrowTopRight" size={16} />}>Read Docs</Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+function Wallets({ onCreate }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-400)' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-400)' }}>
+        <CardHeader title="Wallets" description="24 wallets across 7 networks." />
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--space-300)' }}>
+          <Button variant="outline" leadingIcon={<Icon name="HeroiconsMiniFunnel" size={16} />}>Filter</Button>
+          <Button leadingIcon={<Icon name="HeroiconsMiniPlus" size={16} />} onClick={onCreate}>Create Wallet</Button>
+        </div>
+      </div>
+      <Card>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead><tr><th style={th}>Wallet</th><th style={th}>Network</th><th style={th}>Address</th><th style={{ ...th, textAlign: 'right' }}>Asset</th><th style={{ ...th, textAlign: 'right' }}>Value</th><th style={{ ...th, textAlign: 'right' }}>Status</th></tr></thead>
+          <tbody>{WALLETS.map(w => (
+            <tr key={w.name}>
+              <td style={td}><span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-250)' }}><CryptoIcon symbol={w.symbol} size={24} />{w.name}</span></td>
+              <td style={td}><span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-200)', color: 'var(--colors-cold-grey-700)' }}><CryptoIcon symbol={w.symbol} shape="square" size={20} />{w.network}</span></td>
+              <td style={td}><span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-200)', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-s)', color: 'var(--colors-cold-grey-700)' }}>{w.address}<IconCopy size={16} style={{ color: 'var(--colors-cold-grey-500)' }} /></span></td>
+              <td style={{ ...td, ...num, textAlign: 'right' }}>{w.asset}</td>
+              <td style={{ ...td, ...num, textAlign: 'right' }}>{w.value}</td>
+              <td style={{ ...td, textAlign: 'right' }}><Badge color={w.status[0]}>{w.status[1]}</Badge></td>
+            </tr>
+          ))}</tbody>
+        </table>
+      </Card>
+    </div>
+  );
+}
+
+function Transfers({ loading }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-400)' }}>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-400)' }}>
+        <CardHeader title="Transaction History" description="Every inbound and outbound transfer, newest first." />
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--space-300)' }}>
+          <Button variant="ghost" leadingIcon={<Icon name="HeroiconsMiniArrowDownTray" size={16} />}>Export History</Button>
+          <Button leadingIcon={<Icon name="HeroiconsMiniArrowUpRight" size={16} />}>Send</Button>
+        </div>
+      </div>
+      <Card>
+        {loading ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-250)', padding: 'var(--space-600) 0', color: 'var(--colors-cold-grey-600)' }}>
+            <IconLoaderCircle size={20} style={{ color: 'var(--colors-ultra-purple-500)' }} />
+            <span style={{ font: 'var(--weight-base) var(--text-base)/1 var(--font-core)' }}>Fetching transactions…</span>
+          </div>
+        ) : (
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead><tr><th style={th}>Date</th><th style={th}>Wallet</th><th style={th}>Destination</th><th style={{ ...th, textAlign: 'right' }}>Amount</th><th style={{ ...th, textAlign: 'right' }}>Value</th><th style={{ ...th, textAlign: 'right' }}>Status</th></tr></thead>
+            <tbody>{TRANSFERS.map(t => (
+              <tr key={t.date}>
+                <td style={td}>{t.date}</td>
+                <td style={{ ...td, color: 'var(--colors-cold-grey-700)' }}>{t.wallet}</td>
+                <td style={{ ...td, fontFamily: 'var(--font-mono)', fontSize: 'var(--text-s)', color: 'var(--colors-cold-grey-700)' }}>{t.to}</td>
+                <td style={{ ...td, ...num, textAlign: 'right' }}>{t.amount}</td>
+                <td style={{ ...td, ...num, textAlign: 'right', color: t.fiat.startsWith('-') ? 'var(--colors-error-text)' : 'var(--colors-success-text)' }}>{t.fiat}</td>
+                <td style={{ ...td, textAlign: 'right' }}><Badge color={t.status[0]}>{t.status[1]}</Badge></td>
+              </tr>
+            ))}</tbody>
+          </table>
+        )}
+      </Card>
+    </div>
+  );
+}
+
+function Policies({ onApprove, approved }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-600)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-400)' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-400)' }}>
+          <CardHeader title="Policies" description="Rules evaluated before any transfer leaves a wallet." />
+          <Button style={{ marginLeft: 'auto' }} leadingIcon={<Icon name="HeroiconsMiniPlus" size={16} />}>Create Policy</Button>
+        </div>
+        <Card>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead><tr><th style={th}>Policy</th><th style={th}>Scope</th><th style={th}>Rule</th><th style={{ ...th, textAlign: 'right' }}>Status</th></tr></thead>
+            <tbody>{POLICIES.map(p => (
+              <tr key={p.name}>
+                <td style={td}><span style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-250)' }}><Icon name="Governance" size={22} />{p.name}</span></td>
+                <td style={{ ...td, color: 'var(--colors-cold-grey-700)' }}>{p.scope}</td>
+                <td style={{ ...td, color: 'var(--colors-cold-grey-700)' }}>{p.rule}</td>
+                <td style={{ ...td, textAlign: 'right' }}><Badge color={p.status[0]}>{p.status[1]}</Badge></td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </Card>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-300)' }}>
+        <SectionLabel>Pending Approvals</SectionLabel>
+        <div style={{ display: 'flex', gap: 'var(--space-400)' }}>
+          {APPROVALS.map(a => (
+            <Card key={a.wallet} style={{ flex: 1 }}>
+              <CardHeader title={a.amount + ' from ' + a.wallet} description={a.policy + ' · Requested by ' + a.requester + ' · ' + a.age} />
+              {approved.includes(a.wallet) ? (
+                <Badge color="green">Approved</Badge>
+              ) : (
+                <div style={{ display: 'flex', gap: 'var(--space-300)' }}>
+                  <Button size="sm" onClick={() => onApprove(a.wallet)}>Approve</Button>
+                  <Button size="sm" variant="ghost">Reject</Button>
+                  <CTATertiary style={{ alignSelf: 'center' }}>Review Policies Approvals</CTATertiary>
+                </div>
+              )}
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const SETTINGS_CATEGORIES = [
+  {
+    label: 'Security',
+    description: 'Control how members authenticate into this organisation.',
+    items: [
+      { icon: 'HeroiconsMiniFingerPrint', title: 'WebAuthn', description: 'Require a hardware key or platform passkey to sign in.', view: 'WebAuthn' },
+      { icon: 'HeroiconsMiniIdentification', title: 'Single Sign-On', description: 'Let members sign in through your identity provider.' },
+      { icon: 'HeroiconsMiniLockClosed', title: 'Manage Tokens', description: 'Add, price and verify the custom tokens this organisation supports.', view: 'ManageTokens' },
+    ],
+  },
+  {
+    label: 'Developers',
+    description: 'Programmatic access to this organisation.',
+    items: [
+      { icon: 'HeroiconsMiniBolt', title: 'Webhooks', description: 'Receive events for wallets, transfers and policies.' },
+      { icon: 'HeroiconsMiniKey', title: 'Personal Access Tokens', description: 'Generate tokens to authenticate API requests.' },
+      { icon: 'HeroiconsMiniReceiptPercent', title: 'Fee Sponsorship', description: 'Cover network fees on behalf of your wallets.' },
+      { icon: 'HeroiconsMiniServerStack', title: 'Canton Validators', description: 'Manage the validator nodes securing your Canton network.' },
+    ],
+  },
+  {
+    label: 'Compliance',
+    description: 'Records kept for review and reporting.',
+    items: [
+      { icon: 'HeroiconsMiniClipboardDocumentList', title: 'Audit Logs', description: 'Every action taken across this organisation, exportable for review.' },
+    ],
+  },
+];
+
+function SettingsRow({ icon, title, description, onClick }) {
+  return (
+    <button type="button" onClick={onClick} style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-300)', width: '100%',
+      padding: 'var(--space-400) 0', border: 'none', borderTop: '1px solid var(--colors-border-light)',
+      background: 'none', cursor: onClick ? 'pointer' : 'default', textAlign: 'left', font: 'inherit',
+    }}>
+      <span style={{ display: 'grid', placeItems: 'center', width: 36, height: 36, flex: 'none', borderRadius: 'var(--radius-base)', background: 'var(--colors-ultra-purple-50)', color: 'var(--colors-ultra-purple-700)' }}>
+        <Icon name={icon} size={20} />
+      </span>
+      <span style={{ display: 'flex', flexDirection: 'column', gap: 2, minWidth: 0 }}>
+        <span style={{ font: 'var(--weight-medium) var(--text-base)/var(--line-m) var(--font-core)', color: 'var(--colors-dark-purple-900)' }}>{title}</span>
+        <span style={{ font: 'var(--weight-base) var(--text-s)/var(--line-base) var(--font-core)', color: 'var(--colors-cold-grey-600)' }}>{description}</span>
+      </span>
+      <Icon name="HeroiconsMiniChevronRight" size={16} style={{ marginLeft: 'auto', flex: 'none', color: 'var(--colors-cold-grey-500)' }} />
+    </button>
+  );
+}
+
+function SettingsCategory({ label, description, items, onNavigate }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-300)' }}>
+      <CardHeader title={label} description={description} />
+      <Card style={{ gap: 0 }}>{items.map(item => (
+        <SettingsRow key={item.title} {...item} onClick={item.view ? () => onNavigate(item.view) : undefined} />
+      ))}</Card>
+    </div>
+  );
+}
+
+const PASSKEY_DOMAINS = [
+  { rp: 'app.dfns.co', origin: 'https://app.dfns.co' },
+  { rp: 'northwind.dfns.co', origin: 'https://northwind.dfns.co' },
+  { rp: 'staging.dfns.co', origin: 'https://staging.dfns.co' },
+  { rp: 'localhost', origin: 'http://localhost:3000' },
+];
+
+function SettingsBackLink({ onClick, children }) {
+  return (
+    <button type="button" onClick={onClick} style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-150)', alignSelf: 'flex-start',
+      border: 'none', background: 'none', cursor: 'pointer', padding: 0,
+      font: 'var(--weight-medium) var(--text-s)/1 var(--font-core)', color: 'var(--colors-cold-grey-600)',
+    }}><Icon name="HeroiconsMiniArrowLeft" size={16} />{children}</button>
+  );
+}
+
+function WebAuthnDetail({ onBack }) {
+  const [domains, setDomains] = React.useState(PASSKEY_DOMAINS);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-400)' }}>
+      <SettingsBackLink onClick={onBack}>Settings</SettingsBackLink>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-400)' }}>
+        <CardHeader title="WebAuthn" description="Domains allowed to register and authenticate passkeys for this organisation." />
+        <Button style={{ marginLeft: 'auto' }} leadingIcon={<Icon name="HeroiconsMiniPlus" size={16} />}>Add Domain</Button>
+      </div>
+      <Card>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead><tr><th style={th}>Relying Party ID</th><th style={th}>Origin</th><th style={{ ...th, textAlign: 'right' }}>Actions</th></tr></thead>
+          <tbody>{domains.map(d => (
+            <tr key={d.rp}>
+              <td style={td}>{d.rp}</td>
+              <td style={{ ...td, fontFamily: 'var(--font-mono)', fontSize: 'var(--text-s)', color: 'var(--colors-cold-grey-700)' }}>{d.origin}</td>
+              <td style={{ ...td, textAlign: 'right' }}>
+                <div style={{ display: 'flex', gap: 'var(--space-200)', justifyContent: 'flex-end' }}>
+                  <Button variant="ghost" size="icon" aria-label={'Edit ' + d.rp} leadingIcon={<Icon name="HeroiconsMiniPencil" size={16} />} />
+                  <Button variant="ghost" size="icon" aria-label={'Delete ' + d.rp}
+                    onClick={() => setDomains(domains.filter(x => x.rp !== d.rp))}
+                    leadingIcon={<Icon name="HeroiconsMiniTrash" size={16} style={{ color: 'var(--colors-error-text)' }} />} />
+                </div>
+              </td>
+            </tr>
+          ))}</tbody>
+        </table>
+      </Card>
+    </div>
+  );
+}
+
+const INITIAL_TOKENS = [
+  { id: 1, name: 'Northwind Points', symbol: 'NWP', network: 'Polygon', address: '0x4f…9ad1…0c73', price: 'US$0.42' },
+  { id: 2, name: 'Treasury Share', symbol: 'TRS', network: 'Ethereum', address: '0x91…7c02…44b9', price: 'US$12.5' },
+  { id: 3, name: 'Settlement Credit', symbol: 'STLC', network: 'Solana', address: 'KRAK…2942…0320', price: 'US$1' },
+];
+
+function TokenDialog({ open, initial, onClose, onSubmit }) {
+  const [form, setForm] = React.useState({ name: '', symbol: '', network: '', address: '', price: '' });
+  React.useEffect(() => { if (open) setForm(initial || { name: '', symbol: '', network: '', address: '', price: '' }); }, [open, initial]);
+  if (!open) return null;
+  const isEdit = !!initial;
+  const set = key => e => setForm(f => ({ ...f, [key]: e.target.value }));
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(23,12,51,0.4)', display: 'grid', placeItems: 'center', zIndex: 40 }}>
+      <div style={{ width: 440, padding: 'var(--space-600)', borderRadius: 'var(--radius-xl)', background: 'var(--colors-steel-grey-white)', boxShadow: 'var(--shadow-bold)', display: 'flex', flexDirection: 'column', gap: 'var(--space-500)' }}>
+        <CardHeader title={isEdit ? 'Edit Token' : 'Add Token'}
+          description={isEdit ? 'Update this token’s details.' : 'Register a custom token for wallets in this organisation.'} />
+        <Input label="Name" required placeholder="Northwind Points" value={form.name} onChange={set('name')} />
+        <Input label="Symbol" required placeholder="NWP" value={form.symbol} onChange={set('symbol')} />
+        <Input label="Network" placeholder="Polygon" trailingIcon={<Icon name="HeroiconsMiniChevronUpDown" size={16} />} value={form.network} onChange={set('network')} />
+        <Input label="Contract address" placeholder="0x4f…9ad1…0c73" value={form.address} onChange={set('address')} />
+        <Input label="Price" placeholder="US$0.42" value={form.price} onChange={set('price')} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--space-300)' }}>
+          <Button variant="ghost" onClick={onClose}>Cancel</Button>
+          <Button onClick={() => { onSubmit(form); onClose(); }}>{isEdit ? 'Save Changes' : 'Add Token'}</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MenuItem({ icon, label, tone, onClick }) {
+  const [hover, setHover] = React.useState(false);
+  return (
+    <button type="button" onClick={onClick} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-200)', width: '100%',
+      padding: 'var(--space-200) var(--space-250)', border: 'none', borderRadius: 'var(--radius-base)',
+      background: hover ? 'var(--colors-steel-grey-200)' : 'transparent', cursor: 'pointer', textAlign: 'left',
+      font: 'var(--weight-base) var(--text-base)/var(--line-m) var(--font-core)',
+      color: tone === 'danger' ? 'var(--colors-error-text)' : 'var(--colors-cold-grey-700)',
+    }}>
+      <Icon name={icon} size={16} />{label}
+    </button>
+  );
+}
+
+function RowActionsMenu({ label, onEdit, onDelete }) {
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!open) return;
+    const close = e => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', close);
+    return () => document.removeEventListener('mousedown', close);
+  }, [open]);
+  return (
+    <div ref={ref} style={{ position: 'relative', display: 'inline-block' }}>
+      <Button variant="ghost" size="icon" aria-label={label + ' actions'} onClick={() => setOpen(o => !o)}
+        leadingIcon={<Icon name="HeroiconsMiniEllipsisHorizontal" size={16} />} />
+      {open && (
+        <div style={{
+          position: 'absolute', right: 0, top: 'calc(100% + var(--space-100))', zIndex: 10, width: 160,
+          background: 'var(--colors-steel-grey-white)', borderRadius: 'var(--radius-large)',
+          boxShadow: 'var(--ring-card), var(--shadow-large)', padding: 'var(--space-100)',
+          display: 'flex', flexDirection: 'column', gap: 2,
+        }}>
+          <MenuItem icon="HeroiconsMiniPencil" label="Edit" onClick={() => { setOpen(false); onEdit(); }} />
+          <MenuItem icon="HeroiconsMiniTrash" label="Delete" tone="danger" onClick={() => { setOpen(false); onDelete(); }} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ManageTokensDetail({ onBack }) {
+  const [tokens, setTokens] = React.useState(INITIAL_TOKENS);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [editing, setEditing] = React.useState(null);
+  const openAdd = () => { setEditing(null); setDialogOpen(true); };
+  const openEdit = t => { setEditing(t); setDialogOpen(true); };
+  const submit = form => {
+    if (editing) {
+      setTokens(ts => ts.map(x => x.id === editing.id ? {
+        ...x, name: form.name || x.name, symbol: (form.symbol || x.symbol).toUpperCase(),
+        network: form.network || x.network, address: form.address || x.address, price: form.price || x.price,
+      } : x));
+    } else {
+      setTokens(ts => [...ts, {
+        id: Date.now(), name: form.name || 'Untitled Token', symbol: (form.symbol || '—').toUpperCase(),
+        network: form.network || '—', address: form.address || '—', price: form.price || '—',
+      }]);
+    }
+  };
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-400)' }}>
+      <SettingsBackLink onClick={onBack}>Settings</SettingsBackLink>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 'var(--space-400)' }}>
+        <CardHeader title="Manage Tokens" description="Custom tokens available to wallets in this organisation." />
+        <Button style={{ marginLeft: 'auto' }} leadingIcon={<Icon name="HeroiconsMiniPlus" size={16} />} onClick={openAdd}>Add Token</Button>
+      </div>
+      <Card>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead><tr>
+            <th style={th}>Token</th><th style={th}>Network</th><th style={th}>Contract Address</th>
+            <th style={{ ...th, textAlign: 'right' }}>Price</th><th style={{ ...th, textAlign: 'right' }}>Verified</th>
+            <th style={{ ...th, textAlign: 'right' }}>Actions</th>
+          </tr></thead>
+          <tbody>{tokens.map(t => (
+            <tr key={t.id}>
+              <td style={td}>
+                <span style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span>{t.name}</span>
+                  <span style={{ font: 'var(--weight-base) var(--text-s)/var(--line-base) var(--font-core)', color: 'var(--colors-cold-grey-600)' }}>{t.symbol}</span>
+                </span>
+              </td>
+              <td style={{ ...td, color: 'var(--colors-cold-grey-700)' }}>{t.network}</td>
+              <td style={{ ...td, fontFamily: 'var(--font-mono)', fontSize: 'var(--text-s)', color: 'var(--colors-cold-grey-700)' }}>{t.address}</td>
+              <td style={{ ...td, ...num, textAlign: 'right' }}>{t.price}</td>
+              <td style={{ ...td, textAlign: 'right' }}>
+                <Icon name="HeroiconsMiniCheckCircle" size={20} aria-label="Verified" style={{ color: 'var(--colors-success-base)' }} />
+              </td>
+              <td style={{ ...td, textAlign: 'right' }}>
+                <RowActionsMenu label={t.name} onEdit={() => openEdit(t)} onDelete={() => setTokens(ts => ts.filter(x => x.id !== t.id))} />
+              </td>
+            </tr>
+          ))}</tbody>
+        </table>
+      </Card>
+      <TokenDialog open={dialogOpen} initial={editing} onClose={() => setDialogOpen(false)} onSubmit={submit} />
+    </div>
+  );
+}
+
+function Settings() {
+  const [view, setView] = React.useState('index');
+  if (view === 'WebAuthn') return <WebAuthnDetail onBack={() => setView('index')} />;
+  if (view === 'ManageTokens') return <ManageTokensDetail onBack={() => setView('index')} />;
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-600)' }}>
+      <CardHeader title="Settings" description="Manage authentication, developer access and network configuration for this organisation." />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-500)' }}>
+        {SETTINGS_CATEGORIES.map(cat => <SettingsCategory key={cat.label} {...cat} onNavigate={setView} />)}
+      </div>
+    </div>
+  );
+}
+
+function CreateWalletDialog({ open, onClose, onCreate }) {
+  const [name, setName] = React.useState('');
+  if (!open) return null;
+  return (
+    <div style={{ position: 'fixed', inset: 0, background: 'rgba(23,12,51,0.4)', display: 'grid', placeItems: 'center', zIndex: 40 }}>
+      <div style={{ width: 440, padding: 'var(--space-600)', borderRadius: 'var(--radius-xl)', background: 'var(--colors-steel-grey-white)', boxShadow: 'var(--shadow-bold)', display: 'flex', flexDirection: 'column', gap: 'var(--space-500)' }}>
+        <CardHeader title="Create Wallet" description="Choose a name and network. The wallet's keys are generated inside DFNS." />
+        <Input label="Wallet name" required placeholder="Northwind Treasury" value={name} onChange={e => setName(e.target.value)} />
+        <Input label="Network" placeholder="Bitcoin" trailingIcon={<Icon name="HeroiconsMiniChevronUpDown" size={16} />} />
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--space-300)' }}>
+          <Button variant="ghost" onClick={onClose}>Cancel</Button>
+          <Button onClick={() => { onCreate(name || 'Northwind Treasury'); onClose(); }}>Create Wallet</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { Overview, Wallets, Transfers, Policies, Settings, CreateWalletDialog });
+</script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+const { Sidebar, TopBar, Overview, Wallets, Transfers, Policies, Settings, CreateWalletDialog } = window;
+const { Badge } = window.DFNSDesignSystem_86e15f;
+
+const IMPLEMENTED_VIEWS = ['Dashboard', 'Wallets', 'Transfers', 'Policies', 'Approvals', 'Settings'];
+
+function DashboardApp() {
+  const [view, setView] = useState('Dashboard');
+  const [dialog, setDialog] = useState(false);
+  const [approved, setApproved] = useState([]);
+  const [toast, setToast] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (view !== 'Transfers') return;
+    setLoading(true);
+    const t = setTimeout(() => setLoading(false), 700);
+    return () => clearTimeout(t);
+  }, [view]);
+
+  const notify = msg => { setToast(msg); setTimeout(() => setToast(null), 2200); };
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--colors-background-base)' }}>
+      <Sidebar active={view} onNavigate={setView} />
+      <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+        <TopBar onSearch={() => {}} />
+        <main style={{ flex: 1, padding: 'var(--space-800)', display: 'flex', flexDirection: 'column', gap: 'var(--space-600)' }}>
+          {view === 'Dashboard' && <Overview onNavigate={setView} />}
+          {view === 'Wallets' && <Wallets onCreate={() => setDialog(true)} />}
+          {view === 'Transfers' && <Transfers loading={loading} />}
+          {(view === 'Policies' || view === 'Approvals') && <Policies approved={approved} onApprove={w => { setApproved(a => [...a, w]); notify('Approval Recorded'); }} />}
+          {view === 'Settings' && <Settings />}
+          {!IMPLEMENTED_VIEWS.includes(view) && (
+            <div style={{ padding: 'var(--space-800)', borderRadius: 'var(--radius-xl)', background: 'var(--colors-steel-grey-white)', boxShadow: 'var(--ring-card), var(--shadow-base)', display: 'flex', flexDirection: 'column', gap: 'var(--space-300)' }}>
+              <span style={{ font: 'var(--weight-bold) var(--text-m)/1 var(--font-core)', letterSpacing: 'var(--tracking-tight)', color: 'var(--colors-dark-purple-900)' }}>{view}</span>
+              <span style={{ font: 'var(--weight-base) var(--text-base)/var(--line-m) var(--font-core)', color: 'var(--colors-cold-grey-600)' }}>No data yet. This view is not designed in the source Figma file, so it is left blank rather than invented.</span>
+            </div>
+          )}
+        </main>
+      </div>
+      <CreateWalletDialog open={dialog} onClose={() => setDialog(false)} onCreate={name => notify('Wallet Created — ' + name)} />
+      {toast && (
+        <div style={{ position: 'fixed', right: 'var(--space-800)', bottom: 'var(--space-800)', padding: 'var(--space-300) var(--space-400)', borderRadius: 'var(--radius-xl)', background: 'var(--colors-cold-grey-900)', boxShadow: 'var(--shadow-large)', display: 'flex', alignItems: 'center', gap: 'var(--space-250)' }}>
+          <Badge color="green">Done</Badge>
+          <span style={{ font: 'var(--weight-base) var(--text-base)/1 var(--font-core)', color: 'var(--colors-cold-grey-100)' }}>{toast}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+Object.assign(window, { DashboardApp });
+
+if (!window.__dfnsRoot) window.__dfnsRoot = ReactDOM.createRoot(document.getElementById('root'));
+window.__dfnsRoot.render(<DashboardApp />);
+</script>
+</body></html>

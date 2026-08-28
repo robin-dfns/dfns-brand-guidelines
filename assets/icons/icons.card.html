@@ -1,23 +1,27 @@
-<!-- @dsCard group="Iconography" viewport="700x200" name="Heroicons v2.2.0" subtitle="964 glyphs · solid 24 / mini 20 / micro 16" -->
-<!DOCTYPE html><html><head><meta charset="utf-8">
+<!-- @dsCard group="Components" viewport="700x260" name="Icon" subtitle="1,269 glyphs — Heroicons at four weights plus six DFNS product marks" -->
+<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
-<style>body{margin:0;padding:20px;background:var(--background-base);color:#363a5b}</style>
-</head><body><div id="root"></div>
+<style>body{margin:0;padding:20px;background:var(--colors-steel-grey-white)}.row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.col{display:flex;flex-direction:column;gap:12px}.lbl{font:var(--weight-medium) 10px/1 var(--font-core);letter-spacing:.06em;text-transform:uppercase;color:var(--colors-cold-grey-500)}</style></head><body><div id="root"></div>
 <script type="text/babel">
-const { Icon } = window.DFNSDesignSystem_12f785;
-const names = ['Wallet','Key','LockClosed','ShieldCheck','FingerPrint','CreditCard','BuildingLibrary','ChartBarSquare','ArrowsRightLeft','CommandLine','Cube','GlobeAlt','UserGroup','Cog6Tooth','BellAlert','QrCode','DocumentText','CheckCircle','ExclamationTriangle','MagnifyingGlass'];
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <div style={{display:'flex',flexDirection:'column',gap:18}}>
-    {[['Solid',24],['Mini',20],['Micro',16]].map(([styleName,size]) => (
-      <div key={styleName} style={{display:'flex',gap:14,alignItems:'center'}}>
-        <span style={{width:62,fontSize:11,color:'#575c7b',fontFamily:'var(--font-mono)'}}>{styleName} {size}</span>
-        {names.slice(0,14).map(n => <Icon key={n} name={'Heroicons'+styleName+n} size={size} style={{color:'#363a5b'}}/>) }
-      </div>
-    ))}
+const { Icon } = window.DFNSDesignSystem_86e15f;
+const dfns = ['Asset','Attestation','Audit','Auth','Gate','Governance'];
+const weights = ['Micro','Mini','Outline','Solid'];
+const sample = ['Wallet','ArrowsUpDown','ShieldCheck','Key','FingerPrint','CircleStack','BuildingLibrary','Cog8Tooth','ArrowTrendingUp','QrCode','Users','DocumentText'];
+const box = { display:'grid', placeItems:'center', width:34, height:34, borderRadius:'var(--radius-large)', background:'var(--colors-steel-grey-100)', color:'var(--colors-cold-grey-700)' };
+ReactDOM.createRoot(document.getElementById('root')).render(<div className="col" style={{gap:14}}>
+  <div className="col" style={{gap:6}}>
+    <span className="lbl">DFNS product marks</span>
+    <div className="row" style={{gap:10}}>{dfns.map(n => <span key={n} style={{...box,width:40,height:40,color:'var(--colors-ultra-purple-700)'}}><Icon name={n} size={26} /></span>)}</div>
   </div>
-);
+  {weights.map(w => (
+    <div className="col" key={w} style={{gap:6}}>
+      <span className="lbl">heroicons {w.toLowerCase()}</span>
+      <div className="row" style={{gap:8}}>{sample.map(s => <span key={s} style={box}><Icon name={'Heroicons'+w+s} size={w==='Micro'?16:20} /></span>)}</div>
+    </div>
+  ))}
+</div>);
 </script></body></html>

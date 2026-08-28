@@ -1,21 +1,49 @@
 import React from 'react';
 
-/* Token-driven text input. Consumes the semantic input + state tokens. */
-export function Input({ label, placeholder, value, onChange, iconLeft, iconRight, action, disabled = false, style, ...rest }) {
+/* Figma: Input (node 424:307). Field 36px tall, radius 12, white fill, 1px Cold Grey 300
+   inset ring, 4/12 padding, 8px gap, 16px leading/trailing glyphs. Label Suisse Intl 400 14
+   in Cold Grey 900 with an 8px gap above the field. */
+
+export function Input({
+  label, required = false, hint, leadingIcon, trailingIcon,
+  placeholder = 'Placeholder', invalid = false, disabled = false, style, ...rest
+}) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'stretch', fontFamily: 'var(--font-sans)', ...style }} {...rest}>
-      {(label || action) && (
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-          {label && <label style={{ fontWeight: 400, fontSize: 14, lineHeight: 1, color: 'var(--font-body-base,#1e202e)' }}>{label}</label>}
-          {action}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-200)', ...style }}>
+      {(label || hint) && (
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 'var(--space-200)' }}>
+          {label && (
+            <label style={{ fontFamily: 'var(--font-core)', fontSize: 'var(--text-base)', fontWeight: 'var(--weight-base)', lineHeight: 1, color: 'var(--colors-cold-grey-900)' }}>
+              {label}{required && <span style={{ color: 'var(--colors-error-base)' }}> *</span>}
+            </label>
+          )}
+          {hint && <span style={{ fontFamily: 'var(--font-core)', fontSize: 'var(--text-base)', lineHeight: 1, color: 'var(--colors-cold-grey-900)', textAlign: 'right' }}>{hint}</span>}
         </div>
       )}
-      <div style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center', height: 36, padding: '4px 12px', borderRadius: 6, backgroundColor: disabled ? 'var(--states-disabled-background,#e8eaf0)' : 'var(--base-input-background,#ffffff)', boxShadow: 'inset 0 0 0 1px var(--base-input-border,#c5c9de)', boxSizing: 'border-box' }}>
-        {iconLeft}
-        <input disabled={disabled} placeholder={placeholder} value={value} onChange={onChange}
-          style={{ flexGrow: 1, minWidth: 0, border: 'none', outline: 'none', background: 'transparent', fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: 14, color: disabled ? 'var(--states-disabled-text,#aeb1c9)' : 'var(--font-body-base,#1e202e)' }} />
-        {iconRight}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 'var(--space-200)',
+        height: 'var(--control-h-9)', padding: 'var(--space-100) var(--space-300)',
+        borderRadius: 'var(--radius-xl)', overflow: 'hidden',
+        background: disabled ? 'var(--colors-states-disabled-background)' : 'var(--colors-base-input-background)',
+        boxShadow: invalid
+          ? 'inset 0 0 0 var(--stroke-base) var(--colors-error-base)'
+          : 'var(--ring-input)',
+        color: 'var(--colors-cold-grey-900)',
+      }}>
+        {leadingIcon}
+        <input
+          disabled={disabled}
+          placeholder={placeholder}
+          style={{
+            flex: 1, minWidth: 0, border: 'none', outline: 'none', background: 'transparent',
+            fontFamily: 'var(--font-core)', fontSize: 'var(--text-base)', fontWeight: 'var(--weight-base)',
+            lineHeight: 1, color: 'inherit', padding: 0,
+          }}
+          {...rest}
+        />
+        {trailingIcon}
       </div>
     </div>
   );
 }
+export default Input;
