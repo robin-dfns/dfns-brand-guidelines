@@ -1,0 +1,16 @@
+<!-- @dsCard group="Colors" viewport="700x330" name="System" subtitle="Red, green, yellow and blue ramps behind every status and alert." -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:18px;background:var(--colors-steel-grey-white);font-family:var(--font-core)}
+.ramp{display:flex;gap:0;border-radius:var(--radius-large);overflow:hidden}
+.ramp>div{flex:1;height:76px;display:flex;align-items:flex-end;padding:6px;font:var(--weight-medium) 9px/1.3 var(--font-core)}
+.sw{display:flex;flex-direction:column;gap:6px}
+.chip{height:52px;border-radius:var(--radius-base)}
+.meta{font:var(--weight-medium) 9px/1.3 var(--font-core);color:var(--colors-cold-grey-600);letter-spacing:.02em}
+.name{font:var(--weight-medium) 10px/1.3 var(--font-core);color:var(--colors-cold-grey-900)}
+.grid{display:grid;gap:10px}
+</style></head><body><div style="display:flex;flex-direction:column;gap:12px">
+<div class="sw"><span class="name">Red — error</span><div class="ramp"><div style="background:var(--colors-system-red-100);color:#961B2C">100</div><div style="background:var(--colors-system-red-300);color:#961B2C">300</div><div style="background:var(--colors-system-red-500);color:#fff">500</div><div style="background:var(--colors-system-red-700);color:#fff">700</div><div style="background:var(--colors-system-red-900);color:#fff">900</div></div></div>
+<div class="sw"><span class="name">Green — success</span><div class="ramp"><div style="background:var(--colors-system-green-100);color:#056F15">100</div><div style="background:var(--colors-system-green-300);color:#056F15">300</div><div style="background:var(--colors-system-green-500);color:#056F15">500</div><div style="background:var(--colors-system-green-700);color:#fff">700</div><div style="background:var(--colors-system-green-900);color:#fff">900</div></div></div>
+<div class="sw"><span class="name">Yellow — warning</span><div class="ramp"><div style="background:var(--colors-system-yellow-100);color:#85390A">100</div><div style="background:var(--colors-system-yellow-300);color:#85390A">300</div><div style="background:var(--colors-system-yellow-500);color:#fff">500</div><div style="background:var(--colors-system-yellow-700);color:#fff">700</div><div style="background:var(--colors-system-yellow-900);color:#fff">900</div></div></div>
+<div class="sw"><span class="name">Blue — information</span><div class="ramp"><div style="background:var(--colors-system-blue-100);color:#0021B2">100</div><div style="background:var(--colors-system-blue-300);color:#0021B2">300</div><div style="background:var(--colors-system-blue-500);color:#fff">500</div><div style="background:var(--colors-system-blue-700);color:#fff">700</div><div style="background:var(--colors-system-blue-900);color:#fff">900</div></div></div>
+</div></body></html>

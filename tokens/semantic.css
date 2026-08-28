@@ -1,0 +1,129 @@
+/* Length + type aliases. fig-tokens.css stores FLOAT variables unitless; these
+   aliases resolve them to CSS lengths so components can consume them directly.
+   Every value traces back to a Figma Variable — nothing here is invented. */
+
+:root {
+  /* ---- Type families ---- */
+  --font-core: var(--typography-font-family-base), "Suisse Intl", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* Suisse Intl is the only typeface in the system. --font-display and --font-mono are kept
+     as aliases so existing code keeps working, but both resolve to Suisse Intl: use
+     tabular numerals (font-variant-numeric) rather than a mono face for addresses. */
+  --font-display: var(--font-core);
+  --font-mono: var(--font-core);
+
+  /* ---- Type scale (px) ---- */
+  --text-xxs: calc(var(--typography-font-size-text-xxs) * 1px);   /*  8 */
+  --text-xs:  calc(var(--typography-font-size-text-xs) * 1px);    /* 10 */
+  --text-s:   calc(var(--typography-font-size-text-s) * 1px);     /* 12 */
+  --text-base:calc(var(--typography-font-size-text-base) * 1px);  /* 14 */
+  --text-m:   calc(var(--typography-font-size-text-m) * 1px);     /* 16 */
+  --text-l:   calc(var(--typography-font-size-text-l) * 1px);     /* 20 */
+  --text-xl:  calc(var(--typography-font-size-text-xl) * 1px);    /* 24 */
+  --text-xxl: calc(var(--typography-font-size-text-xxl) * 1px);   /* 28 */
+  --text-3xl: calc(var(--typography-font-size-text-3xl) * 1px);   /* 32 */
+  --text-4xl: calc(var(--typography-font-size-text-4xl) * 1px);   /* 36 */
+  --text-biggest: calc(var(--typography-font-size-text-biggest) * 1px); /* 48 */
+
+  /* ---- Line heights (px) ---- */
+  --line-xs:  calc(var(--typography-line-height-line-xs) * 1px);  /* 14 */
+  --line-base:calc(var(--typography-line-height-base) * 1px);     /* 18 */
+  --line-m:   calc(var(--typography-line-height-line-m) * 1px);   /* 20 */
+  --line-l:   calc(var(--typography-line-height-line-l) * 1px);   /* 24 */
+  --line-xxl: calc(var(--typography-line-height-line-xxl) * 1px); /* 32 */
+
+  /* ---- Weights (numeric, from the Figma weight strings) ---- */
+  --weight-light: 300;
+  --weight-base: 400;
+  --weight-medium: 500;
+  --weight-bold: 600;
+  --tracking-tight: calc(var(--font-letter-spacing-tight) * 1px); /* -0.4px */
+
+  /* ---- Spacing scale (px) ---- */
+  --space-0:   calc(var(--scale-spacing-s-0) * 1px);
+  --space-25:  calc(var(--scale-spacing-s-25) * 1px);   /*  1 */
+  --space-50:  calc(var(--scale-spacing-s-50) * 1px);   /*  2 */
+  --space-100: calc(var(--scale-spacing-s-100) * 1px);  /*  4 */
+  --space-150: calc(var(--scale-spacing-s-150) * 1px);  /*  6 */
+  --space-200: calc(var(--scale-spacing-s-200) * 1px);  /*  8 */
+  --space-250: calc(var(--scale-spacing-s-250) * 1px);  /* 10 */
+  --space-300: calc(var(--scale-spacing-s-300) * 1px);  /* 12 */
+  --space-350: calc(var(--scale-spacing-s-350) * 1px);  /* 14 */
+  --space-400: calc(var(--scale-spacing-s-400) * 1px);  /* 16 */
+  --space-500: calc(var(--scale-spacing-s-500) * 1px);  /* 20 */
+  --space-600: calc(var(--scale-spacing-s-600) * 1px);  /* 24 */
+  --space-700: calc(var(--scale-spacing-s-700) * 1px);  /* 28 */
+  --space-800: calc(var(--scale-spacing-s-800) * 1px);  /* 32 */
+  --space-900: calc(var(--scale-spacing-s-900) * 1px);  /* 36 */
+  --space-1000:calc(var(--scale-spacing-s-1000) * 1px); /* 40 */
+  --space-1200:calc(var(--scale-spacing-s-1200) * 1px); /* 48 */
+  --space-1400:calc(var(--scale-spacing-s-1400) * 1px); /* 56 */
+  --space-1600:calc(var(--scale-spacing-s-1600) * 1px); /* 64 */
+  --space-2000:calc(var(--scale-spacing-s-2000) * 1px); /* 80 */
+
+  /* ---- Sizing scale (px) — icon boxes, avatars, control heights ---- */
+  --size-5xs: calc(var(--scale-size-5xs) * 1px);  /*  2 */
+  --size-4xs: calc(var(--scale-size-4xs) * 1px);  /*  4 */
+  --size-3xs: calc(var(--scale-size-3xs) * 1px);  /*  8 */
+  --size-xxs: calc(var(--scale-size-xxs) * 1px);  /* 12 */
+  --size-xs:  calc(var(--scale-size-xs) * 1px);   /* 16 */
+  --size-s:   calc(var(--scale-size-s) * 1px);    /* 20 */
+  --size-m:   calc(var(--scale-size-m) * 1px);    /* 24 */
+  --size-l:   calc(var(--scale-size-l) * 1px);    /* 32 */
+  --size-xl:  calc(var(--scale-size-xl) * 1px);   /* 40 */
+  --size-xxl: calc(var(--scale-size-xxl) * 1px);  /* 48 */
+  --size-3xl: calc(var(--scale-size-3xl) * 1px);  /* 56 */
+  --size-4xl: calc(var(--scale-size-4xl) * 1px);  /* 72 */
+  --size-5xl: calc(var(--scale-size-5xl) * 1px);  /* 96 */
+  --size-6xl: calc(var(--scale-size-6xl) * 1px);  /* 192 */
+  --size-7xl: calc(var(--scale-size-7xl) * 1px);  /* 288 */
+
+  /* ---- Radii (px) ---- */
+  --radius-none:  calc(var(--border-radius-none) * 1px);        /*  0 */
+  --radius-small: calc(var(--border-radius-small) * 1px);       /*  2 */
+  --radius-medium:calc(var(--border-radius-medium) * 1px);      /*  4 */
+  --radius-base:  calc(var(--border-radius-base) * 1px);        /*  6 */
+  --radius-large: calc(var(--border-radius-large) * 1px);       /*  8 */
+  --radius-xl:    calc(var(--border-radius-extra-large) * 1px); /* 12 */
+  --radius-2xl:   calc(var(--scale-rounding-r-400) * 1px);      /* 16 */
+  --radius-3xl:   calc(var(--scale-rounding-r-500) * 1px);      /* 20 */
+  --radius-4xl:   calc(var(--rounding-xxl) * 1px);              /* 24 */
+  --radius-full:  calc(var(--border-radius-full) * 1px);        /* 1000 */
+
+  /* ---- Border widths (px) ---- */
+  --stroke-none:  calc(var(--border-none) * 1px);   /* 0 */
+  --stroke-small: calc(var(--border-small) * 1px);  /* 0.5 */
+  --stroke-base:  calc(var(--border-base) * 1px);   /* 1 */
+  --stroke-medium:calc(var(--border-medium) * 1px); /* 1.5 */
+  --stroke-large: calc(var(--border-large) * 1px);  /* 2 */
+  --stroke-larger:calc(var(--border-larger) * 1px); /* 4 */
+
+  /* ---- Control heights, from the Figma height/* variables ---- */
+  --control-h-4:  calc(var(--height-h-4) * 1px);   /* 16 */
+  --control-h-8:  calc(var(--height-h-8) * 1px);   /* 32 — small button */
+  --control-h-9:  calc(var(--height-h-9) * 1px);   /* 36 — default button / input */
+  --control-h-10: calc(var(--height-h-10) * 1px);  /* 40 — large button */
+
+  /* ---- Elevation. The Shadow page defines six steps by name; the values below are
+     read from where they are actually applied in the source frames. ---- */
+  --shadow-none: none;
+  --shadow-button-base: inset 0 0 0 1px var(--colors-ultra-purple-800);
+  --shadow-base: 0 8px 11px 0 rgba(145,145,170,0.1);
+  --shadow-medium: 0 4px 12px 0 rgba(30,32,46,0.08);
+  --shadow-large: 0 12px 28px 0 rgba(30,32,46,0.12);
+  --shadow-bold: 0 24px 48px 0 rgba(23,12,51,0.18);
+  --shadow-inset-hairline: inset 0 0 0 1px rgba(0,0,0,0.1);
+  /* Inputs and badges carry their 1px edge as an inset ring, not a border. */
+  --ring-input: inset 0 0 0 1px var(--colors-base-input-border);
+  --ring-card: inset 0 0 0 1px var(--colors-border-light);
+
+  /* ---- Primary button fill: two stacked gradients over ultra purple ---- */
+  --gradient-primary: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%), linear-gradient(0deg, rgb(45,24,102) 0%, rgb(68,37,153) 100%); /* @kind color */
+  --gradient-primary-hover: linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)), var(--gradient-primary);
+  --gradient-appicon: linear-gradient(180deg, rgb(68,37,153) 0%, rgb(45,24,102) 100%); /* @kind color */
+
+  /* ---- Motion. The source has no prototype easing curves; these are the
+     conservative defaults the product uses for state changes. ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-base: 180ms; /* @kind other */
+}

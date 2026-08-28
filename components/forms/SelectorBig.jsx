@@ -1,18 +1,29 @@
 import React from 'react';
-import Icon from '../../assets/icons/Icon.jsx';
 
-/* Token-driven big selector (elevation-1 surface, input border, brand icon slot). */
-export function SelectorBig({ icon, label = 'Select', onClick, style, ...rest }) {
+/* Figma: Selector Big (node 454:155). 44px tall, radius 8, Steel Grey 200 fill with a 1px
+   Cold Grey 300 inset ring, 8px padding, 8px gap. A 28px radius-4 avatar leads; the label is
+   Suisse Intl 500 14/20 in Cold Grey 700; a 20px chevron-up-down at 50% opacity trails. */
+
+export function SelectorBig({ label = 'Stripe Treasury', avatar, avatarColor = 'rgb(104,92,254)', trailingIcon, style, ...rest }) {
   return (
-    <button type="button" onClick={onClick}
-      style={{ display: 'flex', flexDirection: 'row', gap: 8, alignItems: 'center', width: 240, height: 44, padding: 8, borderRadius: 6, backgroundColor: 'var(--background-elevation-1,#e8eaf0)', boxShadow: 'inset 0 0 0 1px var(--base-input-border,#c5c9de)', border: 'none', cursor: 'pointer', boxSizing: 'border-box', textAlign: 'left', ...style }} {...rest}>
-      {icon ? (
-        <span style={{ display: 'inline-flex', width: 28, height: 28, borderRadius: 4, overflow: 'hidden', flexShrink: 0, alignItems: 'center', justifyContent: 'center' }}>{icon}</span>
-      ) : (
-        <span style={{ width: 28, height: 28, borderRadius: 4, background: 'var(--ultra-purple-500,#693aea)', flexShrink: 0 }} />
-      )}
-      <span style={{ flexGrow: 1, fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 14, lineHeight: '20px', color: 'var(--font-body-mid,#363a5b)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>
-      <Icon name="HeroiconsMiniChevronUpDown" size={20} style={{ opacity: 0.5, color: 'var(--icons-primary,#363a5b)', flexShrink: 0 }} />
+    <button type="button" style={{
+      display: 'flex', alignItems: 'center', gap: 'var(--space-200)',
+      width: 240, height: 44, padding: 'var(--space-200)',
+      borderRadius: 'var(--radius-large)', border: 'none', overflow: 'hidden',
+      background: 'var(--colors-steel-grey-200)', boxShadow: 'var(--ring-input)',
+      cursor: 'pointer', textAlign: 'left', ...style,
+    }} {...rest}>
+      <span style={{
+        flexShrink: 0, width: 28, height: 28, borderRadius: 'var(--radius-medium)',
+        background: avatarColor, display: 'grid', placeItems: 'center', overflow: 'hidden',
+      }}>{avatar}</span>
+      <span style={{
+        flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+        fontFamily: 'var(--font-core)', fontWeight: 'var(--weight-medium)',
+        fontSize: 'var(--text-base)', lineHeight: 'var(--line-m)', color: 'var(--colors-cold-grey-700)',
+      }}>{label}</span>
+      <span style={{ flexShrink: 0, opacity: 0.5, display: 'flex', color: 'var(--colors-cold-grey-700)' }}>{trailingIcon}</span>
     </button>
   );
 }
+export default SelectorBig;

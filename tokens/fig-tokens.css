@@ -1,4 +1,7 @@
 /* Generated from Figma Variables. First mode = :root default.
+   AMENDED: --typography-font-family-font-sans and --typography-font-family-mono named
+   "PP Neue Montreal" and "Roboto Mono" in the source file. Both were removed from the
+   system at the team's direction; the tokens now resolve to Suisse Intl.
    FLOAT tokens are unitless — multiply by 1px in calc() where a length is needed. */
 
 :root {
@@ -24,22 +27,22 @@
   --base-secondary-foreground: var(--colors-secondary-foreground-light); /* @kind color */
   --base-sidebar-primary: var(--colors-sidebar-primary-light); /* @kind color */
   --base-sidebar-ring: var(--colors-sidebar-ring-light); /* @kind color */
-  --border-base-2: 1; /* @kind other */
+  --border-base-2: 1; /* @kind spacing */
   --border-base: var(--scale-border-b-100); /* @kind other */
   --border-large: var(--scale-border-r-200); /* @kind other */
-  --border-larger: var(--scale-border-r-bold);
+  --border-larger: var(--scale-border-r-bold); /* @kind other */
   --border-medium: var(--scale-border-b-150); /* @kind other */
-  --border-none: var(--scale-border-b-0);
+  --border-none: var(--scale-border-b-0); /* @kind other */
   --border-radius-base: var(--scale-rounding-r-150); /* @kind other */
-  --border-radius-extra-large: var(--scale-rounding-r-300);
-  --border-radius-full: var(--scale-rounding-r-full);
+  --border-radius-extra-large: var(--scale-rounding-r-300); /* @kind other */
+  --border-radius-full: var(--scale-rounding-r-full); /* @kind other */
   --border-radius-large: var(--scale-rounding-r-200); /* @kind other */
-  --border-radius-lg: var(--radius-rounded-lg);
+  --border-radius-lg: var(--radius-rounded-lg); /* @kind other */
   --border-radius-md-2: var(--radius-rounded-md-2); /* @kind other */
-  --border-radius-md: var(--radius-rounded-md);
+  --border-radius-md: var(--radius-rounded-md); /* @kind other */
   --border-radius-medium: var(--scale-rounding-r-100); /* @kind other */
   --border-radius-none: var(--scale-rounding-r-0); /* @kind other */
-  --border-radius-small: var(--scale-rounding-r-50);
+  --border-radius-small: var(--scale-rounding-r-50); /* @kind other */
   --border-radius-xl: var(--radius-rounded-xl); /* @kind other */
   --border-small: var(--scale-border-b-50); /* @kind other */
   --colors-accent-foreground-dark: rgb(248,248,250); /* @kind color */
@@ -76,6 +79,13 @@
   --colors-base-primary: var(--colors-ultra-purple-800); /* @kind color */
   --colors-base-secondary-foreground: var(--colors-ultra-purple-700); /* @kind color */
   --colors-base-secondary: var(--colors-cold-grey-100); /* @kind color */
+  --colors-black-and-white-black-100: rgb(18,18,22); /* @kind color */
+  --colors-black-and-white-black-200: rgb(30,30,35); /* @kind color */
+  --colors-black-and-white-black: rgb(0,0,0); /* @kind color */
+  --colors-black-and-white-white-100: rgb(250,250,252); /* @kind color */
+  --colors-black-and-white-white-200: rgb(244,244,248); /* @kind color */
+  --colors-black-and-white-white: rgb(255,255,255); /* @kind color */
+  --colors-black-white-white: rgb(255,255,255); /* @kind color */
   --colors-border-dark-2: rgb(108,113,125); /* @kind color */
   --colors-border-dark: rgb(108,113,125); /* @kind color */
   --colors-border-light-2: rgb(225,228,236); /* @kind color */
@@ -197,26 +207,26 @@
   --colors-warning-background: var(--colors-system-yellow-100); /* @kind color */
   --colors-warning-base: var(--colors-system-yellow-500); /* @kind color */
   --colors-warning-text: var(--colors-system-yellow-700); /* @kind color */
-  --font-letter-spacing-tight: -0.4;
-  --font-line-height-leading-4-2: 16;
-  --font-line-height-leading-4: 16;
-  --font-line-height-leading-5-2: 20;
-  --font-line-height-leading-5: 20;
-  --font-size-text-2xl: 24;
-  --font-size-text-base: 16;
-  --font-size-text-sm-2: 14;
-  --font-size-text-sm: 14;
-  --font-size-text-xs-2: 12;
-  --font-size-text-xs: 12;
+  --font-letter-spacing-tight: -0.4; /* @kind other */
+  --font-line-height-leading-4-2: 16; /* @kind font */
+  --font-line-height-leading-4: 16; /* @kind font */
+  --font-line-height-leading-5-2: 20; /* @kind font */
+  --font-line-height-leading-5: 20; /* @kind font */
+  --font-size-text-2xl: 24; /* @kind font */
+  --font-size-text-base: 16; /* @kind font */
+  --font-size-text-sm-2: 14; /* @kind font */
+  --font-size-text-sm: 14; /* @kind font */
+  --font-size-text-xs-2: 12; /* @kind font */
+  --font-size-text-xs: 12; /* @kind font */
   --font-weight-medium-2: 500; /* @kind other */
   --font-weight-medium: 500; /* @kind other */
   --font-weight-normal-2: 400; /* @kind other */
   --font-weight-normal: 400; /* @kind other */
   --font-weight-semibold: 600; /* @kind other */
-  --height-h-10: 40; /* @kind other */
-  --height-h-4: 16; /* @kind other */
-  --height-h-8: 32; /* @kind other */
-  --height-h-9: 36; /* @kind other */
+  --height-h-10: 40; /* @kind spacing */
+  --height-h-4: 16; /* @kind spacing */
+  --height-h-8: 32; /* @kind spacing */
+  --height-h-9: 36; /* @kind spacing */
   --opacity-0: 0; /* @kind other */
   --opacity-1000: 100; /* @kind other */
   --opacity-100: 10; /* @kind other */
@@ -236,112 +246,112 @@
   --purple-600: rgb(90,49,204); /* @kind color */
   --purple-700: rgb(68,37,153); /* @kind color */
   --purple-800: rgb(45,24,102); /* @kind color */
-  --radius-rounded-lg: 8; /* @kind other */
-  --radius-rounded-md-2: 6; /* @kind other */
-  --radius-rounded-md: 6; /* @kind other */
-  --radius-rounded-xl: 12; /* @kind other */
-  --rounding-xxl: 24; /* @kind other */
-  --scale-border-b-0: 0; /* @kind other */
-  --scale-border-b-100: 1; /* @kind other */
-  --scale-border-b-150: 1.5; /* @kind other */
-  --scale-border-b-50: 0.5; /* @kind other */
-  --scale-border-r-200: 2; /* @kind other */
-  --scale-border-r-bold: 4; /* @kind other */
-  --scale-rounding-r-0: 0; /* @kind other */
-  --scale-rounding-r-100: 4; /* @kind other */
-  --scale-rounding-r-150: 6; /* @kind other */
-  --scale-rounding-r-200: 8; /* @kind other */
-  --scale-rounding-r-300: 12; /* @kind other */
-  --scale-rounding-r-400: 16; /* @kind other */
-  --scale-rounding-r-500: 20; /* @kind other */
-  --scale-rounding-r-50: 2; /* @kind other */
-  --scale-rounding-r-full: 1000; /* @kind other */
-  --scale-size-3xl: 56; /* @kind other */
-  --scale-size-3xs: 8; /* @kind other */
-  --scale-size-4xl: 72; /* @kind other */
-  --scale-size-4xs: 4; /* @kind other */
-  --scale-size-5xl: 96; /* @kind other */
-  --scale-size-5xs: 2; /* @kind other */
-  --scale-size-6xl: 192; /* @kind other */
-  --scale-size-7xl: 288; /* @kind other */
-  --scale-size-l: 32; /* @kind other */
-  --scale-size-m: 24; /* @kind other */
-  --scale-size-none: 0; /* @kind other */
-  --scale-size-s: 20; /* @kind other */
-  --scale-size-xl: 40; /* @kind other */
-  --scale-size-xs: 16; /* @kind other */
-  --scale-size-xxl: 48; /* @kind other */
-  --scale-size-xxs: 12; /* @kind other */
-  --scale-spacing-s-0: 0;
-  --scale-spacing-s-1000: 40;
-  --scale-spacing-s-100: 4;
-  --scale-spacing-s-1200: 48;
-  --scale-spacing-s-1400: 56;
-  --scale-spacing-s-150: 6;
-  --scale-spacing-s-1600: 64;
-  --scale-spacing-s-2000: 80;
-  --scale-spacing-s-200: 8;
-  --scale-spacing-s-250: 10;
-  --scale-spacing-s-25: 1;
-  --scale-spacing-s-300: 12;
-  --scale-spacing-s-350: 14;
-  --scale-spacing-s-400: 16;
-  --scale-spacing-s-500: 20;
-  --scale-spacing-s-50: 2;
-  --scale-spacing-s-600: 24;
-  --scale-spacing-s-700: 28;
-  --scale-spacing-s-800: 32;
-  --scale-spacing-s-900: 36;
-  --spacing-0: 0;
-  --spacing-1-5-2: 6;
-  --spacing-1-5: 6;
-  --spacing-2-2: 8;
-  --spacing-2: 8;
-  --spacing-3: 12;
-  --spacing-3xs: 20;
-  --spacing-4: 16;
-  --spacing-5xs: 8;
-  --spacing-8: 32;
-  --spacing-xxs: 32;
+  --radius-rounded-lg: 8; /* @kind radius */
+  --radius-rounded-md-2: 6; /* @kind radius */
+  --radius-rounded-md: 6; /* @kind radius */
+  --radius-rounded-xl: 12; /* @kind radius */
+  --rounding-xxl: 24; /* @kind radius */
+  --scale-border-b-0: 0; /* @kind spacing */
+  --scale-border-b-100: 1; /* @kind spacing */
+  --scale-border-b-150: 1.5; /* @kind spacing */
+  --scale-border-b-50: 0.5; /* @kind spacing */
+  --scale-border-r-200: 2; /* @kind spacing */
+  --scale-border-r-bold: 4; /* @kind spacing */
+  --scale-rounding-r-0: 0; /* @kind radius */
+  --scale-rounding-r-100: 4; /* @kind radius */
+  --scale-rounding-r-150: 6; /* @kind radius */
+  --scale-rounding-r-200: 8; /* @kind radius */
+  --scale-rounding-r-300: 12; /* @kind radius */
+  --scale-rounding-r-400: 16; /* @kind radius */
+  --scale-rounding-r-500: 20; /* @kind radius */
+  --scale-rounding-r-50: 2; /* @kind radius */
+  --scale-rounding-r-full: 1000; /* @kind radius */
+  --scale-size-3xl: 56; /* @kind spacing */
+  --scale-size-3xs: 8; /* @kind spacing */
+  --scale-size-4xl: 72; /* @kind spacing */
+  --scale-size-4xs: 4; /* @kind spacing */
+  --scale-size-5xl: 96; /* @kind spacing */
+  --scale-size-5xs: 2; /* @kind spacing */
+  --scale-size-6xl: 192; /* @kind spacing */
+  --scale-size-7xl: 288; /* @kind spacing */
+  --scale-size-l: 32; /* @kind spacing */
+  --scale-size-m: 24; /* @kind spacing */
+  --scale-size-none: 0; /* @kind spacing */
+  --scale-size-s: 20; /* @kind spacing */
+  --scale-size-xl: 40; /* @kind spacing */
+  --scale-size-xs: 16; /* @kind spacing */
+  --scale-size-xxl: 48; /* @kind spacing */
+  --scale-size-xxs: 12; /* @kind spacing */
+  --scale-spacing-s-0: 0; /* @kind spacing */
+  --scale-spacing-s-1000: 40; /* @kind spacing */
+  --scale-spacing-s-100: 4; /* @kind spacing */
+  --scale-spacing-s-1200: 48; /* @kind spacing */
+  --scale-spacing-s-1400: 56; /* @kind spacing */
+  --scale-spacing-s-150: 6; /* @kind spacing */
+  --scale-spacing-s-1600: 64; /* @kind spacing */
+  --scale-spacing-s-2000: 80; /* @kind spacing */
+  --scale-spacing-s-200: 8; /* @kind spacing */
+  --scale-spacing-s-250: 10; /* @kind spacing */
+  --scale-spacing-s-25: 1; /* @kind spacing */
+  --scale-spacing-s-300: 12; /* @kind spacing */
+  --scale-spacing-s-350: 14; /* @kind spacing */
+  --scale-spacing-s-400: 16; /* @kind spacing */
+  --scale-spacing-s-500: 20; /* @kind spacing */
+  --scale-spacing-s-50: 2; /* @kind spacing */
+  --scale-spacing-s-600: 24; /* @kind spacing */
+  --scale-spacing-s-700: 28; /* @kind spacing */
+  --scale-spacing-s-800: 32; /* @kind spacing */
+  --scale-spacing-s-900: 36; /* @kind spacing */
+  --spacing-0: 0; /* @kind spacing */
+  --spacing-1-5-2: 6; /* @kind spacing */
+  --spacing-1-5: 6; /* @kind spacing */
+  --spacing-2-2: 8; /* @kind spacing */
+  --spacing-2: 8; /* @kind spacing */
+  --spacing-3: 12; /* @kind spacing */
+  --spacing-3xs: 20; /* @kind spacing */
+  --spacing-4: 16; /* @kind spacing */
+  --spacing-5xs: 8; /* @kind spacing */
+  --spacing-8: 32; /* @kind spacing */
+  --spacing-xxs: 32; /* @kind spacing */
   --tailwind-colors-base-transparent: rgba(255,255,255,0); /* @kind color */
   --tailwind-colors-red-100: rgb(254,226,226); /* @kind color */
   --tailwind-colors-slate-500: rgb(100,116,139); /* @kind color */
-  --typography-base-sizes-2x-large-font-size: var(--font-size-text-2xl);
-  --typography-base-sizes-base-font-size: var(--font-size-text-base);
-  --typography-base-sizes-extra-small-font-size-2: var(--font-size-text-xs-2);
-  --typography-base-sizes-extra-small-font-size: var(--font-size-text-xs);
-  --typography-base-sizes-extra-small-line-height-2: var(--font-line-height-leading-4-2);
-  --typography-base-sizes-extra-small-line-height: var(--font-line-height-leading-4);
-  --typography-base-sizes-small-font-size-2: var(--font-size-text-sm-2);
-  --typography-base-sizes-small-font-size: var(--font-size-text-sm);
-  --typography-base-sizes-small-line-height-2: var(--font-line-height-leading-5-2);
-  --typography-base-sizes-small-line-height: var(--font-line-height-leading-5);
-  --typography-font-family-base: "Suisse Intl";
-  --typography-font-family-font-sans-2: "Suisse Intl";
-  --typography-font-family-font-sans: "PP Neue Montreal";
-  --typography-font-family-mono: "Roboto Mono";
-  --typography-font-size-text-3xl: 32;
-  --typography-font-size-text-4xl: 36;
-  --typography-font-size-text-base: 14;
-  --typography-font-size-text-biggest: 48;
-  --typography-font-size-text-l: 20;
-  --typography-font-size-text-m: 16;
-  --typography-font-size-text-s: 12;
-  --typography-font-size-text-xl: 24;
-  --typography-font-size-text-xs: 10;
-  --typography-font-size-text-xxl: 28;
-  --typography-font-size-text-xxs: 8;
-  --typography-line-height-base: 18;
-  --typography-line-height-line-l: 24;
-  --typography-line-height-line-m: 20;
-  --typography-line-height-line-xs: 14;
-  --typography-line-height-line-xxl: 32;
+  --typography-base-sizes-2x-large-font-size: var(--font-size-text-2xl); /* @kind font */
+  --typography-base-sizes-base-font-size: var(--font-size-text-base); /* @kind font */
+  --typography-base-sizes-extra-small-font-size-2: var(--font-size-text-xs-2); /* @kind font */
+  --typography-base-sizes-extra-small-font-size: var(--font-size-text-xs); /* @kind font */
+  --typography-base-sizes-extra-small-line-height-2: var(--font-line-height-leading-4-2); /* @kind other */
+  --typography-base-sizes-extra-small-line-height: var(--font-line-height-leading-4); /* @kind other */
+  --typography-base-sizes-small-font-size-2: var(--font-size-text-sm-2); /* @kind font */
+  --typography-base-sizes-small-font-size: var(--font-size-text-sm); /* @kind font */
+  --typography-base-sizes-small-line-height-2: var(--font-line-height-leading-5-2); /* @kind other */
+  --typography-base-sizes-small-line-height: var(--font-line-height-leading-5); /* @kind other */
+  --typography-font-family-base: "Suisse Intl"; /* @kind font */
+  --typography-font-family-font-sans-2: "Suisse Intl"; /* @kind font */
+  --typography-font-family-font-sans: "Suisse Intl"; /* @kind font */
+  --typography-font-family-mono: "Suisse Intl"; /* @kind font */
+  --typography-font-size-text-3xl: 32; /* @kind font */
+  --typography-font-size-text-4xl: 36; /* @kind font */
+  --typography-font-size-text-base: 14; /* @kind font */
+  --typography-font-size-text-biggest: 48; /* @kind font */
+  --typography-font-size-text-l: 20; /* @kind font */
+  --typography-font-size-text-m: 16; /* @kind font */
+  --typography-font-size-text-s: 12; /* @kind font */
+  --typography-font-size-text-xl: 24; /* @kind font */
+  --typography-font-size-text-xs: 10; /* @kind font */
+  --typography-font-size-text-xxl: 28; /* @kind font */
+  --typography-font-size-text-xxs: 8; /* @kind font */
+  --typography-line-height-base: 18; /* @kind other */
+  --typography-line-height-line-l: 24; /* @kind other */
+  --typography-line-height-line-m: 20; /* @kind other */
+  --typography-line-height-line-xs: 14; /* @kind other */
+  --typography-line-height-line-xxl: 32; /* @kind other */
   --typography-weight-weight-base: "Normal"; /* @kind other */
   --typography-weight-weight-bold: "semibold"; /* @kind other */
   --typography-weight-weight-light: "Light"; /* @kind other */
   --typography-weight-weight-medium: "medium"; /* @kind other */
-  --width-w-4: 16; /* @kind other */
-  --width-w-9: 36; /* @kind other */
+  --width-w-4: 16; /* @kind spacing */
+  --width-w-9: 36; /* @kind spacing */
 }
 
 :root[data-theme="dark"], .dark {
@@ -369,16 +379,16 @@
   --base-sidebar-ring: var(--colors-sidebar-ring-dark); /* @kind color */
   --border-base: var(--scale-border-b-100); /* @kind other */
   --border-large: var(--scale-border-r-200); /* @kind other */
-  --border-larger: var(--scale-border-r-bold);
+  --border-larger: var(--scale-border-r-bold); /* @kind other */
   --border-medium: var(--scale-border-b-150); /* @kind other */
-  --border-none: var(--scale-border-b-0);
+  --border-none: var(--scale-border-b-0); /* @kind other */
   --border-radius-base: var(--scale-rounding-r-150); /* @kind other */
-  --border-radius-extra-large: var(--scale-rounding-r-300);
-  --border-radius-full: var(--scale-rounding-r-full);
+  --border-radius-extra-large: var(--scale-rounding-r-300); /* @kind other */
+  --border-radius-full: var(--scale-rounding-r-full); /* @kind other */
   --border-radius-large: var(--scale-rounding-r-200); /* @kind other */
-  --border-radius-medium: var(--scale-rounding-r-100);
+  --border-radius-medium: var(--scale-rounding-r-100); /* @kind other */
   --border-radius-none: var(--scale-rounding-r-0); /* @kind other */
-  --border-radius-small: var(--scale-rounding-r-50);
+  --border-radius-small: var(--scale-rounding-r-50); /* @kind other */
   --border-small: var(--scale-border-b-50); /* @kind other */
   --colors-background-b-w: var(--colors-dark-purple-black); /* @kind color */
   --colors-background-base-inverted: var(--colors-steel-grey-200); /* @kind color */
@@ -410,6 +420,7 @@
   --colors-base-primary: var(--colors-ultra-purple-800); /* @kind color */
   --colors-base-secondary-foreground: var(--colors-cold-grey-100); /* @kind color */
   --colors-base-secondary: var(--colors-cold-grey-700); /* @kind color */
+  --colors-black-white-white: rgb(255,255,255); /* @kind color */
   --colors-error-background: var(--colors-system-red-700); /* @kind color */
   --colors-error-base: var(--colors-system-red-500); /* @kind color */
   --colors-error-text: var(--colors-system-red-100); /* @kind color */
@@ -445,50 +456,50 @@
 }
 
 :root[data-mode="product"] {
-  --border-base-2: 1; /* @kind other */
-  --rounding-xxl: 24; /* @kind other */
-  --spacing-3xs: 8;
-  --spacing-5xs: 2;
-  --spacing-xxs: 12;
+  --border-base-2: 1; /* @kind spacing */
+  --rounding-xxl: 24; /* @kind radius */
+  --spacing-3xs: 8; /* @kind spacing */
+  --spacing-5xs: 2; /* @kind spacing */
+  --spacing-xxs: 12; /* @kind spacing */
 }
 
 :root[data-mode="mode"] {
-  --font-letter-spacing-tight: -0.4;
-  --font-line-height-leading-4-2: 16;
-  --font-line-height-leading-4: 16;
-  --font-line-height-leading-5-2: 20;
-  --font-line-height-leading-5: 20;
-  --font-size-text-2xl: 24;
-  --font-size-text-base: 16;
-  --font-size-text-sm-2: 14;
-  --font-size-text-sm: 14;
-  --font-size-text-xs-2: 12;
-  --font-size-text-xs: 12;
+  --font-letter-spacing-tight: -0.4; /* @kind other */
+  --font-line-height-leading-4-2: 16; /* @kind font */
+  --font-line-height-leading-4: 16; /* @kind font */
+  --font-line-height-leading-5-2: 20; /* @kind font */
+  --font-line-height-leading-5: 20; /* @kind font */
+  --font-size-text-2xl: 24; /* @kind font */
+  --font-size-text-base: 16; /* @kind font */
+  --font-size-text-sm-2: 14; /* @kind font */
+  --font-size-text-sm: 14; /* @kind font */
+  --font-size-text-xs-2: 12; /* @kind font */
+  --font-size-text-xs: 12; /* @kind font */
   --font-weight-medium-2: 500; /* @kind other */
   --font-weight-medium: 500; /* @kind other */
   --font-weight-normal-2: 400; /* @kind other */
   --font-weight-normal: 400; /* @kind other */
   --font-weight-semibold: 600; /* @kind other */
-  --height-h-10: 40; /* @kind other */
-  --height-h-4: 16; /* @kind other */
-  --height-h-8: 32; /* @kind other */
-  --height-h-9: 36; /* @kind other */
+  --height-h-10: 40; /* @kind spacing */
+  --height-h-4: 16; /* @kind spacing */
+  --height-h-8: 32; /* @kind spacing */
+  --height-h-9: 36; /* @kind spacing */
   --opacity-opacity-50: 50; /* @kind other */
-  --radius-rounded-lg: 8; /* @kind other */
-  --radius-rounded-md-2: 6; /* @kind other */
-  --radius-rounded-md: 6; /* @kind other */
-  --radius-rounded-xl: 12; /* @kind other */
-  --spacing-0: 0;
-  --spacing-1-5-2: 6;
-  --spacing-1-5: 6;
-  --spacing-2-2: 8;
-  --spacing-2: 8;
-  --spacing-3: 12;
-  --spacing-4: 16;
-  --spacing-8: 32;
+  --radius-rounded-lg: 8; /* @kind radius */
+  --radius-rounded-md-2: 6; /* @kind radius */
+  --radius-rounded-md: 6; /* @kind radius */
+  --radius-rounded-xl: 12; /* @kind radius */
+  --spacing-0: 0; /* @kind spacing */
+  --spacing-1-5-2: 6; /* @kind spacing */
+  --spacing-1-5: 6; /* @kind spacing */
+  --spacing-2-2: 8; /* @kind spacing */
+  --spacing-2: 8; /* @kind spacing */
+  --spacing-3: 12; /* @kind spacing */
+  --spacing-4: 16; /* @kind spacing */
+  --spacing-8: 32; /* @kind spacing */
   --tailwind-colors-base-transparent: rgba(255,255,255,0); /* @kind color */
   --tailwind-colors-red-100: rgb(254,226,226); /* @kind color */
   --tailwind-colors-slate-500: rgb(100,116,139); /* @kind color */
-  --width-w-4: 16; /* @kind other */
-  --width-w-9: 36; /* @kind other */
+  --width-w-4: 16; /* @kind spacing */
+  --width-w-9: 36; /* @kind spacing */
 }

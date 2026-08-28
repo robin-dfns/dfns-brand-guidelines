@@ -1,18 +1,23 @@
 import * as React from 'react';
+
 /**
- * DFNS text input — 36px field, radius 6, white with 1px #c5c9de inner ring, 14px label above.
+ * Labelled single-line text field. Figma: "Input".
+ * @startingPoint section="Forms" subtitle="Labelled text field with leading and trailing glyphs" viewport="700x150"
  */
-export interface InputProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style'> {
+  /** Sentence case, e.g. "Wallet address". */
   label?: string;
+  /** Renders an asterisk after the label. */
+  required?: boolean;
+  /** Right-aligned helper beside the label, e.g. "Forgot your password?". */
+  hint?: React.ReactNode;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
+  /** Placeholders are examples, not instructions — "johndoe@gmail.com". */
   placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  /** Optional 16px icon before the text. */
-  iconLeft?: React.ReactNode;
-  /** Optional 16px icon after the text. */
-  iconRight?: React.ReactNode;
-  /** Right-aligned inline action, e.g. a "Forgot your password?" link. */
-  action?: React.ReactNode;
+  invalid?: boolean;
   disabled?: boolean;
+  style?: React.CSSProperties;
 }
-export declare function Input(props: InputProps): JSX.Element;
+export declare const Input: React.FC<InputProps>;
+export default Input;
