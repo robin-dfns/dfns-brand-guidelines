@@ -13,7 +13,7 @@
 
   // key, label, hash. Guide links resolve against HOME; Lib links against DOCS.
   var GUIDE = [['home', 'Home', ''], ['brand', 'Brand', '#brand'], ['identity', 'Identity', '#identity'], ['assets', 'Assets', '#assets'], ['motion', 'Motion', '#motion']];
-  var LIB = [['components', 'Components', '#components']];
+  var LIB = [];   /* the docs site has no sections left — see docs/index.html */
 
   function links(base, arr) {
     return arr.map(function (i) {
@@ -52,7 +52,7 @@
   var html = '' +
     '<nav class="dsnav" id="topnav" aria-label="Design system">' +
     '<a class="dsnav-logo" href="' + HOME + '">' + LOGO + '<span class="dsnav-logo-txt">Design System</span></a>' +
-    '<div class="dsnav-links">' + links(HOME, GUIDE) + '<span class="dsnav-sep"></span>' + links(DOCS, LIB) + '</div>' +
+    '<div class="dsnav-links">' + links(HOME, GUIDE) + (LIB.length ? '<span class="dsnav-sep"></span>' + links(DOCS, LIB) : '') + '</div>' +
     '<button class="dsnav-theme" id="dsThemeBtn" aria-label="Toggle light/dark">Dark</button>' +
     '</nav>';
 
