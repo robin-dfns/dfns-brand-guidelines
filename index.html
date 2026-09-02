@@ -4601,15 +4601,15 @@
           <div class="color-tab-panel" id="imtab-schematics">
             <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Schematics &amp; 3D</span></div>
-              <p class="section-desc" style="margin-top:-8px">Established directional examples — technical schematics and the hexagon &ldquo;Gravure&rdquo; 3D treatment. The models and the shader live in the product site (<code class="code-inline">dfns-website</code>); the stills below are exported from it.</p>
+              <p class="section-desc" style="margin-top:-8px">Established directional examples &mdash; the &ldquo;Gravure&rdquo; 3D treatment, the hex-dot map, and technical schematics. The shaders and models live in the product site (<code class="code-inline">dfns-website</code>); the stills below are exported straight from their canvases.</p>
             </div>
 
             <div class="color-family">
               <div class="color-family-header">
-                <span class="color-family-name">Gravure 3D &mdash; the family</span>
-                <span class="color-family-count">3 subjects</span>
+                <span class="color-family-name">Gravure 3D</span>
+                <span class="color-family-count">2 subjects</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">Every 3D object goes through the same shader: flat aplats, diagonal hatching, contour outline. Rendered live in three.js (<code class="code-inline">GravureCanvas.astro</code>) from a <code class="code-inline">.glb</code>, so any angle is available — these are just the framings that read best. Hover to download the transparent PNG.</p>
+              <p class="section-desc" style="margin-top:-8px">Flat aplats, diagonal hatching, contour outline &mdash; rendered live in three.js from a <code class="code-inline">.glb</code> or from built-in geometry, so any angle is available. These are the framings that read best. Hover to download the transparent PNG.</p>
 
               <div class="gravure-grid">
                 <div class="gravure-card">
@@ -4621,51 +4621,44 @@
                   </div>
                   <div class="gravure-meta">
                     <div class="gravure-meta-name">Keys</div>
-                    <div class="gravure-meta-src">keys.glb</div>
-                    <div class="gravure-meta-desc">Keys on a ring — the reference subject for the treatment. Reads best at a three-quarter angle; straight on, the ring collapses to a line.</div>
+                    <div class="gravure-meta-src">keys.glb &middot; GravureCanvas</div>
+                    <div class="gravure-meta-desc">Keys on a ring &mdash; the reference subject for the treatment. Reads best at a three-quarter angle; straight on, the ring collapses to a line.</div>
                   </div>
                 </div>
 
                 <div class="gravure-card">
                   <div class="gravure-plate">
-                    <img src="./assets/Renders/gravure/keypad-gravure.webp" alt="Vault keypad — Gravure 3D treatment, front view" loading="lazy"/>
+                    <img src="./assets/Renders/gravure/stack-canvas.webp" alt="Hex stack — Gravure 3D treatment" loading="lazy"/>
                     <div class="logo-download-overlay">
-                      <a class="logo-dl-btn" href="./assets/Renders/gravure/keypad-gravure.png" download="dfns-keypad-gravure.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</a>
+                      <a class="logo-dl-btn" href="./assets/Renders/gravure/stack-canvas.png" download="dfns-stack-canvas.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</a>
                     </div>
                   </div>
                   <div class="gravure-meta">
-                    <div class="gravure-meta-name">Keypad &mdash; front</div>
-                    <div class="gravure-meta-src">keypad.glb</div>
-                    <div class="gravure-meta-desc">The vault keypad, straight on. The established framing — use it wherever the object has to be recognised instantly.</div>
+                    <div class="gravure-meta-name">Hex stack</div>
+                    <div class="gravure-meta-src">#stack-canvas &middot; dfns.co Architecture</div>
+                    <div class="gravure-meta-desc">Three hexagons stacked light-to-dark: the digital asset ecosystem on top, DFNS in the middle, the institution's core systems underneath. Assembled by scroll on the Architecture section &mdash; shown here at the end of the sequence.</div>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div class="gravure-card">
-                  <div class="gravure-plate">
-                    <img src="./assets/Renders/gravure/keypad-gravure-3q.webp" alt="Vault keypad — Gravure 3D treatment, three-quarter view" loading="lazy"/>
-                    <div class="logo-download-overlay">
-                      <a class="logo-dl-btn" href="./assets/Renders/gravure/keypad-gravure-3q.png" download="dfns-keypad-gravure-3q.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</a>
-                    </div>
-                  </div>
-                  <div class="gravure-meta">
-                    <div class="gravure-meta-name">Keypad &mdash; three-quarter</div>
-                    <div class="gravure-meta-src">keypad.glb</div>
-                    <div class="gravure-meta-desc">Same model, rotated. Shows the depth the hatching is built from — the better choice when the object is decorative rather than explanatory.</div>
+            <div class="color-family">
+              <div class="color-family-header">
+                <span class="color-family-name">Hex-dot map</span>
+                <span class="color-family-count">#hero-globe-canvas</span>
+              </div>
+              <p class="section-desc" style="margin-top:-8px">A different treatment from Gravure: the world rasterised into the brand hexagon grid, Cold Grey 500 landmass over a near-invisible sea grid. Full-bleed by design &mdash; it scales with its frame and always overflows, so let it run edge to edge and never box it in.</p>
+              <div class="gravure-card">
+                <div class="gravure-plate" style="aspect-ratio:1920 / 860;padding:0">
+                  <img src="./assets/Renders/gravure/hero-globe-canvas.webp" alt="Hex-dot world map — dfns.co hero canvas" style="width:100%;height:100%;max-width:none;max-height:none;object-fit:cover" loading="lazy"/>
+                  <div class="logo-download-overlay">
+                    <a class="logo-dl-btn" href="./assets/Renders/gravure/hero-globe-canvas.png" download="dfns-hero-globe-canvas.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</a>
                   </div>
                 </div>
-
-                <div class="gravure-card">
-                  <div class="gravure-plate">
-                    <img src="./assets/Renders/gravure/world-map-gravure.webp" alt="World map — Gravure 3D treatment" loading="lazy"/>
-                    <div class="logo-download-overlay">
-                      <a class="logo-dl-btn" href="./assets/Renders/gravure/world-map-gravure.png" download="dfns-world-map-gravure.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</a>
-                    </div>
-                  </div>
-                  <div class="gravure-meta">
-                    <div class="gravure-meta-name">World map <span style="font-weight:400;color:var(--text-faint)">&mdash; counter-example</span></div>
-                    <div class="gravure-meta-src">world_map.glb</div>
-                    <div class="gravure-meta-desc">Flat extruded geometry: almost no volume for the shader to hatch, so it flattens to a contour. Gravure needs a modelled object &mdash; don't push flat shapes through it.</div>
-                  </div>
+                <div class="gravure-meta">
+                  <div class="gravure-meta-name">Home hero &mdash; hex-dot map</div>
+                  <div class="gravure-meta-src">#hero-globe-canvas &middot; world_map.glb</div>
+                  <div class="gravure-meta-desc">The dfns.co hero canvas, exported bare &mdash; no location markers, no code window, no left-hand fade. Transparent PNG, so it drops onto any light surface.</div>
                 </div>
               </div>
             </div>
@@ -4684,28 +4677,11 @@
             </div>
 
             <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Hexagon ribbon</span></div>
-              <div class="gravure-card">
-                <div class="gravure-plate" style="aspect-ratio:16 / 9">
-                  <img src="./assets/Renders/gravure/hex-ribbon-gravure.webp" alt="Hexagon ribbon — Gravure treatment"/>
-                  <div class="logo-download-overlay">
-                    <a class="logo-dl-btn" href="./assets/Renders/gravure/hex-ribbon-gravure.png" download="dfns-hex-ribbon-gravure.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>PNG</a>
-                  </div>
-                </div>
-                <div class="gravure-meta">
-                  <div class="gravure-meta-name">Hexagon ribbon</div>
-                  <div class="gravure-meta-src">hex-a.svg &middot; hex-a-alt.svg</div>
-                  <div class="gravure-meta-desc">The treatment on the brand hexagon, chained into a diagonal ribbon. The signature application &mdash; the depth comes from the hatched edge of each tile, so keep them overlapping.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Gravure &mdash; art direction</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Flat fills <strong>Steel Grey 100 &rarr; 400</strong>; hatching in <strong>Cold Grey 500</strong>; silhouette contour outline.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Do</strong> &mdash; Pick a subject with real volume and turn it to a three-quarter angle. The hatching is what carries the depth, and it needs surfaces facing different ways.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>No auto-rotation</strong> &mdash; motion is interaction- or scroll-driven only.</span></div>
-              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Heavy 3D models (<code class="code-inline">.glb</code>) and the shader components (<code class="code-inline">GravureCanvas</code>, <code class="code-inline">HeroGravure</code>, <code class="code-inline">GravureEmbed</code>) live in <code class="code-inline">dfns-website</code>. An SVG-filter variant (<code class="code-inline">GravureEmbed</code>) reproduces the look over a third-party Sketchfab embed when the model can't be downloaded &mdash; treat those as tests, not brand assets.</span></div>
+              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Heavy models (<code class="code-inline">.glb</code>) and the shader components (<code class="code-inline">GravureCanvas</code>, <code class="code-inline">StackSection</code>, <code class="code-inline">HeroGlobe</code>) live in <code class="code-inline">dfns-website</code>. An SVG-filter variant (<code class="code-inline">GravureEmbed</code>) reproduces the look over a third-party Sketchfab embed when the model can't be downloaded &mdash; treat those as tests, not brand assets.</span></div>
             </div>
           </div>
 
