@@ -1657,6 +1657,20 @@
       object-fit: cover;
       display: block;
     }
+    /* transparent renders and inline SVG previews: contain them on the light
+       plate instead of the default edge-to-edge cover */
+    .imagery-card-visual.is-contain {
+      background: #F0F1F4;
+      gap: 14px;
+      padding: 18px;
+    }
+    .imagery-card-visual.is-contain img,
+    .imagery-card-visual.is-contain svg {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
     .imagery-card-visual.is-portrait {
       background: #E0E3F0;
     }
@@ -4395,70 +4409,51 @@
               <div class="color-family-header">
                 <span class="color-family-name">Illustration &amp; 3D</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">Everything drawn rather than photographed &mdash; the illustration language that carries security flows and wallet architecture, the schematics built from the tokens, and the two 3D treatments. The 2D rules come first; the built families follow. Their shaders and models live in the product site (<code class="code-inline">dfns-website</code>) and the visuals here open the canvas running live.</p>
+              <p class="section-desc" style="margin-top:-8px">Everything drawn rather than photographed, in three formats: <strong>3D</strong> for large surfaces, <strong>schemes</strong> to explain a concept, <strong>technical schemes</strong> for architecture and data flow. Specimens and art direction follow below &mdash; the shaders and models live in the product site (<code class="code-inline">dfns-website</code>), and the 3D visuals open the canvas running live.</p>
             </div>
 
             <div class="imagery-card-grid">
               <div class="imagery-card">
-                <div class="imagery-card-visual" style="background:#170C33">
-                  <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-                    <rect x="10" y="10" width="100" height="60" rx="8" stroke="#442599" stroke-width="1.5" fill="none"/>
-                    <circle cx="35" cy="40" r="15" stroke="#693AEA" stroke-width="1.5" fill="rgba(105,58,234,0.1)"/>
-                    <line x1="50" y1="40" x2="75" y2="40" stroke="#AA8BFF" stroke-width="1.5" stroke-dasharray="4 3"/>
-                    <rect x="75" y="28" width="24" height="24" rx="4" stroke="#693AEA" stroke-width="1.5" fill="rgba(105,58,234,0.1)"/>
-                    <path d="M83 40L87 44L95 36" stroke="#AA8BFF" stroke-width="1.5"/>
-                  </svg>
+                <div class="imagery-card-visual is-contain">
+                  <img src="./assets/Renders/gravure/stack-canvas.webp" alt="Hexagon style — extruded hex stack"/>
+                  <img src="./assets/Renders/gravure/keys-gravure.webp" alt="Gravure style — hatched 3D object"/>
                 </div>
                 <div class="imagery-card-body">
-                  <div class="imagery-card-title">Hero Illustrations</div>
-                  <div class="imagery-card-desc">Large format visuals for landing pages and feature sections. Use the dual-stroke icon language at a larger scale with the brand color palette.</div>
+                  <div class="imagery-card-title">3D</div>
+                  <div class="imagery-card-desc">Large format, two styles. <strong>Hexagon</strong> &mdash; the brand hexagon extruded, stacked or chained. <strong>Gravure</strong> &mdash; flat aplats and diagonal hatching over a modelled object. Both render live in three.js; the sections below open them.</div>
                 </div>
               </div>
               <div class="imagery-card">
-                <div class="imagery-card-visual" style="background:#170C33">
-                  <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                    <path d="M40 15L20 27v22l20 12 20-12V27L40 15z" stroke="#442599" stroke-width="1.5" fill="rgba(68,37,153,0.1)"/>
-                    <path d="M40 15v24M20 27l20 12M60 27L40 39" stroke="#693AEA" stroke-width="1"/>
-                    <circle cx="40" cy="39" r="4" fill="#AA8BFF"/>
+                <div class="imagery-card-visual is-contain">
+                  <svg width="252" height="120" viewBox="0 0 252 120" fill="none" role="img" aria-label="Scheme — node cards connected to a central hexagon">
+                    <path d="M74 40H99M74 80H99M153 60H178" stroke="#C4AEFF" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <rect x="8.75" y="26.75" width="64.5" height="26.5" rx="7" fill="#FFFFFF" stroke="#C5C9DE" stroke-width="1.5"/>
+                    <rect x="18" y="36" width="30" height="3" rx="1.5" fill="#C5C9DE"/>
+                    <rect x="18" y="43" width="20" height="3" rx="1.5" fill="#E0E3F0"/>
+                    <rect x="8.75" y="66.75" width="64.5" height="26.5" rx="7" fill="#FFFFFF" stroke="#C5C9DE" stroke-width="1.5"/>
+                    <rect x="18" y="76" width="30" height="3" rx="1.5" fill="#C5C9DE"/>
+                    <rect x="18" y="83" width="20" height="3" rx="1.5" fill="#E0E3F0"/>
+                    <path d="M113 37H139L152 60L139 83H113L100 60Z" fill="#2D1866"/>
+                    <rect x="112" y="53" width="28" height="3.5" rx="1.75" fill="#E0E3F0"/>
+                    <rect x="112" y="61" width="18" height="3.5" rx="1.75" fill="#C4AEFF"/>
+                    <rect x="178.75" y="46.75" width="64.5" height="26.5" rx="7" fill="#FFFFFF" stroke="#C5C9DE" stroke-width="1.5"/>
+                    <rect x="188" y="56" width="30" height="3" rx="1.5" fill="#C5C9DE"/>
+                    <rect x="188" y="63" width="20" height="3" rx="1.5" fill="#E0E3F0"/>
                   </svg>
                 </div>
                 <div class="imagery-card-body">
-                  <div class="imagery-card-title">Spot Illustrations</div>
-                  <div class="imagery-card-desc">Medium-sized contextual visuals for feature cards, empty states, and onboarding. Geometric and isometric, rooted in the cube language.</div>
+                  <div class="imagery-card-title">Scheme</div>
+                  <div class="imagery-card-desc">Medium format, for explaining a concept. Assembled from the Schemes components of the master library &mdash; hexagon at the centre, node cards around it, dashed flows between. Never hand-drawn shapes.</div>
                 </div>
               </div>
               <div class="imagery-card">
-                <div class="imagery-card-visual" style="background:#170C33">
-                  <div style="display:flex;gap:20px;align-items:center">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M18.25 11V7.75L12 4.5L5.75 7.75V11C5.75 17 12 19.75 12 19.75C12 19.75 18.25 17 18.25 11Z" stroke="#442599" fill="rgba(68,37,153,0.15)"/><path d="M9 12L11 14L15 10" stroke="#693AEA"/></svg>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 11.5H19V15.22M16.375 15.22V11.5" stroke="#693AEA"/><circle cx="8.5" cy="11.5" r="3.5" stroke="#442599" fill="rgba(68,37,153,0.15)"/></svg>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><rect x="7" y="7" width="10" height="10" stroke="#442599" fill="rgba(68,37,153,0.15)"/><path d="M14.6 8.8V15.2M12 10.4V15.2M9.4 12V15.2" stroke="#693AEA"/></svg>
-                  </div>
+                <div class="imagery-card-visual" style="background:#FFFFFF">
+                  <img src="./assets/Schematics/dev-schema.svg" alt="Technical scheme — developer architecture"/>
                 </div>
                 <div class="imagery-card-body">
-                  <div class="imagery-card-title">Mini Illustrations</div>
-                  <div class="imagery-card-desc">Small inline visuals derived from the icon set. Used in lists, tooltips, and compact UI. Scale icons to 32-40px and add subtle fills.</div>
+                  <div class="imagery-card-title">Technical scheme</div>
+                  <div class="imagery-card-desc">The dense variety: SDKs, MPC nodes, HSMs, API surfaces and the data flow between them. Line style, monochrome, no heavy fills &mdash; the full specimen sits in Schematics &amp; diagrams below.</div>
                 </div>
-              </div>
-            </div>
-
-            <div class="color-family" style="margin-top:40px">
-              <div class="color-family-header"><span class="color-family-name">Usage</span></div>
-              <div class="color-tip" style="margin-bottom:10px">
-                <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Use geometric shapes, isometric perspectives, and the cube motif from the logomark.</span>
-              </div>
-              <div class="color-tip" style="margin-bottom:10px">
-                <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Apply the dual-stroke system (structure + accent) from icons to illustration linework.</span>
-              </div>
-              <div class="color-tip" style="margin-bottom:10px">
-                <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                <span><strong>Don't</strong> — Avoid organic, hand-drawn styles. Dfns visuals are precise and engineered.</span>
-              </div>
-              <div class="color-tip">
-                <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                <span><strong>Don't</strong> — Never use colors outside the brand palette in illustrations. No gradients to off-brand hues.</span>
               </div>
             </div>
 
