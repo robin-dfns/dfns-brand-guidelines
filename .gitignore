@@ -1,3 +1,11 @@
 # macOS Finder metadata — local-only, never useful in the repo
 .DS_Store
 **/.DS_Store
+
+# Pinned upstream datasets fetched by generators (assets/img/generate-hex-world-map.py)
+assets/img/.cache/
+
+# Confidential source decks kept locally for reference — never publish.
+# This repo is public; every slide of the introduction deck is marked
+# "CONFIDENTIAL AND LEGALLY PROTECTED BY DFNS".
+assets/Guidelines/*.pdf

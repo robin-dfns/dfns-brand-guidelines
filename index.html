@@ -2314,7 +2314,7 @@
         id: 'identity', number: '02', title: 'Identity', color: 'var(--tile-logo)', wip: false,
         desc: 'Logo, typography, and the color system — the DFNS visual identity.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Massive Dfns symbol — cropped, bleeds off bottom-right -->
+          <!-- Massive DFNS symbol — cropped, bleeds off bottom-right -->
           <g transform="translate(60,20) scale(0.38)" opacity="0.30">
             <path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z" fill="currentColor"/>
           </g>
@@ -2943,7 +2943,7 @@
                 </div>
                 <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
                   <div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">CTOs &amp; Technical Leaders</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">Dfns differentiates by engaging directly with technical decision-makers. We speak to architecture, APIs, and programmability — not just sales decks.</p>
+                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">DFNS differentiates by engaging directly with technical decision-makers. We speak to architecture, APIs, and programmability — not just sales decks.</p>
                 </div>
                 <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
                   <div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Developers</div>
@@ -2979,13 +2979,14 @@
       }).join('');
 
       var doItems = [
-        'Lead with the benefit or action, not the feature name.',
-        'Use active voice. "Dfns secures your keys" not "Keys are secured by Dfns."',
-        'Write for scanning: short paragraphs, bullet points, clear headings.',
-        'Use "you" and "your" to speak directly to the reader.',
-        'Prefer concrete terms over abstract ones. "256-bit encryption" over "advanced security."',
-        'Keep sentences under 25 words. If it needs a comma, consider splitting it.',
-        'Use sentence case for headings. Title Case only for proper nouns and product names.'
+        'Write in short declaratives. The deck runs two sentences where one would sag: <em>"Eight steps. No exception."</em> A claim, then the hard qualifier.',
+        'Use the two-beat rhythm whenever you describe a choice: <em>"Start on SaaS. Scale to sovereign. Never re-architect."</em> The promise lands in the last beat.',
+        'Quantify, and be exact. <em>"$200B+ assets secured"</em>, <em>"99.997% historical uptime"</em>, <em>"0 breaches"</em>. A rounded number reads as an estimate.',
+        'Cite the source under any claim a reader could contest \u2014 and label what is not externally verified: <em>"Internal benchmark, verify before external use."</em>',
+        'State what we don\'t do as plainly as what we do: <em>"Deliberately tech-only so we never compete with you."</em>',
+        'Put us inside the threat model when writing about security: <em>"DFNS is inside the threat model \u2014 our own staff face the same gauntlet as everyone else."</em>',
+        'Name things with the product nouns: Tenant, Organization, Account, Vault, Wallet, Asset. Policy Engine and Governance Engine are proper nouns.',
+        'Use active voice, second person. <em>"DFNS secures your keys"</em>, not <em>"Keys are secured by DFNS."</em>'
       ];
       var doHTML = doItems.map(function(t) {
         return '<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-subtle)">' +
@@ -2994,11 +2995,13 @@
       }).join('');
 
       var dontItems = [
-        'Don\'t use buzzwords: "revolutionary", "game-changing", "next-gen", "cutting-edge."',
-        'Don\'t use fear-based messaging. Never say "your assets are at risk" \u2014 say "here\'s how we protect them."',
-        'Don\'t use exclamation marks in product copy. One per page maximum in marketing.',
-        'Don\'t hedge with "we believe" or "we think." State what we do and what we know.',
-        'Don\'t use "blockchain" as a selling point. Our audience already knows. Focus on what we enable.',
+        'Don\'t use a superlative we are making ourselves. <em>"#1 wallet infrastructure"</em> works because G2 says so; <em>"the most secure"</em> says nothing and invites a challenge.',
+        'Don\'t use buzzwords: <em>"revolutionary"</em>, <em>"game-changing"</em>, <em>"next-gen"</em>, <em>"cutting-edge"</em>.',
+        'Don\'t sell fear. Describe the mechanism and the fear answers itself: <em>"Key material is born sharded and stays sharded."</em>',
+        'Don\'t hedge with <em>"we believe"</em> or <em>"we think."</em> State what we do and what is on record.',
+        'Don\'t pad. <em>"Powerful"</em>, <em>"seamlessly"</em>, <em>"easily"</em>, <em>"robust"</em>, <em>"super simple"</em> \u2014 cut them and the sentence gets stronger.',
+        'Don\'t use exclamation marks. Twenty slides of the introduction deck, not one exclamation mark.',
+        'Don\'t spell it <em>"on-chain"</em>, <em>"on chain"</em>, or <em>"Dfns"</em>.',
         'Don\'t use emoji in formal communications. Sparingly in social and community channels only.'
       ];
       var dontHTML = dontItems.map(function(t) {
@@ -3008,12 +3011,14 @@
       }).join('');
 
       var termsData = [
-        ['Wallet', 'Not "vault", "safe", or "account"'],
-        ['Key management', 'Not "key custody" (unless referring to custody-specific contexts)'],
-        ['Policy engine', 'Not "rules engine" or "approval workflow"'],
+        ['DFNS', 'All caps, in all copy. Not "Dfns", not "dfns"'],
+        ['Onchain', 'One word, no hyphen. Not "on-chain" or "on chain"'],
+        ['Core banking platform', 'How we describe ourselves: "We are the core banking platform for onchain finance." "Platform" is correct in this phrase'],
+        ['Wallet', 'Keys and addresses in one object. A Vault is a different object \u2014 a programmable container for wallets. Neither is a "safe"'],
+        ['Policy Engine, Governance Engine', 'Proper nouns, capitalised. Not "rules engine" or "approval workflow"'],
+        ['Control plane', 'The single governing surface: "One control plane governs everything you do"'],
         ['Programmable', 'Not "configurable" or "customizable"'],
-        ['Infrastructure', 'Not "platform" (platform implies end-user facing)'],
-        ['Onchain', 'One word, no hyphen. Not "on-chain" or "on chain"']
+        ['Key management', 'Not "key custody", outside custody-specific contexts']
       ];
       var termsHTML = termsData.map(function(t) {
         return '<div style="display:grid;grid-template-columns:160px 1fr;background:var(--bg-surface)">' +
@@ -3022,11 +3027,12 @@
       }).join('');
 
       var examplesData = [
-        { context: 'Homepage headline', bad: 'Dfns is a revolutionary next-generation blockchain wallet infrastructure platform that is changing the game!', good: 'Wallet infrastructure for institutions. Secure by design, built for builders.', why: 'Lead with what we do, not who we are. Cut the superlatives.' },
-        { context: 'Error message', bad: 'Error: Transaction failed. Something went wrong. Please try again later.', good: 'Transaction declined: insufficient approval signatures. 2 of 3 required policies met. Contact your admin to add a signer.', why: 'Explain what happened, why, and what to do next.' },
-        { context: 'Feature announcement', bad: 'We\'re thrilled to announce our amazing new feature that will revolutionize how you manage wallets!!!', good: 'New: programmable spending limits. Set per-wallet, per-token thresholds that auto-enforce \u2014 no manual review needed.', why: 'State the feature, explain the value. Let the reader decide if it\'s exciting.' },
-        { context: 'Security page', bad: 'Your crypto assets could be stolen at any moment. Don\'t let hackers win. Choose Dfns for ultimate protection.', good: 'Keys are generated and stored across distributed MPC nodes. No single server ever holds a complete key. SOC 2 Type II certified.', why: 'Facts over fear. Specifics over vague claims.' },
-        { context: 'API documentation', bad: 'This powerful endpoint allows you to easily and seamlessly create wallets in a super simple way.', good: 'POST /wallets creates a new wallet. Returns the wallet ID and public address. Requires a valid service account token.', why: 'Action-oriented, scannable, technical. No filler words.' }
+        { context: 'Homepage headline', bad: 'DFNS is a revolutionary next-generation blockchain wallet infrastructure platform that is changing the game!', good: 'We are the core banking platform for onchain finance.', why: 'Say what we are in one line. The introduction deck opens on it, and there is nothing in it to defend.' },
+        { context: 'Positioning claim', bad: 'DFNS is the most secure and most advanced wallet infrastructure on the market today.', good: 'Customers rate DFNS #1 wallet infrastructure \u2014 4.8 out of 5 stars across 60+ verified reviews on G2.', why: 'A superlative is allowed when somebody else is making it. Attach the evidence, or drop the claim.' },
+        { context: 'Security page', bad: 'Your crypto assets could be stolen at any moment. Don\'t let hackers win. Choose DFNS for ultimate protection.', good: 'No key is ever exposed. Key material is born sharded and stays sharded \u2014 there is no moment, on any machine, where the complete key exists to steal.', why: 'Facts over fear. Describe the mechanism precisely and the reader\'s fear answers itself.' },
+        { context: 'Deployment page', bad: 'Our flexible platform can be deployed however you like, with a seamless and easy migration path.', good: 'Start on SaaS. Scale to sovereign. Never re-architect.', why: 'Three beats, no adjectives. The commitment is the third one, and it is the only thing a reader will remember.' },
+        { context: 'Error message', bad: 'Error: Transaction failed. Something went wrong. Please try again later.', good: 'Transaction declined: insufficient approval signatures. 2 of 3 required policies met. Contact your admin to add a signer.', why: 'What happened, why, and what to do next \u2014 in that order, with the numbers.' },
+        { context: 'API documentation', bad: 'This powerful endpoint allows you to easily and seamlessly create wallets in a super simple way.', good: 'Every network is a first-class citizen. New chains land in weeks, not quarters.', why: 'Action-oriented and scannable. No filler, and a claim the roadmap can be held to.' }
       ];
       var examplesHTML = examplesData.map(function(ex) {
         return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:40px">' +
@@ -3050,7 +3056,7 @@
         '<div class="color-tab-panel active" id="vttab-voice">' +
         '<div class="vt-section" id="vt-overview"><div style="max-width:800px">' +
         '<h2 class="section-title" style="margin-bottom:16px">Our Voice</h2>' +
-        '<p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">Dfns speaks with the confidence of a security leader and the clarity of a great developer tool. We are precise, trustworthy, and human \u2014 never corporate jargon, never hype.</p>' +
+        '<p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">DFNS speaks with the confidence of a security leader and the clarity of a great developer tool. We are precise, trustworthy, and human \u2014 never corporate jargon, never hype.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Principles</h2>' +
         '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">' +
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
@@ -3060,7 +3066,7 @@
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
           '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' +
           '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Confident</div>' +
-          '<p style="color:var(--text-body);line-height:1.5;margin:0">We know our technology is best-in-class. We state facts, not promises. We let results speak \u2014 no superlatives needed.</p></div>' +
+          '<p style="color:var(--text-body);line-height:1.5;margin:0">We state what is on record and let the evidence carry it. Superlatives are earned by third parties, never claimed by us.</p></div>' +
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
           '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>' +
           '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Human</div>' +
@@ -3072,22 +3078,6 @@
         '</div></div>' +
 
         '<div class="vt-section" id="vt-voice"><div style="max-width:800px">' +
-        '<h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>' +
-        '<p class="section-desc" style="margin-bottom:24px">Our voice is shaped by our brand archetype. This mix defines how we communicate across every touchpoint.</p>' +
-        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">' +
-        '<div style="font-size:32px;font-weight:600;color:var(--accent);margin-bottom:4px">70%</div>' +
-        '<div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Ruler</div>' +
-        '<p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Authority and structure. We set the standard for wallet infrastructure with precision and control.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">' +
-        '<div style="font-size:32px;font-weight:600;color:var(--accent);margin-bottom:4px">20%</div>' +
-        '<div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Sage</div>' +
-        '<p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Knowledge and insight. We educate, guide and share deep expertise to help builders make informed decisions.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">' +
-        '<div style="font-size:32px;font-weight:600;color:var(--accent);margin-bottom:4px">10%</div>' +
-        '<div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Caregiver</div>' +
-        '<p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Empathy and support. We reassure, protect and care for our users through sensitive security operations.</p></div>' +
-        '</div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Attributes</h2>' +
         '<div style="display:grid;gap:16px;margin-bottom:40px">' +
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Trustworthy</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.</p></div>' +
@@ -3098,17 +3088,19 @@
         '<div style="display:grid;gap:12px">' + spectrumHTML + '</div></div></div>' +
 
         '<div class="vt-section" id="vt-tone"><div style="max-width:800px">' +
+        '<h2 class="section-title" style="margin-bottom:16px">Tone by channel</h2>' +
         '<p class="section-desc" style="margin-bottom:32px">Our tone shifts across contexts while our voice remains constant. Here\'s how we adapt for different situations.</p>' +
         '<div style="display:grid;gap:16px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Marketing &amp; Website</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Confident &amp; Inspiring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Bold statements, concise value propositions. We lead with what matters to the reader. No fluff, no jargon \u2014 just clarity and ambition.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CThe most secure wallet infrastructure, built for builders.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Documentation &amp; API</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Precise &amp; Helpful</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Direct, scannable, action-oriented. Code-first. Every sentence should help the developer move forward. Think Stripe docs.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CPass the wallet ID to create a new transaction. The endpoint returns a signed payload.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Security &amp; Compliance</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Authoritative &amp; Reassuring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Calm authority. We explain security measures without creating anxiety. Facts over fear. Compliance language is precise, never vague.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CYour keys are distributed across multiple independent servers. No single point of compromise.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Product UI</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Clear &amp; Functional</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Minimal, actionable microcopy. Labels are verbs. Errors explain what happened and how to fix it. Success states are brief and warm.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CTransaction signed successfully. 2 approvals remaining.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Slightly warmer. We can show personality here \u2014 but never at the expense of credibility. Smart observations over hot takes.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CShipped: programmable policies for multi-sig wallets. Your rules, enforced at the infrastructure level.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Marketing &amp; Website</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Confident &amp; Inspiring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Short declaratives, one claim per line. Lead on what our clients are doing, not on what we intend to do. Every number carries its unit and its date.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWhile others wait and see, our clients are building.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Documentation &amp; API</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Precise &amp; Helpful</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Code-first and scannable. Every sentence moves the developer forward. Capabilities stated as facts a reader can test against the API.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201C100+ blockchains. One API. Every network is a first-class citizen.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Security &amp; Compliance</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Authoritative &amp; Reassuring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Calm authority, mechanism first. Never fear. We name our own place in the threat model, and we say what an attacker gets \u2014 which is nothing.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CTrust nothing. Verify everything. Us too.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Product UI</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Clear &amp; Functional</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Labels are verbs: Initiate, Authenticate, Approve, Broadcast. Errors give what happened, why, and the next step, with the numbers in them.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CSettle &amp; record \u2014 indexed to finality, webhooks fired, audit trail written.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Warmer, never at the expense of credibility. A shipped capability, stated plainly, beats a hot take. Two beats work well here.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWe integrate. You orchestrate.\u201D</div></div>' +
         '</div></div></div>' +
 
         '<div class="vt-section" id="vt-writing"><div style="max-width:800px">' +
-        '<p class="section-desc" style="margin-bottom:32px">Practical rules for writing on-brand Dfns content.</p>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Writing rules</h2>' +
+        '<p class="section-desc" style="margin-bottom:32px">Practical rules for writing on-brand DFNS content.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Do</h2>' +
         '<div style="display:grid;gap:10px;margin-bottom:32px">' + doHTML + '</div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Don\'t</h2>' +
@@ -3118,7 +3110,8 @@
         '</div></div>' +
 
         '<div class="vt-section" id="vt-examples"><div style="max-width:800px">' +
-        '<p class="section-desc" style="margin-bottom:32px">Side-by-side comparisons showing how to apply Dfns voice and tone in practice.</p>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Before and after</h2>' +
+        '<p class="section-desc" style="margin-bottom:32px">Side-by-side comparisons showing how to apply DFNS voice and tone in practice.</p>' +
         '<div style="display:grid;gap:24px">' + examplesHTML + '</div>' +
         '</div></div></div>' +
         '</div>';
@@ -3212,8 +3205,8 @@
             </div>
             <div style="background:#1E202E;border:1px solid #363A5B;border-radius:16px;padding:36px;margin-bottom:28px;box-shadow:0 14px 13.4px rgba(19,22,45,0.14),0 33.8px 32.3px rgba(19,22,45,0.18),0 56px 53.6px rgba(19,22,45,0.21)">
               <div style="font-family:var(--font);font-size:28px;line-height:1.1;margin-bottom:16px">
-                <span style="font-weight:300;color:#C4AEFF;display:block">Secure by design</span>
-                <span style="font-weight:400;color:#E0E3F0;display:block">Built for builders</span>
+                <span style="font-weight:300;color:#C4AEFF;display:block">Trust nothing. Verify everything.</span>
+                <span style="font-weight:400;color:#E0E3F0;display:block">Us too.</span>
               </div>
               <p style="color:#C5C9DE;font-size:14px;line-height:1.6;margin-bottom:22px;max-width:460px">Body and list text on dark surfaces uses Cold Grey 300. The accent — heading <code style="font-family:'Roboto Mono',monospace;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px;color:#C4AEFF">.light</code> span, links, icons — is Ultra Purple 200.</p>
               <span style="display:inline-flex;align-items:center;height:36px;padding:0 18px;font-family:var(--font);font-size:14px;font-weight:500;color:#442599;background:#E0E3F0;border-radius:12px">View docs</span>
@@ -3408,8 +3401,8 @@
                 <div style="padding:28px 24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:18px">Dark mode</div>
                   <div style="font-family:var(--font);font-size:clamp(22px,2.5vw,38px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
-                    <span style="font-weight:300;color:#C4AEFF;display:block">One Operating</span>
-                    <span style="font-weight:400;color:#E0E3F0;display:block">Infrastructure</span>
+                    <span style="font-weight:300;color:#C4AEFF;display:block">Core Banking Platform</span>
+                    <span style="font-weight:400;color:#E0E3F0;display:block">For Digital Assets</span>
                   </div>
                   <div style="display:flex;flex-direction:column;gap:7px">
                     <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
@@ -3426,8 +3419,8 @@
                 <div style="padding:28px 24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:18px">Light mode</div>
                   <div style="font-family:var(--font);font-size:clamp(22px,2.5vw,38px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
-                    <span style="font-weight:300;color:#442599;display:block">One Operating</span>
-                    <span style="font-weight:400;color:#363A5B;display:block">Infrastructure</span>
+                    <span style="font-weight:300;color:#442599;display:block">Core Banking Platform</span>
+                    <span style="font-weight:400;color:#363A5B;display:block">For Digital Assets</span>
                   </div>
                   <div style="display:flex;flex-direction:column;gap:7px">
                     <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
@@ -3458,8 +3451,8 @@
                 <div style="padding:28px 24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:18px">Dark mode</div>
                   <div style="font-family:var(--font);font-size:clamp(18px,2vw,30px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
-                    <span style="font-weight:300;color:#C4AEFF;display:block">One Operating Infrastructure</span>
-                    <span style="font-weight:400;color:#E0E3F0;display:block">to Do Everything Onchain</span>
+                    <span style="font-weight:300;color:#C4AEFF;display:block">The layer between classic</span>
+                    <span style="font-weight:400;color:#E0E3F0;display:block">and digital assets</span>
                   </div>
                   <div style="display:flex;flex-direction:column;gap:7px">
                     <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
@@ -3476,8 +3469,8 @@
                 <div style="padding:28px 24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:18px">Light mode</div>
                   <div style="font-family:var(--font);font-size:clamp(18px,2vw,30px);line-height:1.1;letter-spacing:0;margin-bottom:20px">
-                    <span style="font-weight:300;color:#442599;display:block">One Operating Infrastructure</span>
-                    <span style="font-weight:400;color:#363A5B;display:block">to Do Everything Onchain</span>
+                    <span style="font-weight:300;color:#442599;display:block">The layer between classic</span>
+                    <span style="font-weight:400;color:#363A5B;display:block">and digital assets</span>
                   </div>
                   <div style="display:flex;flex-direction:column;gap:7px">
                     <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
@@ -3506,7 +3499,7 @@
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <div style="padding:24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain</div>
+                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">100+ blockchains. One API.</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
                     <span style="width:10px;height:10px;border-radius:2px;background:#E0E3F0;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#E0E3F0</code><span>— Light 300 · Cold Grey 100</span>
@@ -3514,7 +3507,7 @@
                 </div>
                 <div style="padding:24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:14px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:0;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain</div>
+                  <div style="font-family:var(--font);font-size:clamp(16px,1.8vw,26px);font-weight:300;line-height:1.15;letter-spacing:0;color:#363A5B;margin-bottom:16px">100+ blockchains. One API.</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
                     <span style="width:10px;height:10px;border-radius:2px;background:#363A5B;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#363A5B</code><span>— Light 300 · Cold Grey 700</span>
@@ -3536,7 +3529,7 @@
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <div style="padding:24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your stack</div>
+                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">Every layer to operate onchain</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
                     <span style="width:10px;height:10px;border-radius:2px;background:#E0E3F0;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#E0E3F0</code><span>— Light 300 · Cold Grey 100</span>
@@ -3544,7 +3537,7 @@
                 </div>
                 <div style="padding:24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:14px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:0;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your stack</div>
+                  <div style="font-family:var(--font);font-size:clamp(14px,1.4vw,20px);font-weight:300;line-height:1.1;letter-spacing:0;color:#363A5B;margin-bottom:16px">Every layer to operate onchain</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
                     <span style="width:10px;height:10px;border-radius:2px;background:#363A5B;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#363A5B</code><span>— Light 300 · Cold Grey 700</span>
@@ -3566,7 +3559,7 @@
               <div style="display:grid;grid-template-columns:1fr 1fr">
                 <div style="padding:24px;background:#170C33;border-right:1px solid rgba(255,255,255,0.06)">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px">Dark mode</div>
-                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your entire stack</div>
+                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:0;color:#E0E3F0;margin-bottom:16px">One object model. Governed at every level</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.45)">
                     <span style="width:10px;height:10px;border-radius:2px;background:#E0E3F0;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#E0E3F0</code><span>— Light 300 · Cold Grey 100</span>
@@ -3574,7 +3567,7 @@
                 </div>
                 <div style="padding:24px;background:#F0F1F4">
                   <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(30,32,46,0.35);margin-bottom:14px">Light mode</div>
-                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:0;color:#363A5B;margin-bottom:16px">One Operating Infrastructure to Do Everything Onchain across your entire stack</div>
+                  <div style="font-family:var(--font);font-size:14px;font-weight:300;line-height:1.2;letter-spacing:0;color:#363A5B;margin-bottom:16px">One object model. Governed at every level</div>
                   <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#575C7B">
                     <span style="width:10px;height:10px;border-radius:2px;background:#363A5B;flex-shrink:0;display:inline-block"></span>
                     <code style="font-family:'Roboto Mono',monospace">#363A5B</code><span>— Light 300 · Cold Grey 700</span>
@@ -3590,14 +3583,14 @@
               </div>
               <pre style="background:var(--code-bg);border-radius:10px;padding:16px 20px;font-size:13px;font-family:'Roboto Mono',ui-monospace,monospace;line-height:1.7;overflow-x:auto;color:var(--text-primary)">&lt;!-- H1 dual-tone: light (Purple) on 1st line, emphasis (Cold Grey) on 2nd --&gt;
 &lt;h1 class="h1-dual"&gt;
-  &lt;span class="light"&gt;One Operating&lt;/span&gt;
-  &lt;span class="emphasis"&gt;Infrastructure&lt;/span&gt;
+  &lt;span class="light"&gt;Core Banking Platform&lt;/span&gt;
+  &lt;span class="emphasis"&gt;For Digital Assets&lt;/span&gt;
 &lt;/h1&gt;
 
 &lt;!-- H2 dual-tone --&gt;
 &lt;h2 class="h2-dual"&gt;
-  &lt;span class="light"&gt;One Operating Infrastructure&lt;/span&gt;
-  &lt;span class="emphasis"&gt;to Do Everything Onchain&lt;/span&gt;
+  &lt;span class="light"&gt;The layer between classic&lt;/span&gt;
+  &lt;span class="emphasis"&gt;and digital assets&lt;/span&gt;
 &lt;/h2&gt;</pre>
             </div>
 
@@ -3607,7 +3600,7 @@
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Do</strong> — Always apply dual-tone on H1 and H2. This is the Dfns typographic signature: <strong>Regular (400) for the key concept</strong>, Light (300) for the continuation.</span>
+                <span><strong>Do</strong> — Always apply dual-tone on H1 and H2. This is the DFNS typographic signature: <strong>Regular (400) for the key concept</strong>, Light (300) for the continuation.</span>
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -3631,9 +3624,9 @@
               <p class="section-desc" style="margin-top:-8px">Body text uses Regular (400) by default, Medium (500) for emphasis. Generous line-heights (1.5–1.65) ensure optimal readability across screens.</p>
             </div>
 
-            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale.', 'font-size:24px;font-weight:400;line-height:normal;letter-spacing:0', ['Body XL', '24px', 'Regular 400', 'Line auto'], 'Hero subheadings, lead paragraphs, intro text')}
-            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale. We handle the infrastructure so you can focus on building.', 'font-size:20px;font-weight:400;line-height:normal', ['Body L', '20px', 'Regular 400', 'Line auto'], 'Article body, long-form descriptions, feature explanations')}
-            ${specimen('Dfns empowers fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale. We handle the infrastructure so you can focus on building great products.', 'font-size:16px;font-weight:400;line-height:normal', ['Body M', '16px', 'Regular 400', 'Line auto'], 'Default UI text, standard running copy, dashboard descriptions')}
+            ${specimen('The orchestration layer between classic and digital assets, run by people who built the old rails and engineered the new ones.', 'font-size:24px;font-weight:400;line-height:normal;letter-spacing:0', ['Body XL', '24px', 'Regular 400', 'Line auto'], 'Hero subheadings, lead paragraphs, intro text')}
+            ${specimen('DFNS is that system, rebuilt for blockchains and token-first operations. Every capability is programmable, governed by one control plane, deployable anywhere.', 'font-size:20px;font-weight:400;line-height:normal', ['Body L', '20px', 'Regular 400', 'Line auto'], 'Article body, long-form descriptions, feature explanations')}
+            ${specimen('A core banking system does mainly four things: it holds accounts, moves assets, enforces the rules, and proves everything to auditors. DFNS is that system, rebuilt for blockchains and token-first operations.', 'font-size:16px;font-weight:400;line-height:normal', ['Body M', '16px', 'Regular 400', 'Line auto'], 'Default UI text, standard running copy, dashboard descriptions')}
             ${specimen('Secondary descriptions, sidebar content, navigation items, tooltips, and supporting content that complements the main body text across all surfaces.', 'font-size:14px;font-weight:400;line-height:normal', ['Body S', '14px', 'Regular 400', 'Line auto'], 'Secondary text, sidebar copy, tooltips, helper text')}
             ${specimen('Supplementary content, table cell text, list item details, and contextual information that supports primary content without competing for attention.', 'font-size:12px;font-weight:400;line-height:normal', ['Body XS', '12px', 'Regular 400', 'Line auto'], 'Captions, footnotes, table cells')}
             ${specimen('Micro captions and the smallest readable text across all product surfaces.', 'font-size:10px;font-weight:400;line-height:normal', ['Body XXS', '10px', 'Regular 400', 'Line auto'], 'Micro captions, legal mentions')}
@@ -3702,7 +3695,7 @@
               </div>
               <div class="color-tip">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                <span><strong>Don't</strong> — Don't use uppercase for button text. Dfns buttons are sentence-case — professional, not aggressive.</span>
+                <span><strong>Don't</strong> — Don't use uppercase for button text. DFNS buttons are sentence-case — professional, not aggressive.</span>
               </div>
             </div>
 
@@ -4187,7 +4180,7 @@
                 <span class="color-family-name">Heroicons — Reference UI Library</span>
                 <span class="color-family-count">${heroiconMeta.length} curated · 964 in the bundle</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px"><a href="https://heroicons.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">Heroicons</a> by Tailwind Labs is the official UI icon library for Dfns. Use the <strong>solid</strong> style (24&times;24, filled) as the default for all user interfaces. The icons below are the ones that recur in Dfns product contexts — the complete bundle is browsable further down.</p>
+              <p class="section-desc" style="margin-top:-8px"><a href="https://heroicons.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px">Heroicons</a> by Tailwind Labs is the official UI icon library for DFNS. Use the <strong>solid</strong> style (24&times;24, filled) as the default for all user interfaces. The icons below are the ones that recur in DFNS product contexts — the complete bundle is browsable further down.</p>
             </div>
 
             ${renderHeroCategory('Security', hSecurityIcons)}
@@ -4227,7 +4220,7 @@
               <div class="icon-grid" id="heroLibraryGrid" style="margin-top:20px"></div>
               <div class="color-tip" style="margin-top:24px;margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                <span><strong>Solid 24</strong> — The default for Dfns UI, for every icon at 16px and above.</span>
+                <span><strong>Solid 24</strong> — The default for DFNS UI, for every icon at 16px and above.</span>
               </div>
               <div class="color-tip" style="margin-bottom:10px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -4243,12 +4236,12 @@
               <div class="color-family-header">
                 <span class="color-family-name">When to Use Which Library</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">Heroicons cover all standard UI needs for Dfns interfaces.</p>
+              <p class="section-desc" style="margin-top:-8px">Heroicons cover all standard UI needs for DFNS interfaces.</p>
             </div>
 
             <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Heroicons Color in Dfns Context</span></div>
-              <p class="section-desc" style="margin-top:-8px">Heroicons use <code class="code-inline">currentColor</code> and adapt to any color via CSS. In Dfns interfaces, apply these color rules:</p>
+              <div class="color-family-header"><span class="color-family-name">Heroicons Color in DFNS Context</span></div>
+              <p class="section-desc" style="margin-top:-8px">Heroicons use <code class="code-inline">currentColor</code> and adapt to any color via CSS. In DFNS interfaces, apply these color rules:</p>
               <div class="color-tip" style="margin-bottom:10px;margin-top:12px">
                 <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
                 <span><strong>Light UI</strong> — Use Ultra Purple 900 <code class="code-inline">#170C33</code> or Cold Grey 600 <code class="code-inline">#575C7B</code> for default icon color.</span>
@@ -4371,7 +4364,7 @@
             </a>
 
             <h1 class="content-title">Assets</h1>
-            <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Visual imagery brings Dfns to life across product, marketing, and communications. Our approach blends technical precision with human warmth.</p>
+            <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Visual imagery brings DFNS to life across product, marketing, and communications. Our approach blends technical precision with human warmth.</p>
             <div class="tabpage-tabs" id="imgTabs">
               <button class="color-tab active" data-tab="photography" data-tabgroup="img">Photography</button>
               <button class="color-tab" data-tab="illustration" data-tabgroup="img">Illustration &amp; 3D</button>
@@ -4606,7 +4599,7 @@
               <div class="color-family-header">
                 <span class="color-family-name">Product Screenshots</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">Product visuals showcase the Dfns dashboard and API in action. They demonstrate real value through actual interfaces rather than abstract descriptions.</p>
+              <p class="section-desc" style="margin-top:-8px">Product visuals showcase the DFNS dashboard and API in action. They demonstrate real value through actual interfaces rather than abstract descriptions.</p>
             </div>
 
             <div class="imagery-card-grid">
@@ -4847,11 +4840,11 @@
             <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:36px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
               <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(92,235,116,0.15);border-radius:6px;padding:6px 9px">
                 <svg width="8" height="9" viewBox="0 0 8 9" style="transform:rotate(90deg)"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="#056F15"/></svg>
-                <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;color:#056F15">The reviews are in</span>
+                <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;color:#056F15">Why now</span>
               </span>
               <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(75,108,255,0.15);border-radius:6px;padding:6px 9px">
                 <svg width="8" height="9" viewBox="0 0 8 9" style="transform:rotate(90deg)"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="#4B6CFF"/></svg>
-                <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;color:#4B6CFF">Developer First</span>
+                <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;color:#4B6CFF">Zero trust security</span>
               </span>
             </div>
             <div class="color-family">
@@ -5190,6 +5183,7 @@
       .merged-tabs{flex-wrap:wrap;gap:8px;align-items:center}
       .merged-panels > .tabpage-layout{display:contents}
       .merged-panels .tabpage-header{display:none}
+      .vt-section + .vt-section{margin-top:56px}
     </style>`;
     const _backLink = `<a class="sidebar-back" onclick="navigateTo('home')" style="margin-bottom:24px;display:inline-flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>All Guidelines</a>`;
     function getBrandPageHTML() {
