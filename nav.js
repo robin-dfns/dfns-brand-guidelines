@@ -76,7 +76,7 @@
   /* ---- active state from location ---- */
   function setActive() {
     var h = (location.hash || '').replace('#', '');
-    var active = onDocs ? (h || 'foundations') : (h || 'home');
+    var active = onDocs ? (h || 'components') : (h || 'home');
     var found = false;
     document.querySelectorAll('.dsnav-link').forEach(function (a) {
       var on = a.getAttribute('data-k') === active;
