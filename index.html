@@ -2669,16 +2669,14 @@
             <h1 class="content-title">Framework</h1>
             <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Design strategy, principles, and foundational brand concepts.</p>
             <div class="tabpage-tabs">
-              <button class="color-tab active" data-tab="overview" data-tabgroup="fw">Overview</button>
-              <button class="color-tab" data-tab="principles" data-tabgroup="fw">Design Principles</button>
-              <button class="color-tab" data-tab="personality" data-tabgroup="fw">Brand Personality</button>
-              <button class="color-tab" data-tab="values" data-tabgroup="fw">Brand Values</button>
+              <button class="color-tab active" data-tab="values" data-tabgroup="fw">Values</button>
+              <button class="color-tab" data-tab="personality" data-tabgroup="fw">Personality</button>
               <button class="color-tab" data-tab="audiences" data-tabgroup="fw">Audiences</button>
             </div>
           </div>
 
           <!-- OVERVIEW -->
-          <div class="color-tab-panel active" id="fwtab-overview">
+          <div class="color-tab-panel active" id="fwtab-values">
             <div style="max-width:800px">
               <h2 class="section-title" style="margin-bottom:16px">Vision</h2>
               <p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">The blockchain technology usage is finally accessible, reliable and secure.</p>
@@ -2709,91 +2707,9 @@
               </div>
               <p class="section-desc" style="color:var(--text-secondary)">Brands we admire: Stripe, Column, Wiz, Apple, Linear, GitHub.</p>
             </div>
-          </div>
 
-          <!-- DESIGN PRINCIPLES -->
-          <div class="color-tab-panel" id="fwtab-principles">
             <div style="max-width:800px">
-              <p class="section-desc" style="margin-bottom:32px">Rules for building a good brand voice — every design and communication decision is guided by these three principles.</p>
-              <div style="display:grid;gap:16px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Authentic</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to sound like you, not like anyone else — especially not your competitors.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Appropriate</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to resonate with your target audience in a language they are familiar with.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Accessible</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to be understood by everyone.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- BRAND PERSONALITY -->
-          <div class="color-tab-panel" id="fwtab-personality">
-            <div style="max-width:800px">
-              <h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
-                  <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">70%</div>
-                  <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Ruler</div>
-                  <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Creates order from the chaos. Controlling and stern, yet responsible and organized.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
-                  <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">20%</div>
-                  <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Sage</div>
-                  <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Committed to helping the world gain deeper insight and wisdom. The thoughtful mentor or advisor.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
-                  <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">10%</div>
-                  <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Caregiver</div>
-                  <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Protects and cares for others. Compassionate, nurturing and generous.</p>
-                </div>
-              </div>
-
-              <h2 class="section-title" style="margin-bottom:16px">Personality Spectrum</h2>
-              <div style="display:grid;gap:12px;margin-bottom:40px">
-                ${[
-                  ['Classic', 'Innovative', 75],
-                  ['Authority', 'Friendly', 35],
-                  ['Serious', 'Funny', 15],
-                  ['Elite', 'Mainstream', 30],
-                  ['Conventional', 'Rebel', 25]
-                ].map(([left, right, pos]) => `
-                  <div style="display:grid;grid-template-columns:80px 1fr 80px;align-items:center;gap:12px">
-                    <span style="font-size:13px;color:var(--text-secondary);text-align:right">${left}</span>
-                    <div style="position:relative;height:6px;background:var(--border-default);border-radius:3px">
-                      <div style="position:absolute;left:${pos}%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--text-primary)"></div>
-                    </div>
-                    <span style="font-size:13px;color:var(--text-secondary)">${right}</span>
-                  </div>
-                `).join('')}
-              </div>
-
-              <h2 class="section-title" style="margin-bottom:16px">Tone Descriptors</h2>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-                <div>
-                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">We are</div>
-                  <div style="display:flex;flex-wrap:wrap;gap:8px">
-                    ${['Trustworthy', 'Reassuring', 'Confident', 'Helpful', 'Powerful', 'Simple', 'Functional', 'Safe'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-body)">${t}</span>`).join('')}
-                  </div>
-                </div>
-                <div>
-                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">We are not</div>
-                  <div style="display:flex;flex-wrap:wrap;gap:8px">
-                    ${['Arrogant', 'Audacious', 'Playful', 'Risky', 'Self-centered', 'Too complex', 'Closed'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-muted);text-decoration:line-through">${t}</span>`).join('')}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- BRAND VALUES -->
-          <div class="color-tab-panel" id="fwtab-values">
-            <div style="max-width:800px">
+              <h2 class="section-title" style="margin-bottom:16px">Brand Values</h2>
               <p class="section-desc" style="margin-bottom:32px">Ranked by the team from a pool of 40 adjectives. These three values are the non-negotiable foundation of the Dfns brand.</p>
               <div style="display:grid;gap:16px;margin-bottom:40px">
                 <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;align-items:center;gap:24px">
@@ -2821,6 +2737,82 @@
               <p class="section-desc" style="color:var(--text-muted)">Supporting values: Reliable, Powerful, Down to earth.</p>
             </div>
           </div>
+          <!-- DESIGN PRINCIPLES -->
+          <!-- BRAND PERSONALITY -->
+          <div class="color-tab-panel" id="fwtab-personality">
+            <div style="max-width:800px">
+              <h2 class="section-title" style="margin-bottom:16px">Design Principles</h2>
+              <p class="section-desc" style="margin-bottom:32px">Rules for building a good brand voice — every design and communication decision is guided by these three principles.</p>
+              <div style="display:grid;gap:16px">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
+                  <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Authentic</div>
+                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to sound like you, not like anyone else — especially not your competitors.</p>
+                </div>
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
+                  <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Appropriate</div>
+                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to resonate with your target audience in a language they are familiar with.</p>
+                </div>
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
+                  <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Accessible</div>
+                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to be understood by everyone.</p>
+                </div>
+              </div>
+            </div>
+            <div style="max-width:800px">
+              <h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
+                  <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">70%</div>
+                  <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Ruler</div>
+                  <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Creates order from the chaos. Controlling and stern, yet responsible and organized.</p>
+                </div>
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
+                  <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">20%</div>
+                  <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Sage</div>
+                  <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Committed to helping the world gain deeper insight and wisdom. The thoughtful mentor or advisor.</p>
+                </div>
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
+                  <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">10%</div>
+                  <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Caregiver</div>
+                  <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Protects and cares for others. Compassionate, nurturing and generous.</p>
+                </div>
+              </div>
+              <h2 class="section-title" style="margin-bottom:16px">Personality Spectrum</h2>
+              <div style="display:grid;gap:12px;margin-bottom:40px">
+                ${[
+                  ['Classic', 'Innovative', 75],
+                  ['Authority', 'Friendly', 35],
+                  ['Serious', 'Funny', 15],
+                  ['Elite', 'Mainstream', 30],
+                  ['Conventional', 'Rebel', 25]
+                ].map(([left, right, pos]) => `
+                  <div style="display:grid;grid-template-columns:80px 1fr 80px;align-items:center;gap:12px">
+                    <span style="font-size:13px;color:var(--text-secondary);text-align:right">${left}</span>
+                    <div style="position:relative;height:6px;background:var(--border-default);border-radius:3px">
+                      <div style="position:absolute;left:${pos}%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--text-primary)"></div>
+                    </div>
+                    <span style="font-size:13px;color:var(--text-secondary)">${right}</span>
+                  </div>
+                `).join('')}
+              </div>
+              <h2 class="section-title" style="margin-bottom:16px">Tone Descriptors</h2>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+                <div>
+                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">We are</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px">
+                    ${['Trustworthy', 'Reassuring', 'Confident', 'Helpful', 'Powerful', 'Simple', 'Functional', 'Safe'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-body)">${t}</span>`).join('')}
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">We are not</div>
+                  <div style="display:flex;flex-wrap:wrap;gap:8px">
+                    ${['Arrogant', 'Audacious', 'Playful', 'Risky', 'Self-centered', 'Too complex', 'Closed'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-muted);text-decoration:line-through">${t}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- BRAND VALUES -->
 
           <!-- AUDIENCES -->
           <div class="color-tab-panel" id="fwtab-audiences">
@@ -2935,9 +2927,10 @@
         '<a class="sidebar-back" onclick="navigateTo(\'home\')" style="margin-bottom:24px;display:inline-flex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>All Guidelines</a>' +
         '<h1 class="content-title">Voice &amp; Tone</h1>' +
         '<p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Communication guidelines for consistent, on-brand messaging across every touchpoint.</p>' +
-        '<div class="tabpage-tabs"><button class="color-tab active" data-tab="overview" data-tabgroup="vt">Overview</button><button class="color-tab" data-tab="voice" data-tabgroup="vt">Brand Voice</button><button class="color-tab" data-tab="tone" data-tabgroup="vt">Tone Variations</button><button class="color-tab" data-tab="writing" data-tabgroup="vt">Writing Guidelines</button><button class="color-tab" data-tab="examples" data-tabgroup="vt">Examples</button></div></div>' +
+        '<div class="tabpage-tabs"><button class="color-tab active" data-tab="voice" data-tabgroup="vt">Voice</button></div></div>' +
 
-        '<div class="color-tab-panel active" id="vttab-overview"><div style="max-width:800px">' +
+        '<div class="color-tab-panel active" id="vttab-voice">' +
+        '<div class="vt-section" id="vt-overview"><div style="max-width:800px">' +
         '<h2 class="section-title" style="margin-bottom:16px">Our Voice</h2>' +
         '<p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">Dfns speaks with the confidence of a security leader and the clarity of a great developer tool. We are precise, trustworthy, and human \u2014 never corporate jargon, never hype.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Principles</h2>' +
@@ -2960,7 +2953,7 @@
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Tone adapts</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our tone shifts depending on the audience, the context, and the emotional state of the reader. A security alert is not a product launch.</p></div></div>' +
         '</div></div>' +
 
-        '<div class="color-tab-panel" id="vttab-voice"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-voice"><div style="max-width:800px">' +
         '<h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>' +
         '<p class="section-desc" style="margin-bottom:24px">Our voice is shaped by our brand archetype. This mix defines how we communicate across every touchpoint.</p>' +
         '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">' +
@@ -2986,7 +2979,7 @@
         '<h2 class="section-title" style="margin-bottom:16px">Voice Spectrum</h2>' +
         '<div style="display:grid;gap:12px">' + spectrumHTML + '</div></div></div>' +
 
-        '<div class="color-tab-panel" id="vttab-tone"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-tone"><div style="max-width:800px">' +
         '<p class="section-desc" style="margin-bottom:32px">Our tone shifts across contexts while our voice remains constant. Here\'s how we adapt for different situations.</p>' +
         '<div style="display:grid;gap:16px">' +
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Marketing &amp; Website</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Confident &amp; Inspiring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Bold statements, concise value propositions. We lead with what matters to the reader. No fluff, no jargon \u2014 just clarity and ambition.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CThe most secure wallet infrastructure, built for builders.\u201D</div></div>' +
@@ -2996,7 +2989,7 @@
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Slightly warmer. We can show personality here \u2014 but never at the expense of credibility. Smart observations over hot takes.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CShipped: programmable policies for multi-sig wallets. Your rules, enforced at the infrastructure level.\u201D</div></div>' +
         '</div></div></div>' +
 
-        '<div class="color-tab-panel" id="vttab-writing"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-writing"><div style="max-width:800px">' +
         '<p class="section-desc" style="margin-bottom:32px">Practical rules for writing on-brand Dfns content.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Do</h2>' +
         '<div style="display:grid;gap:10px;margin-bottom:32px">' + doHTML + '</div>' +
@@ -3006,10 +2999,11 @@
         '<div style="display:grid;gap:1px;background:var(--border-default);border-radius:12px;overflow:hidden">' + termsHTML + '</div>' +
         '</div></div>' +
 
-        '<div class="color-tab-panel" id="vttab-examples"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-examples"><div style="max-width:800px">' +
         '<p class="section-desc" style="margin-bottom:32px">Side-by-side comparisons showing how to apply Dfns voice and tone in practice.</p>' +
         '<div style="display:grid;gap:24px">' + examplesHTML + '</div>' +
-        '</div></div></div>';
+        '</div></div></div>' +
+        '</div>';
     }
 
     function getColorPageHTML() {
@@ -5085,7 +5079,7 @@
       return _mergedCSS + `<div class="tabpage-layout"><div class="tabpage-header">${_backLink}
         <h1 class="content-title">Brand</h1>
         <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Design strategy, principles, and how we speak — the foundations behind every DFNS decision.</p>
-        <div class="tabpage-tabs merged-tabs">${_firstActive(_tabsOf(fw))}${_tabsOf(vt, ['overview'])}</div>
+        <div class="tabpage-tabs merged-tabs">${_firstActive(_tabsOf(fw))}${_tabsOf(vt)}</div>
         </div><div class="merged-panels">${fw}${_stripPanel(vt)}</div></div>`;
     }
     function getIdentityPageHTML() {
