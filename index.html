@@ -818,7 +818,7 @@
       color: var(--text-body);
     }
 
-    .bv-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+    .bv-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 30px; }
     .bv-meta-label {
       font-family: 'Roboto Mono', ui-monospace, monospace;
       font-size: 11px;
@@ -827,39 +827,43 @@
       color: var(--text-faint);
       white-space: nowrap;
     }
-    .bv-meta-value { font-size: 14px; font-weight: 500; color: var(--text-body); }
 
-    .bv-rank-list { display: flex; flex-direction: column; gap: 12px; }
-    .bv-rank {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-default);
-      border-radius: 16px;
-      padding: 24px 28px;
+    /* Brand values — three columns straight on the page ground, no card.
+       A hairline rules each column off; the rank is the only heavy mark. */
+    .bv-values { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 36px 28px; }
+
+    .bv-value { border-top: 1px solid var(--border-default); padding-top: 18px; }
+
+    .bv-value-num {
+      font-family: 'Roboto Mono', ui-monospace, monospace;
+      font-size: 44px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-faint);
     }
-    .bv-rank-num {
-      flex-shrink: 0;
-      display: inline-flex;
+
+    .bv-value-visual {
+      height: 210px;
+      margin: 18px 0 24px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      background: var(--accent-bg);
-      color: var(--accent);
-      font-family: 'Roboto Mono', ui-monospace, monospace;
-      font-size: 12px;
-      font-weight: 500;
-      font-variant-numeric: tabular-nums;
     }
-    .bv-rank-name { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 6px; }
-    .bv-rank-body { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 66ch; }
+    .bv-value-visual img { max-height: 100%; max-width: 100%; width: auto; display: block; }
+
+    .bv-value-name { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 6px; }
+    .bv-value-body { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+
+    .bv-credit { margin: 30px 0 0; font-size: 11px; line-height: 1.7; color: var(--text-faint); max-width: 760px; }
+    .bv-credit a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
+    .bv-credit a:hover { color: var(--text-body); }
 
     @media (max-width: 600px) {
       .bv-card { padding: 22px; }
-      .bv-rank { padding: 20px 22px; gap: 16px; }
+      .bv-value-num { font-size: 38px; }
+      .bv-value-visual { height: 170px; }
     }
 
     /* Download cards */
@@ -2801,10 +2805,6 @@
               <div class="bv-pills">
                 ${['Security', 'Dev-Friendly', 'Enterprise-Grade', 'Modularity', 'Programmability', 'Bank-Grade', 'Trust'].map(t => `<span class="bv-pill">${t}</span>`).join('')}
               </div>
-              <div class="bv-meta-row">
-                <span class="bv-meta-label">Brands we admire</span>
-                <span class="bv-meta-value">Stripe &middot; Column &middot; Wiz &middot; Apple &middot; Linear &middot; GitHub</span>
-              </div>
             </div>
 
             <div class="color-family">
@@ -2813,27 +2813,30 @@
                 <span class="color-family-count">Ranked &middot; non-negotiable</span>
               </div>
               <p class="section-desc" style="margin-top:-8px;margin-bottom:20px">Ranked by the team from a pool of 40 adjectives. The order is part of the value &mdash; Trust outranks the rest, and every decision resolves in that direction.</p>
-              <div class="bv-rank-list">
-                <div class="bv-rank">
-                  <span class="bv-rank-num">01</span>
-                  <div>
-                    <div class="bv-rank-name">Trust</div>
-                    <p class="bv-rank-body">The defining attribute of the DFNS brand. Every decision, design and interaction must reinforce trust.</p>
+              <div class="bv-values">
+                <div class="bv-value">
+                  <div class="bv-value-num">01</div>
+                  <div class="bv-value-visual">
+                    <img src="./assets/Renders/gravure/value-trust.webp" alt="Trust &mdash; Gravure 3D" loading="lazy"/>
                   </div>
+                  <div class="bv-value-name">Trust</div>
+                  <p class="bv-value-body">The defining attribute of the DFNS brand. Every decision, design and interaction must reinforce trust.</p>
                 </div>
-                <div class="bv-rank">
-                  <span class="bv-rank-num">02</span>
-                  <div>
-                    <div class="bv-rank-name">Security</div>
-                    <p class="bv-rank-body">No compromise on cryptography, entitlement, hardware and server-side protection. Security is not a feature &mdash; it&rsquo;s the foundation.</p>
+                <div class="bv-value">
+                  <div class="bv-value-num">02</div>
+                  <div class="bv-value-visual">
+                    <img src="./assets/Renders/gravure/value-security.webp" alt="Security &mdash; Gravure 3D" loading="lazy"/>
                   </div>
+                  <div class="bv-value-name">Security</div>
+                  <p class="bv-value-body">No compromise on cryptography, entitlement, hardware and server-side protection. Security is not a feature &mdash; it&rsquo;s the foundation.</p>
                 </div>
-                <div class="bv-rank">
-                  <span class="bv-rank-num">03</span>
-                  <div>
-                    <div class="bv-rank-name">Excellence</div>
-                    <p class="bv-rank-body">Enterprise-grade quality in everything we ship. From API design to visual identity, excellence is the standard.</p>
+                <div class="bv-value">
+                  <div class="bv-value-num">03</div>
+                  <div class="bv-value-visual">
+                    <img src="./assets/Renders/gravure/value-excellence.webp" alt="Excellence &mdash; Gravure 3D" loading="lazy"/>
                   </div>
+                  <div class="bv-value-name">Excellence</div>
+                  <p class="bv-value-body">Enterprise-grade quality in everything we ship. From API design to visual identity, excellence is the standard.</p>
                 </div>
               </div>
               <div class="bv-meta-row">
@@ -2844,6 +2847,7 @@
                   <span class="bv-pill">Down to earth</span>
                 </div>
               </div>
+              <p class="bv-credit">3D sources, rendered through the DFNS Gravure shader &mdash; <a href="https://sketchfab.com/3d-models/i-trust-you-6713573ce1dc4a40b0834c3d1022e8af" target="_blank" rel="noopener">&ldquo;I trust you&rdquo;</a> by <a href="https://sketchfab.com/Madeele" target="_blank" rel="noopener">Madee</a> and <a href="https://sketchfab.com/3d-models/trophy-cafed175700143669f1786dd04d84b6b" target="_blank" rel="noopener">&ldquo;Trophy&rdquo;</a> by <a href="https://sketchfab.com/Urielgc" target="_blank" rel="noopener">Urielgc</a>, both <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a> &mdash; attribution required. <a href="https://sketchfab.com/3d-models/medieval-shield-487154c08bc4487e85fa426d7a6630e4" target="_blank" rel="noopener">&ldquo;Medieval Shield&rdquo;</a> by illustros, Sketchfab Standard licence.</p>
             </div>
           </div>
           <!-- DESIGN PRINCIPLES -->
