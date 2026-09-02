@@ -1982,250 +1982,22 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       {
         id: 'brand', number: '01', title: 'Brand', color: 'var(--tile-framework)',
         desc: 'Strategy, principles, personality, and voice — how DFNS thinks and speaks.',
-        svg: `<img src="./assets/Guidelines/Background.png?v=3" alt="Framework" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/framework-hover.png" alt="Framework" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
-        sections: [
-          { id: 'overview', title: 'Overview' },
-          { id: 'principles', title: 'Design Principles' },
-          { id: 'personality', title: 'Brand Personality' },
-          { id: 'values', title: 'Brand Values' },
-          { id: 'audiences', title: 'Audiences' }
-        ]
-      },
-      {
-        id: 'voice-tone', number: '02', title: 'Voice & Tone', color: 'var(--tile-voice)', skip: true,
-        desc: 'Communication guidelines for consistent, on-brand messaging.',
-        customLayout: true,
-        svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="sh-a" x="-20%" y="-20%" width="140%" height="150%">
-              <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#170C33" flood-opacity="0.55"/>
-            </filter>
-            <filter id="sh-b" x="-20%" y="-20%" width="140%" height="150%">
-              <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#170C33" flood-opacity="0.4"/>
-            </filter>
-            <linearGradient id="cg-a" x1="0" y1="0" x2="0.5" y2="1">
-              <stop offset="0%" stop-color="#2D1866"/>
-              <stop offset="100%" stop-color="#170C33"/>
-            </linearGradient>
-            <linearGradient id="cg-b" x1="0" y1="0" x2="0.5" y2="1">
-              <stop offset="0%" stop-color="#442599"/>
-              <stop offset="100%" stop-color="#2D1866"/>
-            </linearGradient>
-          </defs>
-          <!-- Card A — back-left — Marketing voice -->
-          <g transform="rotate(-5 165 180)" filter="url(#sh-a)">
-            <rect x="25" y="55" width="280" height="200" rx="16" fill="url(#cg-a)"/>
-            <rect x="46" y="78" width="76" height="20" rx="10" fill="#442599"/>
-            <rect x="60" y="86" width="48" height="4" rx="2" fill="#C4AEFF" opacity="0.9"/>
-            <!-- Dual-tone headline simulation -->
-            <rect x="46" y="116" width="228" height="12" rx="6" fill="#AA8BFF" opacity="0.95"/>
-            <rect x="46" y="140" width="188" height="12" rx="6" fill="#E0E3F0" opacity="0.8"/>
-            <!-- Body copy lines -->
-            <rect x="46" y="172" width="220" height="6" rx="3" fill="#AEB1C9" opacity="0.6"/>
-            <rect x="46" y="188" width="176" height="6" rx="3" fill="#AEB1C9" opacity="0.45"/>
-            <rect x="46" y="204" width="200" height="6" rx="3" fill="#AEB1C9" opacity="0.5"/>
-            <!-- CTA pill -->
-            <rect x="46" y="225" width="96" height="22" rx="11" fill="#5123CE"/>
-            <rect x="64" y="234" width="60" height="4" rx="2" fill="#E0E3F0" opacity="0.9"/>
-          </g>
-          <!-- Card B — front-right — Docs/API voice -->
-          <g transform="rotate(4 285 275)" filter="url(#sh-b)">
-            <rect x="165" y="210" width="210" height="155" rx="14" fill="url(#cg-b)"/>
-            <rect x="184" y="230" width="20" height="5" rx="2.5" fill="#693AEA"/>
-            <rect x="210" y="230" width="88" height="5" rx="2.5" fill="#C4AEFF" opacity="0.7"/>
-            <rect x="184" y="250" width="172" height="5" rx="2.5" fill="#E0E3F0" opacity="0.65"/>
-            <rect x="184" y="266" width="140" height="5" rx="2.5" fill="#E0E3F0" opacity="0.5"/>
-            <rect x="184" y="282" width="158" height="5" rx="2.5" fill="#E0E3F0" opacity="0.55"/>
-            <rect x="184" y="298" width="100" height="5" rx="2.5" fill="#E0E3F0" opacity="0.4"/>
-            <!-- Status indicator -->
-            <circle cx="187" cy="330" r="5" fill="#33C44A"/>
-            <rect x="200" y="326" width="90" height="6" rx="3" fill="#E0E3F0" opacity="0.75"/>
-          </g>
-          <!-- Accent particles -->
-          <circle cx="350" cy="68" r="8" fill="#8860F7" opacity="0.65"/>
-          <circle cx="364" cy="86" r="4.5" fill="#693AEA" opacity="0.45"/>
-          <circle cx="335" cy="84" r="3" fill="#C4AEFF" opacity="0.55"/>
-          <circle cx="30" cy="360" r="6" fill="#442599" opacity="0.6"/>
-          <circle cx="45" cy="374" r="3.5" fill="#5123CE" opacity="0.4"/>
-        </svg>`,
-        sections: [
-          { id: 'overview', title: 'Overview', desc: 'Our voice reflects our brand personality across every touchpoint.' },
-          { id: 'voice', title: 'Brand Voice', desc: 'The distinct personality of our communication style.' },
-          { id: 'tone', title: 'Tone Variations', desc: 'While our voice stays the same, our tone shifts based on context.' },
-          { id: 'writing', title: 'Writing Guidelines', desc: 'Practical rules for writing on-brand content.' },
-          { id: 'examples', title: 'Examples', desc: 'Real-world examples of our voice and tone in action.' }
-        ]
       },
       {
         id: 'identity', number: '02', title: 'Identity', color: 'var(--tile-logo)', wip: false,
         desc: 'Logo, typography, and the color system — the DFNS visual identity.',
-        svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Massive DFNS symbol — cropped, bleeds off bottom-right -->
-          <g transform="translate(60,20) scale(0.38)" opacity="0.30">
-            <path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z" fill="currentColor"/>
-          </g>
-          <!-- Small symbol top-left corner as counterweight -->
-          <g transform="translate(-20,-20) scale(0.12)" opacity="0.15">
-            <path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z" fill="currentColor"/>
-          </g>
-        </svg>`,
         customLayout: true,
-        sections: [
-          { id: 'logomark', title: 'Logomark' },
-          { id: 'full-logo', title: 'Full Logo' },
-          { id: 'misuse', title: 'Misuse' }
-        ]
-      },
-      {
-        id: 'typography', number: '04', title: 'Typography', color: 'var(--tile-typography)', skip: true,
-        desc: 'Typefaces, type scale, hierarchy, and usage guidelines.',
-        svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="ty-sha" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#170C33" flood-opacity="0.5"/></filter>
-            <filter id="ty-shb" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#170C33" flood-opacity="0.35"/></filter>
-            <linearGradient id="ty-cga" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#2D1866"/><stop offset="100%" stop-color="#170C33"/></linearGradient>
-            <linearGradient id="ty-cgb" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#442599"/><stop offset="100%" stop-color="#2D1866"/></linearGradient>
-          </defs>
-          <g transform="rotate(-5 160 178)" filter="url(#ty-sha)">
-            <rect x="18" y="48" width="284" height="210" rx="16" fill="url(#ty-cga)"/>
-            <rect x="38" y="70" width="82" height="17" rx="8.5" fill="#442599"/>
-            <rect x="52" y="78" width="54" height="3" rx="1.5" fill="#C4AEFF" opacity="0.85"/>
-            <rect x="38" y="103" width="244" height="16" rx="8" fill="#AA8BFF" opacity="0.92"/>
-            <rect x="38" y="127" width="196" height="16" rx="8" fill="#E0E3F0" opacity="0.72"/>
-            <rect x="38" y="159" width="168" height="11" rx="5.5" fill="#AA8BFF" opacity="0.58"/>
-            <rect x="38" y="178" width="134" height="11" rx="5.5" fill="#E0E3F0" opacity="0.43"/>
-            <rect x="38" y="205" width="224" height="5" rx="2.5" fill="#AEB1C9" opacity="0.5"/>
-            <rect x="38" y="219" width="178" height="5" rx="2.5" fill="#AEB1C9" opacity="0.38"/>
-            <rect x="38" y="233" width="202" height="5" rx="2.5" fill="#AEB1C9" opacity="0.42"/>
-          </g>
-          <g transform="rotate(4 278 288)" filter="url(#ty-shb)">
-            <rect x="162" y="208" width="218" height="168" rx="14" fill="url(#ty-cgb)"/>
-            <rect x="182" y="228" width="40" height="5" rx="2.5" fill="#693AEA"/>
-            <rect x="228" y="228" width="70" height="5" rx="2.5" fill="#C4AEFF" opacity="0.6"/>
-            <rect x="182" y="250" width="36" height="3" rx="1.5" fill="#575C7B" opacity="0.7"/>
-            <rect x="224" y="250" width="136" height="3" rx="1.5" fill="#E0E3F0" opacity="0.45"/>
-            <rect x="182" y="269" width="38" height="4.5" rx="2" fill="#575C7B" opacity="0.7"/>
-            <rect x="224" y="269" width="136" height="4.5" rx="2" fill="#E0E3F0" opacity="0.52"/>
-            <rect x="182" y="289" width="40" height="6" rx="2.5" fill="#575C7B" opacity="0.7"/>
-            <rect x="224" y="289" width="136" height="6" rx="2.5" fill="#E0E3F0" opacity="0.58"/>
-            <rect x="182" y="311" width="42" height="8" rx="3" fill="#575C7B" opacity="0.7"/>
-            <rect x="224" y="311" width="136" height="8" rx="3" fill="#E0E3F0" opacity="0.65"/>
-            <rect x="182" y="335" width="44" height="11" rx="4" fill="#575C7B" opacity="0.7"/>
-            <rect x="224" y="335" width="136" height="11" rx="4" fill="#E0E3F0" opacity="0.75"/>
-          </g>
-          <circle cx="348" cy="63" r="7" fill="#5123CE" opacity="0.7"/>
-          <circle cx="362" cy="78" r="4" fill="#693AEA" opacity="0.5"/>
-          <circle cx="334" cy="76" r="2.5" fill="#C4AEFF" opacity="0.6"/>
-          <circle cx="26" cy="368" r="5.5" fill="#2D1866" opacity="0.7"/>
-          <circle cx="40" cy="380" r="3" fill="#442599" opacity="0.5"/>
-        </svg>`,
-        customLayout: true,
-        sections: [
-          { id: 'typeface', title: 'Typeface' },
-          { id: 'headings', title: 'Headings' },
-          { id: 'body', title: 'Body' },
-          { id: 'ui', title: 'UI Styles' }
-        ]
-      },
-      {
-        id: 'color', number: '05', title: 'Color', color: 'var(--tile-color)', skip: true,
-        desc: 'Color palette, system colors, and accessibility guidelines.',
-        svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="cl-sha" x="-20%" y="-20%" width="140%" height="155%"><feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0A0619" flood-opacity="0.6"/></filter>
-            <filter id="cl-shb" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#170C33" flood-opacity="0.45"/></filter>
-            <linearGradient id="cl-cga" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#170C33"/><stop offset="100%" stop-color="#0D0820"/></linearGradient>
-            <linearGradient id="cl-cgb" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0%" stop-color="#442599"/><stop offset="100%" stop-color="#2D1866"/></linearGradient>
-          </defs>
-          <g transform="rotate(-5 157 160)" filter="url(#cl-sha)">
-            <rect x="18" y="40" width="278" height="228" rx="16" fill="url(#cl-cga)"/>
-            <rect x="38" y="62" width="82" height="17" rx="8.5" fill="#2D1866"/>
-            <rect x="52" y="70" width="54" height="3" rx="1.5" fill="#AA8BFF" opacity="0.85"/>
-            <rect x="38" y="90" width="242" height="17" rx="4" fill="#170C33" stroke="#363A5B" stroke-width="1"/>
-            <rect x="38" y="111" width="242" height="17" rx="4" fill="#2D1866"/>
-            <rect x="38" y="132" width="242" height="17" rx="4" fill="#442599"/>
-            <rect x="38" y="153" width="242" height="17" rx="4" fill="#5123CE"/>
-            <rect x="38" y="174" width="242" height="17" rx="4" fill="#693AEA"/>
-            <rect x="38" y="195" width="242" height="17" rx="4" fill="#8860F7"/>
-            <rect x="38" y="216" width="242" height="17" rx="4" fill="#AA8BFF"/>
-            <rect x="38" y="237" width="242" height="17" rx="4" fill="#C4AEFF"/>
-          </g>
-          <g transform="rotate(4 283 280)" filter="url(#cl-shb)">
-            <rect x="158" y="213" width="222" height="165" rx="14" fill="url(#cl-cgb)"/>
-            <rect x="178" y="233" width="82" height="15" rx="7.5" fill="#2D1866"/>
-            <rect x="192" y="240" width="54" height="3" rx="1.5" fill="#C4AEFF" opacity="0.75"/>
-            <rect x="178" y="262" width="182" height="14" rx="4" fill="#1E202E"/>
-            <rect x="178" y="279" width="182" height="14" rx="4" fill="#363A5B"/>
-            <rect x="178" y="296" width="182" height="14" rx="4" fill="#575C7B"/>
-            <rect x="178" y="313" width="182" height="14" rx="4" fill="#AEB1C9"/>
-            <rect x="178" y="330" width="182" height="14" rx="4" fill="#C5C9DE"/>
-            <rect x="178" y="347" width="182" height="14" rx="4" fill="#E0E3F0"/>
-            <circle cx="181" cy="370" r="4" fill="#AA8BFF"/>
-            <rect x="192" y="366" width="80" height="5" rx="2.5" fill="#E0E3F0" opacity="0.65"/>
-          </g>
-          <circle cx="348" cy="56" r="8" fill="#AA8BFF" opacity="0.5"/>
-          <circle cx="362" cy="71" r="4.5" fill="#C4AEFF" opacity="0.4"/>
-          <circle cx="334" cy="69" r="3" fill="#E6DEFF" opacity="0.5"/>
-          <circle cx="30" cy="362" r="5.5" fill="#AA8BFF" opacity="0.45"/>
-          <circle cx="44" cy="374" r="3" fill="#D6C8FF" opacity="0.4"/>
-        </svg>`,
-        customContent: true,
-        customLayout: true,
-        sections: [
-          { id: 'ultra-purple', title: 'Ultra Purple' },
-          { id: 'cold-grey', title: 'Cold Grey' },
-          { id: 'steel-grey', title: 'Steel Grey' }
-        ]
       },
       {
         id: 'assets', number: '03', title: 'Assets', color: 'var(--tile-assets)', wip: true,
         desc: 'Photography, illustration, and visual treatment approaches.',
-        svg: `<img src="./assets/Guidelines/Imagery.jpg" alt="Imagery" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/Imagery-hover.jpg" alt="Imagery" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
-        sections: [
-          { id: 'photography', title: 'Photography' },
-          { id: 'illustration', title: 'Illustration' },
-          { id: 'product-visuals', title: 'Product Visuals' },
-          { id: 'treatments', title: 'Treatments' }
-        ]
       },
       {
         id: 'motion', number: '04', title: 'Motion', color: 'var(--tile-motion)', wip: true,
         desc: 'Animation principles, easing curves, and motion patterns.',
-        svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Massive bold easing curve — sweeps across full tile -->
-          <path d="M-20 420 C-20 420, 40 400, 120 280 C200 160, 320 20, 420 -20" stroke="currentColor" stroke-opacity="0.35" stroke-width="4" fill="none"/>
-          <!-- Second curve — ease-in-out, offset -->
-          <path d="M-20 420 C120 420, 60 -20, 420 -20" stroke="currentColor" stroke-opacity="0.15" stroke-width="2.5" fill="none"/>
-          <!-- Control handles — bold, visible -->
-          <line x1="-20" y1="420" x2="40" y2="400" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="420" y1="-20" x2="320" y2="20" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <!-- Big control points at edges -->
-          <circle cx="-10" cy="410" r="10" fill="currentColor" opacity="0.40"/>
-          <circle cx="410" cy="-10" r="10" fill="currentColor" opacity="0.40"/>
-          <circle cx="40" cy="400" r="6" fill="currentColor" opacity="0.25"/>
-          <circle cx="320" cy="20" r="6" fill="currentColor" opacity="0.25"/>
-          <!-- Timing dots — large, spaced along curve -->
-          <circle cx="30" cy="390" r="5" fill="currentColor" opacity="0.20"/>
-          <circle cx="80" cy="340" r="5" fill="currentColor" opacity="0.20"/>
-          <circle cx="140" cy="260" r="5" fill="currentColor" opacity="0.20"/>
-          <circle cx="200" cy="190" r="5" fill="currentColor" opacity="0.20"/>
-          <circle cx="270" cy="110" r="5" fill="currentColor" opacity="0.20"/>
-          <circle cx="340" cy="40" r="5" fill="currentColor" opacity="0.20"/>
-          <!-- Staggered bars — large, bottom-right -->
-          <rect x="280" y="270" width="100" height="14" rx="7" fill="currentColor" opacity="0.25"/>
-          <rect x="300" y="296" width="100" height="14" rx="7" fill="currentColor" opacity="0.18"/>
-          <rect x="320" y="322" width="100" height="14" rx="7" fill="currentColor" opacity="0.12"/>
-          <rect x="340" y="348" width="80" height="14" rx="7" fill="currentColor" opacity="0.07"/>
-        </svg>`,
         customLayout: true,
-        sections: [
-          { id: 'principles', title: 'Principles' },
-          { id: 'easing', title: 'Easing & Timing' },
-          { id: 'patterns', title: 'Patterns' },
-          { id: 'usage', title: 'Usage' }
-        ]
       }
     ];
 
@@ -4980,50 +4752,9 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         else if (t.id === 'identity') page.innerHTML = getIdentityPageHTML();
         else if (t.id === 'assets') page.innerHTML = getAssetsPageHTML();
         else if (t.id === 'motion') page.innerHTML = getMotionPageHTML();
-        if (t.id === 'brand' || t.id === 'identity' || t.id === 'assets' || t.id === 'motion') {
-          innerPages.appendChild(page);
-          return;
-        }
+        innerPages.appendChild(page);
       }
 
-      const sidebarLinks = t.sections.map((s, i) =>
-        `<a class="sidebar-link${i === 0 ? ' active' : ''}" href="#${t.id}-${s.id}">${s.title}</a>`
-      ).join('');
-
-      const sectionsHTML = t.sections.map(s => `
-        <div class="section" id="${t.id}-${s.id}">
-          <h2 class="section-title">${s.title}</h2>
-          <p class="section-desc">${s.desc}</p>
-          <div class="placeholder">
-            <div class="placeholder-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-            </div>
-            <div class="placeholder-title">${s.title}</div>
-            <div class="placeholder-desc">Content to be added</div>
-          </div>
-        </div>
-      `).join('');
-
-      page.innerHTML = `
-        <div class="inner-layout">
-          <aside class="sidebar">
-            <a class="sidebar-back" onclick="navigateTo('home')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-              All Guidelines
-            </a>
-            <div class="sidebar-label">${t.title}</div>
-            <nav class="sidebar-nav">${sidebarLinks}</nav>
-          </aside>
-          <main class="content">
-
-            <h1 class="content-title">${t.title}</h1>
-            <p class="content-subtitle">${t.desc}</p>
-            ${sectionsHTML}
-          </main>
-        </div>
-      `;
-
-      innerPages.appendChild(page);
     });
 
     // ===== Tabbed Pages (Color, Typography, Logo) =====
