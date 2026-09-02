@@ -875,10 +875,6 @@
       white-space: nowrap;
     }
 
-    .bv-credit { margin: 30px 0 0; font-size: 11px; line-height: 1.7; color: var(--text-faint); max-width: 760px; }
-    .bv-credit a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 2px; }
-    .bv-credit a:hover { color: var(--text-body); }
-
     /* stacked, so the rule goes back to horizontal */
     @media (max-width: 820px) {
       .bv-values { grid-template-columns: 1fr; }
@@ -2819,7 +2815,6 @@
                   <p class="bv-value-body">Enterprise-grade quality in everything we ship. From API design to visual identity, excellence is the standard.</p>
                 </div>
               </div>
-              <p class="bv-credit">3D sources, rendered through the DFNS Gravure shader &mdash; keys is our own model, from <code class="code-inline">dfns-website</code>. <a href="https://sketchfab.com/3d-models/medieval-shield-487154c08bc4487e85fa426d7a6630e4" target="_blank" rel="noopener">&ldquo;Medieval Shield&rdquo;</a> by illustros, Sketchfab Standard licence. <a href="https://sketchfab.com/3d-models/trophy-cafed175700143669f1786dd04d84b6b" target="_blank" rel="noopener">&ldquo;Trophy&rdquo;</a> by <a href="https://sketchfab.com/Urielgc" target="_blank" rel="noopener">Urielgc</a>, <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a> &mdash; attribution required.</p>
             </div>
 
             <div class="color-family">
@@ -2864,7 +2859,7 @@
               </div>
               <p class="section-desc" style="margin-top:-8px;margin-bottom:22px">How DFNS differentiates in the competitive landscape &mdash; the differentiators we lead with, and the supporting values underneath them.</p>
               <div class="bv-cloud">
-                ${['Security', 'Trust', 'Enterprise-Grade', 'Dev-Friendly', 'Programmability', 'Modularity', 'Bank-Grade', 'Reliable', 'Powerful', 'Down to earth'].map(t => `<span>${t}</span>`).join('')}
+                ${['Security', 'Trust', 'Dev-Friendly', 'Programmability', 'Modularity', 'Bank-Grade', 'Reliable', 'Powerful', 'Down to earth'].map(t => `<span>${t}</span>`).join('')}
               </div>
             </div>
           </div>
@@ -4609,7 +4604,7 @@
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Flat fills <strong>Steel Grey 100 &rarr; 400</strong>; hatching in <strong>Cold Grey 500</strong>; silhouette contour outline.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Do</strong> &mdash; Pick a subject with real volume and turn it to a three-quarter angle. The hatching is what carries the depth, and it needs surfaces facing different ways.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>No auto-rotation</strong> &mdash; motion is interaction- or scroll-driven only.</span></div>
-              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Heavy models (<code class="code-inline">.glb</code>) and the shader components (<code class="code-inline">GravureCanvas</code>, <code class="code-inline">StackSection</code>, <code class="code-inline">HeroGlobe</code>) live in <code class="code-inline">dfns-website</code>. An SVG-filter variant (<code class="code-inline">GravureEmbed</code>) reproduces the look over a third-party Sketchfab embed when the model can't be downloaded &mdash; treat those as tests, not brand assets.</span></div>
+              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Heavy models (<code class="code-inline">.glb</code>) and the shader components (<code class="code-inline">GravureCanvas</code>, <code class="code-inline">StackSection</code>, <code class="code-inline">HeroGlobe</code>) live in <code class="code-inline">dfns-website</code>. An SVG-filter variant (<code class="code-inline">GravureEmbed</code>) reproduces the look over a third-party Sketchfab embed when the model can't be downloaded &mdash; treat those as tests, not brand assets. Third-party sources in use: <a href="https://sketchfab.com/3d-models/trophy-cafed175700143669f1786dd04d84b6b" target="_blank" rel="noopener">&ldquo;Trophy&rdquo;</a> by <a href="https://sketchfab.com/Urielgc" target="_blank" rel="noopener">Urielgc</a> (<a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a> &mdash; credit required) and <a href="https://sketchfab.com/3d-models/medieval-shield-487154c08bc4487e85fa426d7a6630e4" target="_blank" rel="noopener">&ldquo;Medieval Shield&rdquo;</a> by illustros (Sketchfab Standard).</span></div>
             </div>
           </div>
 

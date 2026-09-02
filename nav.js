@@ -13,7 +13,7 @@
 
   // key, label, hash. Guide links resolve against HOME; Lib links against DOCS.
   var GUIDE = [['home', 'Home', ''], ['brand', 'Brand', '#brand'], ['identity', 'Identity', '#identity'], ['assets', 'Assets', '#assets'], ['motion', 'Motion', '#motion']];
-  var LIB = [['foundations', 'Foundations', '#foundations'], ['icons', 'Icons', '#icons'], ['components', 'Components', '#components'], ['specimens', 'Specimens', '#specimens']];
+  var LIB = [['foundations', 'Foundations', '#foundations'], ['icons', 'Icons', '#icons'], ['components', 'Components', '#components']];
 
   function links(base, arr) {
     return arr.map(function (i) {

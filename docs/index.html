@@ -324,13 +324,6 @@
   .ic svg{width:30px;height:30px;color:var(--icons-primary);fill:currentColor}
   .ic.round svg,.ic.square svg{width:40px;height:40px}
   .ic .cn{font-size:10px;color:var(--font-body-bright);text-align:center;word-break:break-word;line-height:1.25}
-  /* specimens */
-  .spgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
-  .spcard{border:1px solid var(--stroke-tertiary);border-radius:var(--radius-large);overflow:hidden;background:var(--background-bw)}
-  .spcard .h{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--stroke-tertiary)}
-  .spcard .h .nm{font-size:13px;font-weight:var(--weight-medium)}
-  .spcard .h .gp{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--font-body-bright)}
-  .spcard iframe{width:100%;border:0;display:block;background:var(--background-base)}
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;transition:.25s;
          background:var(--font-body-base);color:var(--background-bw);padding:9px 16px;border-radius:999px;font-size:13px;pointer-events:none}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -628,12 +621,6 @@
       </div>
     </section>
 
-    <!-- ============ SPECIMENS ============ -->
-    <section class="sec" id="sec-specimens">
-      <h1><span class="a">Specimens</span></h1>
-      <p class="lead">Foundation specimen cards from <span class="mono">docs/guidelines/</span> — each a self-contained page consuming the tokens.</p>
-      <div class="spgrid" id="specimens"></div>
-    </section>
   </main>
 </div>
 <div class="toast" id="toast">Copied</div>
@@ -650,13 +637,12 @@ window.toggleTheme = () => {
 };
 
 /* ---------- section nav ---------- */
-let iconsInit = false, specimensInit = false;
+let iconsInit = false;
 function showSection(sec) {
   if (!document.getElementById('sec-' + sec)) sec = 'foundations';
   document.querySelectorAll('.sec').forEach(s => s.classList.toggle('active', s.id === 'sec-' + sec));
   window.scrollTo(0, 0);
   if (sec === 'icons' && !iconsInit) { iconsInit = true; renderIcons(); }
-  if (sec === 'specimens' && !specimensInit) { specimensInit = true; renderSpecimens(); }
 }
 window.addEventListener('hashchange', () => showSection((location.hash || '#foundations').slice(1)));
 
@@ -854,18 +840,6 @@ document.querySelectorAll('#sec-components .comp-card').forEach(card => {
 
   render();
 })();
-
-/* ---------- specimens ---------- */
-const specimens = [
-  ['Brand','Gradients','brand-gradients.html',200],['Brand','Illustrations','brand-illustrations.html',220],['Brand','Logotype','brand-logotype.html',160],
-  ['Colors','Ultra Purple','colors-ultra-purple.html',150],['Colors','Neutrals','colors-neutrals.html',210],['Colors','System','colors-system.html',190],['Colors','Semantic Bg','colors-backgrounds.html',150],['Colors','Dark Mode','colors-dark-mode.html',170],
-  ['Type','Type Scale','type-scale.html',140],['Type','Display','type-display.html',190],['Type','Body & UI','type-body.html',210],['Type','Mono','type-mono.html',150],
-  ['Spacing','Spacing Scale','spacing-scale.html',170],['Spacing','Corner Radii','radius-scale.html',170],['Spacing','Shadows & Rings','shadows.html',180]
-];
-function renderSpecimens() {
-  document.getElementById('specimens').innerHTML = specimens.map(([g, n, f, h]) =>
-    `<div class="spcard"><div class="h"><span class="nm">${n}</span><span class="gp">${g}</span></div><iframe src="guidelines/${f}" style="height:${h}px" loading="lazy"></iframe></div>`).join('');
-}
 
 showSection((location.hash || '#foundations').slice(1));
 </script>
