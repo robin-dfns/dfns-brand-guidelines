@@ -308,22 +308,8 @@
   .cat a:hover{border-color:var(--base-primary)}
   .cat .cn{font-size:13px;font-weight:var(--weight-medium)}
   .cat .cd{font-size:12px;color:var(--font-body-bright);margin-top:2px}
-  /* icons */
-  .iconbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 18px;position:sticky;top:60px;z-index:2;
-           background:var(--background-base);padding:10px 0}
   .chip{padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;background:transparent;
-        font-size:12px;font-weight:var(--weight-medium);color:var(--font-body-bright);cursor:pointer;font-family:var(--font-sans)}
   .chip.active{background:var(--base-primary);color:var(--base-primary-foreground);border-color:transparent}
-  .search{flex:1;min-width:180px;height:34px;padding:0 12px;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-base);
-          background:var(--background-bw);color:var(--font-body-base);font-family:var(--font-sans);font-size:13px}
-  .count{font-family:var(--font-mono);font-size:11px;color:var(--font-body-bright)}
-  .icongrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
-  .ic{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border:1px solid var(--stroke-tertiary);
-      border-radius:var(--radius-large);background:var(--background-bw);cursor:pointer;content-visibility:auto;contain-intrinsic-size:96px}
-  .ic:hover{border-color:var(--base-primary)}
-  .ic svg{width:30px;height:30px;color:var(--icons-primary);fill:currentColor}
-  .ic.round svg,.ic.square svg{width:40px;height:40px}
-  .ic .cn{font-size:10px;color:var(--font-body-bright);text-align:center;word-break:break-word;line-height:1.25}
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;transition:.25s;
          background:var(--font-body-base);color:var(--background-bw);padding:9px 16px;border-radius:999px;font-size:13px;pointer-events:none}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -357,25 +343,7 @@
       <div class="spec" id="shadows"></div>
     </section>
 
-    <!-- ============ ICONS ============ -->
-    <section class="sec" id="sec-icons">
-      <h1><span class="a">Icons</span></h1>
-      <p class="lead">Bundled icon sets, rendered live from <span class="mono">assets/**/icon-data.js</span>. Click any icon to copy its SVG.</p>
-      <div class="iconbar">
-        <button class="chip active" data-set="round">Crypto · Round</button>
-        <button class="chip" data-set="square">Crypto · Square</button>
-        <button class="chip" data-set="hero">Heroicons</button>
-        <span id="heroStyles" style="display:none;gap:6px">
-          <button class="chip active" data-style="Solid">Solid 24</button>
-          <button class="chip" data-style="Mini">Mini 20</button>
-          <button class="chip" data-style="Micro">Micro 16</button>
-          <button class="chip" data-style="all">All</button>
-        </span>
-        <input class="search" id="iconSearch" placeholder="Search icons…">
-        <span class="count" id="iconCount"></span>
-      </div>
-      <div class="icongrid" id="iconGrid"></div>
-    </section>
+
 
     <!-- ============ COMPONENTS ============ -->
     <section class="sec" id="sec-components">
@@ -626,8 +594,6 @@
 <div class="toast" id="toast">Copied</div>
 
 <script type="module">
-import round from '../assets/crypto-icons-round/icon-data.js';
-import square from '../assets/crypto-icons-square/icon-data.js';
 import hero from '../assets/icons/icon-data.js';
 
 /* ---------- theme ---------- */
@@ -637,12 +603,10 @@ window.toggleTheme = () => {
 };
 
 /* ---------- section nav ---------- */
-let iconsInit = false;
 function showSection(sec) {
   if (!document.getElementById('sec-' + sec)) sec = 'foundations';
   document.querySelectorAll('.sec').forEach(s => s.classList.toggle('active', s.id === 'sec-' + sec));
   window.scrollTo(0, 0);
-  if (sec === 'icons' && !iconsInit) { iconsInit = true; renderIcons(); }
 }
 window.addEventListener('hashchange', () => showSection((location.hash || '#foundations').slice(1)));
 
@@ -674,43 +638,9 @@ let toastT;
 const showToast = (msg) => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove('show'), 1400); };
 const copy = (txt, label) => { navigator.clipboard?.writeText(txt); showToast(label); };
 
-/* ---------- icons ---------- */
-const cleanCrypto = k => k.replace(/^CryptoIcons(Round|Square)Property1/, '');
-const splitHero = k => { const m = k.match(/^Heroicons(Micro|Mini|Solid)(.+)$/); return m ? { style: m[1], name: m[2] } : { style: '', name: k }; };
+/* ---------- shared icon helpers (used by the Components icon picker) ---------- */
 const spaceCamel = s => s.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
 const svgOf = (o) => `<svg viewBox="${o.viewBox}">${o.body}</svg>`;
-
-let curSet = 'round', curStyle = 'Solid';
-const grid = document.getElementById('iconGrid'), countEl = document.getElementById('iconCount'), searchEl = document.getElementById('iconSearch');
-
-function currentList() {
-  const q = searchEl.value.trim().toLowerCase();
-  if (curSet === 'hero') {
-    return Object.entries(hero).map(([k, o]) => { const { style, name } = splitHero(k); return { cls: '', label: spaceCamel(name), meta: style, svg: svgOf(o), search: (name + ' ' + style).toLowerCase() }; })
-      .filter(x => (curStyle === 'all' || x.meta === curStyle) && (!q || x.search.includes(q)));
-  }
-  const data = curSet === 'round' ? round : square;
-  const cls = curSet === 'round' ? 'round' : 'square';
-  return Object.entries(data).map(([k, o]) => { const name = cleanCrypto(k); return { cls, label: spaceCamel(name), meta: '', svg: svgOf(o), search: name.toLowerCase() }; })
-    .filter(x => !q || x.search.includes(q));
-}
-function renderIcons() {
-  const list = currentList();
-  countEl.textContent = list.length + ' icons';
-  grid.innerHTML = list.map(x => `<div class="ic ${x.cls}" data-svg='${x.svg.replace(/'/g, "&#39;")}' title="Copy SVG">${x.svg}<span class="cn">${x.label}</span></div>`).join('');
-}
-grid.onclick = e => { const c = e.target.closest('.ic'); if (c) copy(c.dataset.svg, 'SVG copied'); };
-searchEl.oninput = () => renderIcons();
-document.querySelectorAll('.iconbar .chip[data-set]').forEach(c => c.onclick = () => {
-  document.querySelectorAll('.chip[data-set]').forEach(x => x.classList.remove('active')); c.classList.add('active');
-  curSet = c.dataset.set;
-  document.getElementById('heroStyles').style.display = curSet === 'hero' ? 'inline-flex' : 'none';
-  renderIcons();
-});
-document.querySelectorAll('.chip[data-style]').forEach(c => c.onclick = () => {
-  document.querySelectorAll('.chip[data-style]').forEach(x => x.classList.remove('active')); c.classList.add('active');
-  curStyle = c.dataset.style; renderIcons();
-});
 
 /* ---------- components side menu (scroll + spy) ---------- */
 const compLinks = document.querySelectorAll('.comp-navlink');

@@ -2771,7 +2771,6 @@
             <div class="tabpage-tabs">
               <button class="color-tab active" data-tab="values" data-tabgroup="fw">Values</button>
               <button class="color-tab" data-tab="personality" data-tabgroup="fw">Personality</button>
-              <button class="color-tab" data-tab="audiences" data-tabgroup="fw">Audiences</button>
             </div>
           </div>
 
@@ -2858,7 +2857,7 @@
           <!-- DESIGN PRINCIPLES -->
           <!-- BRAND PERSONALITY -->
           <div class="color-tab-panel" id="fwtab-personality">
-            <div style="max-width:800px">
+            <div>
               <h2 class="section-title" style="margin-bottom:16px">Design Principles</h2>
               <p class="section-desc" style="margin-bottom:32px">Rules for building a good brand voice — every design and communication decision is guided by these three principles.</p>
               <div style="display:grid;gap:16px">
@@ -2876,7 +2875,7 @@
                 </div>
               </div>
             </div>
-            <div style="max-width:800px">
+            <div>
               <h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">
                 <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
@@ -2931,31 +2930,6 @@
             </div>
           </div>
           <!-- BRAND VALUES -->
-
-          <!-- AUDIENCES -->
-          <div class="color-tab-panel" id="fwtab-audiences">
-            <div style="max-width:800px">
-              <p class="section-desc" style="margin-bottom:32px">Who we speak to and how we adapt our communication for each segment.</p>
-              <div style="display:grid;gap:16px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Fintechs &amp; Financial Institutions</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">Our primary audience. They need a secure, modular wallet infrastructure to deploy blockchain-powered financial services at scale. We speak their language — compliance, SLAs, enterprise-grade.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">CTOs &amp; Technical Leaders</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">DFNS differentiates by engaging directly with technical decision-makers. We speak to architecture, APIs, and programmability — not just sales decks.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Developers</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">Dev-friendly is a core differentiator. Our docs, SDKs, and developer experience must be best-in-class — think Stripe-level clarity.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
-                  <div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Banks &amp; Custody Providers</div>
-                  <p style="color:var(--text-secondary);line-height:1.6;margin:0">Early footprint with banks. Custody is the big use case — these users need trust and compliance above all, not developer tools.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       `;
     }
@@ -3026,6 +3000,18 @@
           '<div style="padding:14px 20px;font-size:14px;color:var(--text-secondary)">' + t[1] + '</div></div>';
       }).join('');
 
+      var audienceData = [
+        ['Fintechs &amp; Financial Institutions', 'The primary audience. They need secure, modular wallet infrastructure to run blockchain-powered services at scale. We speak compliance, SLAs, and deployment models \u2014 SaaS, hybrid, or fully sovereign.'],
+        ['CTOs &amp; Technical Leaders', 'DFNS earns this room by engaging the architecture, not the sales deck. Every action is an API, every control is code, every workflow composable \u2014 that is the conversation.'],
+        ['Developers', 'Dev-friendly is a differentiator, and it is measurable: 100+ blockchains behind one API, every network a first-class citizen, new chains landing in weeks rather than quarters.'],
+        ['Banks &amp; Custody Providers', 'Custody is the anchor use case. Trust and evidence come before tooling: every action attributable, every balance reconcilable, every record ready for auditors and regulators.']
+      ];
+      var audienceHTML = audienceData.map(function(a) {
+        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">' +
+          '<div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">' + a[0] + '</div>' +
+          '<p style="color:var(--text-secondary);line-height:1.6;margin:0">' + a[1] + '</p></div>';
+      }).join('');
+
       var examplesData = [
         { context: 'Homepage headline', bad: 'DFNS is a revolutionary next-generation blockchain wallet infrastructure platform that is changing the game!', good: 'We are the core banking platform for onchain finance.', why: 'Say what we are in one line. The introduction deck opens on it, and there is nothing in it to defend.' },
         { context: 'Positioning claim', bad: 'DFNS is the most secure and most advanced wallet infrastructure on the market today.', good: 'Customers rate DFNS #1 wallet infrastructure \u2014 4.8 out of 5 stars across 60+ verified reviews on G2.', why: 'A superlative is allowed when somebody else is making it. Attach the evidence, or drop the claim.' },
@@ -3054,7 +3040,7 @@
         '<div class="tabpage-tabs"><button class="color-tab active" data-tab="voice" data-tabgroup="vt">Voice</button></div></div>' +
 
         '<div class="color-tab-panel active" id="vttab-voice">' +
-        '<div class="vt-section" id="vt-overview"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-overview"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Our Voice</h2>' +
         '<p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">DFNS speaks with the confidence of a security leader and the clarity of a great developer tool. We are precise, trustworthy, and human \u2014 never corporate jargon, never hype.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Principles</h2>' +
@@ -3077,7 +3063,7 @@
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Tone adapts</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our tone shifts depending on the audience, the context, and the emotional state of the reader. A security alert is not a product launch.</p></div></div>' +
         '</div></div>' +
 
-        '<div class="vt-section" id="vt-voice"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-voice"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Attributes</h2>' +
         '<div style="display:grid;gap:16px;margin-bottom:40px">' +
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Trustworthy</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.</p></div>' +
@@ -3087,7 +3073,13 @@
         '<h2 class="section-title" style="margin-bottom:16px">Voice Spectrum</h2>' +
         '<div style="display:grid;gap:12px">' + spectrumHTML + '</div></div></div>' +
 
-        '<div class="vt-section" id="vt-tone"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-audiences"><div>' +
+        '<h2 class="section-title" style="margin-bottom:16px">Audiences</h2>' +
+        '<p class="section-desc" style="margin-bottom:32px">Who we speak to. The voice does not change between them \u2014 what changes is which evidence we lead with.</p>' +
+        '<div style="display:grid;gap:16px">' + audienceHTML + '</div>' +
+        '</div></div>' +
+
+        '<div class="vt-section" id="vt-tone"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Tone by channel</h2>' +
         '<p class="section-desc" style="margin-bottom:32px">Our tone shifts across contexts while our voice remains constant. Here\'s how we adapt for different situations.</p>' +
         '<div style="display:grid;gap:16px">' +
@@ -3098,7 +3090,7 @@
         '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Warmer, never at the expense of credibility. A shipped capability, stated plainly, beats a hot take. Two beats work well here.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWe integrate. You orchestrate.\u201D</div></div>' +
         '</div></div></div>' +
 
-        '<div class="vt-section" id="vt-writing"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-writing"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Writing rules</h2>' +
         '<p class="section-desc" style="margin-bottom:32px">Practical rules for writing on-brand DFNS content.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Do</h2>' +
@@ -3109,7 +3101,7 @@
         '<div style="display:grid;gap:1px;background:var(--border-default);border-radius:12px;overflow:hidden">' + termsHTML + '</div>' +
         '</div></div>' +
 
-        '<div class="vt-section" id="vt-examples"><div style="max-width:800px">' +
+        '<div class="vt-section" id="vt-examples"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Before and after</h2>' +
         '<p class="section-desc" style="margin-bottom:32px">Side-by-side comparisons showing how to apply DFNS voice and tone in practice.</p>' +
         '<div style="display:grid;gap:24px">' + examplesHTML + '</div>' +
@@ -3181,7 +3173,7 @@
             <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Semantic variables</span></div>
             </div>
-            <div style="max-width:900px;margin-top:-32px">
+            <div style="margin-top:-32px">
               <p class="section-desc" style="margin-bottom:24px">Semantic variables from Rubik 2026 — these auto-switch between light and dark mode. Use these in production instead of raw color tokens.</p>
               <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin-bottom:16px;color:var(--text-primary)">Light Mode</h3>
               ${buildColorStrips(colorData.semanticLight)}
