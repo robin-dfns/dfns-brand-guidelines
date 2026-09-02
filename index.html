@@ -824,6 +824,123 @@
       font-weight: 500;
     }
 
+    /* ===== Coded components (ported from the docs Components page) =====
+       The docs site links tokens/index.css; this page does not and cannot
+       (base.css would take over body and a). The rules below are the docs CSS
+       unchanged — what changes is that the token variables they read are
+       aliased here onto this page's own variables, so the component follows
+       [data-theme] rather than carrying duplicated literals. */
+    #imtab-components {
+      --background-base: var(--bg-page);
+      --background-bw: var(--bg-surface);
+      --background-elevation-1: var(--bg-surface-alt);
+      --base-primary: var(--purple-800);
+      --base-primary-foreground: #FFFFFF;
+      --font-body-base: var(--text-primary);
+      --font-body-bright: var(--text-muted);
+      --font-heading-colored-mid: var(--accent);
+      --font-mono: 'Roboto Mono', ui-monospace, monospace;
+      --font-sans: var(--font);
+      --radius-base: 6px;
+      --radius-large: 8px;
+      --radius-xl: 16px;
+      --shadow-sm: 0 8px 11px 0 rgba(145,145,170,0.1);
+      --shadow-lg: 0 0 0 1px rgba(227,228,235,0.9), 0 2px 0 0 rgba(227,228,235,0.9);
+      --stroke-tertiary: var(--border-default);
+      --ultra-purple-50: var(--purple-50);
+      --weight-medium: 500;
+    }
+    [data-theme="light"] #imtab-components { --base-primary-foreground: #E0E3F0; }
+
+.comp-card{border:1px solid var(--stroke-tertiary);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:32px;background:var(--background-bw)}
+.comp-card .ch{display:flex;align-items:center;gap:12px;padding:16px 24px 16px 32px;border-bottom:1px solid var(--stroke-tertiary);font-size:14px;font-weight:var(--weight-medium)}
+.comp-card .ch .cm{font-family:var(--font-mono);font-size:11px;color:var(--font-body-bright);font-weight:400;margin-left:auto}
+.gh-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10px;color:var(--font-heading-colored-mid);text-decoration:none;padding:4px 9px;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-base);white-space:nowrap;flex:none}
+.gh-link:hover{border-color:var(--base-primary);background:color-mix(in srgb,var(--base-primary) 8%,transparent)}
+.gh-link svg{width:12px;height:12px;flex:none}
+.comp-card .cb{padding:56px 32px}
+.comp-card .row{display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+/* ---- unified Button — exact port of dfns-website Button.astro + swappable icon ---- */
+  .dbtn{display:inline-flex;align-items:center;gap:8px;height:36px;border-radius:12px;font-family:var(--font-sans);font-weight:500;font-size:14px;line-height:1;cursor:pointer;border:none;background:none;text-decoration:none;white-space:nowrap;box-sizing:border-box;position:relative;transition:background .2s,color .2s,box-shadow .2s,border-color .2s}
+.dbtn>*{position:relative;z-index:1}
+.dbtn .ic-slot{width:16px;height:16px;display:inline-flex;flex:none}
+.dbtn .ic-slot svg{width:16px;height:16px}
+/* Primary — solid Purple 800 + white-gradient veil (::before @ .12, 11px radius) */
+  .dbtn.primary{padding:0 13px 0 18px;color:#e0e3f0;background:#2d1866;border:1px solid #170c33;border-radius:12px;box-shadow:0 6px 12px rgba(87,91,123,.24);overflow:hidden}
+.dbtn.primary::before{content:"";position:absolute;inset:0;border-radius:11px;background:linear-gradient(to bottom,rgba(255,255,255,1),rgba(255,255,255,0));opacity:.12;pointer-events:none;transition:opacity .2s;z-index:0}
+.dbtn.primary:hover,.dbtn.primary.is-hover{background:#442599;border-color:#442599;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+.dbtn.primary:hover::before,.dbtn.primary.is-hover::before{opacity:.18}
+.dbtn.primary.no-arrow{padding:0 18px}
+/* Secondary */
+  .dbtn.secondary{padding:0 18px;color:#442599;background:#e0e3f0}
+.dbtn.secondary:hover,.dbtn.secondary.is-hover{background:#e8eaf0;color:#5123ce}
+/* Tertiary */
+  .dbtn.tertiary{gap:6px;color:#442599;background:none}
+.dbtn.tertiary:hover,.dbtn.tertiary.is-hover{color:#5123ce}
+/* focus (docs helper — outline, not clipped by primary overflow) */
+  .dbtn:focus-visible,.dbtn.is-focus{outline:2px solid #4b6cff;outline-offset:2px}
+/* disabled */
+  .dbtn.disabled,.dbtn[disabled]{opacity:.4;cursor:not-allowed}
+/* animated arrow swap (primary + tertiary) — exact port */
+  .dbtn .arrow{display:inline-flex;align-items:center}
+.dbtn .arrow svg{flex-shrink:0;width:16px;height:16px;fill:currentColor}
+.dbtn .arrow .a1{opacity:1;transition:transform .3s cubic-bezier(.4,.36,0,1),opacity .3s cubic-bezier(.4,.36,0,1)}
+.dbtn .arrow .a2{margin-left:-16px;transform:translateX(-8px);opacity:0;transition:transform .3s cubic-bezier(.4,.36,0,1),opacity .3s cubic-bezier(.4,.36,0,1)}
+.dbtn.primary:hover .a1,.dbtn.primary.is-hover .a1,.dbtn.tertiary:hover .a1,.dbtn.tertiary.is-hover .a1{transform:translateX(24px);opacity:0}
+.dbtn.primary:hover .a2,.dbtn.primary.is-hover .a2,.dbtn.tertiary:hover .a2,.dbtn.tertiary.is-hover .a2{transform:translateX(0);opacity:1}
+/* Figma-like swap affordance (inset tint — survives primary overflow:hidden) */
+  .swap{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;border-radius:6px;padding:3px;margin:-3px;transition:background .15s,box-shadow .15s}
+.swap:hover,.swap.active{background:color-mix(in srgb,currentColor 20%,transparent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,currentColor 50%,transparent)}
+/* playground */
+  .pg-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.pg-hint{font-size:12px;color:var(--font-body-bright)}
+.seg{display:inline-flex;background:var(--background-base);border:1px solid var(--stroke-tertiary);border-radius:9px;padding:2px;gap:2px}
+.seg button{border:none;background:transparent;font-family:var(--font-sans);font-size:12px;font-weight:500;color:var(--font-body-bright);padding:5px 11px;border-radius:7px;cursor:pointer;transition:all .15s}
+.seg button.on{background:var(--background-bw);color:var(--font-body-base);box-shadow:var(--shadow-sm)}
+.pg-stage{display:flex;align-items:center;justify-content:center;min-height:104px;background:var(--background-base);border-radius:12px;border:1px solid var(--stroke-tertiary)}
+.pg-code{position:relative;margin-top:16px;font-family:var(--font-mono);font-size:12.5px;line-height:1.65;color:var(--font-body-base);background:var(--background-base);border:1px solid var(--stroke-tertiary);border-radius:10px;padding:14px 16px;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+.pg-code .cp{position:absolute;top:8px;right:8px;height:26px;padding:0 10px;font-family:var(--font-sans);font-size:11px;font-weight:500;border:1px solid var(--stroke-tertiary);border-radius:7px;background:var(--background-bw);color:var(--font-body-bright);cursor:pointer}
+.pg-code .cp:hover{color:var(--font-body-base)}
+.pg-code .tok-tag{color:#8860f7}
+.pg-code .tok-attr{color:#4b6cff}
+.pg-code .tok-str{color:#33c44a}
+/* variants x states matrix */
+  .btnmatrix{display:grid;grid-template-columns:auto repeat(4,1fr);gap:18px 20px;align-items:center;min-width:520px}
+.btnmx-scroll{overflow-x:auto;padding:10px 4px 26px;margin:0 -4px}
+/* room so shadows / focus rings aren't clipped by the auto overflow-y */
+  .btnmatrix .mh{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--font-body-bright)}
+.btnmatrix .rl{font-size:12px;color:var(--font-body-bright)}
+.btnmatrix .mcell{display:flex;align-items:center;min-height:40px}
+/* icon picker popover */
+  .iconpick{position:fixed;z-index:120;width:312px;background:var(--background-bw);border:1px solid var(--stroke-tertiary);border-radius:12px;box-shadow:var(--shadow-lg);padding:10px;display:none}
+.iconpick.open{display:block}
+.iconpick .pk-top{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.iconpick input{flex:1;height:34px;border-radius:8px;border:1px solid var(--stroke-tertiary);background:var(--background-base);padding:0 10px;font-family:var(--font-sans);font-size:13px;color:var(--font-body-base);box-sizing:border-box}
+.iconpick .pk-x{width:30px;height:30px;flex:none;border:none;background:transparent;color:var(--font-body-bright);cursor:pointer;border-radius:7px;font-size:14px}
+.iconpick .pk-x:hover{background:var(--background-elevation-1)}
+.iconpick .pk-meta{font-size:11px;color:var(--font-body-bright);padding:0 2px 6px}
+.iconpick .pk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;max-height:212px;overflow:auto}
+.iconpick .pk{display:flex;align-items:center;justify-content:center;height:36px;border-radius:8px;cursor:pointer;color:var(--font-body-base)}
+.iconpick .pk svg{width:18px;height:18px}
+.iconpick .pk:hover{background:var(--background-elevation-1)}
+.iconpick .pk.sel{background:var(--ultra-purple-50);color:#442599}
+.comp-subhint{font-size:12px;color:var(--font-body-bright);margin:-4px 0 14px}
+/* sidebar sub-section headers (grouped by role) */
+  .comp-subhead{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--font-body-bright);margin:38px 0 14px;display:flex;align-items:center;gap:12px}
+.comp-subhead:first-of-type{margin-top:6px}
+.comp-subhead::after{content:"";flex:1;height:1px;background:var(--stroke-tertiary)}
+from{opacity:0;transform:translateY(-4px)}
+to{opacity:1;transform:none}
+/* catalog */
+  .cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.cat a{display:block;border:1px solid var(--stroke-tertiary);border-radius:var(--radius-large);padding:12px 14px;background:var(--background-bw)}
+.cat a:hover{border-color:var(--base-primary)}
+.cat .cn{font-size:13px;font-weight:var(--weight-medium)}
+.cat .cd{font-size:12px;color:var(--font-body-bright);margin-top:2px}
+padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;background:transparent;
+  .chip.active{background:var(--base-primary);color:var(--base-primary-foreground);border-color:transparent}
+@keyframes sw-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
     /* Brand — Values panel */
     .bv-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
 
@@ -4459,6 +4576,7 @@
               <button class="color-tab active" data-tab="photography" data-tabgroup="img">Photography</button>
               <button class="color-tab" data-tab="illustration" data-tabgroup="img">Illustration &amp; 3D</button>
               <button class="color-tab" data-tab="product-visuals" data-tabgroup="img">Product Visuals</button>
+              <button class="color-tab" data-tab="components" data-tabgroup="img">Components</button>
               <button class="color-tab" data-tab="iconography" data-tabgroup="img">Iconography</button>
               <button class="color-tab" data-tab="social" data-tabgroup="img">Social</button>
             </div>
@@ -4783,6 +4901,41 @@
                 <span><strong>Don't</strong> — Never screenshot a product in light mode for brand materials — always use the dark theme.</span>
               </div>
             </div>
+          </div>
+
+          <!-- Components (coded) -->
+          <div class="color-tab-panel" id="imtab-components">
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Coded components</span></div>
+              <p class="section-desc" style="margin-top:-8px">Live previews of the coded library, ported from the docs Components page. Source lives in <code class="code-inline">components/</code> as <code class="code-inline">.jsx</code> + <code class="code-inline">.d.ts</code> + <code class="code-inline">.prompt.md</code>.</p>
+            </div>
+
+            <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx · Primary · Secondary · Tertiary · swappable icon · variants &amp; states</span></div>
+              <div class="cb">
+                <div class="pg-toolbar">
+                  <div class="seg" id="pgVariant">
+                    <button data-v="primary" class="on">Primary</button>
+                    <button data-v="secondary">Secondary</button>
+                    <button data-v="tertiary">Tertiary</button>
+                  </div>
+                  <div class="seg" id="pgPos">
+                    <button data-p="none">No icon</button>
+                    <button data-p="before">Icon before</button>
+                    <button data-p="after" class="on">Icon after</button>
+                  </div>
+                  <span class="pg-hint">Click the icon inside the button to swap it — like Figma.</span>
+                </div>
+                <div class="pg-stage" id="pgStage"></div>
+                <pre class="pg-code"><button class="cp" id="pgCopy">Copy</button><code id="pgCode"></code></pre>
+                <div class="cell-h" style="margin:30px 0 18px">Variants &amp; states · default / hover / focused / disabled</div>
+                <div class="btnmx-scroll"><div class="btnmatrix" id="btnMatrix"></div></div>
+              </div></div>
+
+            <div class="comp-card"><div class="ch">Eyebrow<span class="cm">brand &middot; section overline</span></div>
+              <div class="cb"><div class="row" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+                <span class="eyebrow eyebrow--success"><svg class="eyebrow-hex" width="8" height="9" viewBox="0 0 8 9" aria-hidden="true"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="currentColor"/></svg><span class="eyebrow-text">Why now</span></span>
+                <span class="eyebrow eyebrow--info"><svg class="eyebrow-hex" width="8" height="9" viewBox="0 0 8 9" aria-hidden="true"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="currentColor"/></svg><span class="eyebrow-text">Zero trust security</span></span>
+              </div></div></div>
           </div>
 
           <!-- Iconography (merged) -->
@@ -5370,6 +5523,7 @@
       const panel = document.getElementById(prefix + tabId);
       if (panel) panel.classList.add('active');
       if (panel && panel.id === 'imtab-iconography') initHeroicons();
+      if (panel && panel.id === 'imtab-components' && window.__buildButtonPlayground) window.__buildButtonPlayground();
     });
 
     // ===== Navigation =====
@@ -5532,6 +5686,123 @@
       }).catch(() => { /* opened from file://, or the token files moved — the
                           embedded values stay on screen, which is the fallback. */ });
     })();
+
+    /* ===== Coded components — Button playground =====
+       Ported from the docs Components page. Two shims: the Heroicons bundle
+       arrives here as a promise rather than a module import, and the two label
+       helpers the icon picker needs are defined locally. */
+    const spaceCamel = s => s.replace(/([a-z0-9])([A-Z])/g, '$1 $2').replace(/([A-Z])([A-Z][a-z])/g, '$1 $2');
+    const svgOf = o => `<svg viewBox="${o.viewBox}">${o.body}</svg>`;
+
+window.__buildButtonPlayground = function () {
+  const stage = document.getElementById('pgStage');
+  if (!stage || stage.dataset.built) return;   /* built once, on first open of the tab */
+  stage.dataset.built = '1';
+  loadHeroicons().then(function (hero) {
+  const codeEl = document.getElementById('pgCode');
+  const ARROW = '__arrow__';
+  const AP = 'M6.4 4.039a.65.65 0 0 0-.4.55v6.808a.648.648 0 0 0 1.106.43L10.81 8.414a.593.593 0 0 0 0-.843L7.106 4.168A.648.648 0 0 0 6.4 4.039Z';
+  const arrowOneSVG = `<svg viewBox="0 0 16 16" fill="none"><path d="${AP}" fill="currentColor"/></svg>`;
+  const arrowSwapHTML = `<span class="arrow"><svg class="a1" viewBox="0 0 16 16" fill="none"><path d="${AP}" fill="currentColor"/></svg><svg class="a2" viewBox="0 0 16 16" fill="none"><path d="${AP}" fill="currentColor"/></svg></span>`;
+  const heroSolid = Object.entries(hero).filter(([k]) => /^HeroiconsSolid/.test(k))
+    .map(([k, o]) => ({ key: k, label: spaceCamel(k.replace('HeroiconsSolid', '')), svg: svgOf(o), search: k.toLowerCase() }));
+  const pickList = [{ key: ARROW, label: 'Arrow (default)', svg: arrowOneSVG, search: 'arrow default signature' }].concat(heroSolid);
+  const iconSvg = key => { const o = hero[key]; return o ? `<svg viewBox="${o.viewBox}">${o.body}</svg>` : ''; };
+  const labels = { primary: 'Create wallet', secondary: 'Secondary', tertiary: 'Learn more' };
+  const state = { variant: 'primary', pos: 'after', icon: ARROW };  // pos: none | before | after
+
+  function iconInner(animated) {
+    if (state.icon === ARROW) return animated ? arrowSwapHTML : `<span class="ic-slot">${arrowOneSVG}</span>`;
+    return `<span class="ic-slot">${iconSvg(state.icon)}</span>`;
+  }
+  function render() {
+    const label = `<span>${labels[state.variant]}</span>`;
+    let html;
+    if (state.pos === 'none') {
+      html = `<button class="dbtn ${state.variant}${state.variant === 'primary' ? ' no-arrow' : ''}" type="button">${label}</button>`;
+    } else {
+      const animated = state.pos === 'after' && state.icon === ARROW;
+      const ico = `<span class="swap" id="pgSwap" title="Click to swap icon">${iconInner(animated)}</span>`;
+      html = `<button class="dbtn ${state.variant}" type="button">${state.pos === 'before' ? ico + label : label + ico}</button>`;
+    }
+    stage.innerHTML = html;
+    const sw = document.getElementById('pgSwap');
+    if (sw) sw.onclick = e => { e.stopPropagation(); openPick(sw); };
+    renderCode();
+    renderMatrix();
+  }
+  function renderCode() {
+    const T = (c, x) => `<span class="tok-${c}">${x}</span>`;
+    const isArrow = state.icon === ARROW;
+    const iconName = (isArrow ? 'ArrowRight' : state.icon.replace('HeroiconsSolid', '')) + 'Icon';
+    const auto = state.variant !== 'secondary';   // primary + tertiary carry the arrow by default
+    const attrs = [T('attr', 'variant') + '=' + T('str', '"' + state.variant + '"')];
+    if (state.pos === 'none') {
+      if (auto) attrs.push(T('attr', 'arrow') + '={' + T('tag', 'false') + '}');
+    } else if (state.pos === 'after' && isArrow && auto) {
+      /* canonical default arrow — no extra props */
+    } else {
+      attrs.push(T('attr', 'icon') + '={' + T('tag', '&lt;' + iconName + ' /&gt;') + '}');
+      if (state.pos === 'after') attrs.push(T('attr', 'iconPosition') + '=' + T('str', '"after"'));
+      if (auto && !(state.pos === 'after' && isArrow)) attrs.push(T('attr', 'arrow') + '={' + T('tag', 'false') + '}');
+    }
+    codeEl.innerHTML = T('tag', '&lt;Button') + ' ' + attrs.join(' ') + T('tag', '&gt;') + labels[state.variant] + T('tag', '&lt;/Button&gt;');
+  }
+  document.querySelectorAll('#pgVariant button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#pgVariant button').forEach(x => x.classList.remove('on')); b.classList.add('on'); state.variant = b.dataset.v; render();
+  });
+  document.querySelectorAll('#pgPos button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#pgPos button').forEach(x => x.classList.remove('on')); b.classList.add('on'); state.pos = b.dataset.p; render();
+  });
+  document.getElementById('pgCopy').onclick = () => copy(codeEl.textContent, 'Code copied');
+
+  /* icon picker popover (instance swap) */
+  const pick = document.createElement('div'); pick.className = 'iconpick';
+  pick.innerHTML = '<div class="pk-top"><input placeholder="Search Heroicons solid…" id="pkSearch"><button class="pk-x" id="pkClose" aria-label="Close">✕</button></div><div class="pk-meta" id="pkMeta"></div><div class="pk-grid" id="pkGrid"></div>';
+  document.body.appendChild(pick);
+  const pkGrid = pick.querySelector('#pkGrid'), pkSearch = pick.querySelector('#pkSearch'), pkMeta = pick.querySelector('#pkMeta');
+  let anchorEl = null;
+  function renderPick() {
+    const q = pkSearch.value.trim().toLowerCase();
+    const list = pickList.filter(i => !q || i.search.includes(q)).slice(0, 134);
+    pkMeta.textContent = `${list.length} icons${q ? ' · filtered' : ' · arrow + Heroicons solid'}`;
+    pkGrid.innerHTML = list.map(i => `<div class="pk ${i.key === state.icon ? 'sel' : ''}" data-k="${i.key}" title="${i.label}">${i.svg}</div>`).join('');
+  }
+  pkGrid.onclick = e => { const c = e.target.closest('.pk'); if (!c) return; state.icon = c.dataset.k; render(); openPick(document.getElementById('pgSwap')); };
+  pkSearch.oninput = renderPick;
+  pick.querySelector('#pkClose').onclick = closePick;
+  function place() { if (!anchorEl) return; const r = anchorEl.getBoundingClientRect(); pick.style.left = Math.max(12, Math.min(r.left - 8, window.innerWidth - 324)) + 'px'; pick.style.top = (r.bottom + 10) + 'px'; }
+  function openPick(el) { if (!el) return; anchorEl = el; el.classList.add('active'); place(); pick.classList.add('open'); renderPick(); pkSearch.focus(); }
+  function closePick() { pick.classList.remove('open'); const sw = document.getElementById('pgSwap'); if (sw) sw.classList.remove('active'); }
+  document.addEventListener('click', e => { if (pick.classList.contains('open') && !pick.contains(e.target) && !e.target.closest('#pgSwap')) closePick(); });
+  window.addEventListener('scroll', () => { if (pick.classList.contains('open')) place(); }, true);
+
+  /* variants × states matrix — mirrors the live icon position/icon in real time */
+  const mx = document.getElementById('btnMatrix');
+  const STS = [['Default', ''], ['Hover', 'is-hover'], ['Focused', 'is-focus'], ['Disabled', 'disabled']];
+  const VS = [['primary', 'Create wallet'], ['secondary', 'Secondary'], ['tertiary', 'Learn more']];
+  function cellInner(label) {
+    const lab = `<span>${label}</span>`;
+    if (state.pos === 'none') return lab;
+    const ico = iconInner(state.pos === 'after' && state.icon === ARROW);
+    return state.pos === 'before' ? ico + lab : lab + ico;
+  }
+  function renderMatrix() {
+    if (!mx) return;
+    let html = '<div></div>' + STS.map(s => `<div class="mh">${s[0]}</div>`).join('');
+    VS.forEach(([v, lbl]) => {
+      html += `<div class="rl">${v}</div>`;
+      STS.forEach(([, cls]) => {
+        const noArrow = (state.pos === 'none' && v === 'primary') ? ' no-arrow' : '';
+        html += `<div class="mcell"><button class="dbtn ${v} ${cls}${noArrow}" ${cls === 'disabled' ? 'disabled' : ''}>${cellInner(lbl)}</button></div>`;
+      });
+    });
+    mx.innerHTML = html;
+  }
+
+  render();
+  }).catch(function () { /* bundle unavailable — the stage stays empty */ });
+};
 
     // ===== Hash routing =====
     function handleRoute() {
