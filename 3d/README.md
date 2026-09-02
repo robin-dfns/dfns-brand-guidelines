@@ -7,7 +7,7 @@ Linked from the design system at `/#assets` → *Schematics & 3D* (click any vis
 |---|---|---|
 | `keys.html` | `GravureCanvas` + `keys.glb` | drag to rotate |
 | `stack.html` | `StackSection` (`#stack-canvas`) | scroll to assemble the stack |
-| `hex-map.html` | `HeroGlobe` (`#hero-globe-canvas`) | none — re-fits on resize |
+| `hex-map.html` | `HeroGlobe` (`#hero-globe-canvas`) | none — slow looping drift, re-fits on resize |
 
 ## Where the code comes from
 
@@ -39,6 +39,31 @@ Both exist because GitHub Pages serves this repo from `/dfns-design-system/`, no
 `three.module.js` is 716 KB and the two models are 3.9 MB + 2.6 MB. That cost is the reason
 these live on their own pages rather than inside `index.html` — the main page stays a single
 static document and downloads none of it.
+
+## `hex-map.html` loops without touching the shader
+
+`HeroGlobe` with `centered` sets `START_X === END_X`, so its entry slide is a no-op and the
+map is simply present from the first frame — no reveal, and `bare` keeps the home page's
+markers, connection line and code window off it.
+
+Two things then loop:
+
+1. **The shader's own pulse.** `postMat.uniforms.uTime` drives a per-hexagon `sin()` across
+   the landmass, ramped in over 3s and running forever after. That comes free with the
+   bundle — nothing to configure.
+2. **A slow drift**, added here as a CSS `@keyframes` on `.hero-globe`. It is *presentational
+   only*; the vendored module is untouched.
+
+Two constraints on that drift, both easy to break:
+
+- `.hero-globe` is rendered at **114% with a -7% offset**, i.e. deliberate overscan. The
+  keyframes peak at 4.5% / 1.5%, so the frame never sees an edge. Widen the excursion
+  without widening the overscan and the page background slides into view.
+- The keyframes **translate only, never scale**. The halftone is computed from
+  `vUv * resolution` in screen space, so any CSS scale visibly resizes every hexagon.
+
+The path is closed (0% and 100% identical) so the loop never snaps, and it is disabled under
+`prefers-reduced-motion`.
 
 ## `stack.html` is scroll-driven
 

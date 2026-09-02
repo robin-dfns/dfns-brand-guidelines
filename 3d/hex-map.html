@@ -15,7 +15,37 @@
     height: calc(100vh - 61px);
     overflow: hidden;
   }
-  .hero-globe { position: absolute; inset: 0; }
+
+  /* The canvas is rendered larger than the stage so the drift below never
+     pulls an empty edge into frame. The shader reads screen-space pixels,
+     so the overscan is real render area, not an upscale. */
+  .hero-globe {
+    position: absolute;
+    top: -7%;
+    left: -7%;
+    width: 114%;
+    height: 114%;
+    animation: map-drift 80s linear infinite;
+    will-change: transform;
+  }
+
+  /* Presentational only — the vendored shader is untouched. A closed path, so
+     the loop returns to its start and never snaps. Pure translation, no scale:
+     the halftone is computed in screen space, so scaling it would visibly
+     resize every hexagon. Peak excursion (4.5% / 1.5%) stays inside the 7%
+     overscan above. */
+  @keyframes map-drift {
+    0%   { transform: translate3d(0, 0, 0); }
+    25%  { transform: translate3d(-3%, -0.9%, 0); }
+    50%  { transform: translate3d(-4.5%, 0.6%, 0); }
+    75%  { transform: translate3d(-1.5%, 1.5%, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-globe { animation: none; }
+  }
+
   #hero-globe-canvas { width: 100%; height: 100%; display: block; }
 </style>
 </head>
@@ -27,7 +57,7 @@
       <div class="viewer-src">#hero-globe-canvas · world_map.glb</div>
     </div>
     <div class="viewer-actions">
-      <span class="viewer-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Resize the window</span>
+      <span class="viewer-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Slow loop · resize to re-fit</span>
       <a class="viewer-dl" href="../assets/Renders/gravure/hero-globe-canvas.png" download="dfns-hero-globe-canvas.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG</a>
     </div>
   </div>
@@ -38,7 +68,7 @@
     </div>
   </div>
 
-  <p class="viewer-note">Nothing to drag here — this canvas takes no pointer input on dfns.co either. What it does do is re-fit: resize the window and watch the landmass re-rasterise into the hexagon grid, which is the whole point of the treatment. Rendered <code>bare</code> and <code>centered</code>, so no location markers, no code window and no left-hand fade.</p>
+  <p class="viewer-note">The map is simply there from the first frame — rendered <code>bare</code> and <code>centered</code>, so none of the home-page overlay arrives on top of it: no location markers, no connection line, no code window, no left-hand fade. Two things loop: the shader's own per-hexagon pulse across the landmass, and a slow drift that traces a closed path every 80&nbsp;s. Nothing to drag — this canvas takes no pointer input on dfns.co either — but resize the window and the landmass re-rasterises into the hexagon grid, which is the whole point of the treatment.</p>
 
   <script type="module" src="./_astro/HeroGlobe.BwjzwKjc.js"></script>
 </body>
