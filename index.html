@@ -652,7 +652,6 @@
       font-size: 16px;
       color: var(--text-secondary);
       line-height: 1.7;
-      max-width: 600px;
       margin-bottom: 48px;
       padding-bottom: 32px;
       border-bottom: 1px solid var(--border-default);
@@ -679,7 +678,6 @@
       color: var(--text-secondary);
       line-height: 1.7;
       margin-bottom: 28px;
-      max-width: 600px;
     }
 
     /* Placeholder */
@@ -866,22 +864,15 @@
     .bv-value-name { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 6px; }
     .bv-value-body { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
 
-    .bv-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 10px 26px;
-      max-width: 900px;
-    }
-    .bv-cloud span { line-height: 1.1; white-space: nowrap; }
-    .bv-cloud .s3 { font-size: 40px; font-weight: 300; letter-spacing: -0.01em; color: var(--accent); }
-    .bv-cloud .s2 { font-size: 27px; font-weight: 300; color: var(--text-strong); }
-    .bv-cloud .s1 { font-size: 17px; font-weight: 400; color: var(--text-faint); }
-
-    @media (max-width: 600px) {
-      .bv-cloud { gap: 8px 18px; }
-      .bv-cloud .s3 { font-size: 30px; }
-      .bv-cloud .s2 { font-size: 22px; }
+    .bv-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bv-cloud span {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      font-size: 13px;
+      color: var(--text-body);
+      white-space: nowrap;
     }
 
     .bv-credit { margin: 30px 0 0; font-size: 11px; line-height: 1.7; color: var(--text-faint); max-width: 760px; }
@@ -993,8 +984,6 @@
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-default);
     }
 
     .color-family-name {
@@ -2873,14 +2862,9 @@
               <div class="color-family-header">
                 <span class="color-family-name">Positioning</span>
               </div>
-              <p class="section-desc" style="margin-top:-8px;margin-bottom:26px">How DFNS differentiates in the competitive landscape &mdash; the differentiators we lead with, and the supporting values underneath them. Weight follows emphasis.</p>
+              <p class="section-desc" style="margin-top:-8px;margin-bottom:22px">How DFNS differentiates in the competitive landscape &mdash; the differentiators we lead with, and the supporting values underneath them.</p>
               <div class="bv-cloud">
-                ${[
-                  { w: 'Security', s: 3 }, { w: 'Reliable', s: 1 }, { w: 'Trust', s: 3 },
-                  { w: 'Modularity', s: 2 }, { w: 'Enterprise-Grade', s: 2 }, { w: 'Powerful', s: 1 },
-                  { w: 'Programmability', s: 2 }, { w: 'Down to earth', s: 1 }, { w: 'Dev-Friendly', s: 2 },
-                  { w: 'Bank-Grade', s: 2 }
-                ].map(t => `<span class="s${t.s}">${t.w}</span>`).join('')}
+                ${['Security', 'Trust', 'Enterprise-Grade', 'Dev-Friendly', 'Programmability', 'Modularity', 'Bank-Grade', 'Reliable', 'Powerful', 'Down to earth'].map(t => `<span>${t}</span>`).join('')}
               </div>
             </div>
           </div>
