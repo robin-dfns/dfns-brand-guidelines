@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Keys — Gravure 3D · DFNS Design System</title>
+<link rel="icon" href="../assets/img/dfns-favicon.png"/>
+<link rel="stylesheet" href="../tokens/fonts.css"/>
+<link rel="stylesheet" href="./viewer.css"/>
+</head>
+<body>
+  <div class="viewer-bar">
+    <a class="viewer-back" href="../#assets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Design System</a>
+    <div class="viewer-titles">
+      <div class="viewer-title">Keys — Gravure 3D</div>
+      <div class="viewer-src">keys.glb · GravureCanvas</div>
+    </div>
+    <div class="viewer-actions">
+      <span class="viewer-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10V6a2 2 0 0 0-4 0v10"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2a8 8 0 0 1-8-8"/></svg>Drag to rotate</span>
+      <a class="viewer-dl" href="../assets/Renders/gravure/keys-gravure.png" download="dfns-keys-gravure.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG</a>
+    </div>
+  </div>
+
+  <div class="viewer-stage">
+    <div class="gravure-wrap" id="gravure-wrap-keys" style="max-width:760px;aspect-ratio:1 / 1"
+         data-gravure='{"model":"./three-js/keys.glb","geometry":"","scale":3,"rotX":0.7,"rotY":1.3,"fit":"orbit","maps":"all"}'>
+      <canvas></canvas>
+    </div>
+  </div>
+
+  <p class="viewer-note">The shader runs here, it is not a video: flat aplats, diagonal hatching and the contour outline are computed every frame from <code>keys.glb</code>. Same module dfns.co ships — <code>GravureCanvas</code>.</p>
+
+  <script type="module" src="./_astro/GravureCanvas.astro_astro_type_script_index_0_lang.sUi8WjpV.js"></script>
+</body>
+</html>

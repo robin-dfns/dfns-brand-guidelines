@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hex stack — Gravure 3D · DFNS Design System</title>
+<link rel="icon" href="../assets/img/dfns-favicon.png"/>
+<link rel="stylesheet" href="../tokens/fonts.css"/>
+<link rel="stylesheet" href="./viewer.css"/>
+<style>
+  /* The sequence is driven by scroll position, exactly as on dfns.co:
+     p = -rect.top / (rect.height - innerHeight) over a 400vh section. */
+  .stack-section { height: 400vh; position: relative; overflow: visible; }
+  .stack-sticky {
+    position: sticky;
+    top: 61px;
+    height: calc(100vh - 61px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .stack-hr { border: 0; border-top: 1px solid var(--border); position: absolute; left: 0; right: 0; margin: 0; }
+  .stack-hr--top { top: 0; }
+  .stack-hr--bottom { bottom: 0; }
+  .stack-divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--border); opacity: 0; }
+  /* the shared .gravure-wrap rule clips and offers a grab cursor — neither
+     applies here: the labels sit outside the square and there is no drag. */
+  #stack-gravure {
+    width: 100%;
+    max-width: 620px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: visible;
+    cursor: default;
+  }
+  #stack-canvas { width: 100%; height: 100%; display: block; }
+  .stack-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+  .stack-label {
+    position: absolute;
+    left: calc(76% + 12px);
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .stack-label.visible { opacity: 1; }
+  /* below this width the labels would run off-screen — dfns.co drops the
+     whole 3D visual on mobile, so hiding them here is the lighter version */
+  @media (max-width: 900px) { .stack-labels { display: none; } }
+  .stack-label__text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--grey-600);
+    white-space: nowrap;
+  }
+  .scroll-cue {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    z-index: 15;
+    animation: cue-fade 0.4s ease 6s forwards;
+  }
+  .scroll-cue svg { width: 13px; height: 13px; }
+  @keyframes cue-fade { to { opacity: 0; visibility: hidden; } }
+</style>
+</head>
+<body>
+  <div class="viewer-bar">
+    <a class="viewer-back" href="../#assets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Design System</a>
+    <div class="viewer-titles">
+      <div class="viewer-title">Hex stack — Gravure 3D</div>
+      <div class="viewer-src">#stack-canvas · StackSection</div>
+    </div>
+    <div class="viewer-actions">
+      <span class="viewer-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>Scroll to assemble</span>
+      <a class="viewer-dl" href="../assets/Renders/gravure/stack-canvas.png" download="dfns-stack-canvas.png"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG</a>
+    </div>
+  </div>
+
+  <div class="stack-section">
+    <div class="stack-sticky">
+      <hr class="stack-hr stack-hr--top"/>
+      <hr class="stack-hr stack-hr--bottom"/>
+      <div class="stack-divider"></div>
+      <div class="gravure-wrap" id="stack-gravure" data-gravure='{"geometry":"hex-stack"}'>
+        <canvas id="stack-canvas"></canvas>
+        <div class="stack-labels">
+          <div class="stack-label stack-label--hex2" id="label-hex2"><span class="stack-label__text">Digital asset ecosystem</span></div>
+          <div class="stack-label stack-label--hex1" id="label-hex1"><span class="stack-label__text">DFNS</span></div>
+          <div class="stack-label stack-label--hex3" id="label-hex3"><span class="stack-label__text">Institution's core systems</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="scroll-cue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>Scroll</span>
+
+  <p class="viewer-note">No drag on this one — the sequence is bound to scroll position, the way the Architecture section works on dfns.co. Scroll down to tilt the middle hexagon, bring the other two in and reveal the labels; scroll back up to take it apart.</p>
+
+  <script type="module" src="./_astro/StackSection.astro_astro_type_script_index_0_lang.Bu7jXtwc.js"></script>
+</body>
+</html>

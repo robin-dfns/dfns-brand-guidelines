@@ -1,0 +1,144 @@
+/* Standalone 3D viewers — the real canvases from dfns.co, running here.
+   Tokens are inlined rather than imported: these pages must boot with one
+   stylesheet and one module, nothing else. */
+:root {
+  --bg-page: #F0F1F4;
+  --bg-surface: #FFFFFF;
+  --border: #E3E4EB;
+  --border-hover: #CBCCD7;
+  --text-strong: #1E202E;
+  --text-body: #363A5B;
+  --text-muted: #575C7B;
+  --text-faint: #AEB1C9;
+  --accent: #442599;
+  --accent-bg: #E0E3F0;
+  --font: 'Suisse Intl', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, 'Fira Code', monospace;
+  /* the vendored StackSection stylesheet reads these two names */
+  --grey-600: #575C7B;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Top bar ── */
+.viewer-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 28px;
+  background: rgba(240, 241, 244, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.viewer-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px 0 9px;
+  border-radius: 10px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.viewer-back:hover { background: #D6C8FF; }
+.viewer-back svg { width: 14px; height: 14px; }
+
+.viewer-titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.viewer-title { font-size: 15px; font-weight: 600; color: var(--text-strong); line-height: 1.2; }
+.viewer-src { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); }
+
+.viewer-actions { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+
+.viewer-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.viewer-hint svg { width: 14px; height: 14px; }
+
+.viewer-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-body);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.viewer-dl:hover { border-color: var(--border-hover); color: var(--text-strong); }
+.viewer-dl svg { width: 14px; height: 14px; }
+
+/* ── Stage ── */
+.viewer-stage {
+  min-height: calc(100vh - 61px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px 64px;
+}
+
+.viewer-note {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 28px 56px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.viewer-note code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: #E8EAF0;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* ── GravureCanvas wrap (the component's own scoped CSS, unscoped) ── */
+.gravure-wrap {
+  width: 100%;
+  position: relative;
+  cursor: grab;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.gravure-wrap:active { cursor: grabbing; }
+.gravure-wrap canvas { width: 100%; height: 100%; display: block; }
+
+@media (max-width: 640px) {
+  .viewer-bar { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+  .viewer-actions { margin-left: 0; width: 100%; }
+  .viewer-stage { padding: 24px 16px 48px; }
+}
