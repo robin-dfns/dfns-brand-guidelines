@@ -784,6 +784,46 @@
     .dodont-tag.dont { color: #F85370; }
     .dodont-tag svg { width: 14px; height: 14px; }
 
+    /* Token sections migrated from the docs Foundations page */
+    .tok-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tok-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+
+    .tok-row { display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end; }
+    .tok-row .cap {
+      font-family: 'Roboto Mono', ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--text-faint);
+      margin-top: 10px;
+      white-space: nowrap;
+    }
+    .tok-row .val { font-family: 'Roboto Mono', ui-monospace, monospace; font-size: 10px; color: var(--text-ghost); }
+    .tok-bar { background: var(--accent); border-radius: 2px; height: 40px; }
+    .tok-box { width: 66px; height: 66px; background: var(--bg-surface); border: 1px solid var(--border-default); }
+
+    .tok-shadows { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 26px; }
+    .tok-shadow-tile { height: 84px; border-radius: 12px; background: var(--bg-surface); }
+
+    .tok-drift {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: rgba(248, 83, 112, 0.12);
+      color: #D61F49;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
     /* Brand — Values panel */
     .bv-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
 
@@ -2596,10 +2636,10 @@
         { name: 'Font / Body Base', hex: '#1E202E', textLight: false, note: 'Cold Grey 900' },
         { name: 'Font / Body Mid', hex: '#363A5B', textLight: false, note: 'Cold Grey 700' },
         { name: 'Font / Body Bright', hex: '#575C7B', textLight: false, note: 'Cold Grey 600' },
-        { name: 'Font / Heading Purple', hex: '#2D1866', textLight: false, note: 'Ultra Purple 800' },
+        { name: 'Font / Heading Purple', hex: '#442599', textLight: true, note: 'Ultra Purple 700' },
         { name: 'Primary', hex: '#2D1866', textLight: false, note: 'Ultra Purple 800' },
         { name: 'Hover', hex: '#693AEA', textLight: true, note: 'Ultra Purple 500' },
-        { name: 'Icons / Primary', hex: '#693AEA', textLight: true, note: 'Ultra Purple 500' },
+        { name: 'Icons / Primary', hex: '#363A5B', textLight: false, note: 'Cold Grey 700' },
         { name: 'Icons / Secondary', hex: '#442599', textLight: true, note: 'Ultra Purple 700' },
       ],
       semanticDark: [
@@ -2610,11 +2650,11 @@
         { name: 'Font / Body Base', hex: '#E0E3F0', textLight: true, note: 'Cold Grey 100' },
         { name: 'Font / Body Mid', hex: '#C5C9DE', textLight: true, note: 'Cold Grey 300' },
         { name: 'Font / Body Bright', hex: '#AEB1C9', textLight: true, note: 'Cold Grey 500' },
-        { name: 'Font / Heading Purple', hex: '#E6DEFF', textLight: true, note: 'Ultra Purple 50' },
+        { name: 'Font / Heading Purple', hex: '#D6C8FF', textLight: true, note: 'Ultra Purple 100' },
         { name: 'Primary', hex: '#2D1866', textLight: true, note: 'Ultra Purple 800' },
         { name: 'Hover', hex: '#693AEA', textLight: true, note: 'Ultra Purple 500' },
-        { name: 'Icons / Primary', hex: '#693AEA', textLight: true, note: 'Ultra Purple 500' },
-        { name: 'Icons / Secondary', hex: '#8860F7', textLight: true, note: 'Ultra Purple 400' },
+        { name: 'Icons / Primary', hex: '#E0E3F0', textLight: true, note: 'Cold Grey 100' },
+        { name: 'Icons / Secondary', hex: '#AEB1C9', textLight: true, note: 'Cold Grey 500' },
       ],
       // Print equivalents — nearest Pantone by CIEDE2000 against the official
       // Pantone book Lab values (D50), sRGB→Lab D50 via Bradford. dE00 = perceptual
@@ -2641,9 +2681,9 @@
       ]
     };
 
-    function buildColorStrips(colors) {
-      return `<div class="color-strip-list">${colors.map(c => `
-        <div class="color-strip" style="background:${c.hex}; color:${c.textLight ? '#fff' : '#0D0D0D'};" onclick="copyHex('${c.hex}', this)">
+    function buildColorStrips(colors, theme) {
+      return `<div class="color-strip-list" data-theme-scope="${theme || ''}">${colors.map(c => `
+        <div class="color-strip" data-token="${SEMANTIC_TOKENS[c.name] || ''}" style="background:${c.hex}; color:${readableOn(c.hex)};" onclick="copyHex('${c.hex}', this)">
           <div class="color-strip-left">
             <span class="color-strip-name">${c.name}</span>
           </div>
@@ -2658,12 +2698,45 @@
       `).join('')}</div>`;
     }
 
+    /* A swatch's token is derivable from its label, so the page can check
+       itself against tokens/colors.css rather than trust a copied hex. */
+    const SEMANTIC_TOKENS = {
+      'Background / Base': 'background-base', 'Background / B&W': 'background-bw',
+      'Background / Elevation 1': 'background-elevation-1', 'Background / Elevation 2': 'background-elevation-2',
+      'Font / Body Base': 'font-body-base', 'Font / Body Mid': 'font-body-mid',
+      'Font / Body Bright': 'font-body-bright', 'Font / Heading Purple': 'font-heading-colored-mid',
+      'Primary': 'base-primary', 'Hover': 'states-hover',
+      'Icons / Primary': 'icons-primary', 'Icons / Secondary': 'icons-secondary'
+    };
+
+    /* The hand-maintained textLight flag put white text on #E0E3F0 and other
+       near-white swatches. Contrast is derivable, so derive it. */
+    function readableOn(hex) {
+      const m = /^#?([0-9a-f]{6})$/i.exec(String(hex).trim());
+      if (!m) return '#0D0D0D';
+      const n = parseInt(m[1], 16);
+      const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(v => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+      });
+      const L = 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+      return L > 0.42 ? '#0D0D0D' : '#FFFFFF';
+    }
+
+    function tokenSlug(name) {
+      let n = name.toLowerCase()
+        .replace('ultra purple', 'ultra-purple').replace('cold grey', 'cold-grey')
+        .replace('steel grey', 'steel-grey').replace('dark purple', 'dark-purple');
+      if (/^(red|green|blue|yellow) /.test(n)) n = 'system-' + n;
+      return n.replace(/\s+/g, '-');
+    }
+
     function buildColorSwatches(colors, featuredNames) {
       const featured = featuredNames || [];
       return `<div class="color-swatch-grid">${colors.map(c => {
         const isFeatured = featured.some(f => c.name.includes(f));
         return `
-        <div class="color-swatch-card${isFeatured ? ' featured' : ''}" style="background:${c.hex}; color:${c.textLight ? '#fff' : '#0D0D0D'};" onclick="copyHex('${c.hex}', this, true)">
+        <div class="color-swatch-card${isFeatured ? ' featured' : ''}" data-token="${tokenSlug(c.name)}" style="background:${c.hex}; color:${readableOn(c.hex)};" onclick="copyHex('${c.hex}', this, true)">
           <span class="color-swatch-card-copied">Copied!</span>
           <span class="color-swatch-card-name">${c.name}</span>
           <span class="color-swatch-card-hex">${c.hex}</span>
@@ -3155,7 +3228,7 @@
             <h1 class="content-title">Color</h1>
             <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Color palette, system colors, semantic variables, and accessibility guidelines. Aligned with Rubik 2026 Figma DS.</p>
             <div class="tabpage-tabs" id="colorTabs">
-              <button class="color-tab active" data-tab="palette">Palette</button>
+              <button class="color-tab active" data-tab="palette">Foundations</button>
             </div>
           </div>
 
@@ -3176,9 +3249,15 @@
             <div style="margin-top:-32px">
               <p class="section-desc" style="margin-bottom:24px">Semantic variables from Rubik 2026 — these auto-switch between light and dark mode. Use these in production instead of raw color tokens.</p>
               <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin-bottom:16px;color:var(--text-primary)">Light Mode</h3>
-              ${buildColorStrips(colorData.semanticLight)}
+              ${buildColorStrips(colorData.semanticLight, 'light')}
               <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin:32px 0 16px;color:var(--text-primary)">Dark Mode</h3>
-              ${buildColorStrips(colorData.semanticDark)}
+              ${buildColorStrips(colorData.semanticDark, 'dark')}
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Badges &amp; status</span></div>
+              <p class="section-desc" style="margin-top:-8px">Each status carries a background, a foreground and a border token. Read live from <code class="code-inline">tokens/colors.css</code> for the active theme.</p>
+              <div id="tokBadges" class="tok-badges"></div>
             </div>
 
             <div class="color-family">
@@ -3233,6 +3312,24 @@
               <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Screen-native colors don&rsquo;t print</strong> &mdash; Ultra Purple 500 and Ultra Purple 200 sit outside the ink gamut (&Delta;E 6). The System colors (Green / Red / Blue / Yellow 500) are UI states and carry no print reference at all. Build print from Ultra Purple 800/700 and the neutrals.</span></div>
             </div>
           </div>
+
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Spacing</span></div>
+              <p class="section-desc" style="margin-top:-8px">The scale from <code class="code-inline">tokens/spacing.css</code>. Every gap, pad and inset resolves to one of these.</p>
+              <div id="tokSpacing" class="tok-row"></div>
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Radii</span></div>
+              <p class="section-desc" style="margin-top:-8px">Corner radii, from <code class="code-inline">radius-none</code> to <code class="code-inline">radius-full</code>.</p>
+              <div id="tokRadii" class="tok-row"></div>
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Shadows</span></div>
+              <p class="section-desc" style="margin-top:-8px">Elevation tokens. The signature dark-card recipe is documented under Dark Mode above.</p>
+              <div id="tokShadows" class="tok-shadows"></div>
+            </div>
         </div>
       `;
     }
@@ -5326,6 +5423,114 @@
     window.addEventListener('scroll', () => {
       document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 20);
     });
+
+    /* ===== Token truth =====
+       tokens/*.css is the single source of truth, but this page cannot simply
+       link it: base.css would take over body and a, and the token themes key off
+       .dark while this page keys off [data-theme] with dark as the default. So the
+       files are read at runtime instead, resolved, and used to (a) reconcile every
+       swatch against the token it claims and (b) render the spacing, radii, shadow
+       and badge sections migrated out of the docs Foundations page. */
+    (function tokenTruth() {
+      const parse = (css, selector) => {
+        const i = css.indexOf(selector);
+        if (i < 0) return {};
+        const body = css.slice(i + selector.length, css.indexOf('}', i));
+        const out = {};
+        body.replace(/--([a-z0-9-]+)\s*:\s*([^;]+)/g, (_, k, v) => { out[k] = v.trim(); return ''; });
+        return out;
+      };
+
+      function makeResolver(base, overlay) {
+        return function resolve(name, depth) {
+          depth = depth || 0;
+          const v = (overlay && overlay[name]) || base[name];
+          if (v === undefined || depth > 8) return null;
+          const m = /^var\(--([a-z0-9-]+)\)$/.exec(v);
+          return m ? resolve(m[1], depth + 1) : v;
+        };
+      }
+
+      Promise.all([
+        fetch('./tokens/colors.css').then(r => r.text()),
+        fetch('./tokens/spacing.css').then(r => r.text())
+      ]).then(([colorsCss, spacingCss]) => {
+        const light = parse(colorsCss, ':root{');
+        const dark = parse(colorsCss, '.dark{');
+        const space = parse(spacingCss, ':root{');
+        const resolveLight = makeResolver(light, null);
+        const resolveDark = makeResolver(light, dark);
+        const resolveSpace = makeResolver(space, null);
+
+        /* (a) reconcile — a swatch that disagrees with its token is corrected
+               and flagged, so drift is visible instead of silently carried. */
+        let drifted = 0;
+        document.querySelectorAll('[data-token]').forEach(el => {
+          const token = el.getAttribute('data-token');
+          if (!token) return;
+          const scope = el.closest('[data-theme-scope]');
+          const dm = scope && scope.getAttribute('data-theme-scope') === 'dark';
+          const truth = (dm ? resolveDark : resolveLight)(token);
+          if (!truth || !/^#[0-9A-Fa-f]{6}$/.test(truth)) return;
+          const label = el.querySelector('.color-swatch-card-hex, .color-strip-hex');
+          const shown = label && label.textContent.trim().toUpperCase();
+          if (shown && shown !== truth.toUpperCase()) {
+            el.style.background = truth;
+            el.style.color = readableOn(truth);
+            label.textContent = truth.toUpperCase();
+            el.setAttribute('onclick', "copyHex('" + truth.toUpperCase() + "', this)");
+            drifted++;
+          }
+        });
+        if (drifted) {
+          const host = document.getElementById('tokBadges');
+          if (host) host.insertAdjacentHTML('beforebegin',
+            '<div class="tok-drift">' + drifted + ' swatch' + (drifted > 1 ? 'es' : '') +
+            ' disagreed with tokens/colors.css and were corrected from it.</div>');
+        }
+
+        /* (b) the sections that used to live on the docs Foundations page */
+        const badges = ['default', 'information', 'success', 'danger', 'warning'];
+        const badgeHost = document.getElementById('tokBadges');
+        if (badgeHost) badgeHost.innerHTML = badges.map(k => {
+          const bg = resolveLight('badge-' + k), fg = resolveLight('badge-' + k + '-foreground'),
+                bd = resolveLight('badge-' + k + '-border');
+          if (!bg) return '';
+          return '<span class="tok-badge" style="background:' + bg + ';color:' + fg +
+                 ';border-color:' + (bd || 'transparent') + '">' + k.charAt(0).toUpperCase() + k.slice(1) + '</span>';
+        }).join('');
+
+        const spacingHost = document.getElementById('tokSpacing');
+        if (spacingHost) spacingHost.innerHTML = Object.keys(space)
+          .filter(k => /^space-\d+$/.test(k))
+          .sort((a, b) => parseInt(a.slice(6)) - parseInt(b.slice(6)))
+          .map(k => {
+            const v = resolveSpace(k);
+            return '<div><div class="tok-bar" style="width:' + (v === '0px' ? '1px' : v) + '"></div>' +
+                   '<div class="cap">' + k + '</div><div class="val">' + v + '</div></div>';
+          }).join('');
+
+        const radiiHost = document.getElementById('tokRadii');
+        if (radiiHost) radiiHost.innerHTML = ['radius-none', 'radius-small', 'radius-medium', 'radius-base',
+          'radius-large', 'radius-extra-large', 'radius-xl', 'radius-2xl', 'radius-xxl', 'radius-full']
+          .map(k => {
+            const v = resolveSpace(k);
+            if (!v) return '';
+            return '<div><div class="tok-box" style="border-radius:' + v + '"></div>' +
+                   '<div class="cap">' + k.replace('radius-', '') + '</div><div class="val">' + v + '</div></div>';
+          }).join('');
+
+        const shadowHost = document.getElementById('tokShadows');
+        if (shadowHost) shadowHost.innerHTML = ['shadow-sm', 'shadow-base', 'shadow-md', 'shadow-lg', 'shadow-xl']
+          .map(k => {
+            const v = resolveSpace(k);
+            if (!v) return '';
+            return '<div><div class="tok-shadow-tile" style="box-shadow:' + v + '"></div>' +
+                   '<div class="cap">' + k.replace('shadow-', '') + '</div></div>';
+          }).join('');
+      }).catch(() => { /* opened from file://, or the token files moved — the
+                          embedded values stay on screen, which is the fallback. */ });
+    })();
 
     // ===== Hash routing =====
     function handleRoute() {
