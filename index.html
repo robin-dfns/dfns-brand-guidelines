@@ -2179,32 +2179,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         ]
       },
       {
-        id: 'components', number: '03', title: 'Components', color: 'var(--tile-components)',
-        desc: 'Buttons, eyebrows, and badges — the reusable interface atoms.',
-        svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="56" y="92" width="288" height="216" rx="22" fill="#FFFFFF" opacity="0.97"/>
-          <rect x="84" y="122" width="96" height="22" rx="6" fill="#E6DEFF"/>
-          <circle cx="99" cy="133" r="3.2" fill="#5123CE"/>
-          <rect x="110" y="131" width="58" height="4" rx="2" fill="#5123CE" opacity="0.7"/>
-          <rect x="84" y="160" width="212" height="11" rx="5.5" fill="#363A5B"/>
-          <rect x="84" y="180" width="156" height="11" rx="5.5" fill="#AEB1C9" opacity="0.55"/>
-          <rect x="84" y="216" width="124" height="40" rx="12" fill="#2D1866"/>
-          <rect x="101" y="233" width="66" height="6" rx="3" fill="#E0E3F0"/>
-          <path d="M182 236 h10 m-4 -4 l4 4 -4 4" stroke="#E0E3F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="220" y="216" width="92" height="40" rx="12" fill="#E0E3F0"/>
-          <rect x="236" y="233" width="60" height="6" rx="3" fill="#442599"/>
-          <rect x="84" y="272" width="74" height="20" rx="8" fill="#F0F1F4" stroke="#E3E4EB"/>
-          <rect x="95" y="280" width="52" height="4" rx="2" fill="#575C7B"/>
-        </svg>`,
-        customLayout: true,
-        sections: [
-          { id: 'cta', title: 'Buttons / CTA' },
-          { id: 'eyebrow', title: 'Eyebrow' },
-          { id: 'badge', title: 'Badge' }
-        ]
-      },
-      {
-        id: 'assets', number: '04', title: 'Assets', color: 'var(--tile-assets)', wip: true,
+        id: 'assets', number: '03', title: 'Assets', color: 'var(--tile-assets)', wip: true,
         desc: 'Photography, illustration, and visual treatment approaches.',
         svg: `<img src="./assets/Guidelines/Imagery.jpg" alt="Imagery" class="tile-cover-img tile-cover-default"/><img src="./assets/Guidelines/Imagery-hover.jpg" alt="Imagery" class="tile-cover-img tile-cover-hover"/>`,
         customLayout: true,
@@ -2216,7 +2191,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         ]
       },
       {
-        id: 'motion', number: '05', title: 'Motion', color: 'var(--tile-motion)', wip: true,
+        id: 'motion', number: '04', title: 'Motion', color: 'var(--tile-motion)', wip: true,
         desc: 'Animation principles, easing curves, and motion patterns.',
         svg: `<svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- Massive bold easing curve — sweeps across full tile -->
@@ -4496,8 +4471,46 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
           <!-- Components (coded) -->
           <div class="color-tab-panel" id="imtab-components">
             <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Coded components</span></div>
-              <p class="section-desc" style="margin-top:-8px">Live previews of the coded library, ported from the docs Components page. Source lives in <code class="code-inline">components/</code> as <code class="code-inline">.jsx</code> + <code class="code-inline">.d.ts</code> + <code class="code-inline">.prompt.md</code>.</p>
+              <div class="color-family-header"><span class="color-family-name">Components</span></div>
+              <p class="section-desc" style="margin-top:-8px">The reusable interface atoms: the rule first, then the coded preview. Source lives in <code class="code-inline">components/</code> as <code class="code-inline">.jsx</code> + <code class="code-inline">.d.ts</code> + <code class="code-inline">.prompt.md</code>.</p>
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Buttons / CTA</span></div>
+              <p class="section-desc" style="margin-top:-8px">Three variants, no exceptions. All share <strong>height 36px</strong>, <strong>font-size 14px</strong>, <strong>weight 500 Medium</strong>, <strong>border-radius 12px</strong>, Suisse Intl. No size variants, no vertical movement on hover.</p>
+            </div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:36px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
+              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 13px 0 18px;font-family:var(--font);font-size:14px;font-weight:500;color:#E0E3F0;background:#2D1866;border:1px solid #170C33;border-radius:12px;box-shadow:0 6px 12px rgba(87,91,123,0.24)">Talk to us
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.4 4.039a.65.65 0 0 0-.4.55v6.808a.648.648 0 0 0 1.106.43L10.81 8.414a.593.593 0 0 0 0-.843L7.106 4.168A.648.648 0 0 0 6.4 4.039Z" fill="currentColor"/></svg>
+              </span>
+              <span style="display:inline-flex;align-items:center;height:36px;padding:0 18px;font-family:var(--font);font-size:14px;font-weight:500;color:#442599;background:#E0E3F0;border-radius:12px">View docs</span>
+              <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:14px;font-weight:500;color:var(--accent)">Learn more
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.4 4.039a.65.65 0 0 0-.4.55v6.808a.648.648 0 0 0 1.106.43L10.81 8.414a.593.593 0 0 0 0-.843L7.106 4.168A.648.648 0 0 0 6.4 4.039Z" fill="currentColor"/></svg>
+              </span>
+            </div>
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">CTA &mdash; specs</span></div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+                <div style="padding:18px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
+                  <div style="font-weight:600;margin-bottom:8px">Primary</div>
+                  <div style="font-size:13px;color:var(--text-body);line-height:1.7">Bg Ultra Purple 800 + white overlay 0.12 · text Cold Grey 100 · border Ultra Purple 900 · animated arrow swap (300ms).</div>
+                </div>
+                <div style="padding:18px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
+                  <div style="font-weight:600;margin-bottom:8px">Secondary</div>
+                  <div style="font-size:13px;color:var(--text-body);line-height:1.7">Bg Cold Grey 100 · text Ultra Purple 700 · no border · symmetric padding. The universal secondary action.</div>
+                </div>
+                <div style="padding:18px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
+                  <div style="font-weight:600;margin-bottom:8px">Tertiary</div>
+                  <div style="font-size:13px;color:var(--text-body);line-height:1.7">Transparent · text accent (Ultra Purple 700 light / 200 dark) · animated arrow · no padding.</div>
+                </div>
+              </div>
+            </div>
+            <div class="color-family" style="margin-top:32px">
+              <div class="color-family-header"><span class="color-family-name">CTA &mdash; usage</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Do</strong> — One Primary per view, for the main action. CTAs follow content flow (left-aligned), never force-centered.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Do</strong> — Reuse Secondary as the universal secondary action — identical in hero, nav, and sections.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — Never invent a custom button style (<code class="code-inline">.btn-send</code>, <code class="code-inline">.form-submit</code>).</span></div>
+              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — No size variants (small/large) and no <code class="code-inline">translateY</code> on hover.</span></div>
             </div>
 
             <div class="comp-card"><div class="ch">Button<span class="cm">buttons/Button.jsx · Primary · Secondary · Tertiary · swappable icon · variants &amp; states</span></div>
@@ -4526,6 +4539,45 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
                 <span class="eyebrow eyebrow--success"><svg class="eyebrow-hex" width="8" height="9" viewBox="0 0 8 9" aria-hidden="true"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="currentColor"/></svg><span class="eyebrow-text">Why now</span></span>
                 <span class="eyebrow eyebrow--info"><svg class="eyebrow-hex" width="8" height="9" viewBox="0 0 8 9" aria-hidden="true"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="currentColor"/></svg><span class="eyebrow-text">Zero trust security</span></span>
               </div></div></div>
+
+<div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Eyebrow &mdash; tokens</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Success variant</strong> — fill Success 500 @15% <code class="code-inline">rgba(92,235,116,.15)</code>, text Success 900 <code class="code-inline">#056F15</code>.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Info variant</strong> — fill Info 500 @15% <code class="code-inline">rgba(75,108,255,.15)</code>, text Info 500 <code class="code-inline">#4B6CFF</code>.</span></div>
+              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — Never hand-darken a color for eyebrow text. Pull from the system color scales.</span></div>
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Category badge</span></div>
+              <p class="section-desc" style="margin-top:-8px">The blog category label, in two contexts — light list rows and the dark spotlight. <strong>Never</strong> a filled Ultra Purple 50 badge.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px">
+              <div style="padding:28px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px">
+                <div style="font-size:12px;color:var(--text-secondary);margin-bottom:14px">List row (light)</div>
+                <span style="display:inline-block;font-family:'Roboto Mono',monospace;font-size:11px;color:#575C7B;text-transform:uppercase;letter-spacing:0.06em;background:rgba(255,255,255,0.3);border:1px solid #E3E4EB;border-radius:8px;padding:4px 10px">Security</span>
+              </div>
+              <div style="padding:28px;background:#1E202E;border:1px solid #363A5B;border-radius:16px">
+                <div style="font-size:12px;color:#AEB1C9;margin-bottom:14px">Spotlight (dark)</div>
+                <span style="display:inline-block;font-family:var(--font);font-size:13px;font-weight:500;color:#C4AEFF;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:4px 10px">Security</span>
+              </div>
+            </div>
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Category selector</span></div>
+              <p class="section-desc" style="margin-top:-8px;margin-bottom:18px">The blog section filter — category tabs with counts and a sliding active indicator (Cold Grey 100 pill).</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;padding:24px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
+              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#1E202E;background:#E0E3F0;border-radius:12px">All <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">24</span></span>
+              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Security <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">8</span></span>
+              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Engineering <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">6</span></span>
+              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Product <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">5</span></span>
+              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Company <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">5</span></span>
+            </div>
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Badge &mdash; specs</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>List badge</strong> — Roboto Mono 11px, Cold Grey 600, UPPERCASE, ls 0.06em, fill white .3, radius 8px.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Spotlight badge (dark)</strong> — accent Ultra Purple 200 <code class="code-inline">#C4AEFF</code>, fill white .08, border white .1, radius 8px.</span></div>
+              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Selector tab</strong> — Suisse 14px/500, height 36px, radius 12px; active = Cold Grey 100 pill + grey-900 text; count = Cold Grey 300 pill + Ultra Purple 700 text, tabular-nums.</span></div>
+            </div>
           </div>
 
           <!-- Iconography (merged) -->
@@ -4606,125 +4658,6 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
 
     // ===== Components Page =====
-    function getComponentsPageHTML() {
-      return `
-        <div class="tabpage-layout">
-          <div class="tabpage-header">
-            <a class="sidebar-back" onclick="navigateTo('home')" style="margin-bottom:24px;display:inline-flex">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
-              All Guidelines
-            </a>
-            <h1 class="content-title">Components</h1>
-            <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">The reusable interface atoms. Reuse them via their tokens — never reinvent a button, eyebrow, or badge.</p>
-            <div class="tabpage-tabs" id="cmpTabs">
-              <button class="color-tab active" data-tab="cta" data-tabgroup="cmp">Buttons / CTA</button>
-              <button class="color-tab" data-tab="eyebrow" data-tabgroup="cmp">Eyebrow</button>
-              <button class="color-tab" data-tab="badge" data-tabgroup="cmp">Badge</button>
-            </div>
-          </div>
-
-          <!-- CTA -->
-          <div class="color-tab-panel active" id="cmptab-cta">
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Buttons / CTA</span></div>
-              <p class="section-desc" style="margin-top:-8px">Three variants, no exceptions. All share <strong>height 36px</strong>, <strong>font-size 14px</strong>, <strong>weight 500 Medium</strong>, <strong>border-radius 12px</strong>, Suisse Intl. No size variants, no vertical movement on hover.</p>
-            </div>
-            <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:36px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
-              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 13px 0 18px;font-family:var(--font);font-size:14px;font-weight:500;color:#E0E3F0;background:#2D1866;border:1px solid #170C33;border-radius:12px;box-shadow:0 6px 12px rgba(87,91,123,0.24)">Talk to us
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.4 4.039a.65.65 0 0 0-.4.55v6.808a.648.648 0 0 0 1.106.43L10.81 8.414a.593.593 0 0 0 0-.843L7.106 4.168A.648.648 0 0 0 6.4 4.039Z" fill="currentColor"/></svg>
-              </span>
-              <span style="display:inline-flex;align-items:center;height:36px;padding:0 18px;font-family:var(--font);font-size:14px;font-weight:500;color:#442599;background:#E0E3F0;border-radius:12px">View docs</span>
-              <span style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:14px;font-weight:500;color:var(--accent)">Learn more
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.4 4.039a.65.65 0 0 0-.4.55v6.808a.648.648 0 0 0 1.106.43L10.81 8.414a.593.593 0 0 0 0-.843L7.106 4.168A.648.648 0 0 0 6.4 4.039Z" fill="currentColor"/></svg>
-              </span>
-            </div>
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Specs</span></div>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
-                <div style="padding:18px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
-                  <div style="font-weight:600;margin-bottom:8px">Primary</div>
-                  <div style="font-size:13px;color:var(--text-body);line-height:1.7">Bg Ultra Purple 800 + white overlay 0.12 · text Cold Grey 100 · border Ultra Purple 900 · animated arrow swap (300ms).</div>
-                </div>
-                <div style="padding:18px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
-                  <div style="font-weight:600;margin-bottom:8px">Secondary</div>
-                  <div style="font-size:13px;color:var(--text-body);line-height:1.7">Bg Cold Grey 100 · text Ultra Purple 700 · no border · symmetric padding. The universal secondary action.</div>
-                </div>
-                <div style="padding:18px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
-                  <div style="font-weight:600;margin-bottom:8px">Tertiary</div>
-                  <div style="font-size:13px;color:var(--text-body);line-height:1.7">Transparent · text accent (Ultra Purple 700 light / 200 dark) · animated arrow · no padding.</div>
-                </div>
-              </div>
-            </div>
-            <div class="color-family" style="margin-top:32px">
-              <div class="color-family-header"><span class="color-family-name">Usage</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Do</strong> — One Primary per view, for the main action. CTAs follow content flow (left-aligned), never force-centered.</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Do</strong> — Reuse Secondary as the universal secondary action — identical in hero, nav, and sections.</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — Never invent a custom button style (<code class="code-inline">.btn-send</code>, <code class="code-inline">.form-submit</code>).</span></div>
-              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — No size variants (small/large) and no <code class="code-inline">translateY</code> on hover.</span></div>
-            </div>
-          </div>
-
-          <!-- Eyebrow -->
-          <div class="color-tab-panel" id="cmptab-eyebrow">
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Eyebrow</span></div>
-              <p class="section-desc" style="margin-top:-8px">The small label that opens a section — a pill with a blinking hex glyph + mono label. <strong>11px Roboto Mono</strong>, UPPERCASE, letter-spacing 0.06em. Distinct from the 14px Semibold Label.</p>
-            </div>
-            <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;padding:36px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
-              <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(92,235,116,0.15);border-radius:6px;padding:6px 9px">
-                <svg width="8" height="9" viewBox="0 0 8 9" style="transform:rotate(90deg)"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="#056F15"/></svg>
-                <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;color:#056F15">Why now</span>
-              </span>
-              <span style="display:inline-flex;align-items:center;gap:4px;background:rgba(75,108,255,0.15);border-radius:6px;padding:6px 9px">
-                <svg width="8" height="9" viewBox="0 0 8 9" style="transform:rotate(90deg)"><polygon points="4,0 8,2.25 8,6.75 4,9 0,6.75 0,2.25" fill="#4B6CFF"/></svg>
-                <span style="font-family:'Roboto Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:0.06em;color:#4B6CFF">Zero trust security</span>
-              </span>
-            </div>
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Tokens</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Success variant</strong> — fill Success 500 @15% <code class="code-inline">rgba(92,235,116,.15)</code>, text Success 900 <code class="code-inline">#056F15</code>.</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Info variant</strong> — fill Info 500 @15% <code class="code-inline">rgba(75,108,255,.15)</code>, text Info 500 <code class="code-inline">#4B6CFF</code>.</span></div>
-              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — Never hand-darken a color for eyebrow text. Pull from the system color scales.</span></div>
-            </div>
-          </div>
-
-          <!-- Badge -->
-          <div class="color-tab-panel" id="cmptab-badge">
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Category badge</span></div>
-              <p class="section-desc" style="margin-top:-8px">The blog category label, in two contexts — light list rows and the dark spotlight. <strong>Never</strong> a filled Ultra Purple 50 badge.</p>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px">
-              <div style="padding:28px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px">
-                <div style="font-size:12px;color:var(--text-secondary);margin-bottom:14px">List row (light)</div>
-                <span style="display:inline-block;font-family:'Roboto Mono',monospace;font-size:11px;color:#575C7B;text-transform:uppercase;letter-spacing:0.06em;background:rgba(255,255,255,0.3);border:1px solid #E3E4EB;border-radius:8px;padding:4px 10px">Security</span>
-              </div>
-              <div style="padding:28px;background:#1E202E;border:1px solid #363A5B;border-radius:16px">
-                <div style="font-size:12px;color:#AEB1C9;margin-bottom:14px">Spotlight (dark)</div>
-                <span style="display:inline-block;font-family:var(--font);font-size:13px;font-weight:500;color:#C4AEFF;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:4px 10px">Security</span>
-              </div>
-            </div>
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Category selector</span></div>
-              <p class="section-desc" style="margin-top:-8px;margin-bottom:18px">The blog section filter — category tabs with counts and a sliding active indicator (Cold Grey 100 pill).</p>
-            </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;padding:24px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
-              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#1E202E;background:#E0E3F0;border-radius:12px">All <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">24</span></span>
-              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Security <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">8</span></span>
-              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Engineering <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">6</span></span>
-              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Product <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">5</span></span>
-              <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Company <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">5</span></span>
-            </div>
-            <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Specs</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>List badge</strong> — Roboto Mono 11px, Cold Grey 600, UPPERCASE, ls 0.06em, fill white .3, radius 8px.</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Spotlight badge (dark)</strong> — accent Ultra Purple 200 <code class="code-inline">#C4AEFF</code>, fill white .08, border white .1, radius 8px.</span></div>
-              <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Selector tab</strong> — Suisse 14px/500, height 36px, radius 12px; active = Cold Grey 100 pill + grey-900 text; count = Cold Grey 300 pill + Ultra Purple 700 text, tabular-nums.</span></div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
 
     function getMotionPageHTML() {
       return `
@@ -5045,10 +4978,9 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       if (t.customLayout) {
         if (t.id === 'brand') page.innerHTML = getBrandPageHTML();
         else if (t.id === 'identity') page.innerHTML = getIdentityPageHTML();
-        else if (t.id === 'components') page.innerHTML = getComponentsPageHTML();
         else if (t.id === 'assets') page.innerHTML = getAssetsPageHTML();
         else if (t.id === 'motion') page.innerHTML = getMotionPageHTML();
-        if (t.id === 'brand' || t.id === 'identity' || t.id === 'components' || t.id === 'assets' || t.id === 'motion') {
+        if (t.id === 'brand' || t.id === 'identity' || t.id === 'assets' || t.id === 'motion') {
           innerPages.appendChild(page);
           return;
         }
@@ -5100,7 +5032,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       if (!tab) return;
       const tabId = tab.dataset.tab;
       const group = tab.dataset.tabgroup;
-      const prefix = group === 'fw' ? 'fwtab-' : group === 'vt' ? 'vttab-' : group === 'type' ? 'ttab-' : group === 'logo' ? 'ltab-' : group === 'icon' ? 'itab-' : group === 'img' ? 'imtab-' : group === 'motion' ? 'mtab-' : group === 'cmp' ? 'cmptab-' : 'ctab-';
+      const prefix = group === 'fw' ? 'fwtab-' : group === 'vt' ? 'vttab-' : group === 'type' ? 'ttab-' : group === 'logo' ? 'ltab-' : group === 'icon' ? 'itab-' : group === 'img' ? 'imtab-' : group === 'motion' ? 'mtab-' : 'ctab-';
 
       // Scope to the parent tabs container
       const tabsContainer = tab.closest('.tabpage-tabs');
