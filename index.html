@@ -113,8 +113,6 @@
       --accent-bg-hover: rgba(196,174,255,0.18);
       --accent-pill-bg: rgba(196,174,255,0.15);
       --quote-bg: rgba(255,255,255,0.06);
-      --topnav-logo-fill: #E0E3F0;
-      --topnav-logo-text: #E0E3F0;
       --tile-hover-bg: #fff;
       --tile-hover-color: var(--dark);
       --scrollbar-thumb: var(--gray-600);
@@ -164,8 +162,6 @@
       --accent-bg-hover: #D7D8E1;
       --accent-pill-bg: #E6DEFF;
       --quote-bg: #E8EAF0;
-      --topnav-logo-fill: #363A5B;
-      --topnav-logo-text: #363A5B;
       --tile-hover-bg: #170C33;
       --tile-hover-color: #fff;
       --scrollbar-thumb: #CBCCD7;
@@ -685,11 +681,8 @@
       --base-primary-foreground: #FFFFFF;
       --font-body-base: var(--text-primary);
       --font-body-bright: var(--text-muted);
-      --font-heading-colored-mid: var(--accent);
       --font-mono: 'Roboto Mono', ui-monospace, monospace;
       --font-sans: var(--font);
-      --radius-base: 6px;
-      --radius-large: 8px;
       --radius-xl: 16px;
       --shadow-sm: 0 8px 11px 0 rgba(145,145,170,0.1);
       --shadow-lg: 0 0 0 1px rgba(227,228,235,0.9), 0 2px 0 0 rgba(227,228,235,0.9);
@@ -1983,25 +1976,6 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
        ========================================== -->
   <script>
     // ===== Theme Toggle =====
-    function toggleTheme() {
-      const html = document.documentElement;
-      const isLight = html.getAttribute('data-theme') === 'light';
-      if (isLight) {
-        html.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        html.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-      }
-      updateThemeIcon();
-    }
-
-    function updateThemeIcon() {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      document.querySelectorAll('.icon-sun').forEach(el => el.style.display = isLight ? 'none' : 'block');
-      document.querySelectorAll('.icon-moon').forEach(el => el.style.display = isLight ? 'block' : 'none');
-    }
-    updateThemeIcon();
 
     // ===== Tile data =====
     const tiles = [
