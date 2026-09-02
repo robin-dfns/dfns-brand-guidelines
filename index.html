@@ -5076,8 +5076,6 @@
     const _stripPanel = h => h.replace(/color-tab-panel active/, 'color-tab-panel');
     const _mergedCSS = `<style>
       .merged-tabs{flex-wrap:wrap;gap:8px;align-items:center}
-      .merged-group-label{font-family:var(--font-mono,ui-monospace,monospace);font-size:10px;text-transform:uppercase;letter-spacing:.09em;opacity:.5;white-space:nowrap}
-      .merged-group-label:not(:first-child){border-left:1px solid var(--border-default);padding-left:14px;margin-left:6px}
       .merged-panels > .tabpage-layout{display:contents}
       .merged-panels .tabpage-header{display:none}
     </style>`;
@@ -5087,7 +5085,7 @@
       return _mergedCSS + `<div class="tabpage-layout"><div class="tabpage-header">${_backLink}
         <h1 class="content-title">Brand</h1>
         <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Design strategy, principles, and how we speak — the foundations behind every DFNS decision.</p>
-        <div class="tabpage-tabs merged-tabs"><span class="merged-group-label">Framework</span>${_firstActive(_tabsOf(fw))}<span class="merged-group-label">Voice</span>${_tabsOf(vt, ['overview'])}</div>
+        <div class="tabpage-tabs merged-tabs">${_firstActive(_tabsOf(fw))}${_tabsOf(vt, ['overview'])}</div>
         </div><div class="merged-panels">${fw}${_stripPanel(vt)}</div></div>`;
     }
     function getIdentityPageHTML() {
@@ -5095,7 +5093,7 @@
       return _mergedCSS + `<div class="tabpage-layout"><div class="tabpage-header">${_backLink}
         <h1 class="content-title">Identity</h1>
         <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">The visual identity — logomark, typography, and the color system.</p>
-        <div class="tabpage-tabs merged-tabs"><span class="merged-group-label">Logo</span>${_firstActive(_tabsOf(lo))}<span class="merged-group-label">Type</span>${_tabsOf(ty)}<span class="merged-group-label">Color</span>${_tabsOf(co)}</div>
+        <div class="tabpage-tabs merged-tabs">${_firstActive(_tabsOf(lo))}${_tabsOf(ty)}${_tabsOf(co)}</div>
         </div><div class="merged-panels">${lo}${_stripPanel(ty)}${_stripPanel(co)}</div></div>`;
     }
 
