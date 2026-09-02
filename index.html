@@ -784,6 +784,84 @@
     .dodont-tag.dont { color: #F85370; }
     .dodont-tag svg { width: 14px; height: 14px; }
 
+    /* Brand — Values panel */
+    .bv-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+    .bv-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+
+    .bv-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .bv-eyebrow {
+      font-family: 'Roboto Mono', ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+
+    .bv-statement { font-size: 20px; font-weight: 300; line-height: 1.5; color: var(--text-strong); margin: 0; }
+    .bv-body { font-size: 14px; line-height: 1.6; color: var(--text-body); margin: 0; }
+
+    .bv-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bv-pill {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      font-size: 13px;
+      color: var(--text-body);
+    }
+
+    .bv-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+    .bv-meta-label {
+      font-family: 'Roboto Mono', ui-monospace, monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-faint);
+      white-space: nowrap;
+    }
+    .bv-meta-value { font-size: 14px; font-weight: 500; color: var(--text-body); }
+
+    .bv-rank-list { display: flex; flex-direction: column; gap: 12px; }
+    .bv-rank {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .bv-rank-num {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      font-family: 'Roboto Mono', ui-monospace, monospace;
+      font-size: 12px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    .bv-rank-name { font-size: 20px; font-weight: 500; color: var(--text-primary); margin-bottom: 6px; }
+    .bv-rank-body { font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 66ch; }
+
+    @media (max-width: 600px) {
+      .bv-card { padding: 22px; }
+      .bv-rank { padding: 20px 22px; gap: 16px; }
+    }
+
     /* Download cards */
     .dl-grid {
       display: grid;
@@ -2677,64 +2755,95 @@
 
           <!-- OVERVIEW -->
           <div class="color-tab-panel active" id="fwtab-values">
-            <div style="max-width:800px">
-              <h2 class="section-title" style="margin-bottom:16px">Vision</h2>
-              <p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">The blockchain technology usage is finally accessible, reliable and secure.</p>
-
-              <h2 class="section-title" style="margin-bottom:16px">Mission</h2>
-              <p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">We empower fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale.</p>
-
-              <h2 class="section-title" style="margin-bottom:16px">Purpose</h2>
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px">
-                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">WHY</div>
-                  <p style="color:var(--text-body);line-height:1.5;margin:0">Making digital finance trustworthy. Dfns exists to build better financial systems.</p>
+            <div class="color-family">
+              <div class="color-family-header">
+                <span class="color-family-name">Vision &amp; Mission</span>
+                <span class="color-family-count">The two founding statements</span>
+              </div>
+              <div class="bv-grid-2">
+                <div class="bv-card">
+                  <div class="bv-eyebrow">Vision</div>
+                  <p class="bv-statement">The blockchain technology usage is finally accessible, reliable and secure.</p>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px">
-                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">HOW</div>
-                  <p style="color:var(--text-body);line-height:1.5;margin:0">By providing a unified, programmable platform that abstracts low-level complexity and scales financial operations onchain. No compromise on risks.</p>
-                </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px">
-                  <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">WHAT</div>
-                  <p style="color:var(--text-body);line-height:1.5;margin:0">Wallet infrastructure, governance &amp; control, integration &amp; scalability. The most intuitive, powerful and secure gateway to the blockchain world.</p>
+                <div class="bv-card">
+                  <div class="bv-eyebrow">Mission</div>
+                  <p class="bv-statement">We empower fintechs and financial institutions to leverage blockchain technology safely, effortlessly and at scale.</p>
                 </div>
               </div>
-
-              <h2 class="section-title" style="margin-bottom:16px">Positioning</h2>
-              <p class="section-desc" style="margin-bottom:16px">How Dfns differentiates in the competitive landscape.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
-                ${['Security', 'Dev-Friendly', 'Enterprise-Grade', 'Modularity', 'Programmability', 'Bank-Grade', 'Trust'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-body)">${t}</span>`).join('')}
-              </div>
-              <p class="section-desc" style="color:var(--text-secondary)">Brands we admire: Stripe, Column, Wiz, Apple, Linear, GitHub.</p>
             </div>
 
-            <div style="max-width:800px">
-              <h2 class="section-title" style="margin-bottom:16px">Brand Values</h2>
-              <p class="section-desc" style="margin-bottom:32px">Ranked by the team from a pool of 40 adjectives. These three values are the non-negotiable foundation of the Dfns brand.</p>
-              <div style="display:grid;gap:16px;margin-bottom:40px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;align-items:center;gap:24px">
-                  <div style="font-size:48px;font-weight:600;color:var(--text-muted);min-width:60px">01</div>
+            <div class="color-family">
+              <div class="color-family-header">
+                <span class="color-family-name">Purpose</span>
+                <span class="color-family-count">Why &middot; How &middot; What</span>
+              </div>
+              <div class="bv-grid-3">
+                <div class="bv-card">
+                  <div class="bv-eyebrow">Why</div>
+                  <p class="bv-body">Making digital finance trustworthy. DFNS exists to build better financial systems.</p>
+                </div>
+                <div class="bv-card">
+                  <div class="bv-eyebrow">How</div>
+                  <p class="bv-body">By providing a unified, programmable platform that abstracts low-level complexity and scales financial operations onchain. No compromise on risks.</p>
+                </div>
+                <div class="bv-card">
+                  <div class="bv-eyebrow">What</div>
+                  <p class="bv-body">Wallet infrastructure, governance &amp; control, integration &amp; scalability. The most intuitive, powerful and secure gateway to the blockchain world.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header">
+                <span class="color-family-name">Positioning</span>
+              </div>
+              <p class="section-desc" style="margin-top:-8px;margin-bottom:18px">How DFNS differentiates in the competitive landscape.</p>
+              <div class="bv-pills">
+                ${['Security', 'Dev-Friendly', 'Enterprise-Grade', 'Modularity', 'Programmability', 'Bank-Grade', 'Trust'].map(t => `<span class="bv-pill">${t}</span>`).join('')}
+              </div>
+              <div class="bv-meta-row">
+                <span class="bv-meta-label">Brands we admire</span>
+                <span class="bv-meta-value">Stripe &middot; Column &middot; Wiz &middot; Apple &middot; Linear &middot; GitHub</span>
+              </div>
+            </div>
+
+            <div class="color-family">
+              <div class="color-family-header">
+                <span class="color-family-name">Brand Values</span>
+                <span class="color-family-count">Ranked &middot; non-negotiable</span>
+              </div>
+              <p class="section-desc" style="margin-top:-8px;margin-bottom:20px">Ranked by the team from a pool of 40 adjectives. The order is part of the value &mdash; Trust outranks the rest, and every decision resolves in that direction.</p>
+              <div class="bv-rank-list">
+                <div class="bv-rank">
+                  <span class="bv-rank-num">01</span>
                   <div>
-                    <div style="font-size:28px;font-weight:500;margin-bottom:4px;color:var(--text-primary)">Trust</div>
-                    <p style="color:var(--text-secondary);line-height:1.5;margin:0">The defining attribute of the Dfns brand. Every decision, design and interaction must reinforce trust.</p>
+                    <div class="bv-rank-name">Trust</div>
+                    <p class="bv-rank-body">The defining attribute of the DFNS brand. Every decision, design and interaction must reinforce trust.</p>
                   </div>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;align-items:center;gap:24px">
-                  <div style="font-size:48px;font-weight:600;color:var(--text-muted);min-width:60px">02</div>
+                <div class="bv-rank">
+                  <span class="bv-rank-num">02</span>
                   <div>
-                    <div style="font-size:28px;font-weight:500;margin-bottom:4px;color:var(--text-primary)">Security</div>
-                    <p style="color:var(--text-secondary);line-height:1.5;margin:0">No compromise on cryptography, entitlement, hardware and server-side protection. Security is not a feature — it's the foundation.</p>
+                    <div class="bv-rank-name">Security</div>
+                    <p class="bv-rank-body">No compromise on cryptography, entitlement, hardware and server-side protection. Security is not a feature &mdash; it&rsquo;s the foundation.</p>
                   </div>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px;display:flex;align-items:center;gap:24px">
-                  <div style="font-size:48px;font-weight:600;color:var(--text-muted);min-width:60px">03</div>
+                <div class="bv-rank">
+                  <span class="bv-rank-num">03</span>
                   <div>
-                    <div style="font-size:28px;font-weight:500;margin-bottom:4px;color:var(--text-primary)">Excellence</div>
-                    <p style="color:var(--text-secondary);line-height:1.5;margin:0">Enterprise-grade quality in everything we ship. From API design to visual identity, excellence is the standard.</p>
+                    <div class="bv-rank-name">Excellence</div>
+                    <p class="bv-rank-body">Enterprise-grade quality in everything we ship. From API design to visual identity, excellence is the standard.</p>
                   </div>
                 </div>
               </div>
-              <p class="section-desc" style="color:var(--text-muted)">Supporting values: Reliable, Powerful, Down to earth.</p>
+              <div class="bv-meta-row">
+                <span class="bv-meta-label">Supporting values</span>
+                <div class="bv-pills">
+                  <span class="bv-pill">Reliable</span>
+                  <span class="bv-pill">Powerful</span>
+                  <span class="bv-pill">Down to earth</span>
+                </div>
+              </div>
             </div>
           </div>
           <!-- DESIGN PRINCIPLES -->
