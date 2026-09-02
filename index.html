@@ -2643,7 +2643,7 @@
         </div>
         ${usageTips.length ? `<div class="color-family" style="margin-top:40px">
           <div class="color-family-header">
-            <span class="color-family-name">Usage</span>
+            <span class="color-family-name">${title} &mdash; usage</span>
           </div>
           ${usageTips.map(t => `<div class="color-tip" style="margin-bottom:10px">
             <svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${t.do
@@ -3058,48 +3058,32 @@
             <h1 class="content-title">Color</h1>
             <p class="content-subtitle" style="border:none;padding-bottom:0;margin-bottom:0">Color palette, system colors, semantic variables, and accessibility guidelines. Aligned with Rubik 2026 Figma DS.</p>
             <div class="tabpage-tabs" id="colorTabs">
-              <button class="color-tab active" data-tab="ultra-purple">Ultra Purple</button>
-              <button class="color-tab" data-tab="cold-grey">Cold Grey</button>
-              <button class="color-tab" data-tab="steel-grey">Steel Grey</button>
-              <button class="color-tab" data-tab="dark-purple">Dark Purple</button>
-              <button class="color-tab" data-tab="system">System</button>
-              <button class="color-tab" data-tab="semantic">Semantic</button>
-              <button class="color-tab" data-tab="dark-mode">Dark Mode</button>
-              <button class="color-tab" data-tab="print">Print</button>
+              <button class="color-tab active" data-tab="palette">Palette</button>
             </div>
           </div>
 
-          <div class="color-tab-panel active" id="ctab-ultra-purple">
+          <div class="color-tab-panel active" id="ctab-palette">
             ${buildColorTabPanel('Ultra Purple', 'The core brand purple — from deep aubergine to vibrant lavender. Used for primary backgrounds, key UI elements, and brand expression.', colorData.ultraPurple, purpleUsage, ['900', '800', '700', '300'])}
-          </div>
 
-          <div class="color-tab-panel" id="ctab-cold-grey">
             ${buildColorTabPanel('Cold Grey', 'Cool-toned greys for text hierarchy, borders, and backgrounds. Subtle blue undertone that pairs naturally with the purple palette.', colorData.coldGrey, coldGreyUsage)}
-          </div>
 
-          <div class="color-tab-panel" id="ctab-steel-grey">
             ${buildColorTabPanel('Steel Grey', 'Neutral light greys for surfaces, cards, and subtle dividers. Used extensively in light-mode UI and print materials.', colorData.steelGrey, steelGreyUsage)}
-          </div>
 
-          <div class="color-tab-panel" id="ctab-dark-purple">
             ${buildColorTabPanel('Dark Purple', 'Dark mode surface palette — elevated backgrounds, cards, and container surfaces for dark UI.', colorData.darkPurple, darkPurpleUsage)}
-          </div>
 
-          <div class="color-tab-panel" id="ctab-system">
             ${buildColorTabPanel('System', 'Semantic status colors — error, success, info, warning. Each has a 5-level scale (100→900) for backgrounds, indicators, and text.', colorData.systemColors, systemUsage)}
-          </div>
 
-          <div class="color-tab-panel" id="ctab-semantic">
-            <div style="max-width:900px">
+            <div class="color-family">
+              <div class="color-family-header"><span class="color-family-name">Semantic variables</span></div>
+            </div>
+            <div style="max-width:900px;margin-top:-32px">
               <p class="section-desc" style="margin-bottom:24px">Semantic variables from Rubik 2026 — these auto-switch between light and dark mode. Use these in production instead of raw color tokens.</p>
               <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin-bottom:16px;color:var(--text-primary)">Light Mode</h3>
               ${buildColorStrips(colorData.semanticLight)}
               <h3 style="font-weight:300;font-size:22px;letter-spacing:0;margin:32px 0 16px;color:var(--text-primary)">Dark Mode</h3>
               ${buildColorStrips(colorData.semanticDark)}
             </div>
-          </div>
 
-          <div class="color-tab-panel" id="ctab-dark-mode">
             <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Dark Mode</span></div>
               <p class="section-desc" style="margin-top:-8px">Dark mode uses <strong>two distinct surfaces</strong> — don't conflate them. The accent on dark is always Ultra Purple 200 <code class="code-inline">#C4AEFF</code>.</p>
@@ -3123,15 +3107,13 @@
               <span style="display:inline-flex;align-items:center;height:36px;padding:0 18px;font-family:var(--font);font-size:14px;font-weight:500;color:#442599;background:#E0E3F0;border-radius:12px">View docs</span>
             </div>
             <div class="color-family">
-              <div class="color-family-header"><span class="color-family-name">Tokens</span></div>
+              <div class="color-family-header"><span class="color-family-name">Dark mode &mdash; tokens</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Text on dark</strong> — titles Cold Grey 100 <code class="code-inline">#E0E3F0</code>, body/lists Cold Grey 300 <code class="code-inline">#C5C9DE</code>, muted Cold Grey 500 <code class="code-inline">#AEB1C9</code>.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Accent on dark</strong> — always Ultra Purple 200 <code class="code-inline">#C4AEFF</code>. Never Ultra Purple 300.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Secondary CTA on dark</strong> — background Cold Grey 100, text Ultra Purple 700.</span></div>
               <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Elevation</strong> — layered shadow (8 stops, <code class="code-inline">rgba(19,22,45)</code>) + 1px inner gradient border (white .04→.16).</span></div>
             </div>
-          </div>
 
-          <div class="color-tab-panel" id="ctab-print">
             <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Print &amp; Pantone</span></div>
               <p class="section-desc" style="margin-top:-8px">The palette is defined in sRGB &mdash; these are the closest ink references, not exact equals. Matches are computed with <strong>CIEDE2000</strong> against the official Pantone book Lab values (D50), converting each brand hex sRGB &rarr; Lab D50 (Bradford). The <code class="code-inline">&Delta;E</code> chip is the perceptual distance to the brand hex: <strong>&lt;2</strong> excellent &middot; <strong>2&ndash;4</strong> good &middot; <strong>4&ndash;6</strong> fair &middot; <strong>&gt;6</strong> poor.</p>
@@ -3145,7 +3127,7 @@
             </div>
 
             <div class="color-family" style="margin-top:40px">
-              <div class="color-family-header"><span class="color-family-name">Usage</span></div>
+              <div class="color-family-header"><span class="color-family-name">Print &mdash; usage</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Logo in print</strong> &mdash; the light-mode logotype is Cold Grey 700 <code class="code-inline">#363A5B</code> &rarr; <strong>PANTONE 5265 C</strong>. Nothing in the coated book gets closer; the next candidates (3524 C, 2380 C, 533 C) sit above &Delta;E 6.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Going quadri</strong> &mdash; use the Color Bridge build, not a converted hex. For the deep purples the CMYK simulation is what a press can actually hold; for Cold Grey 700 it is even closer to the brand hex (&Delta;E 2.6) than the spot ink.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Never assume &ldquo;same number + U&rdquo;</strong> &mdash; PANTONE 5265 U dries back to L* 45.9 (&Delta;E 17.8, roughly <code class="code-inline">#6D6A82</code>). On uncoated stock Cold Grey 700 is <strong>282 U</strong>.</span></div>
