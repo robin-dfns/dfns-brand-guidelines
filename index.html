@@ -786,7 +786,6 @@
 
     /* Brand — Values panel */
     .bv-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
-    .bv-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
 
     .bv-card {
       background: var(--bg-surface);
@@ -795,18 +794,7 @@
       padding: 28px;
     }
 
-    .bv-eyebrow {
-      font-family: 'Roboto Mono', ui-monospace, monospace;
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-faint);
-      margin-bottom: 14px;
-    }
-
     .bv-statement { font-size: 20px; font-weight: 300; line-height: 1.5; color: var(--text-strong); margin: 16px 0 0; }
-    .bv-body { font-size: 14px; line-height: 1.6; color: var(--text-body); margin: 0; }
 
     /* Eyebrow — the dfns.co component (see Components → Eyebrow) */
     .eyebrow {
@@ -841,7 +829,8 @@
     .bv-value:last-child { padding-right: 0; }
     .bv-value + .bv-value { border-left: 1px solid var(--border-default); }
 
-    .bv-value-num {
+    .bv-value-num,
+    .bv-value-key {
       font-family: 'Roboto Mono', ui-monospace, monospace;
       font-size: 44px;
       font-weight: 300;
@@ -851,6 +840,8 @@
       /* dark is the default theme here, so the dark accent goes first */
       color: #C4AEFF;
     }
+
+    .bv-value-key { text-transform: uppercase; margin-bottom: 22px; }
 
     .bv-value-visual {
       height: 210px;
@@ -2177,7 +2168,8 @@
     /* Light mode specific overrides */
     [data-theme="light"] .topnav-logo svg path { fill: var(--topnav-logo-fill); }
     [data-theme="light"] .content-eyebrow { color: var(--accent); }
-    [data-theme="light"] .bv-value-num { color: #2D1866; }
+    [data-theme="light"] .bv-value-num,
+    [data-theme="light"] .bv-value-key { color: #2D1866; }
     [data-theme="light"] .sidebar-link.active { color: var(--accent); background: rgba(68,37,153,0.08); }
     [data-theme="light"] .topnav-link svg,
     [data-theme="light"] .sidebar-back svg,
@@ -2837,18 +2829,18 @@
               <div class="color-family-header">
                 <span class="color-family-name">Purpose</span>
               </div>
-              <div class="bv-grid-3">
-                <div class="bv-card">
-                  <div class="bv-eyebrow">Why</div>
-                  <p class="bv-body">Making digital finance trustworthy. DFNS exists to build better financial systems.</p>
+              <div class="bv-values">
+                <div class="bv-value">
+                  <div class="bv-value-key">Why</div>
+                  <p class="bv-value-body">Making digital finance trustworthy. DFNS exists to build better financial systems.</p>
                 </div>
-                <div class="bv-card">
-                  <div class="bv-eyebrow">How</div>
-                  <p class="bv-body">By providing a unified, programmable platform that abstracts low-level complexity and scales financial operations onchain. No compromise on risks.</p>
+                <div class="bv-value">
+                  <div class="bv-value-key">How</div>
+                  <p class="bv-value-body">By providing a unified, programmable platform that abstracts low-level complexity and scales financial operations onchain. No compromise on risks.</p>
                 </div>
-                <div class="bv-card">
-                  <div class="bv-eyebrow">What</div>
-                  <p class="bv-body">Wallet infrastructure, governance &amp; control, integration &amp; scalability. The most intuitive, powerful and secure gateway to the blockchain world.</p>
+                <div class="bv-value">
+                  <div class="bv-value-key">What</div>
+                  <p class="bv-value-body">Wallet infrastructure, governance &amp; control, integration &amp; scalability. The most intuitive, powerful and secure gateway to the blockchain world.</p>
                 </div>
               </div>
             </div>
