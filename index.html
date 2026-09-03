@@ -1486,6 +1486,10 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       width: 48px;
       height: 48px;
     }
+    .icon-card img.product-icon {
+      height: 52px;
+      width: auto;
+    }
     /* Icon library filter (Full Library browser) */
     .icon-filter {
       display: flex;
@@ -2225,6 +2229,21 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
           if (copyLabel) copyLabel.textContent = 'Copy SVG';
         }, 1500);
       });
+    }
+
+    function copyProductSvg(file, el) {
+      fetch('./assets/icons/product/' + file + '.svg')
+        .then(r => r.text())
+        .then(svg => {
+          navigator.clipboard.writeText(svg.trim());
+          el.classList.add('copied');
+          const copyLabel = el.querySelector('.icon-card-copy');
+          if (copyLabel) copyLabel.textContent = '\u2713 Copied!';
+          setTimeout(() => {
+            el.classList.remove('copied');
+            if (copyLabel) copyLabel.textContent = 'Copy SVG';
+          }, 1500);
+        });
     }
 
     function deChip(dE) {
@@ -3688,6 +3707,27 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       renderHeroLibrary();
     }
 
+    const PRODUCT_ICONS = [
+      { file: 'asset',                  name: 'Asset' },
+      { file: 'attestation',            name: 'Attestation' },
+      { file: 'audit',                  name: 'Audit' },
+      { file: 'auth',                   name: 'Auth' },
+      { file: 'gate',                   name: 'Gate' },
+      { file: 'governance',             name: 'Governance' },
+      { file: 'key-management',         name: 'Key Management' },
+      { file: 'node-management',        name: 'Node Management' },
+      { file: 'policy-engine',          name: 'Policy Engine' },
+      { file: 'settlement-network',     name: 'Settlement Network' },
+      { file: 'tenant',                 name: 'Tenant' },
+      { file: 'tokenization',           name: 'Tokenization' },
+      { file: 'transaction-management', name: 'Transaction Management' },
+      { file: 'transaction-screening',  name: 'Transaction Screening' },
+      { file: 'treasury-management',    name: 'Treasury Management' },
+      { file: 'vault',                  name: 'Vault' },
+      { file: 'wallets',                name: 'Wallets' },
+      { file: 'workflow-builder',       name: 'Workflow Builder' }
+    ];
+
     function getIconographyContent() {
       // Heroicons by category
       const hSecurityIcons = heroiconMeta.filter(i => i.category === 'security');
@@ -3719,7 +3759,24 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       }
 
       return `
-          <div class="color-family" style="margin-top:8px">
+            <div class="color-family" style="margin-top:8px">
+              <div class="color-family-header">
+                <span class="color-family-name">Product Icons</span>
+                <span class="color-family-count">${PRODUCT_ICONS.length} icons</span>
+              </div>
+              <p class="section-desc" style="margin-top:-8px">One glyph per product surface, drawn on a 24 × 26 canvas in the Ultra Purple scale. These are brand assets, not interface glyphs — use them to label a product, never inside a control. For UI work, reach for Heroicons below.</p>
+              <div class="icon-grid">
+                ${PRODUCT_ICONS.map(ic => `
+                  <div class="icon-card" onclick="copyProductSvg('${ic.file}', this)">
+                    <span class="icon-card-copy">Copy SVG</span>
+                    <img class="product-icon" src="./assets/icons/product/${ic.file}.svg" alt="${ic.name}" loading="lazy">
+                    <div class="icon-card-name">${ic.name}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+          <div class="color-family" style="margin-top:48px">
               <div class="color-family-header">
                 <span class="color-family-name">Heroicons — Reference UI Library</span>
                 <span class="color-family-count">${heroiconMeta.length} curated · 964 in the bundle</span>
