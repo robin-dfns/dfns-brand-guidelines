@@ -3759,11 +3759,6 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       deep:   { label: 'Ultra Purple 900 flat',  base: '#170C33', grad: null },
       none:   { label: 'Transparent',            base: null,      grad: null }
     };
-    const PAT_MARKS = [
-      ['#FFFFFF', 'White'], ['#E8EAF0', 'Steel 200'], ['#E0E3F0', 'Cold Grey 100'],
-      ['#C4AEFF', 'Ultra Purple 300'], ['#693AEA', 'Ultra Purple 600'],
-      ['#442599', 'Ultra Purple 800'], ['#363A5B', 'Cold Grey 700']
-    ];
     const PAT_CANVASES = [
       ['1140x750',  'Source artboard  1140 x 750'],
       ['1920x1080', 'Slide 16:9  1920 x 1080'],
@@ -3782,10 +3777,9 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       const cv = (g('pat-canvas') ? g('pat-canvas').value : '1140x750').split('x');
       return {
         cell: +(g('pat-cell') ? g('pat-cell').value : 150),
-        gap: +(g('pat-gap') ? g('pat-gap').value : 1),
-        layout: g('pat-layout') ? g('pat-layout').value : 'halfdrop',
-        rotation: +(g('pat-rot') ? g('pat-rot').value : 0),
-        mark: g('pat-mark') ? g('pat-mark').value : '#FFFFFF',
+        gap: +(g('pat-gap') ? g('pat-gap').value : 10),
+        layout: g('pat-layout') ? g('pat-layout').value : 'hive',
+        mark: '#FFFFFF',
         opacity: +(g('pat-op') ? g('pat-op').value : 40),
         bg: g('pat-bg') ? g('pat-bg').value : 'mesh',
         W: +cv[0], H: +cv[1]
@@ -3793,17 +3787,32 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
 
     // Tile geometry: density and framing are independent — the tile never changes
-    // size with the canvas, and the canvas never changes the tile.
+    // with the canvas, and the canvas never changes the tile.
+    // Honeycomb: the mark is a flat-top hexagon (vertices left and right, flat top
+    // and bottom), so columns sit 0.75 x width apart and every other column drops
+    // by half a row. Offsetting rows by half a pitch instead — what the Figma
+    // source does — leaves diamond voids and is not a tessellation.
     function patTile(o) {
-      const s = o.cell / PAT_MARK_W;
-      const mw = PAT_MARK_W * s, mh = PAT_MARK_H * s;
-      const px = mw + o.gap, py = mh + o.gap;
-      const half = o.layout === 'halfdrop';
-      return {
-        s: s, px: px, py: py,
-        w: px, h: half ? py * 2 : py,
-        spots: half ? [[0, 0], [px / 2, py], [px / 2 - px, py]] : [[0, 0]]
-      };
+      const u = o.cell;
+      const ratio = PAT_MARK_H / PAT_MARK_W;
+      const mw = Math.max(4, u - o.gap);
+      const sc = mw / PAT_MARK_W;
+      const ox = o.gap / 2, oy = ratio * o.gap / 2;
+      if (o.layout === 'grid') {
+        const gx = u, gy = ratio * u;
+        return { s: sc, px: gx, py: gy, w: gx, h: gy, spots: [[ox, oy]] };
+      }
+      const px = 0.75 * u, py = ratio * u;
+      const w = 1.5 * u, h = py;
+      const spots = [];
+      [[0, 0], [px, py / 2]].forEach(function (b) {
+        [0, -w].forEach(function (dx) {
+          [-py, 0, py].forEach(function (dy) {
+            spots.push([b[0] + dx + ox, b[1] + dy + oy]);
+          });
+        });
+      });
+      return { s: sc, px: px, py: py, w: w, h: h, spots: spots };
     }
 
     function patSVG(o, opts) {
@@ -3812,7 +3821,6 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       const uses = t.spots.map(function (p) {
         return '<use href="#pat-m" transform="translate(' + patRound(p[0]) + ' ' + patRound(p[1]) + ') scale(' + patRound(t.s, 5) + ')"/>';
       }).join('');
-      const rot = o.rotation ? ' patternTransform="rotate(' + o.rotation + ')"' : '';
       const bgDef = PAT_BACKGROUNDS[o.bg] || PAT_BACKGROUNDS.mesh;
       let defs = '<path id="pat-m" d="' + PAT_MARK_D + '"/>';
       let back = '';
@@ -3833,7 +3841,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       }
       return head
         + '<defs>' + defs
-        + '<pattern id="pat-p" patternUnits="userSpaceOnUse" width="' + patRound(t.w) + '" height="' + patRound(t.h) + '"' + rot + '>'
+        + '<pattern id="pat-p" patternUnits="userSpaceOnUse" width="' + patRound(t.w) + '" height="' + patRound(t.h) + '">'
         + '<g fill="' + o.mark + '">' + uses + '</g></pattern></defs>'
         + back
         + '<rect width="100%" height="100%" fill="url(#pat-p)" opacity="' + (o.opacity / 100) + '"/>'
@@ -3851,7 +3859,6 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       const set = function (id, v) { const e = document.getElementById(id); if (e) e.textContent = v; };
       set('pat-cell-v', o.cell + ' px');
       set('pat-gap-v', o.gap + ' px');
-      set('pat-rot-v', o.rotation + '°');
       set('pat-op-v', o.opacity + ' %');
       set('pat-readout', 'tile ' + patRound(t.w) + ' × ' + patRound(t.h) + ' px  ·  pitch ' + patRound(t.px) + ' × ' + patRound(t.py) + '  ·  canvas ' + o.W + ' × ' + o.H);
     }
@@ -3902,7 +3909,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     let patInited = false;
     function initPattern() {
       if (patInited) return; patInited = true;
-      ['pat-cell', 'pat-gap', 'pat-layout', 'pat-rot', 'pat-mark', 'pat-op', 'pat-bg', 'pat-canvas'].forEach(function (id) {
+      ['pat-cell', 'pat-gap', 'pat-layout', 'pat-op', 'pat-bg', 'pat-canvas'].forEach(function (id) {
         const e = document.getElementById(id);
         if (e) e.addEventListener('input', patRender);
       });
@@ -3917,20 +3924,16 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
                 <span class="color-family-name">Logo Pattern</span>
                 <span class="color-family-count" id="pat-readout"></span>
               </div>
-              <p class="section-desc" style="margin-top:-8px">A half-drop mesh of the DFNS symbol. Density and framing are independent — the tile sets how large the mark reads, the canvas sets the crop — so one source serves a favicon-sized texture and a print backdrop alike.</p>
+              <p class="section-desc" style="margin-top:-8px">A honeycomb of the DFNS symbol, tessellated so the cells interlock like a hive. The gap is the cell wall — at zero the hexagons merge into a flat field and only the chevrons read, so leave it open. Density and framing are independent — the tile sets how large the mark reads, the canvas sets the crop — so one source serves a favicon-sized texture and a print backdrop alike.</p>
               <div class="pat-wrap">
                 <div class="pat-stage"><div id="pat-preview" class="pat-preview"></div></div>
                 <div class="pat-controls">
                   <label class="pat-ctl"><span>Cell size <b id="pat-cell-v"></b></span>
                     <input type="range" id="pat-cell" min="24" max="480" step="2" value="150"></label>
                   <label class="pat-ctl"><span>Gap <b id="pat-gap-v"></b></span>
-                    <input type="range" id="pat-gap" min="0" max="80" step="1" value="1"></label>
+                    <input type="range" id="pat-gap" min="0" max="80" step="1" value="10"></label>
                   <label class="pat-ctl"><span>Layout</span>
-                    <select id="pat-layout">${opt('halfdrop', 'Half-drop (source)', true)}${opt('grid', 'Aligned grid')}</select></label>
-                  <label class="pat-ctl"><span>Rotation <b id="pat-rot-v"></b></span>
-                    <input type="range" id="pat-rot" min="0" max="90" step="5" value="0"></label>
-                  <label class="pat-ctl"><span>Mark</span>
-                    <select id="pat-mark">${PAT_MARKS.map(function (m, i) { return opt(m[0], m[1] + '  ' + m[0], i === 0); }).join('')}</select></label>
+                    <select id="pat-layout">${opt('hive', 'Honeycomb', true)}${opt('grid', 'Aligned grid')}</select></label>
                   <label class="pat-ctl"><span>Opacity <b id="pat-op-v"></b></span>
                     <input type="range" id="pat-op" min="2" max="100" step="1" value="40"></label>
                   <label class="pat-ctl"><span>Background</span>
