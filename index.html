@@ -688,6 +688,13 @@
     .pat-btn { padding: 8px 10px; font: inherit; font-size: 12px; font-weight: 500; color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 8px; cursor: pointer; transition: background .15s, border-color .15s; }
     .pat-btn:hover { background: var(--bg-hover); border-color: var(--purple-800); }
     .pat-note { margin: 2px 0 0; font-size: 11px; line-height: 1.5; color: var(--text-tertiary); }
+    .pat-switch { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--text-secondary); cursor: pointer; }
+    .pat-switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .pat-switch i { position: relative; flex: none; width: 34px; height: 20px; border-radius: 999px; background: var(--bg-surface-alt); border: 1px solid var(--border-default); transition: background .15s, border-color .15s; }
+    .pat-switch i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--text-tertiary); transition: transform .15s, background .15s; }
+    .pat-switch input:checked + i { background: var(--purple-800); border-color: var(--purple-800); }
+    .pat-switch input:checked + i::after { transform: translateX(14px); background: #FFFFFF; }
+    .pat-switch input:focus-visible + i { outline: 2px solid var(--purple-800); outline-offset: 2px; }
     @media (max-width: 900px) { .pat-wrap { grid-template-columns: 1fr; } }
 
     #imtab-components {
@@ -3753,6 +3760,12 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     const PAT_MARK_W = 150, PAT_MARK_H = 131;
     const PAT_MARK_D = 'M 149.3275472216544 62.90326382652568 L 114.7418043761009 3.103243137311549 C 113.61343765211767 1.1877328278335935 111.58704220960897 0.017466659169054436 109.35654975448216 0 L 40.17629514532053 0 C 38.29568393868181 0.017466659169054436 36.55210925197673 1.0101552222573968 35.6249241450772 2.611265681874994 L 0.695119719681729 62.88288392487905 C -0.24664375519268844 64.50728324169927 -0.2233183664328724 66.48684068473517 0.7155294348465681 68.09377335865342 L 35.26337867287608 127.90834937540039 C 36.39174539685931 129.82385968487836 38.44438350057107 130.99703558612373 40.64571921974811 130.99994669598524 L 109.86387459649333 130.99994669598524 C 111.72990750467231 131.00868002556976 113.45015972225353 129.99852694677318 114.37734482915306 128.40032766371218 L 149.3071531473965 68.12870525633195 C 150.23433825429603 66.53050597327095 150.22850405698523 64.52474960697614 149.30423462368068 62.89161689929868 L 149.3275472216544 62.906173337331815 L 149.3275472216544 62.90326382652568 Z M 124.63761070666357 67.55813019824348 L 101.61251401276961 107.32679864089683 C 100.874847898089 108.60186482205276 99.5336332478548 109.36166981036635 98.05538527538347 109.37913646953541 L 56.740251923170696 109.38786944395504 C 53.59132138192928 109.40824721352784 51.608660834799814 105.96731056060023 53.18604170950035 103.24251176926876 L 74.38592659390842 66.6265714681377 C 75.1381710765639 65.32821642977915 75.11775837224798 63.747485316558034 74.35093545210246 62.4753303119587 L 74.31011616080306 62.48697279718447 L 53.39013816599732 27.84767862372018 C 51.72820268752731 25.122879832388715 53.71378175837257 21.63536853031869 56.91519428529328 21.644101859903216 L 98.0612134248769 21.63828061729033 C 99.52488295985819 21.647013946874857 100.87776037398746 22.424279964316153 101.61834216226303 23.684790540314182 L 124.63761070666357 63.468019863001906 C 125.37819249493914 64.72853043899994 125.37527682134417 66.29179699150717 124.63761070666357 67.5668631726631 L 124.63761070666357 67.55813019824348 Z';
 
+    // The mark is a compound path: the outer hexagon, then the chevron subtracted
+    // from it. Cutting at the second "M" drops that second subpath, leaving the
+    // bare hexagon — the same silhouette, no counter.
+    const PAT_HEX_D = PAT_MARK_D.slice(0, PAT_MARK_D.indexOf('Z M ') + 1);
+    function patMarkD(o) { return o.hex ? PAT_HEX_D : PAT_MARK_D; }
+
     const PAT_BACKGROUNDS = {
       mesh:   { label: 'Mesh gradient (source)', base: '#F0F1F4', grad: ['#FFFFFF', 0.5, '#E8EAF0', 0.876] },
       steel:  { label: 'Steel 100 flat',         base: '#F0F1F4', grad: null },
@@ -3779,6 +3792,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         cell: +(g('pat-cell') ? g('pat-cell').value : 150),
         gap: +(g('pat-gap') ? g('pat-gap').value : 10),
         layout: g('pat-layout') ? g('pat-layout').value : 'hive',
+        hex: g('pat-hex') ? g('pat-hex').checked : false,
         mark: '#FFFFFF',
         opacity: +(g('pat-op') ? g('pat-op').value : 40),
         bg: g('pat-bg') ? g('pat-bg').value : 'mesh',
@@ -3822,7 +3836,8 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         return '<use href="#pat-m" transform="translate(' + patRound(p[0]) + ' ' + patRound(p[1]) + ') scale(' + patRound(t.s, 5) + ')"/>';
       }).join('');
       const bgDef = PAT_BACKGROUNDS[o.bg] || PAT_BACKGROUNDS.mesh;
-      let defs = '<path id="pat-m" d="' + PAT_MARK_D + '"/>';
+      const markD = patMarkD(o);
+      let defs = '<path id="pat-m" d="' + markD + '"/>';
       let back = '';
       if (bgDef.base) back += '<rect width="100%" height="100%" fill="' + bgDef.base + '"/>';
       if (bgDef.grad) {
@@ -3836,7 +3851,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         ? '<svg xmlns="http://www.w3.org/2000/svg" width="' + patRound(t.w) + '" height="' + patRound(t.h) + '" viewBox="0 0 ' + patRound(t.w) + ' ' + patRound(t.h) + '">'
         : '<svg xmlns="http://www.w3.org/2000/svg" width="' + o.W + '" height="' + o.H + '" viewBox="0 0 ' + o.W + ' ' + o.H + '">';
       if (opts.tileOnly) {
-        return head + '<defs>' + '<path id="pat-m" d="' + PAT_MARK_D + '"/>' + '</defs>'
+        return head + '<defs>' + '<path id="pat-m" d="' + markD + '"/>' + '</defs>'
              + '<g fill="' + o.mark + '" opacity="' + (o.opacity / 100) + '">' + uses + '</g></svg>';
       }
       return head
@@ -3871,7 +3886,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
     function patExportSVG() {
       const o = patState();
-      patDownload('dfns-pattern-' + o.W + 'x' + o.H + '-cell' + o.cell + '.svg',
+      patDownload('dfns-pattern-' + o.W + 'x' + o.H + '-cell' + o.cell + (o.hex ? '-hex' : '') + '.svg',
         new Blob([patSVG(o)], { type: 'image/svg+xml' }));
     }
 
@@ -3884,7 +3899,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         const x = c.getContext('2d');
         x.drawImage(img, 0, 0, c.width, c.height);
         c.toBlob(function (b) {
-          patDownload('dfns-pattern-' + c.width + 'x' + c.height + '-cell' + o.cell + '.png', b);
+          patDownload('dfns-pattern-' + c.width + 'x' + c.height + '-cell' + o.cell + (o.hex ? '-hex' : '') + '.png', b);
         }, 'image/png');
       };
       img.onerror = function () { alert('PNG export failed — the SVG could not be rasterised.'); };
@@ -3909,7 +3924,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     let patInited = false;
     function initPattern() {
       if (patInited) return; patInited = true;
-      ['pat-cell', 'pat-gap', 'pat-layout', 'pat-op', 'pat-bg', 'pat-canvas'].forEach(function (id) {
+      ['pat-cell', 'pat-gap', 'pat-layout', 'pat-hex', 'pat-op', 'pat-bg', 'pat-canvas'].forEach(function (id) {
         const e = document.getElementById(id);
         if (e) e.addEventListener('input', patRender);
       });
@@ -3934,6 +3949,8 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
                     <input type="range" id="pat-gap" min="0" max="80" step="1" value="10"></label>
                   <label class="pat-ctl"><span>Layout</span>
                     <select id="pat-layout">${opt('hive', 'Honeycomb', true)}${opt('grid', 'Aligned grid')}</select></label>
+                  <label class="pat-switch"><span>Hexagon only</span>
+                    <input type="checkbox" id="pat-hex"><i></i></label>
                   <label class="pat-ctl"><span>Opacity <b id="pat-op-v"></b></span>
                     <input type="range" id="pat-op" min="2" max="100" step="1" value="40"></label>
                   <label class="pat-ctl"><span>Background</span>
