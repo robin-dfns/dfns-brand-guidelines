@@ -673,6 +673,23 @@
        unchanged — what changes is that the token variables they read are
        aliased here onto this page's own variables, so the component follows
        [data-theme] rather than carrying duplicated literals. */
+    /* ===== Logo Pattern generator ===== */
+    .pat-wrap { display: grid; grid-template-columns: 1fr 268px; gap: 24px; align-items: start; margin-top: 20px; }
+    .pat-stage { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 12px; padding: 12px; overflow: hidden; }
+    .pat-preview { width: 100%; border-radius: 6px; overflow: hidden; background-image: linear-gradient(45deg, rgba(127,127,127,.14) 25%, transparent 25%, transparent 75%, rgba(127,127,127,.14) 75%), linear-gradient(45deg, rgba(127,127,127,.14) 25%, transparent 25%, transparent 75%, rgba(127,127,127,.14) 75%); background-size: 16px 16px; background-position: 0 0, 8px 8px; }
+    .pat-controls { display: flex; flex-direction: column; gap: 14px; }
+    .pat-ctl { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+    .pat-ctl > span { display: flex; justify-content: space-between; align-items: baseline; }
+    .pat-ctl b { font-family: 'Roboto Mono', ui-monospace, monospace; font-weight: 400; font-size: 11px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .pat-ctl input[type="range"] { width: 100%; accent-color: var(--purple-800); }
+    .pat-ctl select { width: 100%; padding: 7px 9px; font: inherit; font-size: 12px; color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 7px; }
+    .pat-exports { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--border-default); }
+    .pat-png { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .pat-btn { padding: 8px 10px; font: inherit; font-size: 12px; font-weight: 500; color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 8px; cursor: pointer; transition: background .15s, border-color .15s; }
+    .pat-btn:hover { background: var(--bg-hover); border-color: var(--purple-800); }
+    .pat-note { margin: 2px 0 0; font-size: 11px; line-height: 1.5; color: var(--text-tertiary); }
+    @media (max-width: 900px) { .pat-wrap { grid-template-columns: 1fr; } }
+
     #imtab-components {
       --background-base: var(--bg-page);
       --background-bw: var(--bg-surface);
@@ -3728,6 +3745,214 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       { file: 'workflow-builder',       name: 'Workflow Builder' }
     ];
 
+    // ===== Logo Pattern generator =====
+    // The mark is the DFNS symbol, identical to assets/logos/logotype-symbol.svg
+    // scaled 1/2.3003. Metrics measured off the Publications Library source
+    // (node 619:43): mark 150x131, pitch 151 x 132, half-drop offset 75.5,
+    // white at 40% over a white->Steel 200 gradient.
+    const PAT_MARK_W = 150, PAT_MARK_H = 131;
+    const PAT_MARK_D = 'M 149.3275472216544 62.90326382652568 L 114.7418043761009 3.103243137311549 C 113.61343765211767 1.1877328278335935 111.58704220960897 0.017466659169054436 109.35654975448216 0 L 40.17629514532053 0 C 38.29568393868181 0.017466659169054436 36.55210925197673 1.0101552222573968 35.6249241450772 2.611265681874994 L 0.695119719681729 62.88288392487905 C -0.24664375519268844 64.50728324169927 -0.2233183664328724 66.48684068473517 0.7155294348465681 68.09377335865342 L 35.26337867287608 127.90834937540039 C 36.39174539685931 129.82385968487836 38.44438350057107 130.99703558612373 40.64571921974811 130.99994669598524 L 109.86387459649333 130.99994669598524 C 111.72990750467231 131.00868002556976 113.45015972225353 129.99852694677318 114.37734482915306 128.40032766371218 L 149.3071531473965 68.12870525633195 C 150.23433825429603 66.53050597327095 150.22850405698523 64.52474960697614 149.30423462368068 62.89161689929868 L 149.3275472216544 62.906173337331815 L 149.3275472216544 62.90326382652568 Z M 124.63761070666357 67.55813019824348 L 101.61251401276961 107.32679864089683 C 100.874847898089 108.60186482205276 99.5336332478548 109.36166981036635 98.05538527538347 109.37913646953541 L 56.740251923170696 109.38786944395504 C 53.59132138192928 109.40824721352784 51.608660834799814 105.96731056060023 53.18604170950035 103.24251176926876 L 74.38592659390842 66.6265714681377 C 75.1381710765639 65.32821642977915 75.11775837224798 63.747485316558034 74.35093545210246 62.4753303119587 L 74.31011616080306 62.48697279718447 L 53.39013816599732 27.84767862372018 C 51.72820268752731 25.122879832388715 53.71378175837257 21.63536853031869 56.91519428529328 21.644101859903216 L 98.0612134248769 21.63828061729033 C 99.52488295985819 21.647013946874857 100.87776037398746 22.424279964316153 101.61834216226303 23.684790540314182 L 124.63761070666357 63.468019863001906 C 125.37819249493914 64.72853043899994 125.37527682134417 66.29179699150717 124.63761070666357 67.5668631726631 L 124.63761070666357 67.55813019824348 Z';
+
+    const PAT_BACKGROUNDS = {
+      mesh:   { label: 'Mesh gradient (source)', base: '#F0F1F4', grad: ['#FFFFFF', 0.5, '#E8EAF0', 0.876] },
+      steel:  { label: 'Steel 100 flat',         base: '#F0F1F4', grad: null },
+      deep:   { label: 'Ultra Purple 900 flat',  base: '#170C33', grad: null },
+      none:   { label: 'Transparent',            base: null,      grad: null }
+    };
+    const PAT_MARKS = [
+      ['#FFFFFF', 'White'], ['#E8EAF0', 'Steel 200'], ['#E0E3F0', 'Cold Grey 100'],
+      ['#C4AEFF', 'Ultra Purple 300'], ['#693AEA', 'Ultra Purple 600'],
+      ['#442599', 'Ultra Purple 800'], ['#363A5B', 'Cold Grey 700']
+    ];
+    const PAT_CANVASES = [
+      ['1140x750',  'Source artboard  1140 x 750'],
+      ['1920x1080', 'Slide 16:9  1920 x 1080'],
+      ['2560x1440', 'Slide 16:9 @2x  2560 x 1440'],
+      ['1080x1080', 'Social 1:1  1080'],
+      ['1080x1350', 'Social 4:5  1080 x 1350'],
+      ['1200x630',  'OG image  1200 x 630'],
+      ['2480x3508', 'A4 portrait @300dpi'],
+      ['3508x2480', 'A4 landscape @300dpi']
+    ];
+
+    function patRound(n, p) { const f = Math.pow(10, p == null ? 2 : p); return Math.round(n * f) / f; }
+
+    function patState() {
+      const g = function (id) { return document.getElementById(id); };
+      const cv = (g('pat-canvas') ? g('pat-canvas').value : '1140x750').split('x');
+      return {
+        cell: +(g('pat-cell') ? g('pat-cell').value : 150),
+        gap: +(g('pat-gap') ? g('pat-gap').value : 1),
+        layout: g('pat-layout') ? g('pat-layout').value : 'halfdrop',
+        rotation: +(g('pat-rot') ? g('pat-rot').value : 0),
+        mark: g('pat-mark') ? g('pat-mark').value : '#FFFFFF',
+        opacity: +(g('pat-op') ? g('pat-op').value : 40),
+        bg: g('pat-bg') ? g('pat-bg').value : 'mesh',
+        W: +cv[0], H: +cv[1]
+      };
+    }
+
+    // Tile geometry: density and framing are independent — the tile never changes
+    // size with the canvas, and the canvas never changes the tile.
+    function patTile(o) {
+      const s = o.cell / PAT_MARK_W;
+      const mw = PAT_MARK_W * s, mh = PAT_MARK_H * s;
+      const px = mw + o.gap, py = mh + o.gap;
+      const half = o.layout === 'halfdrop';
+      return {
+        s: s, px: px, py: py,
+        w: px, h: half ? py * 2 : py,
+        spots: half ? [[0, 0], [px / 2, py], [px / 2 - px, py]] : [[0, 0]]
+      };
+    }
+
+    function patSVG(o, opts) {
+      opts = opts || {};
+      const t = patTile(o);
+      const uses = t.spots.map(function (p) {
+        return '<use href="#pat-m" transform="translate(' + patRound(p[0]) + ' ' + patRound(p[1]) + ') scale(' + patRound(t.s, 5) + ')"/>';
+      }).join('');
+      const rot = o.rotation ? ' patternTransform="rotate(' + o.rotation + ')"' : '';
+      const bgDef = PAT_BACKGROUNDS[o.bg] || PAT_BACKGROUNDS.mesh;
+      let defs = '<path id="pat-m" d="' + PAT_MARK_D + '"/>';
+      let back = '';
+      if (bgDef.base) back += '<rect width="100%" height="100%" fill="' + bgDef.base + '"/>';
+      if (bgDef.grad) {
+        defs += '<linearGradient id="pat-g" x1="0" y1="0" x2="0" y2="1">'
+             +  '<stop offset="0" stop-color="' + bgDef.grad[0] + '" stop-opacity="' + bgDef.grad[1] + '"/>'
+             +  '<stop offset="' + bgDef.grad[3] + '" stop-color="' + bgDef.grad[2] + '"/>'
+             +  '</linearGradient>';
+        back += '<rect width="100%" height="100%" fill="url(#pat-g)"/>';
+      }
+      const head = opts.tileOnly
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="' + patRound(t.w) + '" height="' + patRound(t.h) + '" viewBox="0 0 ' + patRound(t.w) + ' ' + patRound(t.h) + '">'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="' + o.W + '" height="' + o.H + '" viewBox="0 0 ' + o.W + ' ' + o.H + '">';
+      if (opts.tileOnly) {
+        return head + '<defs>' + '<path id="pat-m" d="' + PAT_MARK_D + '"/>' + '</defs>'
+             + '<g fill="' + o.mark + '" opacity="' + (o.opacity / 100) + '">' + uses + '</g></svg>';
+      }
+      return head
+        + '<defs>' + defs
+        + '<pattern id="pat-p" patternUnits="userSpaceOnUse" width="' + patRound(t.w) + '" height="' + patRound(t.h) + '"' + rot + '>'
+        + '<g fill="' + o.mark + '">' + uses + '</g></pattern></defs>'
+        + back
+        + '<rect width="100%" height="100%" fill="url(#pat-p)" opacity="' + (o.opacity / 100) + '"/>'
+        + '</svg>';
+    }
+
+    function patRender() {
+      const o = patState(), t = patTile(o);
+      const prev = document.getElementById('pat-preview');
+      if (!prev) return;
+      prev.style.aspectRatio = o.W + ' / ' + o.H;
+      prev.innerHTML = patSVG(o);
+      const svg = prev.querySelector('svg');
+      if (svg) { svg.removeAttribute('width'); svg.removeAttribute('height'); svg.style.width = '100%'; svg.style.height = '100%'; svg.style.display = 'block'; }
+      const set = function (id, v) { const e = document.getElementById(id); if (e) e.textContent = v; };
+      set('pat-cell-v', o.cell + ' px');
+      set('pat-gap-v', o.gap + ' px');
+      set('pat-rot-v', o.rotation + '°');
+      set('pat-op-v', o.opacity + ' %');
+      set('pat-readout', 'tile ' + patRound(t.w) + ' × ' + patRound(t.h) + ' px  ·  pitch ' + patRound(t.px) + ' × ' + patRound(t.py) + '  ·  canvas ' + o.W + ' × ' + o.H);
+    }
+
+    function patDownload(name, blob) {
+      const u = URL.createObjectURL(blob), a = document.createElement('a');
+      a.href = u; a.download = name; document.body.appendChild(a); a.click();
+      a.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 1000);
+    }
+
+    function patExportSVG() {
+      const o = patState();
+      patDownload('dfns-pattern-' + o.W + 'x' + o.H + '-cell' + o.cell + '.svg',
+        new Blob([patSVG(o)], { type: 'image/svg+xml' }));
+    }
+
+    function patExportPNG(mult) {
+      const o = patState(), src = patSVG(o);
+      const img = new Image();
+      img.onload = function () {
+        const c = document.createElement('canvas');
+        c.width = o.W * mult; c.height = o.H * mult;
+        const x = c.getContext('2d');
+        x.drawImage(img, 0, 0, c.width, c.height);
+        c.toBlob(function (b) {
+          patDownload('dfns-pattern-' + c.width + 'x' + c.height + '-cell' + o.cell + '.png', b);
+        }, 'image/png');
+      };
+      img.onerror = function () { alert('PNG export failed — the SVG could not be rasterised.'); };
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(src);
+    }
+
+    function patCopyCSS() {
+      const o = patState(), t = patTile(o);
+      const tile = patSVG(o, { tileOnly: true });
+      const bgDef = PAT_BACKGROUNDS[o.bg] || PAT_BACKGROUNDS.mesh;
+      const css = (bgDef.base ? 'background-color: ' + bgDef.base + ';\n' : '')
+        + 'background-image: url("data:image/svg+xml,' + encodeURIComponent(tile).replace(/'/g, '%27').replace(/"/g, '%22') + '");\n'
+        + 'background-size: ' + patRound(t.w) + 'px ' + patRound(t.h) + 'px;\n'
+        + 'background-repeat: repeat;';
+      navigator.clipboard.writeText(css).then(function () {
+        const b = document.getElementById('pat-css-btn');
+        if (!b) return; const old = b.textContent; b.textContent = 'Copied';
+        setTimeout(function () { b.textContent = old; }, 1200);
+      });
+    }
+
+    let patInited = false;
+    function initPattern() {
+      if (patInited) return; patInited = true;
+      ['pat-cell', 'pat-gap', 'pat-layout', 'pat-rot', 'pat-mark', 'pat-op', 'pat-bg', 'pat-canvas'].forEach(function (id) {
+        const e = document.getElementById(id);
+        if (e) e.addEventListener('input', patRender);
+      });
+      patRender();
+    }
+
+    function getPatternContent() {
+      const opt = function (v, l, sel) { return '<option value="' + v + '"' + (sel ? ' selected' : '') + '>' + l + '</option>'; };
+      return `
+            <div class="color-family" style="margin-top:8px">
+              <div class="color-family-header">
+                <span class="color-family-name">Logo Pattern</span>
+                <span class="color-family-count" id="pat-readout"></span>
+              </div>
+              <p class="section-desc" style="margin-top:-8px">A half-drop mesh of the DFNS symbol. Density and framing are independent — the tile sets how large the mark reads, the canvas sets the crop — so one source serves a favicon-sized texture and a print backdrop alike.</p>
+              <div class="pat-wrap">
+                <div class="pat-stage"><div id="pat-preview" class="pat-preview"></div></div>
+                <div class="pat-controls">
+                  <label class="pat-ctl"><span>Cell size <b id="pat-cell-v"></b></span>
+                    <input type="range" id="pat-cell" min="24" max="480" step="2" value="150"></label>
+                  <label class="pat-ctl"><span>Gap <b id="pat-gap-v"></b></span>
+                    <input type="range" id="pat-gap" min="0" max="80" step="1" value="1"></label>
+                  <label class="pat-ctl"><span>Layout</span>
+                    <select id="pat-layout">${opt('halfdrop', 'Half-drop (source)', true)}${opt('grid', 'Aligned grid')}</select></label>
+                  <label class="pat-ctl"><span>Rotation <b id="pat-rot-v"></b></span>
+                    <input type="range" id="pat-rot" min="0" max="90" step="5" value="0"></label>
+                  <label class="pat-ctl"><span>Mark</span>
+                    <select id="pat-mark">${PAT_MARKS.map(function (m, i) { return opt(m[0], m[1] + '  ' + m[0], i === 0); }).join('')}</select></label>
+                  <label class="pat-ctl"><span>Opacity <b id="pat-op-v"></b></span>
+                    <input type="range" id="pat-op" min="2" max="100" step="1" value="40"></label>
+                  <label class="pat-ctl"><span>Background</span>
+                    <select id="pat-bg">${Object.keys(PAT_BACKGROUNDS).map(function (k, i) { return opt(k, PAT_BACKGROUNDS[k].label, i === 0); }).join('')}</select></label>
+                  <label class="pat-ctl"><span>Canvas</span>
+                    <select id="pat-canvas">${PAT_CANVASES.map(function (c, i) { return opt(c[0], c[1], i === 0); }).join('')}</select></label>
+                  <div class="pat-exports">
+                    <button class="btn-cta" onclick="patExportSVG()">Download SVG</button>
+                    <div class="pat-png">
+                      <button class="pat-btn" onclick="patExportPNG(1)">PNG 1&times;</button>
+                      <button class="pat-btn" onclick="patExportPNG(2)">PNG 2&times;</button>
+                      <button class="pat-btn" onclick="patExportPNG(3)">PNG 3&times;</button>
+                    </div>
+                    <button class="pat-btn" id="pat-css-btn" onclick="patCopyCSS()">Copy CSS tile</button>
+                  </div>
+                  <p class="pat-note">SVG carries no resolution — scale it freely; the multiplier applies to PNG only. The CSS export ships the tile alone as a data-URI, so a web background stays a few hundred bytes instead of a full render.</p>
+                </div>
+              </div>
+            </div>
+      `;
+    }
+
     function getIconographyContent() {
       // Heroicons by category
       const hSecurityIcons = heroiconMeta.filter(i => i.category === 'security');
@@ -3972,6 +4197,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
               <button class="color-tab" data-tab="product-visuals" data-tabgroup="img">Product Visuals</button>
               <button class="color-tab" data-tab="components" data-tabgroup="img">Components</button>
               <button class="color-tab" data-tab="iconography" data-tabgroup="img">Iconography</button>
+              <button class="color-tab" data-tab="pattern" data-tabgroup="img">Pattern</button>
               <button class="color-tab" data-tab="social" data-tabgroup="img">Social</button>
             </div>
           </div>
@@ -4414,6 +4640,11 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             ${getIconographyContent()}
           </div>
 
+          <!-- Pattern -->
+          <div class="color-tab-panel" id="imtab-pattern">
+            ${getPatternContent()}
+          </div>
+
           <!-- Social -->
           <div class="color-tab-panel" id="imtab-social">
             <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="dfns-mark" viewBox="0 0 1030 900"><path d="M1024.31 432.16L787.068 21.32C779.328 8.16 765.428 0.12 750.128 0H275.588C262.688 0.12 250.728 6.94 244.368 17.94L4.76815 432.02C-1.69185 443.18 -1.53185 456.78 4.90815 467.82L241.888 878.76C249.628 891.92 263.708 899.98 278.808 900H753.608C766.408 900.06 778.208 893.12 784.568 882.14L1024.17 468.06C1030.53 457.08 1030.49 443.3 1024.15 432.08L1024.31 432.18V432.16ZM854.948 464.14L697.008 737.36C691.948 746.12 682.748 751.34 672.608 751.46L389.208 751.52C367.608 751.66 354.008 728.02 364.828 709.3L510.248 457.74C515.408 448.82 515.268 437.96 510.008 429.22L509.728 429.3L366.228 191.32C354.828 172.6 368.448 148.64 390.408 148.7L672.648 148.66C682.688 148.72 691.968 154.06 697.048 162.72L854.948 436.04C860.028 444.7 860.008 455.44 854.948 464.2V464.14Z" fill="currentColor"/></symbol></svg>
@@ -4833,6 +5064,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       const panel = document.getElementById(prefix + tabId);
       if (panel) panel.classList.add('active');
       if (panel && panel.id === 'imtab-iconography') initHeroicons();
+      if (panel && panel.id === 'imtab-pattern') initPattern();
       if (panel && panel.id === 'imtab-components' && window.__buildButtonPlayground) window.__buildButtonPlayground();
     });
 
