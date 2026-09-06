@@ -18,18 +18,8 @@
     @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-MediumIt.woff2') format('woff2'); font-weight: 500; font-style: italic; font-display: swap; }
     @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Semibold.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-SemiboldIt.woff2') format('woff2'); font-weight: 600; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-BoldIt.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Book.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-BookIt.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
     @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-LightIt.woff2') format('woff2'); font-weight: 300; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Thin.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-ThinIt.woff2') format('woff2'); font-weight: 200; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Hairline.woff2') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-HairlineIt.woff2') format('woff2'); font-weight: 100; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-Black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Suisse Intl'; src: url('./assets/fonts/SuisseIntl-BlackIt.woff2') format('woff2'); font-weight: 900; font-style: italic; font-display: swap; }
     @font-face { font-family: 'Roboto Mono'; src: url('./assets/fonts/RobotoMono-Light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Roboto Mono'; src: url('./assets/fonts/RobotoMono-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
 
@@ -48,11 +38,29 @@
 
       --dark: #170C33;
       --light: #FFFFFF;
-      --gray-100: #F0F1F4;
-      --gray-200: #E8EAF0;
-      --gray-400: #AEB1C9;
-      --gray-600: #575C7B;
-      --gray-800: #1E202E;
+      /* Cold Grey — texte et bordures. Échelle de marque, pas un ramp maison. */
+      --grey-900: #1E202E;
+      --grey-700: #363A5B;
+      --grey-600: #575C7B;
+      --grey-500: #AEB1C9;
+      --grey-300: #C5C9DE;
+      --grey-100: #E0E3F0;
+
+      /* Steel — surfaces. Distincte des Cold Grey : l'ancien ramp unique
+         fusionnait les deux échelles et renumérotait les paliers au passage
+         (Steel 100 rangé en «gray-100», Cold Grey 900 en «gray-800»). */
+      --steel-white: #FFFFFF;
+      --steel-100: #F0F1F4;
+      --steel-200: #E8EAF0;
+      --steel-300: #E3E4EB;
+      --steel-400: #D7D8E1;
+      --steel-500: #CBCCD7;
+
+      /* Système — valeurs de marque, identiques à tokens.css du site. */
+      --success: #5CEB74;
+      --error:   #F85370;
+      --warning: #F49200;
+      --info:    #4B6CFF;
 
       --purple-50: #E6DEFF;
       --purple-100: #D6C8FF;
@@ -66,7 +74,17 @@
       --purple-900: #170C33;
       --accent: #C4AEFF;
 
-      --font: 'Suisse Intl', 'General Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font: 'Suisse Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'Roboto Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+
+      /* Géométrie — reprise de src/styles/tokens.css du site. Les filets sont
+         fixés au viewport, le contenu est plafonné à 1680px : les deux ne
+         bougent pas ensemble, et c'est le principe. */
+      --nav-height: 52px;
+      --page-padding: clamp(24px, 4vw, 65px);
+      --max-width: 1680px;
+      --line-inset: clamp(0.5em, 4vw, 5em);
+      --content-gutter: calc(var(--page-padding) + var(--line-inset) + 2em);
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -115,11 +133,23 @@
       --quote-bg: rgba(255,255,255,0.06);
       --tile-hover-bg: #fff;
       --tile-hover-color: var(--dark);
-      --scrollbar-thumb: var(--gray-600);
+      --scrollbar-thumb: var(--grey-600);
+
+      /* Encres système — sur fond sombre, les valeurs de marque passent telles quelles. */
+      --success-ink: #5CEB74;
+      --error-ink:   #F85370;
+      --warning-ink: #F49200;
+      --info-ink:    #8FA5FF;
+      --success-tint: rgba(92,235,116,0.10);
+      --error-tint:   rgba(248,83,112,0.10);
+      --success-line: rgba(92,235,116,0.28);
+      --error-line:   rgba(248,83,112,0.28);
     }
 
     [data-theme="light"] {
-      --bg-page: #F0F1F4;
+      /* Hors palette à dessein (site, 04/09/2026) : le fond a quitté Steel 100
+         pour #F4F4F8. Gardé littéral — nommer un palier est une décision de librairie. */
+      --bg-page: #F4F4F8;
       --bg-surface: #FFFFFF;
       --bg-surface-alt: #F0F1F4;
       --bg-hover: #E8EAF0;
@@ -165,6 +195,18 @@
       --tile-hover-bg: #170C33;
       --tile-hover-color: #fff;
       --scrollbar-thumb: #CBCCD7;
+
+      /* Encres système — sur fond clair, les valeurs de marque sont trop claires
+         pour du texte : on assombrit en gardant la teinte. Les tokens --success
+         et --error, eux, restent aux valeurs de marque exactes. */
+      --success-ink: #056F15;
+      --error-ink:   #D61F49;
+      --warning-ink: #A35E00;
+      --info-ink:    #4B6CFF;
+      --success-tint: rgba(92,235,116,0.14);
+      --error-tint:   rgba(248,83,112,0.08);
+      --success-line: rgba(92,235,116,0.45);
+      --error-line:   rgba(248,83,112,0.30);
     }
 
     html { font-size: 16px; scroll-behavior: smooth; }
@@ -177,6 +219,23 @@
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.3s, color 0.3s;
     }
+
+    /* Filets de mise en page — fixés au viewport, pas au contenu. C'est la
+       signature spatiale du site : ils ne suivent pas le conteneur plafonné. */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border-default);
+      z-index: 10;
+      pointer-events: none;
+      transition: background 0.3s ease;
+    }
+    body::before { left: calc(var(--page-padding) + var(--line-inset)); }
+    body::after { right: calc(var(--page-padding) + var(--line-inset)); }
+    @media (max-width: 1024px) { body::before, body::after { display: none; } }
 
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -191,11 +250,11 @@
     .topnav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      height: 60px;
+      height: var(--nav-height);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
+      padding: 0 calc(var(--page-padding) + var(--line-inset));
       z-index: 1000;
       transition: background 0.3s ease;
     }
@@ -277,7 +336,7 @@
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      padding-top: 60px;
+      padding-top: var(--nav-height);
     }
 
 
@@ -373,7 +432,7 @@
       align-items: center;
       gap: 6px;
       padding: 4px 9px;
-      border-radius: 20px;
+      border-radius: 999px;
       background: rgba(244, 146, 0, 0.14);
       font-family: 'Roboto Mono', ui-monospace, monospace;
       font-size: 10px;
@@ -420,7 +479,7 @@
       letter-spacing: 0;
     }
     .h1-dual .emphasis {
-      font-weight: 400;       /* Book — heavier half */
+      font-weight: 400;       /* Regular — heavier half */
       color: var(--h1-emphasis);
     }
     .h1-dual .light {
@@ -435,7 +494,7 @@
       letter-spacing: 0;
     }
     .h2-dual .emphasis {
-      font-weight: 400;       /* Book — heavier half */
+      font-weight: 400;       /* Regular — heavier half */
       color: var(--h2-emphasis);
     }
     .h2-dual .light {
@@ -463,14 +522,14 @@
     .inner-layout {
       display: grid;
       grid-template-columns: 260px 1fr;
-      min-height: calc(100vh - 60px);
-      padding-top: 60px;
+      min-height: calc(100vh - var(--nav-height));
+      padding-top: var(--nav-height);
     }
 
     .sidebar {
       position: sticky;
-      top: 60px;
-      height: calc(100vh - 60px);
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
       overflow-y: auto;
       padding: 32px 0 32px 24px;
       border-right: 1px solid var(--border-default);
@@ -542,7 +601,7 @@
     }
 
     .content-subtitle {
-      font-size: 16px;
+      font-size: 18px;
       color: var(--text-secondary);
       line-height: 1.7;
       margin-bottom: 48px;
@@ -560,8 +619,11 @@
     .section.visible { opacity: 1; transform: translateY(0); }
 
     .section-title {
-      font-size: 24px;
-      font-weight: 400;
+      /* .h3 du site : 32 / Light 300 / Cold Grey 700 (Cold Grey 100 en sombre). */
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--h1-emphasis);
       letter-spacing: 0;
       margin-bottom: 12px;
     }
@@ -577,7 +639,7 @@
     .placeholder {
       background: var(--bg-surface);
       border: 1px dashed var(--border-strong);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 48px;
       display: flex;
       flex-direction: column;
@@ -682,7 +744,7 @@
     .pat-ctl > span { display: flex; justify-content: space-between; align-items: baseline; }
     .pat-ctl b { font-family: 'Roboto Mono', ui-monospace, monospace; font-weight: 400; font-size: 11px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
     .pat-ctl input[type="range"] { width: 100%; accent-color: var(--purple-800); }
-    .pat-ctl select { width: 100%; padding: 7px 9px; font: inherit; font-size: 12px; color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 7px; }
+    .pat-ctl select { width: 100%; padding: 7px 9px; font: inherit; font-size: 12px; color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 6px; }
     .pat-exports { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--border-default); }
     .pat-png { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .pat-btn { padding: 8px 10px; font: inherit; font-size: 12px; font-weight: 500; color: var(--text-primary); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: 8px; cursor: pointer; transition: background .15s, border-color .15s; }
@@ -756,11 +818,11 @@
   .pg-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
 .pg-hint{font-size:12px;color:var(--font-body-bright)}
 .seg{display:inline-flex;background:var(--background-base);border:1px solid var(--stroke-tertiary);border-radius:9px;padding:2px;gap:2px}
-.seg button{border:none;background:transparent;font-family:var(--font-sans);font-size:12px;font-weight:500;color:var(--font-body-bright);padding:5px 11px;border-radius:7px;cursor:pointer;transition:all .15s}
+.seg button{border:none;background:transparent;font-family:var(--font-sans);font-size:12px;font-weight:500;color:var(--font-body-bright);padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .15s}
 .seg button.on{background:var(--background-bw);color:var(--font-body-base);box-shadow:var(--shadow-sm)}
 .pg-stage{display:flex;align-items:center;justify-content:center;min-height:104px;background:var(--background-base);border-radius:12px;border:1px solid var(--stroke-tertiary)}
 .pg-code{position:relative;margin-top:16px;font-family:var(--font-mono);font-size:12.5px;line-height:1.65;color:var(--font-body-base);background:var(--background-base);border:1px solid var(--stroke-tertiary);border-radius:10px;padding:14px 16px;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
-.pg-code .cp{position:absolute;top:8px;right:8px;height:26px;padding:0 10px;font-family:var(--font-sans);font-size:11px;font-weight:500;border:1px solid var(--stroke-tertiary);border-radius:7px;background:var(--background-bw);color:var(--font-body-bright);cursor:pointer}
+.pg-code .cp{position:absolute;top:8px;right:8px;height:26px;padding:0 10px;font-family:var(--font-sans);font-size:11px;font-weight:500;border:1px solid var(--stroke-tertiary);border-radius:6px;background:var(--background-bw);color:var(--font-body-bright);cursor:pointer}
 .pg-code .cp:hover{color:var(--font-body-base)}
 .pg-code .tok-tag{color:#8860f7}
 .pg-code .tok-attr{color:#4b6cff}
@@ -777,7 +839,7 @@
 .iconpick.open{display:block}
 .iconpick .pk-top{display:flex;align-items:center;gap:6px;margin-bottom:8px}
 .iconpick input{flex:1;height:34px;border-radius:8px;border:1px solid var(--stroke-tertiary);background:var(--background-base);padding:0 10px;font-family:var(--font-sans);font-size:13px;color:var(--font-body-base);box-sizing:border-box}
-.iconpick .pk-x{width:30px;height:30px;flex:none;border:none;background:transparent;color:var(--font-body-bright);cursor:pointer;border-radius:7px;font-size:14px}
+.iconpick .pk-x{width:30px;height:30px;flex:none;border:none;background:transparent;color:var(--font-body-bright);cursor:pointer;border-radius:6px;font-size:14px}
 .iconpick .pk-x:hover{background:var(--background-elevation-1)}
 .iconpick .pk-meta{font-size:11px;color:var(--font-body-bright);padding:0 2px 6px}
 .iconpick .pk-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;max-height:212px;overflow:auto}
@@ -799,7 +861,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .bv-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-default);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 28px;
     }
 
@@ -813,6 +875,9 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       width: fit-content;
       border-radius: 6px;
       padding: 6px 9px;
+      /* Défauts du site : Steel 200 + Info. --bg-hover vaut Steel 200 en clair. */
+      background: var(--bg-hover);
+      color: var(--info-ink);
     }
     .eyebrow-hex { transform: rotate(90deg); flex-shrink: 0; animation: hex-blink 2s step-end infinite; }
     .eyebrow-text {
@@ -823,8 +888,8 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       letter-spacing: 0.06em;
       color: inherit;
     }
-    .eyebrow--success { background: rgba(92, 235, 116, 0.15); color: #056F15; }
-    .eyebrow--info { background: rgba(75, 108, 255, 0.15); color: #4B6CFF; }
+    .eyebrow--success { background: var(--success-tint); color: var(--success-ink); }
+    .eyebrow--info { background: rgba(75,108,255,0.15); color: var(--info-ink); }
 
     @keyframes hex-blink { 0%, 49% { opacity: 1; } 50%, 99% { opacity: 0; } 100% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .eyebrow-hex { animation: none; } }
@@ -867,7 +932,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .bv-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
     .bv-cloud span {
       padding: 6px 14px;
-      border-radius: 20px;
+      border-radius: 999px;
       background: var(--bg-surface);
       border: 1px solid var(--border-default);
       font-size: 13px;
@@ -941,7 +1006,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
 
     .color-family-name {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 500;
       letter-spacing: 0;
     }
@@ -1045,7 +1110,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       cursor: pointer;
       transition: all 0.3s var(--ease);
       position: relative;
-      border-radius: 21px;
+      border-radius: 12px;
     }
 
     .color-swatch-card.featured {
@@ -1119,7 +1184,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
        TABBED PAGE LAYOUT (Color, Typography, etc.)
        ============================================== */
     .tabpage-layout {
-      padding-top: 60px;
+      padding-top: var(--nav-height);
       min-height: 100vh;
     }
 
@@ -1196,7 +1261,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .type-specimen-block {
       background: var(--bg-surface);
       border: 1px solid var(--border-default);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 32px;
       margin-bottom: 12px;
       cursor: default;
@@ -1243,7 +1308,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .type-hero {
       background: var(--bg-surface);
       border: 1px solid var(--border-default);
-      border-radius: 21px;
+      border-radius: 12px;
       padding: 48px 40px;
       margin-bottom: 32px;
       text-align: center;
@@ -1274,7 +1339,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .type-weight-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-default);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 28px 24px;
       text-align: center;
       transition: border-color 0.2s;
@@ -1316,7 +1381,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
 
     .logo-card {
-      border-radius: 21px;
+      border-radius: 12px;
       padding: 40px;
       display: flex;
       align-items: center;
@@ -1358,7 +1423,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       background: rgba(0,0,0,0.45);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-      border-radius: 21px;
+      border-radius: 12px;
     }
     .logo-card:hover .logo-download-overlay { opacity: 1; }
     .logo-dl-btn {
@@ -1390,7 +1455,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .gravure-card {
       position: relative;
       border: 1px solid var(--border-default);
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       background: var(--bg-surface);
       transition: border-color 0.2s;
@@ -1436,7 +1501,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
 
     .misuse-card {
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-default);
     }
@@ -1472,7 +1537,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .icon-card {
       background: var(--bg-surface-alt);
       border: 1px solid var(--border-medium);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 24px 16px 16px;
       display: flex;
       flex-direction: column;
@@ -1581,7 +1646,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       padding: 40px;
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      border-radius: 16px;
+      border-radius: 12px;
     }
     .icon-size-item {
       display: flex;
@@ -1613,7 +1678,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .imagery-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       transition: all 0.2s ease;
     }
@@ -1683,7 +1748,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
     .imagery-portrait {
       aspect-ratio: 1 / 1;
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       background: #E0E3F0;
       border: 1px solid var(--border-medium);
@@ -1725,7 +1790,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     }
     .social-frame {
       position: relative;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       background: linear-gradient(135deg, #170C33 0%, #2D1866 55%, #442599 100%);
       display: flex;
@@ -1756,7 +1821,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .motion-principle-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 32px;
       transition: border-color 0.2s ease;
     }
@@ -1787,7 +1852,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .motion-curve-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 24px;
       display: flex;
       flex-direction: column;
@@ -1882,7 +1947,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .de-chip.good      { background: rgba(75,108,255,0.18); color: #8097FF; }
     .de-chip.fair      { background: rgba(244,146,0,0.14);  color: #F49200; }
     .de-chip.poor      { background: rgba(248,83,112,0.14); color: #F85370; }
-    [data-theme="light"] .de-chip.excellent { background: rgba(92,235,116,0.15); color: #056F15; }
+    [data-theme="light"] .de-chip.excellent { background: rgba(92,235,116,0.15); color: var(--success-ink); }
     [data-theme="light"] .de-chip.good      { background: rgba(75,108,255,0.15); color: #4B6CFF; }
     [data-theme="light"] .de-chip.fair      { background: rgba(244,146,0,0.15);  color: #85390A; }
     [data-theme="light"] .de-chip.poor      { background: rgba(248,83,112,0.15); color: #961B2C; }
@@ -1894,7 +1959,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
     .motion-demo-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-medium);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 24px;
       overflow: hidden;
     }
@@ -2431,15 +2496,15 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
               <h2 class="section-title" style="margin-bottom:16px">Design Principles</h2>
               <p class="section-desc" style="margin-bottom:32px">Rules for building a good brand voice — every design and communication decision is guided by these three principles.</p>
               <div style="display:grid;gap:16px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px">
                   <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Authentic</div>
                   <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to sound like you, not like anyone else — especially not your competitors.</p>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px">
                   <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Appropriate</div>
                   <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to resonate with your target audience in a language they are familiar with.</p>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px">
                   <div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Accessible</div>
                   <p style="color:var(--text-secondary);line-height:1.6;margin:0">It needs to be understood by everyone.</p>
                 </div>
@@ -2448,17 +2513,17 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             <div>
               <h2 class="section-title" style="margin-bottom:16px">Brand Archetype</h2>
               <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:24px;text-align:center">
                   <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">70%</div>
                   <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Ruler</div>
                   <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Creates order from the chaos. Controlling and stern, yet responsible and organized.</p>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:24px;text-align:center">
                   <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">20%</div>
                   <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Sage</div>
                   <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Committed to helping the world gain deeper insight and wisdom. The thoughtful mentor or advisor.</p>
                 </div>
-                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px;text-align:center">
+                <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:24px;text-align:center">
                   <div style="font-size:32px;font-weight:600;color:var(--text-primary);margin-bottom:4px">10%</div>
                   <div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">The Caregiver</div>
                   <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Protects and cares for others. Compassionate, nurturing and generous.</p>
@@ -2487,13 +2552,13 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
                 <div>
                   <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">We are</div>
                   <div style="display:flex;flex-wrap:wrap;gap:8px">
-                    ${['Trustworthy', 'Reassuring', 'Confident', 'Helpful', 'Powerful', 'Simple', 'Functional', 'Safe'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-body)">${t}</span>`).join('')}
+                    ${['Trustworthy', 'Reassuring', 'Confident', 'Helpful', 'Powerful', 'Simple', 'Functional', 'Safe'].map(t => `<span style="padding:6px 14px;border-radius:999px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-body)">${t}</span>`).join('')}
                   </div>
                 </div>
                 <div>
                   <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">We are not</div>
                   <div style="display:flex;flex-wrap:wrap;gap:8px">
-                    ${['Arrogant', 'Audacious', 'Playful', 'Risky', 'Self-centered', 'Too complex', 'Closed'].map(t => `<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-muted);text-decoration:line-through">${t}</span>`).join('')}
+                    ${['Arrogant', 'Audacious', 'Playful', 'Risky', 'Self-centered', 'Too complex', 'Closed'].map(t => `<span style="padding:6px 14px;border-radius:999px;background:var(--bg-surface);border:1px solid var(--border-default);font-size:13px;color:var(--text-muted);text-decoration:line-through">${t}</span>`).join('')}
                   </div>
                 </div>
               </div>
@@ -2534,7 +2599,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       ];
       var doHTML = doItems.map(function(t) {
         return '<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-subtle)">' +
-          '<svg style="width:22px;height:22px;flex-shrink:0;margin-top:2px;color:#05c168" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' +
+          '<svg style="width:22px;height:22px;flex-shrink:0;margin-top:2px;color:var(--success-ink)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' +
           '<span style="color:var(--text-body);line-height:1.6;font-size:17px">' + t + '</span></div>';
       }).join('');
 
@@ -2550,7 +2615,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       ];
       var dontHTML = dontItems.map(function(t) {
         return '<div style="display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border-subtle)">' +
-          '<svg style="width:22px;height:22px;flex-shrink:0;margin-top:2px;color:#ff5a65" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+          '<svg style="width:22px;height:22px;flex-shrink:0;margin-top:2px;color:var(--error-ink)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
           '<span style="color:var(--text-body);line-height:1.6;font-size:17px">' + t + '</span></div>';
       }).join('');
 
@@ -2577,7 +2642,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         ['Banks &amp; Custody Providers', 'Custody is the anchor use case. Trust and evidence come before tooling: every action attributable, every balance reconcilable, every record ready for auditors and regulators.']
       ];
       var audienceHTML = audienceData.map(function(a) {
-        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px">' +
+        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px">' +
           '<div style="font-size:20px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">' + a[0] + '</div>' +
           '<p style="color:var(--text-secondary);line-height:1.6;margin:0">' + a[1] + '</p></div>';
       }).join('');
@@ -2591,14 +2656,14 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         { context: 'API documentation', bad: 'This powerful endpoint allows you to easily and seamlessly create wallets in a super simple way.', good: 'Every network is a first-class citizen. New chains land in weeks, not quarters.', why: 'Action-oriented and scannable. No filler, and a claim the roadmap can be held to.' }
       ];
       var examplesHTML = examplesData.map(function(ex) {
-        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:40px">' +
+        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:40px">' +
           '<div style="font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px">' + ex.context + '</div>' +
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px">' +
-          '<div style="padding:24px;border-radius:12px;border:1px solid rgba(255,90,101,0.2);background:rgba(255,90,101,0.04)">' +
-          '<div style="font-size:13px;font-weight:600;color:#ff5a65;margin-bottom:12px;display:flex;align-items:center;gap:8px"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="#ff5a65" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Don\'t</div>' +
+          '<div style="padding:24px;border-radius:12px;border:1px solid var(--error-line);background:var(--error-tint)">' +
+          '<div style="font-size:13px;font-weight:600;color:var(--error-ink);margin-bottom:12px;display:flex;align-items:center;gap:8px"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Don\'t</div>' +
           '<p style="color:var(--text-secondary);line-height:1.6;margin:0;font-size:16px">' + ex.bad + '</p></div>' +
-          '<div style="padding:24px;border-radius:12px;border:1px solid rgba(5,193,104,0.2);background:rgba(5,193,104,0.04)">' +
-          '<div style="font-size:13px;font-weight:600;color:#05c168;margin-bottom:12px;display:flex;align-items:center;gap:8px"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="#05c168" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Do</div>' +
+          '<div style="padding:24px;border-radius:12px;border:1px solid var(--success-line);background:var(--success-tint)">' +
+          '<div style="font-size:13px;font-weight:600;color:var(--success-ink);margin-bottom:12px;display:flex;align-items:center;gap:8px"><svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Do</div>' +
           '<p style="color:var(--text-body);line-height:1.6;margin:0;font-size:16px">' + ex.good + '</p></div></div>' +
           '<p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;padding-top:8px;border-top:1px solid var(--border-subtle)">' + ex.why + '</p></div>';
       }).join('');
@@ -2615,31 +2680,31 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         '<p class="section-desc" style="font-size:20px;line-height:1.6;margin-bottom:40px;color:var(--text-strong)">DFNS speaks with the confidence of a security leader and the clarity of a great developer tool. We are precise, trustworthy, and human \u2014 never corporate jargon, never hype.</p>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Principles</h2>' +
         '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:28px">' +
           '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
           '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Clear</div>' +
           '<p style="color:var(--text-body);line-height:1.5;margin:0">We simplify complex blockchain and security concepts. If a developer can\'t understand it in 5 seconds, rewrite it.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:28px">' +
           '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' +
           '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Confident</div>' +
           '<p style="color:var(--text-body);line-height:1.5;margin:0">We state what is on record and let the evidence carry it. Superlatives are earned by third parties, never claimed by us.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:28px">' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:28px">' +
           '<svg style="width:32px;height:32px;margin-bottom:16px;color:var(--accent)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>' +
           '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">Human</div>' +
           '<p style="color:var(--text-body);line-height:1.5;margin:0">We talk to people, not at them. Warm but professional. We\'re the trusted advisor, not the corporate vendor.</p></div></div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice vs. Tone</h2>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Voice is constant</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our voice is who we are. It stays the same across all channels \u2014 website, docs, emails, social, product UI.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Tone adapts</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our tone shifts depending on the audience, the context, and the emotional state of the reader. A security alert is not a product launch.</p></div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Voice is constant</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our voice is who we are. It stays the same across all channels \u2014 website, docs, emails, social, product UI.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:24px"><div style="font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:8px">Tone adapts</div><p style="color:var(--text-secondary);line-height:1.5;margin:0;font-size:14px">Our tone shifts depending on the audience, the context, and the emotional state of the reader. A security alert is not a product launch.</p></div></div>' +
         '</div></div>' +
 
         '<div class="vt-section" id="vt-voice"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Attributes</h2>' +
         '<div style="display:grid;gap:16px;margin-bottom:40px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Trustworthy</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Technical</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We speak developer-first. Code examples over marketing fluff. Architecture diagrams over buzzwords. We respect our audience\'s intelligence.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Reassuring</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Security is stressful. We calm anxiety with clarity, not complexity. We guide users through sensitive operations with patience and care.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Concise</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Every word earns its place. We cut filler, avoid redundancy, and get to the point. Brevity is respect for our reader\'s time.</p></div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Trustworthy</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Technical</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We speak developer-first. Code examples over marketing fluff. Architecture diagrams over buzzwords. We respect our audience\'s intelligence.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Reassuring</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Security is stressful. We calm anxiety with clarity, not complexity. We guide users through sensitive operations with patience and care.</p></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Concise</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Every word earns its place. We cut filler, avoid redundancy, and get to the point. Brevity is respect for our reader\'s time.</p></div></div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Spectrum</h2>' +
         '<div style="display:grid;gap:12px">' + spectrumHTML + '</div></div></div>' +
 
@@ -2653,11 +2718,11 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
         '<h2 class="section-title" style="margin-bottom:16px">Tone by channel</h2>' +
         '<p class="section-desc" style="margin-bottom:32px">Our tone shifts across contexts while our voice remains constant. Here\'s how we adapt for different situations.</p>' +
         '<div style="display:grid;gap:16px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Marketing &amp; Website</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Confident &amp; Inspiring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Short declaratives, one claim per line. Lead on what our clients are doing, not on what we intend to do. Every number carries its unit and its date.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWhile others wait and see, our clients are building.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Documentation &amp; API</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Precise &amp; Helpful</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Code-first and scannable. Every sentence moves the developer forward. Capabilities stated as facts a reader can test against the API.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201C100+ blockchains. One API. Every network is a first-class citizen.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Security &amp; Compliance</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Authoritative &amp; Reassuring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Calm authority, mechanism first. Never fear. We name our own place in the threat model, and we say what an attacker gets \u2014 which is nothing.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CTrust nothing. Verify everything. Us too.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Product UI</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Clear &amp; Functional</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Labels are verbs: Initiate, Authenticate, Approve, Broadcast. Errors give what happened, why, and the next step, with the numbers in them.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CSettle &amp; record \u2014 indexed to finality, webhooks fired, audit trail written.\u201D</div></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:20px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Warmer, never at the expense of credibility. A shipped capability, stated plainly, beats a hot take. Two beats work well here.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWe integrate. You orchestrate.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Marketing &amp; Website</div><span style="padding:5px 12px;border-radius:999px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Confident &amp; Inspiring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Short declaratives, one claim per line. Lead on what our clients are doing, not on what we intend to do. Every number carries its unit and its date.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWhile others wait and see, our clients are building.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Documentation &amp; API</div><span style="padding:5px 12px;border-radius:999px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Precise &amp; Helpful</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Code-first and scannable. Every sentence moves the developer forward. Capabilities stated as facts a reader can test against the API.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201C100+ blockchains. One API. Every network is a first-class citizen.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Security &amp; Compliance</div><span style="padding:5px 12px;border-radius:999px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Authoritative &amp; Reassuring</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Calm authority, mechanism first. Never fear. We name our own place in the threat model, and we say what an attacker gets \u2014 which is nothing.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CTrust nothing. Verify everything. Us too.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Product UI</div><span style="padding:5px 12px;border-radius:999px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Clear &amp; Functional</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Labels are verbs: Initiate, Authenticate, Approve, Broadcast. Errors give what happened, why, and the next step, with the numbers in them.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CSettle &amp; record \u2014 indexed to finality, webhooks fired, audit trail written.\u201D</div></div>' +
+        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:500;color:var(--text-primary)">Social &amp; Community</div><span style="padding:5px 12px;border-radius:999px;background:var(--accent-pill-bg);border:none;font-size:11px;font-weight:600;color:var(--accent)">Approachable &amp; Smart</span></div><p style="color:var(--text-secondary);line-height:1.6;margin:0;margin-bottom:12px">Warmer, never at the expense of credibility. A shipped capability, stated plainly, beats a hot take. Two beats work well here.</p><div style="background:var(--quote-bg);border:none;border-radius:12px;padding:20px 24px;font-size:18px;font-weight:400;color:var(--text-primary);line-height:1.5;font-style:normal">\u201CWe integrate. You orchestrate.\u201D</div></div>' +
         '</div></div></div>' +
 
         '<div class="vt-section" id="vt-writing"><div>' +
@@ -2762,16 +2827,16 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
               <p class="section-desc" style="margin-top:-8px">Dark mode uses <strong>two distinct surfaces</strong> — don't conflate them. The accent on dark is always Ultra Purple 200 <code class="code-inline">#C4AEFF</code>.</p>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px">
-              <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border-default)">
+              <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border-default)">
                 <div style="height:116px;background:#170C33"></div>
                 <div style="padding:16px;background:var(--bg-surface)"><div style="font-weight:600;margin-bottom:4px">Page background</div><div style="font-size:13px;color:var(--text-body)">Ultra Purple 900 · <code class="code-inline">#170C33</code></div></div>
               </div>
-              <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border-default)">
+              <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border-default)">
                 <div style="height:116px;background:#1E202E"></div>
                 <div style="padding:16px;background:var(--bg-surface)"><div style="font-weight:600;margin-bottom:4px">Card / spotlight</div><div style="font-size:13px;color:var(--text-body)">Cold Grey 900 · <code class="code-inline">#1E202E</code> · border Cold Grey 700</div></div>
               </div>
             </div>
-            <div style="background:#1E202E;border:1px solid #363A5B;border-radius:16px;padding:36px;margin-bottom:28px;box-shadow:0 14px 13.4px rgba(19,22,45,0.14),0 33.8px 32.3px rgba(19,22,45,0.18),0 56px 53.6px rgba(19,22,45,0.21)">
+            <div style="background:#1E202E;border:1px solid #363A5B;border-radius:12px;padding:36px;margin-bottom:28px;box-shadow:0 14px 13.4px rgba(19,22,45,0.14),0 33.8px 32.3px rgba(19,22,45,0.18),0 56px 53.6px rgba(19,22,45,0.21)">
               <div style="font-family:var(--font);font-size:28px;line-height:1.1;margin-bottom:16px">
                 <span style="font-weight:300;color:#C4AEFF;display:block">Trust nothing. Verify everything.</span>
                 <span style="font-weight:400;color:#E0E3F0;display:block">Us too.</span>
@@ -2975,7 +3040,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             </div>
 
             <!-- H1 Dual-Tone — 2 colonnes dark / light -->
-            <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:12px">
+            <div style="border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin-bottom:12px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H1</span>
                 <span class="type-specimen-tag">48px</span>
@@ -3025,7 +3090,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             </div>
 
             <!-- H2 Dual-Tone — 2 colonnes dark / light -->
-            <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:24px">
+            <div style="border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin-bottom:24px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H2</span>
                 <span class="type-specimen-tag">36px</span>
@@ -3075,7 +3140,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             </div>
 
             <!-- H3 — 2 colonnes dark / light -->
-            <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:12px">
+            <div style="border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin-bottom:12px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H3</span>
                 <span class="type-specimen-tag">28px</span>
@@ -3105,7 +3170,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             </div>
 
             <!-- H4 — 2 colonnes dark / light -->
-            <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:12px">
+            <div style="border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin-bottom:12px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H4</span>
                 <span class="type-specimen-tag">24px</span>
@@ -3135,7 +3200,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             </div>
 
             <!-- H5 — 2 colonnes dark / light -->
-            <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden;margin-bottom:24px">
+            <div style="border:1px solid var(--border-default);border-radius:12px;overflow:hidden;margin-bottom:24px">
               <div style="padding:14px 20px;border-bottom:1px solid var(--border-subtle);display:flex;gap:8px;flex-wrap:wrap;background:var(--bg-surface)">
                 <span class="type-specimen-tag">H5</span>
                 <span class="type-specimen-tag">16px</span>
@@ -4143,13 +4208,13 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px">
-              <div style="background:#E8EAF0;border-radius:16px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px">
+              <div style="background:#E8EAF0;border-radius:12px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px">
                 <div style="display:flex;gap:20px;color:#170C33">
                   ${heroiconSlot('HeroiconsSolidShieldCheck', 24)}${heroiconSlot('HeroiconsSolidKey', 24)}${heroiconSlot('HeroiconsSolidLockClosed', 24)}${heroiconSlot('HeroiconsSolidBell', 24)}
                 </div>
                 <span style="font-size:13px;color:#170C33;opacity:0.6">Light background — Ultra Purple 900</span>
               </div>
-              <div style="background:#170C33;border-radius:16px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px">
+              <div style="background:#170C33;border-radius:12px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px">
                 <div style="display:flex;gap:20px;color:#E3E4EB">
                   ${heroiconSlot('HeroiconsSolidShieldCheck', 24)}${heroiconSlot('HeroiconsSolidKey', 24)}${heroiconSlot('HeroiconsSolidLockClosed', 24)}${heroiconSlot('HeroiconsSolidBell', 24)}
                 </div>
@@ -4362,7 +4427,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
             <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Schematics &amp; diagrams</span></div>
-              <div style="border:1px solid var(--border-default);border-radius:16px;overflow:hidden">
+              <div style="border:1px solid var(--border-default);border-radius:12px;overflow:hidden">
                 <div style="background:#FFFFFF;padding:28px;display:flex;justify-content:center">
                   <img src="./assets/Schematics/dev-schema.svg" alt="Developer architecture schematic" style="max-width:100%;height:auto"/>
                 </div>
@@ -4608,7 +4673,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
 <div class="color-family">
               <div class="color-family-header"><span class="color-family-name">Eyebrow &mdash; tokens</span></div>
-              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Success variant</strong> — fill Success 500 @15% <code class="code-inline">rgba(92,235,116,.15)</code>, text Success 900 <code class="code-inline">#056F15</code>.</span></div>
+              <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Success variant</strong> — fill Success 500 @15% <code class="code-inline">rgba(92,235,116,.15)</code>, text Success 900 <code class="code-inline">var(--success-ink)</code>.</span></div>
               <div class="color-tip" style="margin-bottom:10px"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Info variant</strong> — fill Info 500 @15% <code class="code-inline">rgba(75,108,255,.15)</code>, text Info 500 <code class="code-inline">#4B6CFF</code>.</span></div>
               <div class="color-tip"><svg class="color-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span><strong>Don't</strong> — Never hand-darken a color for eyebrow text. Pull from the system color scales.</span></div>
             </div>
@@ -4618,11 +4683,11 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
               <p class="section-desc" style="margin-top:-8px">The blog category label, in two contexts — light list rows and the dark spotlight. <strong>Never</strong> a filled Ultra Purple 50 badge.</p>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px">
-              <div style="padding:28px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px">
+              <div style="padding:28px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px">
                 <div style="font-size:12px;color:var(--text-secondary);margin-bottom:14px">List row (light)</div>
                 <span style="display:inline-block;font-family:'Roboto Mono',monospace;font-size:11px;color:#575C7B;text-transform:uppercase;letter-spacing:0.06em;background:rgba(255,255,255,0.3);border:1px solid #E3E4EB;border-radius:8px;padding:4px 10px">Security</span>
               </div>
-              <div style="padding:28px;background:#1E202E;border:1px solid #363A5B;border-radius:16px">
+              <div style="padding:28px;background:#1E202E;border:1px solid #363A5B;border-radius:12px">
                 <div style="font-size:12px;color:#AEB1C9;margin-bottom:14px">Spotlight (dark)</div>
                 <span style="display:inline-block;font-family:var(--font);font-size:13px;font-weight:500;color:#C4AEFF;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:4px 10px">Security</span>
               </div>
@@ -4631,7 +4696,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
               <div class="color-family-header"><span class="color-family-name">Category selector</span></div>
               <p class="section-desc" style="margin-top:-8px;margin-bottom:18px">The blog section filter — category tabs with counts and a sliding active indicator (Cold Grey 100 pill).</p>
             </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;padding:24px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;margin-bottom:28px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;padding:24px;background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;margin-bottom:28px">
               <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#1E202E;background:#E0E3F0;border-radius:12px">All <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">24</span></span>
               <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Security <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">8</span></span>
               <span style="display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 10px 0 14px;font-family:var(--font);font-size:14px;font-weight:500;color:#575C7B;border-radius:12px">Engineering <span style="font-size:12px;font-weight:400;color:#442599;background:#C5C9DE;padding:3px 5px 2px;border-radius:3px;font-variant-numeric:tabular-nums">6</span></span>
@@ -4851,7 +4916,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
               <p class="section-desc" style="margin-top:-8px">Consistent duration values ensure rhythm and predictability across the product.</p>
             </div>
 
-            <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:16px;overflow:hidden">
+            <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;overflow:hidden">
               <table class="motion-duration-table">
                 <thead>
                   <tr><th>Token</th><th>Value</th><th>Use case</th></tr>
