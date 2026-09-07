@@ -898,6 +898,18 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       .color-tab-panel { animation: none; }
     }
 
+    /* Voice Attributes — quatre cartes côte à côte. Les paliers évitent
+       l'orphelin : 4 en large, 2 en intermédiaire, 1 en étroit — jamais 3,
+       qui laisserait une carte seule sur sa ligne. */
+    .vt-attrs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 1100px) { .vt-attrs { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px)  { .vt-attrs { grid-template-columns: 1fr; } }
+
     /* Brand values — three columns straight on the page ground, no card.
        A hairline rules each column off; the rank is the only heavy mark. */
     .bv-values { display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -2670,6 +2682,21 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
           '<div style="padding:14px 20px;font-size:14px;color:var(--text-secondary)">' + t[1] + '</div></div>';
       }).join('');
 
+      // Mêmes proportions que les cartes de Voice Principles juste au-dessus :
+      // padding 28, titre 20/400. Le 28px précédent n'était sur aucun palier
+      // de l'échelle du site, et ne tenait pas dans un quart de largeur.
+      var attributesData = [
+        ['Trustworthy', 'We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.'],
+        ['Technical',   'We speak developer-first. Code examples over marketing fluff. Architecture diagrams over buzzwords. We respect our audience\'s intelligence.'],
+        ['Reassuring',  'Security is stressful. We calm anxiety with clarity, not complexity. We guide users through sensitive operations with patience and care.'],
+        ['Concise',     'Every word earns its place. We cut filler, avoid redundancy, and get to the point. Brevity is respect for our reader\'s time.']
+      ];
+      var attributesHTML = attributesData.map(function(a) {
+        return '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:28px">' +
+          '<div style="font-size:20px;font-weight:400;color:var(--text-primary);margin-bottom:10px">' + a[0] + '</div>' +
+          '<p style="color:var(--text-secondary);line-height:1.6;margin:0;font-size:14px">' + a[1] + '</p></div>';
+      }).join('');
+
       var audienceData = [
         ['Fintechs &amp; Financial Institutions', 'The primary audience. They need secure, modular wallet infrastructure to run blockchain-powered services at scale. We speak compliance, SLAs, and deployment models \u2014 SaaS, hybrid, or fully sovereign.'],
         ['CTOs &amp; Technical Leaders', 'DFNS earns this room by engaging the architecture, not the sales deck. Every action is an API, every control is code, every workflow composable \u2014 that is the conversation.'],
@@ -2735,11 +2762,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
         '<div class="vt-section" id="vt-voice"><div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Attributes</h2>' +
-        '<div style="display:grid;gap:16px;margin-bottom:40px">' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Trustworthy</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We earn trust through precision and transparency. Every claim is backed by facts. We never overstate capabilities or hide limitations.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Technical</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">We speak developer-first. Code examples over marketing fluff. Architecture diagrams over buzzwords. We respect our audience\'s intelligence.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Reassuring</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Security is stressful. We calm anxiety with clarity, not complexity. We guide users through sensitive operations with patience and care.</p></div>' +
-        '<div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:12px;padding:32px"><div style="font-size:28px;font-weight:500;margin-bottom:8px;color:var(--text-primary)">Concise</div><p style="color:var(--text-secondary);line-height:1.6;margin:0">Every word earns its place. We cut filler, avoid redundancy, and get to the point. Brevity is respect for our reader\'s time.</p></div></div>' +
+        '<div class="vt-attrs">' + attributesHTML + '</div>' +
         '<h2 class="section-title" style="margin-bottom:16px">Voice Spectrum</h2>' +
         '<div style="display:grid;gap:12px">' + spectrumHTML + '</div></div></div>' +
 
