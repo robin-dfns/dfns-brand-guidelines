@@ -1214,8 +1214,15 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       color: var(--text-tertiary);
       cursor: pointer;
       border: none;
-      border-radius: 8px;
-      transition: all 0.2s ease;
+      /* Le soulignement est réservé dès l'état inactif, en transparent : à
+         l'activation seule sa couleur change, jamais la boîte. Avant, l'onglet
+         actif était le seul à porter une bordure, donc il grandissait et
+         remontait au clic. */
+      border-bottom: 1px solid transparent;
+      /* Jamais `all` : il animait border-width (0 -> 3px) et border-radius,
+         d'où la boîte arrondie à bord épais visible en cours de transition.
+         Le site n'anime que la couleur sur ses onglets (.mega-tab). */
+      transition: color 0.2s ease, border-color 0.2s ease;
       white-space: nowrap;
       position: relative;
       background: none;
@@ -1228,9 +1235,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
     .color-tab.active {
       color: var(--accent);
-      background: none;
-      border-bottom: 1px solid var(--accent);
-      border-radius: 0;
+      border-bottom-color: var(--accent);
     }
 
     .color-tab-panel {
