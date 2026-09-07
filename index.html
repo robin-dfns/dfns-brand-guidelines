@@ -893,6 +893,10 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
     @keyframes hex-blink { 0%, 49% { opacity: 1; } 50%, 99% { opacity: 0; } 100% { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { .eyebrow-hex { animation: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .tabpage-tabs.ind-anim::after { transition: none; }
+      .color-tab-panel { animation: none; }
+    }
 
     /* Brand values — three columns straight on the page ground, no card.
        A hairline rules each column off; the rank is the only heavy mark. */
@@ -1197,6 +1201,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
     .tabpage-tabs {
       display: flex;
+      position: relative;
       gap: 0;
       border-bottom: 1px solid var(--border-medium);
       margin-top: 32px;
@@ -1207,6 +1212,31 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
     .tabpage-tabs::-webkit-scrollbar { display: none; }
 
+    /* Indicateur d'onglet actif — un seul trait, piloté par deux variables que
+       le JS met à jour. Il glisse et se redimensionne d'un onglet à l'autre au
+       lieu de disparaître d'un côté pour réapparaître de l'autre.
+       Posé en bottom:0 : le conteneur a overflow-x auto, et un décalage négatif
+       tomberait dans la zone de bordure, qui est rognée. Courbe reprise du
+       Button porté depuis le site. */
+    .tabpage-tabs::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: var(--tab-w, 0px);
+      transform: translateX(var(--tab-x, 0px));
+      background: var(--accent);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .tabpage-tabs.ind-ready::after { opacity: 1; }
+    .tabpage-tabs.ind-anim::after {
+      transition: transform 0.32s cubic-bezier(.4,.36,0,1),
+                  width 0.32s cubic-bezier(.4,.36,0,1),
+                  opacity 0.2s ease;
+    }
+
     .color-tab {
       padding: 10px 20px;
       font-size: 14px;
@@ -1214,15 +1244,11 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       color: var(--text-tertiary);
       cursor: pointer;
       border: none;
-      /* Le soulignement est réservé dès l'état inactif, en transparent : à
-         l'activation seule sa couleur change, jamais la boîte. Avant, l'onglet
-         actif était le seul à porter une bordure, donc il grandissait et
-         remontait au clic. */
-      border-bottom: 1px solid transparent;
-      /* Jamais `all` : il animait border-width (0 -> 3px) et border-radius,
-         d'où la boîte arrondie à bord épais visible en cours de transition.
-         Le site n'anime que la couleur sur ses onglets (.mega-tab). */
-      transition: color 0.2s ease, border-color 0.2s ease;
+      /* Aucun trait porté par l'onglet : c'est .tabpage-tabs::after qui le
+         dessine et glisse d'un onglet à l'autre. Rien ici ne touche la boîte,
+         donc plus de saut de hauteur au clic. Jamais `all` — le site n'anime
+         que la couleur sur ses onglets (.mega-tab). */
+      transition: color 0.2s ease;
       white-space: nowrap;
       position: relative;
       background: none;
@@ -1233,17 +1259,21 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       color: var(--text-body);
     }
 
-    .color-tab.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
+    .color-tab.active { color: var(--accent); }
 
     .color-tab-panel {
       display: none;
       padding: 40px 64px 120px;
       max-width: 1100px;
       margin: 0 auto;
-      animation: fadeUp 0.35s var(--ease-out);
+      /* Montée plus courte que le fadeUp générique (16px) : sur un changement
+         d'onglet, le panneau et le trait doivent lire comme un seul geste. */
+      animation: tabPanelIn 0.28s cubic-bezier(.4,.36,0,1);
+    }
+
+    @keyframes tabPanelIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: none; }
     }
 
     .color-tab-panel.active {
@@ -5134,10 +5164,12 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       const group = tab.dataset.tabgroup;
       const prefix = group === 'fw' ? 'fwtab-' : group === 'vt' ? 'vttab-' : group === 'type' ? 'ttab-' : group === 'logo' ? 'ltab-' : group === 'icon' ? 'itab-' : group === 'img' ? 'imtab-' : group === 'motion' ? 'mtab-' : 'ctab-';
 
+      // Indicateur : repositionné après le changement de classe active
       // Scope to the parent tabs container
       const tabsContainer = tab.closest('.tabpage-tabs');
       tabsContainer.querySelectorAll('.color-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
+      syncTabIndicator(tabsContainer, true);
 
       // Toggle panels within the same page
       const page = tab.closest('.tabpage-layout');
@@ -5147,6 +5179,41 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
       if (panel && panel.id === 'imtab-iconography') initHeroicons();
       if (panel && panel.id === 'imtab-pattern') initPattern();
       if (panel && panel.id === 'imtab-components' && window.__buildButtonPlayground) window.__buildButtonPlayground();
+    });
+
+    // ===== Indicateur d'onglet =====
+    // Le trait est un seul élément (.tabpage-tabs::after) déplacé par deux
+    // variables CSS. `animate` à false pose la position sans transition : au
+    // premier affichage, sinon le trait arriverait en glissant depuis la gauche.
+    function syncTabIndicator(container, animate) {
+      if (!container) return;
+      const active = container.querySelector('.color-tab.active');
+      if (!active) { container.classList.remove('ind-ready'); return; }
+      if (!animate) container.classList.remove('ind-anim');
+      container.style.setProperty('--tab-x', active.offsetLeft + 'px');
+      container.style.setProperty('--tab-w', active.offsetWidth + 'px');
+      container.classList.add('ind-ready');
+      if (!animate) {
+        void container.offsetWidth;   // reflow : la transition ne rattrape pas la pose
+        container.classList.add('ind-anim');
+      }
+    }
+
+    function syncAllTabIndicators(root, animate) {
+      (root || document).querySelectorAll('.tabpage-tabs')
+        .forEach(c => syncTabIndicator(c, animate));
+    }
+
+    // Les onglets d'une page masquée mesurent 0 : on repose à l'affichage, au
+    // chargement des polices (les largeurs bougent) et au redimensionnement.
+    window.addEventListener('load', function () { syncAllTabIndicators(document, false); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { syncAllTabIndicators(document, false); });
+    }
+    let tabIndTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(tabIndTimer);
+      tabIndTimer = setTimeout(function () { syncAllTabIndicators(document, false); }, 120);
     });
 
     // ===== Navigation =====
@@ -5169,6 +5236,7 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
           setTimeout(() => s.classList.add('visible'), i * 80);
         });
         initScrollSpy(pageId);
+        syncAllTabIndicators(document.getElementById('page-' + pageId), false);
       }, 50);
     }
 
