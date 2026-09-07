@@ -154,7 +154,8 @@
       --bg-surface-alt: #F0F1F4;
       --bg-hover: #E8EAF0;
       --bg-hover-strong: #E3E4EB;
-      --bg-nav-blur: rgba(240, 241, 244, 0.92);
+      /* Suit --bg-page : #F4F4F8, et non plus l'ancien Steel 100. */
+      --bg-nav-blur: rgba(244, 244, 248, 0.92);
       --bg-modal: rgba(240, 241, 244, 0.97);
 
       --border-subtle: #E8EAF0;
@@ -244,27 +245,6 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
 
-    /* ==============================================
-       TOPNAV
-       ============================================== */
-    .topnav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 calc(var(--page-padding) + var(--line-inset));
-      z-index: 1000;
-      transition: background 0.3s ease;
-    }
-
-    .topnav.scrolled {
-      background: var(--bg-nav-blur);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-medium);
-    }
 
 
 
@@ -5311,11 +5291,6 @@ padding:6px 12px;border:1px solid var(--stroke-tertiary);border-radius:999px;bac
 
       sections.forEach(s => obs.observe(s));
     }
-
-    // ===== Topnav scroll effect =====
-    window.addEventListener('scroll', () => {
-      document.getElementById('topnav').classList.toggle('scrolled', window.scrollY > 20);
-    });
 
     /* ===== Token truth =====
        tokens/*.css is the single source of truth, but this page cannot simply

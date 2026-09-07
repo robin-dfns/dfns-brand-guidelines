@@ -19,9 +19,10 @@
   }
 
   var css = '' +
-    '#topnav.dsnav{position:fixed;top:0;left:0;right:0;height:60px;z-index:1000;display:flex;align-items:center;gap:18px;padding:0 24px;box-sizing:border-box;font-family:"SuisseIntl","Suisse Intl",-apple-system,BlinkMacSystemFont,sans-serif;transition:background .3s}' +
-    '#topnav.dsnav.scrolled{background:rgba(240,241,244,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #E0E3F0}' +
-    'html.dark #topnav.dsnav.scrolled{background:rgba(23,12,51,.9);border-bottom-color:rgba(255,255,255,.08)}' +
+    // Hauteur et gouttière prises sur les tokens de la page (repli pour un
+    // usage hors monolithe). La barre est calée sur les filets, comme .nav
+    // sur le site, et porte son fond et son séparateur en permanence.
+    '#topnav.dsnav{position:fixed;top:0;left:0;right:0;height:var(--nav-height,52px);z-index:1000;display:flex;align-items:center;gap:18px;padding:0 calc(var(--page-padding,24px) + var(--line-inset,0px));box-sizing:border-box;font-family:"SuisseIntl","Suisse Intl",-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-nav-blur,rgba(244,244,248,.92));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-default,#E0E3F0);transition:background .3s,border-color .3s}' +
     '.dsnav-logo{display:inline-flex;align-items:center;gap:9px;padding:5px 11px;border-radius:10px;background:#fff;border:1px solid #E0E3F0;text-decoration:none;flex:none;transition:background .15s,border-color .15s}' +
     '.dsnav-logo:hover{background:#E8EAF0}' +
     '.dsnav-logo svg{height:20px;width:auto;fill:#363A5B}' +
@@ -85,8 +86,4 @@
   setActive();
   window.addEventListener('hashchange', setActive);
 
-  /* ---- scroll blur ---- */
-  window.addEventListener('scroll', function () {
-    var n = document.getElementById('topnav'); if (n) n.classList.toggle('scrolled', window.scrollY > 20);
-  });
 })();
